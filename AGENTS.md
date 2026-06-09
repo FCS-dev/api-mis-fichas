@@ -53,17 +53,18 @@
 ## Application Context
 
 - **Purpose**: REST API so each user can track their own expenses (`EXPENSE`) and incomes (`INCOME`) in the `transactions` table.
-- **Categories**:
-  - *System categories* (`isSystem = true`): seeded automatically on application startup. Only an `ADMIN` can modify them.
-  - *User categories*: `USER` role accounts can create and manage their own personal categories (basic CRUD).
+- **Categories** (`categories`): plain grouping entities with `name` and `type` (INCOME/EXPENSE). No `isSystem` flag.
+- **Subcategories** (`subcategories`): hold the `isSystem` boolean. 
+  - *System subcategories* (`isSystem = true`): seeded automatically on startup by `AdminSeeder`. Only an `ADMIN` can modify them.
+  - *User subcategories*: `USER` role accounts can create and manage their own personal subcategories under existing categories (basic CRUD).
 - **Soft delete**: All main entities use `deletedAt` instead of physical deletion.
 
 ## Architecture Notes
 
 - **Controllers**: `com.fcs.mis_fichas.controllers.*`
 - **Entities**: `com.fcs.mis_fichas.entities.*`
-- **Repositories**: `com.fcs.mis_fichas.repositories.*` (currently empty — project is in early development)
-- **Services**: `com.fcs.mis_fichas.services.*` (currently empty)
+- **Repositories**: `com.fcs.mis_fichas.repositories.*` (User, Category, Subcategory, RefreshToken)
+- **Services**: `com.fcs.mis_fichas.services.*` (JwtService, RefreshTokenService, AuthService, UserDetailsServiceImpl)
 - **Enums**: `com.fcs.mis_fichas.enums.*` (Role, Status, Type)
 
 ## Team Conventions
@@ -81,8 +82,17 @@
   - Email: `admin@mis-fichas.fcs`
   - Password: `Admin123!` (hashed with BCrypt)
   - Role: `ADMIN`
-- **Current security posture**: All endpoints are permit-all (`SecurityConfig` disables CSRF and allows any request). This is temporary until JWT is fully implemented.
-- **Planned JWT design**: access tokens expire every 30 min; refresh tokens stored in `refresh_tokens` table expire after 30 days with active rotation (each use generates a new one and invalidates the previous). Auto-renewal without user intervention when possible.
+- **JWT implemented**: `jjwt` library (0.12.3) is in `pom.xml`.
+  - **Access Token**: JWT with 15-minute expiration, delivered in `Authorization: Bearer <token>` header.
+  - **Refresh Token**: 30-day expiration, cryptographically secure random token, stored hashed (SHA-256) in `refresh_tokens` table.
+  - **Refresh Token Rotation**: each use of a refresh token revokes it and issues a new one. If a revoked token is reused, all tokens for that user are immediately revoked.
+  - **Refresh Token Cookie**: `HttpOnly` cookie named `refresh_token`, path `/auth`.
+- **Endpoints**:
+  - `POST /auth/register` — public, creates `USER` account
+  - `POST /auth/login` — public, returns access token + sets refresh cookie
+  - `POST /auth/refresh` — public, reads refresh cookie, rotates token, returns new access token
+  - `POST /auth/logout` — public, revokes refresh cookie
+  - All other endpoints require valid JWT.
 
 ## Discrepancies to Watch
 

@@ -24,6 +24,15 @@ spring:
       hibernate:
         format_sql: true
 
+jwt:
+  secret: ${JWT_SECRET:your-256-bit-secret-key-here-for-jwt-signing-must-be-at-least-32-characters-long}
+  access-token-expiration: ${JWT_ACCESS_EXPIRATION:900000}
+  refresh-token-expiration: ${JWT_REFRESH_EXPIRATION:2592000000}
+
+refresh:
+  cookie:
+    name: ${REFRESH_COOKIE_NAME:refresh_token}
+
 logging:
   level:
     org.hibernate.SQL: INFO
