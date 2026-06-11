@@ -1,12 +1,49 @@
 package com.fcs.mis_fichas.repositories;
 
 import com.fcs.mis_fichas.entities.Category;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Repositorio para la gestion de categorias.
+ * Proporciona operaciones de consulta con soporte para soft delete.
+ */
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    Optional<Category> findByName(String name);
+
+    /**
+     * Busca una categoria activa por su nombre.
+     *
+     * @param name nombre de la categoria
+     * @return Optional con la categoria encontrada o vacio si no existe o esta eliminada
+     */
+    Optional<Category> findByNameAndDeletedAtIsNull(String name);
+
+    /**
+     * Verifica si existe una categoria activa con el nombre dado.
+     *
+     * @param name nombre de la categoria
+     * @return true si existe una categoria activa con ese nombre
+     */
+    boolean existsByNameAndDeletedAtIsNull(String name);
+
+    /**
+     * Busca una categoria activa por su identificador.
+     *
+     * @param id identificador de la categoria
+     * @return Optional con la categoria encontrada o vacio si no existe o esta eliminada
+     */
+    Optional<Category> findByIdAndDeletedAtIsNull(Long id);
+
+    /**
+     * Busca todas las categorias activas (sin soft delete) de forma paginada.
+     *
+     * @param pageable informacion de paginacion y ordenamiento
+     * @return pagina de categorias activas
+     */
+    Page<Category> findByDeletedAtIsNull(Pageable pageable);
 }

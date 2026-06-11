@@ -19,6 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+/**
+ * Configuracion de inicializacion de datos del sistema.
+ * Se ejecuta al arrancar la aplicacion y crea:
+ * - Un usuario ADMIN por defecto si no existe
+ * - Categorias y subcategorias de sistema si no existen
+ */
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
@@ -29,6 +35,12 @@ public class AdminSeeder {
     private final SubcategoryRepository subcategoryRepository;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Bean CommandLineRunner que ejecuta la semilla al inicio de la aplicacion.
+     * Crea el usuario admin y luego las categorias/subcategorias de sistema.
+     *
+     * @return instancia de CommandLineRunner
+     */
     @Bean
     @Transactional
     CommandLineRunner seedAdmin() {
@@ -38,6 +50,13 @@ public class AdminSeeder {
         };
     }
 
+    /**
+     * Crea el usuario ADMIN por defecto si no existe en la base de datos.
+     * Email: admin@mis-fichas.fcs
+     * Password: Admin123! (hasheada con BCrypt)
+     *
+     * @return entidad User del usuario admin
+     */
     private User createAdminIfNotExists() {
         String adminEmail = "admin@mis-fichas.fcs";
         return userRepository.findByEmail(adminEmail)
@@ -58,6 +77,12 @@ public class AdminSeeder {
                 });
     }
 
+    /**
+     * Crea las categorias y subcategorias de sistema si no existen.
+     * Incluye categorias de INCOME y EXPENSE con sus respectivas subcategorias.
+     *
+     * @param admin usuario admin que se registra como creador
+     */
     private void seedCategoriesAndSubcategories(User admin) {
         // INCOME - Ingresos generales
         Category income = createCategoryIfNotExists("Ingresos generales", Type.INCOME, admin);
@@ -188,8 +213,16 @@ public class AdminSeeder {
         log.info("Categorías y subcategorías de sistema cargadas correctamente.");
     }
 
+    /**
+     * Crea una categoria si no existe una activa con el mismo nombre.
+     *
+     * @param name  nombre de la categoria
+     * @param type  tipo de la categoria (INCOME o EXPENSE)
+     * @param admin usuario admin como creador
+     * @return entidad Category existente o recien creada
+     */
     private Category createCategoryIfNotExists(String name, Type type, User admin) {
-        return categoryRepository.findByName(name)
+        return categoryRepository.findByNameAndDeletedAtIsNull(name)
                 .orElseGet(() -> {
                     Category category = Category.builder()
                             .name(name)
@@ -203,8 +236,17 @@ public class AdminSeeder {
                 });
     }
 
+    /**
+     * Crea una subcategoria si no existe una activa con el mismo nombre dentro de la categoria.
+     *
+     * @param category  categoria padre
+     * @param name      nombre de la subcategoria
+     * @param isSystem  true si es del sistema
+     * @param admin     usuario admin como creador
+     * @return entidad Subcategory existente o recien creada
+     */
     private void createSubcategoryIfNotExists(Category category, String name, boolean isSystem, User admin) {
-        subcategoryRepository.findByName(name)
+        subcategoryRepository.findByNameAndCategoryIdAndDeletedAtIsNull(name, category.getId())
                 .orElseGet(() -> {
                     Subcategory subcategory = Subcategory.builder()
                             .category(category)

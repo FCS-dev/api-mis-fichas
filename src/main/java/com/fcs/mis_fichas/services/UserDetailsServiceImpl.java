@@ -11,12 +11,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+/**
+ * Implementacion de {@link UserDetailsService} para Spring Security.
+ * Carga los detalles del usuario desde la base de datos usando su correo electronico.
+ * Asigna el rol del usuario como autoridad (ROLE_USER o ROLE_ADMIN).
+ */
 @Service
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    /**
+     * Carga un usuario por su correo electronico.
+     * Construye un objeto UserDetails con el email, hash de contrasena, estado de la cuenta
+     * y el rol como autoridad.
+     *
+     * @param email correo electronico del usuario
+     * @return detalles del usuario para Spring Security
+     * @throws UsernameNotFoundException si no se encuentra un usuario con ese correo
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)

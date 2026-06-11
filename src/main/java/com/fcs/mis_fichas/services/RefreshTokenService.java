@@ -18,6 +18,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.Base64;
 import java.util.Optional;
 
+/**
+ * Servicio de gestion de tokens de refresco (refresh tokens).
+ * Implementa rotacion de tokens: cada uso revoca el anterior y genera uno nuevo.
+ * Si se detecta reutilizacion de un token revocado, se revocan todos los tokens del usuario.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -31,6 +36,14 @@ public class RefreshTokenService {
     private static final int TOKEN_LENGTH = 64;
     private final SecureRandom secureRandom = new SecureRandom();
 
+    /**
+     * Crea un nuevo token de refresco para un usuario.
+     * Genera un token aleatorio criptograficamente seguro, lo hashea con SHA-256
+     * y almacena el hash en la base de datos.
+     *
+     * @param user usuario al que se asigna el token
+     * @return token de refresco en texto plano (se devuelve una sola vez al cliente)
+     */
     @Transactional
     public String createRefreshToken(User user) {
         String token = generateRandomToken();
@@ -50,11 +63,26 @@ public class RefreshTokenService {
         return token;
     }
 
+    /**
+     * Busca un token de refresco por su valor en texto plano.
+     * Internamente hashea el token para comparar con el almacenado.
+     *
+     * @param token token de refresco en texto plano
+     * @return Optional con la entidad RefreshToken encontrada
+     */
     @Transactional(readOnly = true)
     public Optional<RefreshToken> findByTokenHash(String token) {
         return refreshTokenRepository.findByTokenHash(hashToken(token));
     }
 
+    /**
+     * Rota un token de refresco: valida el token anterior, lo revoca y genera uno nuevo.
+     * Si el token ya estaba revocado (posible reutilizacion maliciosa), revoca todos los tokens del usuario.
+     *
+     * @param oldToken token de refresco anterior en texto plano
+     * @return nuevo token de refresco en texto plano
+     * @throws RuntimeException si el token no existe, ya fue revocado o esta expirado
+     */
     @Transactional
     public String rotateRefreshToken(String oldToken) {
         String oldHash = hashToken(oldToken);
@@ -77,6 +105,11 @@ public class RefreshTokenService {
         return createRefreshToken(oldRefreshToken.getUserId());
     }
 
+    /**
+     * Revoca un token de refresco especifico.
+     *
+     * @param token token de refresco en texto plano a revocar
+     */
     @Transactional
     public void revokeRefreshToken(String token) {
         String hash = hashToken(token);
@@ -87,6 +120,12 @@ public class RefreshTokenService {
         });
     }
 
+    /**
+     * Revoca todos los tokens activos de un usuario.
+     * Se utiliza en caso de deteccion de reutilizacion de tokens o al cerrar sesion.
+     *
+     * @param userId identificador del usuario
+     */
     @Transactional
     public void revokeAllUserTokens(Long userId) {
         refreshTokenRepository.findByUserIdAndRevokedAtIsNull(userId)
@@ -96,12 +135,24 @@ public class RefreshTokenService {
                 });
     }
 
+    /**
+     * Genera un token aleatorio criptograficamente seguro de 64 bytes.
+     *
+     * @return token aleatorio codificado en Base64 URL-safe
+     */
     private String generateRandomToken() {
         byte[] bytes = new byte[TOKEN_LENGTH];
         secureRandom.nextBytes(bytes);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
     }
 
+    /**
+     * Hashea un token usando SHA-256.
+     *
+     * @param token token en texto plano
+     * @return hash del token en Base64
+     * @throws RuntimeException si el algoritmo SHA-256 no esta disponible
+     */
     private String hashToken(String token) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
