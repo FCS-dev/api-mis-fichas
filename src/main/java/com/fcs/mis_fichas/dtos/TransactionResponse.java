@@ -5,22 +5,22 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * DTO de respuesta que representa una transaccion.
- * Incluye informacion del usuario, categoria, subcategoria y auditoria.
+ * DTO de respuesta que representa una transacción.
+ * Incluye información del usuario, categoria, subcategoría y auditoria.
  *
- * @param id              identificador unico de la transaccion
+ * @param id              identificador único de la transacción
  * @param userId          identificador del usuario propietario
  * @param userEmail       correo del usuario propietario
  * @param categoryId      identificador de la categoria
  * @param categoryName    nombre de la categoria
- * @param subcategoryId   identificador de la subcategoria
- * @param subcategoryName nombre de la subcategoria
- * @param amount          monto de la transaccion
- * @param description     descripcion de la transaccion
- * @param transactionDate fecha de la transaccion
- * @param createdAt       fecha de creacion del registro
- * @param updatedAt       fecha de ultima actualizacion
- * @param deletedAt       fecha de eliminacion logica (null si esta activa)
+ * @param subcategoryId   identificador de la subcategoría
+ * @param subcategoryName nombre de la subcategoría
+ * @param amount          monto de la transacción
+ * @param description     descripción de la transacción
+ * @param transactionDate fecha de la transacción
+ * @param createdAt       fecha de creación del registro
+ * @param updatedAt       fecha de última actualización
+ * @param deletedAt       fecha de eliminación lógica (null si está activa)
  */
 public record TransactionResponse(
         Long id,

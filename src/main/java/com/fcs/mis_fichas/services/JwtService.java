@@ -17,7 +17,7 @@ import java.util.Date;
 
 /**
  * Servicio de gestion de tokens JWT (JSON Web Tokens).
- * Responsable de generar, validar y extraer informacion de los tokens de acceso.
+ * Responsable de generar, validar y extraer información de los tokens de acceso.
  */
 @Service
 @RequiredArgsConstructor
@@ -43,7 +43,7 @@ public class JwtService {
      * Genera un nuevo access token JWT.
      * El token incluye el email como subject y el rol como claim adicional.
      *
-     * @param email correo electronico del usuario (subject del token)
+     * @param email correo electrónico del usuario (subject del token)
      * @param role  rol del usuario (claim "role")
      * @return token JWT firmado
      */
@@ -61,10 +61,10 @@ public class JwtService {
     }
 
     /**
-     * Valida un token JWT verificando su firma y expiracion.
+     * Valida un token JWT verificando su firma y expiración.
      *
      * @param token token JWT a validar
-     * @return true si el token es valido, false en caso contrario
+     * @return true si el token es válido, false en caso contrario
      */
     public boolean validateToken(String token) {
         try {
@@ -83,7 +83,7 @@ public class JwtService {
      * Extrae el email (subject) de un token JWT.
      *
      * @param token token JWT
-     * @return correo electronico del usuario
+     * @return correo electrónico del usuario
      */
     public String extractEmail(String token) {
         Claims claims = Jwts.parser()

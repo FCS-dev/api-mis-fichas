@@ -4,8 +4,12 @@ package com.fcs.mis_fichas.enums;
  * Enum que representa los tipos de categoria de transacciones.
  */
 public enum Type {
-    /** Categoria de ingresos. */
+    /**
+     * Categoria de ingresos.
+     */
     INCOME,
-    /** Categoria de gastos. */
+    /**
+     * Categoria de gastos.
+     */
     EXPENSE
 }

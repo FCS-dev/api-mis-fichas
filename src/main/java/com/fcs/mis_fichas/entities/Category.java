@@ -15,8 +15,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 /**
- * Entidad que representa la tabla de categorias de transacciones.
- * Las categorias pueden ser de tipo INCOME o EXPENSE.
+ * Entidad que representa la tabla de categorías de transacciones.
+ * Las categorías pueden ser de tipo INCOME o EXPENSE.
  * Soporta soft delete mediante el campo {@code deletedAt}.
  */
 @Entity
@@ -30,14 +30,14 @@ import java.time.LocalDateTime;
 public class Category {
 
     /**
-     * Identificador unico de la categoria.
+     * Identificador único de la categoria.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * Nombre de la categoria. No puede estar vacio.
+     * Nombre de la categoria. No puede estar vacío.
      */
     @NotBlank // valida lo que viene de la api. !null, !empty, !=" "
     @Column(nullable = false, length = 100)
@@ -59,29 +59,29 @@ public class Category {
     private User createdBy;
 
     /**
-     * Fecha y hora de creacion del registro. Se genera automaticamente.
+     * Fecha y hora de creación del registro. Se genera automaticamente.
      */
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     /**
-     * Fecha y hora de la ultima actualizacion del registro.
+     * Fecha y hora de la ultima actualización del registro.
      */
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     /**
-     * Fecha y hora de eliminacion logica (soft delete). Si es null, el registro esta activo.
+     * Fecha y hora de eliminación lógica (soft delete). Si es null, el registro está activo.
      */
     private LocalDateTime deletedAt;
 
     /**
      * Constructor sin campos de auditoria.
      *
-     * @param name     nombre de la categoria
-     * @param type     tipo de la categoria (INCOME o EXPENSE)
+     * @param name      nombre de la categoria
+     * @param type      tipo de la categoria (INCOME o EXPENSE)
      * @param createdBy usuario creador de la categoria
      */
     public Category(String name, Type type, User createdBy) {

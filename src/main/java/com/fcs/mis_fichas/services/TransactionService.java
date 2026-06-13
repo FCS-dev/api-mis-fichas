@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 
 /**
  * Servicio de gestion de transacciones.
- * Controla las operaciones de creacion, actualizacion, eliminacion y consulta
+ * Controla las operaciones de creación, actualización, eliminación y consulta
  * con validaciones de permisos basadas en roles (USER / ADMIN).
  */
 @Service
@@ -37,13 +37,13 @@ public class TransactionService {
     private final UserRepository userRepository;
 
     /**
-     * Crea una nueva transaccion asociada al usuario autenticado.
+     * Crea una nueva transacción asociada al usuario autenticado.
      * Los ADMIN no pueden crear transacciones propias.
-     * Valida que la categoria y subcategoria existan, no esten eliminadas
-     * y que la subcategoria pertenezca a la categoria indicada.
+     * Valida que la categoria y subcategoría existan, no estén eliminadas
+     * y que la subcategoría pertenezca a la categoria indicada.
      *
-     * @param request datos de la transaccion a crear
-     * @return DTO de respuesta con la transaccion creada
+     * @param request datos de la transacción a crear
+     * @return DTO de respuesta con la transacción creada
      * @throws IllegalArgumentException si el usuario es ADMIN, o si la categoria/subcategoria no existe o no coincide
      */
     @Transactional
@@ -64,9 +64,9 @@ public class TransactionService {
         }
 
         Transaction transaction = Transaction.builder()
-                .userId(targetUser)
+                .user(targetUser)
                 .category(category)
-                .subcategoryId(subcategory)
+                .subcategory(subcategory)
                 .amount(request.amount())
                 .description(request.description())
                 .transactionDate(request.transactionDate())
@@ -77,15 +77,15 @@ public class TransactionService {
     }
 
     /**
-     * Actualiza una transaccion existente.
+     * Actualiza una transacción existente.
      * USER: solo puede modificar sus propias transacciones.
      * ADMIN: puede modificar transacciones de cualquier USER, pero no de otro ADMIN.
-     * Valida que la categoria y subcategoria existan y no esten eliminadas.
+     * Valida que la categoria y subcategoría existan y no estén eliminadas.
      *
-     * @param id      identificador de la transaccion a actualizar
-     * @param request nuevos datos de la transaccion
-     * @return DTO de respuesta con la transaccion actualizada
-     * @throws IllegalArgumentException si la transaccion no existe, no tiene permisos, o la categoria/subcategoria es invalida
+     * @param id      identificador de la transacción a actualizar
+     * @param request nuevos datos de la transacción
+     * @return DTO de respuesta con la transacción actualizada
+     * @throws IllegalArgumentException si la transacción no existe, no tiene permisos, o la categoria/subcategoria es inválida
      */
     @Transactional
     public TransactionResponse update(Long id, TransactionRequest request) {
@@ -94,11 +94,11 @@ public class TransactionService {
                 .orElseThrow(() -> new IllegalArgumentException("Transaction not found with id: " + id));
 
         if (currentUser.getRole() == Role.ADMIN) {
-            if (transaction.getUserId() == null || transaction.getUserId().getRole() == Role.ADMIN) {
+            if (transaction.getUser() == null || transaction.getUser().getRole() == Role.ADMIN) {
                 throw new IllegalArgumentException("ADMIN can only modify transactions of USER accounts");
             }
         } else {
-            if (transaction.getUserId() == null || !transaction.getUserId().getId().equals(currentUser.getId())) {
+            if (transaction.getUser() == null || !transaction.getUser().getId().equals(currentUser.getId())) {
                 throw new IllegalArgumentException("You can only modify your own transactions");
             }
         }
@@ -113,7 +113,7 @@ public class TransactionService {
         }
 
         transaction.setCategory(category);
-        transaction.setSubcategoryId(subcategory);
+        transaction.setSubcategory(subcategory);
         transaction.setAmount(request.amount());
         transaction.setDescription(request.description());
         transaction.setTransactionDate(request.transactionDate());
@@ -123,12 +123,12 @@ public class TransactionService {
     }
 
     /**
-     * Elimina una transaccion de forma logica (soft delete).
+     * Elimina una transacción de forma lógica (soft delete).
      * USER: solo puede eliminar sus propias transacciones.
      * ADMIN: puede eliminar transacciones de cualquier USER, pero no de otro ADMIN.
      *
-     * @param id identificador de la transaccion a eliminar
-     * @throws IllegalArgumentException si la transaccion no existe o no tiene permisos
+     * @param id identificador de la transacción a eliminar
+     * @throws IllegalArgumentException si la transacción no existe o no tiene permisos
      */
     @Transactional
     public void delete(Long id) {
@@ -137,11 +137,11 @@ public class TransactionService {
                 .orElseThrow(() -> new IllegalArgumentException("Transaction not found with id: " + id));
 
         if (currentUser.getRole() == Role.ADMIN) {
-            if (transaction.getUserId() == null || transaction.getUserId().getRole() == Role.ADMIN) {
+            if (transaction.getUser() == null || transaction.getUser().getRole() == Role.ADMIN) {
                 throw new IllegalArgumentException("ADMIN can only delete transactions of USER accounts");
             }
         } else {
-            if (transaction.getUserId() == null || !transaction.getUserId().getId().equals(currentUser.getId())) {
+            if (transaction.getUser() == null || !transaction.getUser().getId().equals(currentUser.getId())) {
                 throw new IllegalArgumentException("You can only delete your own transactions");
             }
         }
@@ -151,13 +151,13 @@ public class TransactionService {
     }
 
     /**
-     * Busca una transaccion por su identificador.
+     * Busca una transacción por su identificador.
      * USER: solo puede ver sus propias transacciones.
-     * ADMIN: puede ver cualquier transaccion.
+     * ADMIN: puede ver cualquier transacción.
      *
-     * @param id identificador de la transaccion
-     * @return DTO de respuesta con la transaccion encontrada
-     * @throws IllegalArgumentException si la transaccion no existe o no tiene permisos
+     * @param id identificador de la transacción
+     * @return DTO de respuesta con la transacción encontrada
+     * @throws IllegalArgumentException si la transacción no existe o no tiene permisos
      */
     @Transactional(readOnly = true)
     public TransactionResponse findById(Long id) {
@@ -170,18 +170,18 @@ public class TransactionService {
     }
 
     /**
-     * Busca transacciones aplicando filtros dinamicos y paginacion.
-     * USER: siempre filtra por su propio userId, ignorando el parametro.
+     * Busca transacciones aplicando filtros dinámicos y paginación.
+     * USER: siempre filtra por su propio userId, ignorando el parámetro.
      * ADMIN: puede filtrar por cualquier usuario o ver todos si userId es null.
      *
      * @param userId        identificador de usuario a filtrar (solo para ADMIN)
      * @param categoryId    identificador de categoria a filtrar (opcional)
-     * @param subcategoryId identificador de subcategoria a filtrar (opcional)
+     * @param subcategoryId identificador de subcategoría a filtrar (opcional)
      * @param date          fecha exacta a filtrar (opcional)
      * @param dateFrom      fecha inicio de rango a filtrar (opcional)
      * @param dateTo        fecha fin de rango a filtrar (opcional)
-     * @param pageable      informacion de paginacion y ordenamiento
-     * @return pagina de transacciones que cumplen los filtros
+     * @param pageable      información de paginación y ordenamiento
+     * @return página de transacciones que cumplen los filtros
      */
     @Transactional(readOnly = true)
     public Page<TransactionResponse> findAll(Long userId, Long categoryId, Long subcategoryId, LocalDate date, LocalDate dateFrom, LocalDate dateTo, Pageable pageable) {
@@ -197,11 +197,11 @@ public class TransactionService {
     }
 
     /**
-     * Verifica que el usuario tenga permiso para ver la transaccion.
+     * Verifica que el usuario tenga permiso para ver la transacción.
      * ADMIN: siempre tiene permiso.
-     * USER: solo si la transaccion pertenece a el.
+     * USER: solo si la transacción pertenece a él.
      *
-     * @param transaction transaccion a verificar
+     * @param transaction transacción a verificar
      * @param currentUser usuario autenticado
      * @throws IllegalArgumentException si el usuario no tiene permisos
      */
@@ -209,7 +209,7 @@ public class TransactionService {
         if (currentUser.getRole() == Role.ADMIN) {
             return;
         }
-        if (transaction.getUserId() != null && transaction.getUserId().getId().equals(currentUser.getId())) {
+        if (transaction.getUser() != null && transaction.getUser().getId().equals(currentUser.getId())) {
             return;
         }
         throw new IllegalArgumentException("You do not have permission to view this transaction");
@@ -219,12 +219,12 @@ public class TransactionService {
      * Convierte una entidad Transaction a su DTO de respuesta.
      *
      * @param transaction entidad a convertir
-     * @return DTO de respuesta con los datos de la transaccion
+     * @return DTO de respuesta con los datos de la transacción
      */
     private TransactionResponse mapToResponse(Transaction transaction) {
-        User user = transaction.getUserId();
+        User user = transaction.getUser();
         Category category = transaction.getCategory();
-        Subcategory subcategory = transaction.getSubcategoryId();
+        Subcategory subcategory = transaction.getSubcategory();
         return new TransactionResponse(
                 transaction.getId(),
                 user != null ? user.getId() : null,
@@ -251,7 +251,7 @@ public class TransactionService {
     private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
-        return userRepository.findByEmail(email)
+        return userRepository.findByEmailAndDeletedAtIsNull(email)
                 .orElseThrow(() -> new IllegalStateException("Authenticated user not found in database"));
     }
 }

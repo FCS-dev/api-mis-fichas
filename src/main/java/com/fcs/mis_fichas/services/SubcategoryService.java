@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 /**
- * Servicio de gestion de subcategorias.
- * Controla las operaciones de creacion, actualizacion, eliminacion y consulta
+ * Servicio de gestion de subcategorías.
+ * Controla las operaciones de creación, actualización, eliminación y consulta
  * con validaciones de permisos basadas en roles (USER / ADMIN).
  */
 @Service
@@ -33,13 +33,13 @@ public class SubcategoryService {
     private final UserRepository userRepository;
 
     /**
-     * Crea una nueva subcategoria.
-     * Si el usuario es ADMIN, la subcategoria se marca como del sistema ({@code isSystem = true}).
+     * Crea una nueva subcategoría.
+     * Si el usuario es ADMIN, la subcategoría se marca como del sistema ({@code isSystem = true}).
      * Valida que la categoria exista y que no haya duplicados de nombre dentro de la misma categoria.
      *
-     * @param request datos de la subcategoria a crear
-     * @return DTO de respuesta con la subcategoria creada
-     * @throws IllegalArgumentException si la categoria no existe o si ya existe una subcategoria con ese nombre
+     * @param request datos de la subcategoría a crear
+     * @return DTO de respuesta con la subcategoría creada
+     * @throws IllegalArgumentException si la categoria no existe o si ya existe una subcategoría con ese nombre
      */
     @Transactional
     public SubcategoryResponse create(SubcategoryRequest request) {
@@ -66,13 +66,13 @@ public class SubcategoryService {
     }
 
     /**
-     * Actualiza una subcategoria existente.
-     * ADMIN: puede modificar cualquier subcategoria.
-     * USER: solo puede modificar sus propias subcategorias (no las del sistema).
+     * Actualiza una subcategoría existente.
+     * ADMIN: puede modificar cualquier subcategoría.
+     * USER: solo puede modificar sus propias subcategorías (no las del sistema).
      *
-     * @param id      identificador de la subcategoria a actualizar
-     * @param request nuevos datos de la subcategoria
-     * @return DTO de respuesta con la subcategoria actualizada
+     * @param id      identificador de la subcategoría a actualizar
+     * @param request nuevos datos de la subcategoría
+     * @return DTO de respuesta con la subcategoría actualizada
      * @throws IllegalArgumentException si no existe, no tiene permisos, o hay duplicados
      */
     @Transactional
@@ -100,11 +100,11 @@ public class SubcategoryService {
     }
 
     /**
-     * Elimina una subcategoria de forma logica (soft delete).
-     * ADMIN: puede eliminar cualquier subcategoria.
-     * USER: solo puede eliminar sus propias subcategorias (no las del sistema).
+     * Elimina una subcategoría de forma lógica (soft delete).
+     * ADMIN: puede eliminar cualquier subcategoría.
+     * USER: solo puede eliminar sus propias subcategorías (no las del sistema).
      *
-     * @param id identificador de la subcategoria a eliminar
+     * @param id identificador de la subcategoría a eliminar
      * @throws IllegalArgumentException si no existe o no tiene permisos
      */
     @Transactional
@@ -120,12 +120,12 @@ public class SubcategoryService {
     }
 
     /**
-     * Busca una subcategoria por su identificador.
-     * ADMIN: puede ver cualquier subcategoria.
+     * Busca una subcategoría por su identificador.
+     * ADMIN: puede ver cualquier subcategoría.
      * USER: solo puede ver las del sistema o las propias.
      *
-     * @param id identificador de la subcategoria
-     * @return DTO de respuesta con la subcategoria encontrada
+     * @param id identificador de la subcategoría
+     * @return DTO de respuesta con la subcategoría encontrada
      * @throws IllegalArgumentException si no existe o no tiene permisos
      */
     @Transactional(readOnly = true)
@@ -139,12 +139,12 @@ public class SubcategoryService {
     }
 
     /**
-     * Busca todas las subcategorias activas de forma paginada.
-     * ADMIN: ve todas las subcategorias activas.
+     * Busca todas las subcategorías activas de forma paginada.
+     * ADMIN: ve todas las subcategorías activas.
      * USER: ve solo las del sistema y las propias.
      *
-     * @param pageable informacion de paginacion y ordenamiento
-     * @return pagina de subcategorias accesibles
+     * @param pageable información de paginación y ordenamiento
+     * @return página de subcategorías accesibles
      */
     @Transactional(readOnly = true)
     public Page<SubcategoryResponse> findAll(Pageable pageable) {
@@ -159,11 +159,11 @@ public class SubcategoryService {
     }
 
     /**
-     * Verifica que el usuario tenga permiso para modificar la subcategoria.
+     * Verifica que el usuario tenga permiso para modificar la subcategoría.
      * ADMIN: siempre tiene permiso.
-     * USER: solo si la subcategoria no es del sistema y fue creada por el.
+     * USER: solo si la subcategoría no es del sistema y fue creada por él.
      *
-     * @param subcategory subcategoria a verificar
+     * @param subcategory subcategoría a verificar
      * @param currentUser usuario autenticado
      * @throws IllegalArgumentException si el usuario no tiene permisos
      */
@@ -180,11 +180,11 @@ public class SubcategoryService {
     }
 
     /**
-     * Verifica que el usuario tenga permiso para ver la subcategoria.
+     * Verifica que el usuario tenga permiso para ver la subcategoría.
      * ADMIN: siempre tiene permiso.
-     * USER: si la subcategoria es del sistema o fue creada por el.
+     * USER: si la subcategoría es del sistema o fue creada por él.
      *
-     * @param subcategory subcategoria a verificar
+     * @param subcategory subcategoría a verificar
      * @param currentUser usuario autenticado
      * @throws IllegalArgumentException si el usuario no tiene permisos
      */
@@ -205,7 +205,7 @@ public class SubcategoryService {
      * Convierte una entidad Subcategory a su DTO de respuesta.
      *
      * @param subcategory entidad a convertir
-     * @return DTO de respuesta con los datos de la subcategoria
+     * @return DTO de respuesta con los datos de la subcategoría
      */
     private SubcategoryResponse mapToResponse(Subcategory subcategory) {
         Category category = subcategory.getCategory();
@@ -234,7 +234,7 @@ public class SubcategoryService {
     private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
-        return userRepository.findByEmail(email)
+        return userRepository.findByEmailAndDeletedAtIsNull(email)
                 .orElseThrow(() -> new IllegalStateException("Authenticated user not found in database"));
     }
 }

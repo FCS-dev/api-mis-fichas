@@ -11,6 +11,7 @@ import com.fcs.mis_fichas.repositories.SubcategoryRepository;
 import com.fcs.mis_fichas.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 /**
- * Configuracion de inicializacion de datos del sistema.
+ * Configuración de inicialización de datos del sistema.
  * Se ejecuta al arrancar la aplicacion y crea:
  * - Un usuario ADMIN por defecto si no existe
  * - Categorias y subcategorias de sistema si no existen
@@ -35,8 +36,14 @@ public class AdminSeeder {
     private final SubcategoryRepository subcategoryRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Value("${admin.email}")
+    private String adminEmail;
+
+    @Value("${admin.password}")
+    private String adminPassword;
+
     /**
-     * Bean CommandLineRunner que ejecuta la semilla al inicio de la aplicacion.
+     * Bean CommandLineRunner que ejecuta la semilla al inicio de la aplicación.
      * Crea el usuario admin y luego las categorias/subcategorias de sistema.
      *
      * @return instancia de CommandLineRunner
@@ -52,18 +59,17 @@ public class AdminSeeder {
 
     /**
      * Crea el usuario ADMIN por defecto si no existe en la base de datos.
-     * Email: admin@mis-fichas.fcs
-     * Password: Admin123! (hasheada con BCrypt)
+     * Email: (Secret obtenido del .env)
+     * Password: (Secret obtenido del .env) -hasheada con BCrypt-
      *
      * @return entidad User del usuario admin
      */
     private User createAdminIfNotExists() {
-        String adminEmail = "admin@mis-fichas.fcs";
-        return userRepository.findByEmail(adminEmail)
+        return userRepository.findByEmailAndDeletedAtIsNull(adminEmail)
                 .orElseGet(() -> {
                     User admin = User.builder()
                             .email(adminEmail)
-                            .passwordHash(passwordEncoder.encode("Admin123!"))
+                            .passwordHash(passwordEncoder.encode(adminPassword))
                             .name("Administrador")
                             .role(Role.ADMIN)
                             .status(Status.ACTIVE)
@@ -78,8 +84,8 @@ public class AdminSeeder {
     }
 
     /**
-     * Crea las categorias y subcategorias de sistema si no existen.
-     * Incluye categorias de INCOME y EXPENSE con sus respectivas subcategorias.
+     * Crea las categorías y subcategorías de sistema si no existen.
+     * Incluye categorías de INCOME y EXPENSE con sus respectivas subcategorías.
      *
      * @param admin usuario admin que se registra como creador
      */
@@ -219,7 +225,7 @@ public class AdminSeeder {
      * @param name  nombre de la categoria
      * @param type  tipo de la categoria (INCOME o EXPENSE)
      * @param admin usuario admin como creador
-     * @return entidad Category existente o recien creada
+     * @return entidad Category existente o recién creada
      */
     private Category createCategoryIfNotExists(String name, Type type, User admin) {
         return categoryRepository.findByNameAndDeletedAtIsNull(name)
@@ -237,13 +243,13 @@ public class AdminSeeder {
     }
 
     /**
-     * Crea una subcategoria si no existe una activa con el mismo nombre dentro de la categoria.
+     * Crea una subcategoría si no existe una activa con el mismo nombre dentro de la categoria.
      *
-     * @param category  categoria padre
-     * @param name      nombre de la subcategoria
-     * @param isSystem  true si es del sistema
-     * @param admin     usuario admin como creador
-     * @return entidad Subcategory existente o recien creada
+     * @param category categoria padre
+     * @param name     nombre de la subcategoría
+     * @param isSystem true si es del sistema
+     * @param admin    usuario admin como creador
+     * @return entidad Subcategory existente o recién creada
      */
     private void createSubcategoryIfNotExists(Category category, String name, boolean isSystem, User admin) {
         subcategoryRepository.findByNameAndCategoryIdAndDeletedAtIsNull(name, category.getId())

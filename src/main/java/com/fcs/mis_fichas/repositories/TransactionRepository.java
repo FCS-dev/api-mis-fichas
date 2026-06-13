@@ -14,37 +14,37 @@ import java.util.Optional;
 
 /**
  * Repositorio para la gestion de transacciones.
- * Proporciona operaciones de consulta con soporte para soft delete y filtros dinamicos.
+ * Proporciona operaciones de consulta con soporte para soft delete y filtros dinámicos.
  */
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long>, JpaSpecificationExecutor<Transaction> {
 
     /**
-     * Busca una transaccion activa (no eliminada) por su identificador.
+     * Busca una transacción activa (no eliminada) por su identificador.
      *
-     * @param id identificador de la transaccion
-     * @return Optional con la transaccion encontrada o vacio si no existe o esta eliminada
+     * @param id identificador de la transacción
+     * @return Optional con la transacción encontrada o vacío si no existe o está eliminada
      */
     @Query("SELECT t FROM Transaction t WHERE t.deletedAt IS NULL AND t.id = :id")
     Optional<Transaction> findByIdAndDeletedAtIsNull(@Param("id") Long id);
 
     /**
-     * Busca transacciones activas aplicando filtros dinamicos opcionales.
+     * Busca transacciones activas aplicando filtros dinámicos opcionales.
      * Todos los filtros son opcionales; si se pasa null, ese filtro se ignora.
      *
      * @param userId        identificador del usuario (opcional)
      * @param categoryId    identificador de la categoria (opcional)
-     * @param subcategoryId identificador de la subcategoria (opcional)
-     * @param date          fecha exacta de la transaccion (opcional)
+     * @param subcategoryId identificador de la subcategoría (opcional)
+     * @param date          fecha exacta de la transacción (opcional)
      * @param dateFrom      fecha de inicio del rango (opcional)
      * @param dateTo        fecha de fin del rango (opcional)
-     * @param pageable      informacion de paginacion y ordenamiento
-     * @return pagina de transacciones que cumplen los filtros
+     * @param pageable      información de paginación y ordenamiento
+     * @return página de transacciones que cumplen los filtros
      */
     @Query("SELECT t FROM Transaction t WHERE t.deletedAt IS NULL " +
-            "AND (:userId IS NULL OR t.userId.id = :userId) " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
             "AND (:categoryId IS NULL OR t.category.id = :categoryId) " +
-            "AND (:subcategoryId IS NULL OR t.subcategoryId.id = :subcategoryId) " +
+            "AND (:subcategoryId IS NULL OR t.subcategory.id = :subcategoryId) " +
             "AND (:date IS NULL OR t.transactionDate = :date) " +
             "AND (:dateFrom IS NULL OR t.transactionDate >= :dateFrom) " +
             "AND (:dateTo IS NULL OR t.transactionDate <= :dateTo)")

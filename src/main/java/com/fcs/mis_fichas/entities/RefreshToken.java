@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 
 /**
  * Entidad que representa la tabla de tokens de refresco (refresh tokens).
- * Cada token esta asociado a un usuario y tiene una fecha de expiracion.
- * Los tokens pueden ser revocados antes de su expiracion.
+ * Cada token está asociado a un usuario y tiene una fecha de expiración.
+ * Los tokens pueden ser revocados antes de su expiración.
  */
 @Entity
 @Table(name = "refresh_tokens",
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 public class RefreshToken {
 
     /**
-     * Identificador unico del token.
+     * Identificador único del token.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class RefreshToken {
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
     /**
      * Hash SHA-256 del token. Se almacena el hash en lugar del valor original.
@@ -46,19 +46,19 @@ public class RefreshToken {
     private String tokenHash;
 
     /**
-     * Fecha y hora de expiracion del token.
+     * Fecha y hora de expiración del token.
      */
     @NotNull
     @Column(nullable = false)
     private LocalDateTime expiresAt;
 
     /**
-     * Fecha y hora de revocacion. Si es null, el token aun es valido.
+     * Fecha y hora de revocación. Si es null, el token aún es válido.
      */
     private LocalDateTime revokedAt;
 
     /**
-     * Fecha y hora de creacion del registro.
+     * Fecha y hora de creación del registro.
      */
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -67,12 +67,12 @@ public class RefreshToken {
     /**
      * Constructor sin campos de auditoria.
      *
-     * @param userId    usuario propietario
+     * @param user      usuario propietario
      * @param tokenHash hash del token
-     * @param expiresAt fecha de expiracion
+     * @param expiresAt fecha de expiración
      */
-    public RefreshToken(User userId, String tokenHash, LocalDateTime expiresAt) {
-        this.userId = userId;
+    public RefreshToken(User user, String tokenHash, LocalDateTime expiresAt) {
+        this.user = user;
         this.tokenHash = tokenHash;
         this.expiresAt = expiresAt;
     }

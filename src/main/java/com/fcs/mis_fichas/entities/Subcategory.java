@@ -9,8 +9,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 /**
- * Entidad que representa la tabla de subcategorias.
- * Cada subcategoria pertenece a una categoria y puede ser del sistema ({@code isSystem = true})
+ * Entidad que representa la tabla de subcategorías.
+ * Cada subcategoría pertenece a una categoria y puede ser del sistema ({@code isSystem = true})
  * o creada por un usuario.
  * Soporta soft delete mediante el campo {@code deletedAt}.
  */
@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 public class Subcategory {
 
     /**
-     * Identificador unico de la subcategoria.
+     * Identificador único de la subcategoría.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,60 +42,60 @@ public class Subcategory {
     private Category category;
 
     /**
-     * Nombre de la subcategoria. No puede estar vacio.
+     * Nombre de la subcategoría. No puede estar vacío.
      */
     @NotBlank
     @Column(length = 50, nullable = false)
     private String name;
 
     /**
-     * Comentarios opcionales sobre la subcategoria.
+     * Comentarios opcionales sobre la subcategoría.
      */
     @Column(length = 100)
     private String comments;
 
     /**
-     * Indica si la subcategoria es del sistema (true) o creada por un usuario (false).
+     * Indica si la subcategoría es del sistema (true) o creada por un usuario (false).
      */
     @Column(nullable = false)
     private Boolean isSystem;
 
     /**
-     * Usuario que creo la subcategoria.
+     * Usuario que creo la subcategoría.
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by")
     private User createdBy;
 
     /**
-     * Fecha y hora de creacion del registro.
+     * Fecha y hora de creación del registro.
      */
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     /**
-     * Fecha y hora de la ultima actualizacion.
+     * Fecha y hora de la última actualización.
      */
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     /**
-     * Fecha y hora de eliminacion logica (soft delete).
+     * Fecha y hora de eliminación lógica (soft delete).
      */
     private LocalDateTime deletedAt;
 
     /**
      * Constructor sin el campo deletedAt.
      *
-     * @param category    categoria a la que pertenece
-     * @param name        nombre de la subcategoria
-     * @param comments    comentarios opcionales
-     * @param isSystem    true si es del sistema
-     * @param createdBy   usuario creador
-     * @param createdAt   fecha de creacion
-     * @param updatedAt   fecha de ultima actualizacion
+     * @param category  categoria a la que pertenece
+     * @param name      nombre de la subcategoría
+     * @param comments  comentarios opcionales
+     * @param isSystem  true si es del sistema
+     * @param createdBy usuario creador
+     * @param createdAt fecha de creación
+     * @param updatedAt fecha de última actualización
      */
     public Subcategory(Category category, String name, String comments, Boolean isSystem, User createdBy, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.category = category;

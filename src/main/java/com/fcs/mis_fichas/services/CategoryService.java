@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 /**
- * Servicio de gestion de categorias.
- * Proporciona operaciones CRUD para categorias con soporte de soft delete.
+ * Servicio de gestion de categorías.
+ * Proporciona operaciones CRUD para categorías con soporte de soft delete.
  */
 @Service
 @RequiredArgsConstructor
@@ -81,10 +81,10 @@ public class CategoryService {
     }
 
     /**
-     * Elimina una categoria de forma logica (soft delete).
+     * Elimina una categoria de forma lógica (soft delete).
      *
      * @param id identificador de la categoria a eliminar
-     * @throws IllegalArgumentException si la categoria no existe o ya esta eliminada
+     * @throws IllegalArgumentException si la categoria no existe o ya está eliminada
      */
     @Transactional
     public void delete(Long id) {
@@ -100,7 +100,7 @@ public class CategoryService {
      *
      * @param id identificador de la categoria
      * @return DTO de respuesta con la categoria encontrada
-     * @throws IllegalArgumentException si la categoria no existe o esta eliminada
+     * @throws IllegalArgumentException si la categoria no existe o está eliminada
      */
     @Transactional(readOnly = true)
     public CategoryResponse findById(Long id) {
@@ -110,10 +110,10 @@ public class CategoryService {
     }
 
     /**
-     * Busca todas las categorias activas de forma paginada.
+     * Busca todas las categorías activas de forma paginada.
      *
-     * @param pageable informacion de paginacion y ordenamiento
-     * @return pagina de categorias activas
+     * @param pageable información de paginación y ordenamiento
+     * @return página de categorías activas
      */
     @Transactional(readOnly = true)
     public Page<CategoryResponse> findAll(Pageable pageable) {
@@ -150,7 +150,7 @@ public class CategoryService {
     private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
-        return userRepository.findByEmail(email)
+        return userRepository.findByEmailAndDeletedAtIsNull(email)
                 .orElseThrow(() -> new IllegalStateException("Authenticated user not found in database"));
     }
 }

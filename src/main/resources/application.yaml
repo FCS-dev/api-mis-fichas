@@ -1,21 +1,17 @@
 server:
   port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api/v1
 
 spring:
   application:
     name: misfichas-api
 
   datasource:
-    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME}
+    url: jdbc:mariadb://${DB_HOST}:${DB_PORT}/${DB_NAME}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: org.mariadb.jdbc.Driver
-#spring:
-#  datasource:
-#    url: jdbc:mariadb://localhost:3306/misfichasDB
-#    username: admin
-#    password: Admin123!
-#    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: ${DDL_AUTO:update}
@@ -25,13 +21,13 @@ spring:
         format_sql: true
 
 jwt:
-  secret: ${JWT_SECRET:your-256-bit-secret-key-here-for-jwt-signing-must-be-at-least-32-characters-long}
+  secret: ${JWT_SECRET}
   access-token-expiration: ${JWT_ACCESS_EXPIRATION:900000}
   refresh-token-expiration: ${JWT_REFRESH_EXPIRATION:2592000000}
 
-refresh:
-  cookie:
-    name: ${REFRESH_COOKIE_NAME:refresh_token}
+admin:
+  email: ${ADMIN_EMAIL}
+  password: ${ADMIN_PASSWORD}
 
 logging:
   level:

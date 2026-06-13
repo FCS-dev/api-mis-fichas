@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 /**
  * Entidad que representa la tabla de transacciones.
- * Cada transaccion esta asociada a un usuario, una categoria y una subcategoria.
+ * Cada transacción está asociada a un usuario, una categoria y una subcategoría.
  * Soporta soft delete mediante el campo {@code deletedAt}.
  */
 @Entity
@@ -32,19 +32,19 @@ import java.time.LocalDateTime;
 public class Transaction {
 
     /**
-     * Identificador unico de la transaccion.
+     * Identificador único de la transacción.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * Usuario propietario de la transaccion.
+     * Usuario propietario de la transacción.
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @NotNull
-    private User userId;
+    private User user;
 
     /**
      * Categoria asociada a la transaccion.
@@ -55,15 +55,15 @@ public class Transaction {
     private Category category;
 
     /**
-     * Subcategoria asociada a la transaccion.
+     * Subcategoría asociada a la transaccion.
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subcategory_id")
     @NotNull
-    private Subcategory subcategoryId;
+    private Subcategory subcategory;
 
     /**
-     * Monto de la transaccion. Debe ser un valor positivo.
+     * Monto de la transacción. Debe ser un valor positivo.
      */
     @NotNull
     @Column(precision = 8, scale = 2, nullable = false)
@@ -71,50 +71,50 @@ public class Transaction {
     private BigDecimal amount;
 
     /**
-     * Descripcion opcional de la transaccion.
+     * Descripción opcional de la transacción.
      */
     @Column(length = 150)
     private String description;
 
     /**
-     * Fecha en la que se realizo la transaccion.
+     * Fecha en la que se realizó la transacción.
      */
     @NotNull
     private LocalDate transactionDate;
 
     /**
-     * Fecha y hora de creacion del registro.
+     * Fecha y hora de creación del registro.
      */
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     /**
-     * Fecha y hora de la ultima actualizacion.
+     * Fecha y hora de la última actualización.
      */
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     /**
-     * Fecha y hora de eliminacion logica (soft delete).
+     * Fecha y hora de eliminación lógica (soft delete).
      */
     private LocalDateTime deletedAt;
 
     /**
      * Constructor sin campos de auditoria ni soft delete.
      *
-     * @param userId         usuario propietario
-     * @param category       categoria asociada
-     * @param subcategoryId  subcategoria asociada
-     * @param amount         monto de la transaccion
-     * @param description    descripcion opcional
-     * @param transactionDate fecha de la transaccion
+     * @param user          usuario propietario
+     * @param category      categoria asociada
+     * @param subcategory   subcategoría asociada
+     * @param amount        monto de la transacción
+     * @param description   descripción opcional
+     * @param transactionDate fecha de la transacción
      */
-    public Transaction(User userId, Category category, Subcategory subcategoryId, BigDecimal amount, String description, LocalDate transactionDate) {
-        this.userId = userId;
+    public Transaction(User user, Category category, Subcategory subcategory, BigDecimal amount, String description, LocalDate transactionDate) {
+        this.user = user;
         this.category = category;
-        this.subcategoryId = subcategoryId;
+        this.subcategory = subcategory;
         this.amount = amount;
         this.description = description;
         this.transactionDate = transactionDate;

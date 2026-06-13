@@ -16,12 +16,13 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 /**
  * Servicio de gestion de tokens de refresco (refresh tokens).
- * Implementa rotacion de tokens: cada uso revoca el anterior y genera uno nuevo.
- * Si se detecta reutilizacion de un token revocado, se revocan todos los tokens del usuario.
+ * Implementa rotación de tokens: cada uso revoca el anterior y genera uno nuevo.
+ * Si se detecta reutilización de un token revocado, se revocan todos los tokens del usuario.
  */
 @Service
 @RequiredArgsConstructor
@@ -38,7 +39,7 @@ public class RefreshTokenService {
 
     /**
      * Crea un nuevo token de refresco para un usuario.
-     * Genera un token aleatorio criptograficamente seguro, lo hashea con SHA-256
+     * Genera un token aleatorio criptográficamente seguro, lo hashea con SHA-256
      * y almacena el hash en la base de datos.
      *
      * @param user usuario al que se asigna el token
@@ -53,7 +54,7 @@ public class RefreshTokenService {
         Instant expiration = now.plus(refreshTokenExpiration, ChronoUnit.MILLIS);
 
         RefreshToken refreshToken = RefreshToken.builder()
-                .userId(user)
+                .user(user)
                 .tokenHash(hash)
                 .expiresAt(LocalDateTime.ofInstant(expiration, java.time.ZoneId.systemDefault()))
                 .revokedAt(null)
@@ -77,36 +78,36 @@ public class RefreshTokenService {
 
     /**
      * Rota un token de refresco: valida el token anterior, lo revoca y genera uno nuevo.
-     * Si el token ya estaba revocado (posible reutilizacion maliciosa), revoca todos los tokens del usuario.
+     * Si el token ya estaba revocado (posible reutilización maliciosa), revoca todos los tokens del usuario.
      *
      * @param oldToken token de refresco anterior en texto plano
      * @return nuevo token de refresco en texto plano
-     * @throws RuntimeException si el token no existe, ya fue revocado o esta expirado
+     * @throws RuntimeException si el token no existe, ya fue revocado o está expirado
      */
     @Transactional
     public String rotateRefreshToken(String oldToken) {
         String oldHash = hashToken(oldToken);
         RefreshToken oldRefreshToken = refreshTokenRepository.findByTokenHash(oldHash)
-                .orElseThrow(() -> new RuntimeException("Refresh token not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Refresh token not found"));
 
         if (oldRefreshToken.getRevokedAt() != null) {
-            log.warn("Refresh token reuse detected for user: {}", oldRefreshToken.getUserId().getEmail());
-            revokeAllUserTokens(oldRefreshToken.getUserId().getId());
-            throw new RuntimeException("Refresh token was revoked. All tokens cleared for security.");
+            log.warn("Refresh token reuse detected for user: {}", oldRefreshToken.getUser().getEmail());
+            revokeAllUserTokens(oldRefreshToken.getUser().getId());
+            throw new IllegalArgumentException("Refresh token was revoked. All tokens cleared for security.");
         }
 
         if (oldRefreshToken.getExpiresAt().isBefore(LocalDateTime.now())) {
-            throw new RuntimeException("Refresh token expired");
+            throw new IllegalArgumentException("Refresh token expired");
         }
 
         oldRefreshToken.setRevokedAt(LocalDateTime.now());
         refreshTokenRepository.save(oldRefreshToken);
 
-        return createRefreshToken(oldRefreshToken.getUserId());
+        return createRefreshToken(oldRefreshToken.getUser());
     }
 
     /**
-     * Revoca un token de refresco especifico.
+     * Revoca un token de refresco específico.
      *
      * @param token token de refresco en texto plano a revocar
      */
@@ -116,7 +117,7 @@ public class RefreshTokenService {
         refreshTokenRepository.findByTokenHash(hash).ifPresent(refreshToken -> {
             refreshToken.setRevokedAt(LocalDateTime.now());
             refreshTokenRepository.save(refreshToken);
-            log.info("Refresh token revoked for user: {}", refreshToken.getUserId().getEmail());
+            log.info("Refresh token revoked for user: {}", refreshToken.getUser().getEmail());
         });
     }
 
@@ -128,15 +129,15 @@ public class RefreshTokenService {
      */
     @Transactional
     public void revokeAllUserTokens(Long userId) {
-        refreshTokenRepository.findByUserIdAndRevokedAtIsNull(userId)
-                .ifPresent(token -> {
-                    token.setRevokedAt(LocalDateTime.now());
-                    refreshTokenRepository.save(token);
-                });
+        List<RefreshToken> activeTokens = refreshTokenRepository.findByUserIdAndRevokedAtIsNull(userId);
+        for (RefreshToken token : activeTokens) {
+            token.setRevokedAt(LocalDateTime.now());
+            refreshTokenRepository.save(token);
+        }
     }
 
     /**
-     * Genera un token aleatorio criptograficamente seguro de 64 bytes.
+     * Genera un token aleatorio criptográficamente seguro de 64 bytes.
      *
      * @return token aleatorio codificado en Base64 URL-safe
      */

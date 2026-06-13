@@ -29,27 +29,27 @@ import java.time.LocalDateTime;
 public class User {
 
     /**
-     * Identificador unico del usuario.
+     * Identificador único del usuario.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * Correo electronico del usuario. Debe ser unico y no puede estar vacio.
+     * Correo electrónico del usuario. Debe ser único y no puede estar vacío.
      */
     @NotBlank // valida lo que viene de la api. !null, !empty, !=" "
     @Column(nullable = false, unique = true, length = 150)
     private String email;
 
     /**
-     * Hash de la contrasena del usuario. Nunca se almacena en texto plano.
+     * Hash de la contraseña del usuario. Nunca se almacena en texto plano.
      */
     @Column(nullable = false)
     private String passwordHash;
 
     /**
-     * Nombre completo del usuario. No puede estar vacio.
+     * Nombre completo del usuario. No puede estar vacío.
      */
     @NotBlank // valida lo que viene de la api. !null, !empty, !=" "
     @Column(nullable = false, length = 150)
@@ -71,32 +71,32 @@ public class User {
     private Status status = Status.ACTIVE;
 
     /**
-     * Fecha y hora de creacion del registro. Se genera automaticamente.
+     * Fecha y hora de creación del registro. Se genera automaticamente.
      */
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     /**
-     * Fecha y hora de la ultima actualizacion del registro. Se actualiza automaticamente.
+     * Fecha y hora de la última actualización del registro. Se actualiza automaticamente.
      */
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     /**
-     * Fecha y hora de eliminacion logica (soft delete). Si es null, el registro esta activo.
+     * Fecha y hora de eliminación lógica (soft delete). Si es null, el registro está activo.
      */
     private LocalDateTime deletedAt;
 
     /**
      * Constructor sin campos de auditoria ni builder.
      *
-     * @param email       correo electronico del usuario
-     * @param passwordHash hash de la contrasena
-     * @param name        nombre del usuario
-     * @param role        rol del usuario
-     * @param deletedAt   fecha de eliminacion logica (puede ser null)
+     * @param email        correo electrónico del usuario
+     * @param passwordHash hash de la contraseña
+     * @param name         nombre del usuario
+     * @param role         rol del usuario
+     * @param deletedAt    fecha de eliminación lógica (puede ser null)
      */
     public User(String email, String passwordHash, String name, Role role, LocalDateTime deletedAt) {
         this.email = email;

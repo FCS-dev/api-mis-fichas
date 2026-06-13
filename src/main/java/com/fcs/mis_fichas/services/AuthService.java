@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Servicio de autenticacion y autorizacion.
- * Gestiona el registro de usuarios, inicio de sesion, refresco de tokens y cierre de sesion.
+ * Servicio de autenticación y autorización.
+ * Gestiona el registro de usuarios, inicio de sesión, refresco de tokens y cierre de sesión.
  */
 @Service
 @RequiredArgsConstructor
@@ -35,16 +35,16 @@ public class AuthService {
     /**
      * Registra un nuevo usuario en el sistema.
      * El rol asignado siempre es USER. La cuenta se crea con estado ACTIVE.
-     * La contrasena se almacena hasheada con BCrypt.
+     * La contraseña se almacena hasheada con BCrypt.
      *
      * @param request datos de registro del usuario
      * @return entidad User del usuario creado
-     * @throws RuntimeException si el correo ya esta registrado
+     * @throws RuntimeException si el correo ya está registrado
      */
     @Transactional
     public User register(RegisterRequest request) {
-        if (userRepository.findByEmail(request.email()).isPresent()) {
-            throw new RuntimeException("Email already registered");
+        if (userRepository.findByEmailAndDeletedAtIsNull(request.email()).isPresent()) {
+            throw new IllegalArgumentException("Email already registered");
         }
 
         User user = User.builder()
@@ -59,14 +59,14 @@ public class AuthService {
     }
 
     /**
-     * Inicia sesion de un usuario.
+     * Inicia sesión de un usuario.
      * Valida las credenciales, verifica que la cuenta este activa,
      * revoca todos los tokens previos y genera nuevos tokens de acceso y refresco.
      *
-     * @param request datos de inicio de sesion (email y password)
+     * @param request datos de inicio de sesión (email y password)
      * @return DTO con el access token y refresh token
-     * @throws BadCredentialsException si las credenciales son invalidas
-     * @throws RuntimeException        si la cuenta del usuario no esta activa
+     * @throws BadCredentialsException si las credenciales son inválidas
+     * @throws RuntimeException        si la cuenta del usuario no está activa
      */
     @Transactional
     public AuthResponse login(LoginRequest request) {
@@ -74,11 +74,11 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(request.email(), request.password())
         );
 
-        User user = userRepository.findByEmail(request.email())
+        User user = userRepository.findByEmailAndDeletedAtIsNull(request.email())
                 .orElseThrow(() -> new BadCredentialsException("Invalid credentials"));
 
         if (!user.getStatus().equals(Status.ACTIVE)) {
-            throw new RuntimeException("User account is not active");
+            throw new IllegalArgumentException("User account is not active");
         }
 
         refreshTokenService.revokeAllUserTokens(user.getId());
@@ -89,28 +89,27 @@ public class AuthService {
     }
 
     /**
-     * Refresca el access token usando un refresh token valido.
-     * Aplica rotacion de refresh tokens: revoca el anterior y genera uno nuevo.
+     * Refresca el access token usando un refresh token válido.
+     * Aplica rotación de refresh tokens: revoca el anterior y genera uno nuevo.
      *
      * @param refreshToken token de refresco actual
      * @return DTO con el nuevo access token y el nuevo refresh token
-     * @throws RuntimeException si el refresh token no es valido o no se puede rotar
+     * @throws RuntimeException si el refresh token no es válido o no se puede rotar
      */
     @Transactional
     public AuthResponse refresh(String refreshToken) {
         String newRefreshToken = refreshTokenService.rotateRefreshToken(refreshToken);
-        RefreshTokenService refreshTokenService = this.refreshTokenService;
         var tokenEntity = refreshTokenService.findByTokenHash(newRefreshToken)
-                .orElseThrow(() -> new RuntimeException("Failed to create new refresh token"));
-        
-        User user = tokenEntity.getUserId();
+                .orElseThrow(() -> new IllegalArgumentException("Failed to create new refresh token"));
+
+        User user = tokenEntity.getUser();
         String accessToken = jwtService.generateAccessToken(user.getEmail(), user.getRole().name());
-        
+
         return new AuthResponse(accessToken, newRefreshToken);
     }
 
     /**
-     * Cierra la sesion del usuario revocando el refresh token.
+     * Cierra la sesión del usuario revocando el refresh token.
      *
      * @param refreshToken token de refresco a revocar
      */

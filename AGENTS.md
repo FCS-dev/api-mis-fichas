@@ -4,7 +4,7 @@
 
 - **Build tool**: Maven (`./mvnw`)
 - **Java**: 17
-- **Spring Boot**: 4.0.6 (per `pom.xml`)
+- **Spring Boot**: 3.4.6 (per `pom.xml`)
 
 ## Database Dependency
 
@@ -18,8 +18,9 @@
 
 ## Environment Variables
 
-- Spring Boot reads database config from **environment variables** loaded via `application.yaml`.
+- Spring Boot reads config from **environment variables** loaded via `application.yaml`.
 - The `.env` file at the repo root is **not automatically loaded** by Spring Boot.
+- **Required secrets** (no defaults in `application.yaml`): `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
 - Export variables before running Maven:
   ```bash
   export $(grep -v '^#' .env | xargs)
@@ -79,19 +80,27 @@
 
 - `spring-boot-starter-security` is now in `pom.xml` (added to support `BCryptPasswordEncoder` and admin seeding).
 - **Admin seeder**: `AdminSeeder` runs on startup and creates the default admin account if it does not exist:
-  - Email: `admin@mis-fichas.fcs`
-  - Password: `Admin123!` (hashed with BCrypt)
+  - Credentials are read from `ADMIN_EMAIL` and `ADMIN_PASSWORD` environment variables.
   - Role: `ADMIN`
 - **JWT implemented**: `jjwt` library (0.12.3) is in `pom.xml`.
   - **Access Token**: JWT with 15-minute expiration, delivered in `Authorization: Bearer <token>` header.
   - **Refresh Token**: 30-day expiration, cryptographically secure random token, stored hashed (SHA-256) in `refresh_tokens` table.
   - **Refresh Token Rotation**: each use of a refresh token revokes it and issues a new one. If a revoked token is reused, all tokens for that user are immediately revoked.
-  - **Refresh Token Cookie**: `HttpOnly` cookie named `refresh_token`, path `/auth`.
-- **Endpoints**:
-  - `POST /auth/register` — public, creates `USER` account
-  - `POST /auth/login` — public, returns access token + sets refresh cookie
-  - `POST /auth/refresh` — public, reads refresh cookie, rotates token, returns new access token
-  - `POST /auth/logout` — public, revokes refresh cookie
+  - **Refresh Token Cookie**: `HttpOnly` cookie named `refresh_token`, path `/api/v1/auth`.
+- **Endpoints** (all prefixed with `/api/v1`):
+  - `POST /api/v1/auth/register` — public, creates `USER` account
+  - `POST /api/v1/auth/login` — public, returns access token + sets refresh cookie
+  - `POST /api/v1/auth/refresh` — public, reads refresh cookie, rotates token, returns new access token
+  - `POST /api/v1/auth/logout` — public, revokes refresh cookie
+  - `GET /api/v1/categories` — authenticated, list all active categories (paginated)
+  - `GET /api/v1/admin/users` — ADMIN, list all users (paginated, optional filters by `role` and `status`)
+  - `GET /api/v1/admin/users/{id}` — ADMIN, get one user by ID
+  - `PUT /api/v1/admin/users/{id}` — ADMIN, update user (name, email, role, status including BLOCKED)
+  - `DELETE /api/v1/admin/users/{id}` — ADMIN, soft delete user
+  - `GET /api/v1/admin/categories` — ADMIN, list all categories (paginated)
+  - `POST /api/v1/admin/categories` — ADMIN, create category
+  - `PUT /api/v1/admin/categories/{id}` — ADMIN, update category
+  - `DELETE /api/v1/admin/categories/{id}` — ADMIN, soft delete category
   - All other endpoints require valid JWT.
 
 ## Discrepancies to Watch

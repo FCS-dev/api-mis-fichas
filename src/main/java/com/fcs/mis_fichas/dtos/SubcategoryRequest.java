@@ -4,9 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 /**
- * DTO de solicitud para crear o actualizar una subcategoria.
+ * DTO de solicitud para crear o actualizar una subcategoría.
  *
- * @param name       nombre de la subcategoria (obligatorio)
+ * @param name       nombre de la subcategoría (obligatorio)
  * @param categoryId identificador de la categoria a la que pertenece (obligatorio)
  * @param comments   comentarios opcionales
  */

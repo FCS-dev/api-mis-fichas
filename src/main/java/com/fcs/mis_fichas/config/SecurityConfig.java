@@ -19,10 +19,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * Configuracion de seguridad de Spring Security.
- * Define la cadena de filtros de seguridad, el proveedor de autenticacion,
- * el codificador de contrasenas y el gestor de autenticacion.
- * Habilita seguridad a nivel de metodo con anotaciones @PreAuthorize.
+ * Configuración de seguridad de Spring Security.
+ * Define la cadena de filtros de seguridad, el proveedor de autenticación,
+ * el codificador de contraseñas y el gestor de autenticación.
+ * Habilita seguridad a nivel de método con anotaciones @PreAuthorize.
  */
 @Configuration
 @EnableWebSecurity
@@ -34,7 +34,7 @@ public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
 
     /**
-     * Bean que proporciona el codificador de contrasenas usando BCrypt.
+     * Bean que proporciona el codificador de contraseñas usando BCrypt.
      *
      * @return instancia de BCryptPasswordEncoder
      */
@@ -44,14 +44,15 @@ public class SecurityConfig {
     }
 
     /**
-     * Bean que configura el proveedor de autenticacion DAO.
-     * Utiliza el UserDetailsService personalizado y el codificador de contrasenas.
+     * Bean que configura el proveedor de autenticación DAO.
+     * Utiliza el UserDetailsService personalizado y el codificador de contraseñas.
      *
      * @return instancia de DaoAuthenticationProvider configurada
      */
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
@@ -59,7 +60,7 @@ public class SecurityConfig {
     /**
      * Bean que expone el AuthenticationManager de Spring Security.
      *
-     * @param config configuracion de autenticacion
+     * @param config configuración de autenticación
      * @return instancia de AuthenticationManager
      * @throws Exception si ocurre un error al obtener el manager
      */
@@ -70,10 +71,10 @@ public class SecurityConfig {
 
     /**
      * Bean que define la cadena de filtros de seguridad (SecurityFilterChain).
-     * Configura: sin CSRF, sesiones sin estado, autenticacion JWT antes de UsernamePasswordAuthenticationFilter,
-     * y reglas de autorizacion: /auth/* son publicos, todo lo demas requiere autenticacion.
+     * Configura: sin CSRF, sesiones sin estado, autenticación JWT antes de UsernamePasswordAuthenticationFilter,
+     * y reglas de autorización: /auth/* son públicos, todo lo demás requiere autenticación.
      *
-     * @param http configuracion de HttpSecurity
+     * @param http configuración de HttpSecurity
      * @return cadena de filtros configurada
      * @throws Exception si ocurre un error al construir la cadena
      */
@@ -85,7 +86,7 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/register", "/auth/login", "/auth/refresh").permitAll()
+                        .requestMatchers("/api/v1/auth/register", "/api/v1/auth/login", "/api/v1/auth/refresh", "/api/v1/auth/logout").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

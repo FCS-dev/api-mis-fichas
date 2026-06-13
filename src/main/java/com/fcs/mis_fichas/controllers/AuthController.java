@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.dtos.ApiResponse;
 import com.fcs.mis_fichas.dtos.AuthResponse;
 import com.fcs.mis_fichas.dtos.LoginRequest;
 import com.fcs.mis_fichas.dtos.RegisterRequest;
@@ -9,14 +10,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 /**
- * Controlador REST para la autenticacion.
- * Proporciona endpoints publicos para registro, inicio de sesion,
- * refresco de tokens y cierre de sesion.
+ * Controlador REST para la autenticación.
+ * Proporciona endpoints públicos para registro, inicio de sesión,
+ * refresco de tokens y cierre de sesión.
  * El refresh token se gestiona mediante cookies HttpOnly.
  */
 @RestController
@@ -25,9 +31,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
-
-    @Value("${refresh.cookie.name}")
-    private String refreshCookieName;
+    private static final String REFRESH_COOKIE_NAME = "refresh_token";
 
     private static final int REFRESH_COOKIE_MAX_AGE = 30 * 24 * 60 * 60; // 30 days
 
@@ -35,65 +39,88 @@ public class AuthController {
      * Registra un nuevo usuario en el sistema.
      * El rol asignado siempre es USER.
      *
-     * @param request datos de registro del usuario
-     * @return ResponseEntity con mensaje de exito (HTTP 200)
+     * @param request     datos de registro del usuario
+     * @param httpRequest solicitud HTTP
+     * @return ResponseEntity con ApiResponse de mensaje de éxito (HTTP 200)
      */
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<ApiResponse<String>> register(@Valid @RequestBody RegisterRequest request, HttpServletRequest httpRequest) {
         authService.register(request);
-        return ResponseEntity.ok("User registered successfully");
+        ApiResponse<String> apiResponse = new ApiResponse<>(
+                true, HttpStatus.OK.value(), "User registered successfully", null,
+                LocalDateTime.now(), httpRequest.getRequestURI()
+        );
+        return ResponseEntity.ok(apiResponse);
     }
 
     /**
-     * Inicia sesion de un usuario.
+     * Inicia sesión de un usuario.
      * Genera un access token y un refresh token. El refresh token se almacena en una cookie HttpOnly.
      *
-     * @param request  datos de inicio de sesion
-     * @param response respuesta HTTP para establecer la cookie
-     * @return ResponseEntity con el access token (HTTP 200)
+     * @param request     datos de inicio de sesión
+     * @param response    respuesta HTTP para establecer la cookie
+     * @param httpRequest solicitud HTTP
+     * @return ResponseEntity con ApiResponse del access token (HTTP 200)
      */
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request, HttpServletResponse response, HttpServletRequest httpRequest) {
         AuthResponse authResponse = authService.login(request);
         setRefreshTokenCookie(response, authResponse.refreshToken());
-        return ResponseEntity.ok(new AuthResponse(authResponse.accessToken(), null));
+        ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
+                true, HttpStatus.OK.value(), null, new AuthResponse(authResponse.accessToken(), null),
+                LocalDateTime.now(), httpRequest.getRequestURI()
+        );
+        return ResponseEntity.ok(apiResponse);
     }
 
     /**
      * Refresca el access token usando el refresh token almacenado en la cookie.
-     * Aplica rotacion de refresh tokens: genera uno nuevo y lo almacena en la cookie.
+     * Aplica rotación de refresh tokens: genera uno nuevo y lo almacena en la cookie.
      *
-     * @param request  solicitud HTTP para leer la cookie
-     * @param response respuesta HTTP para establecer la nueva cookie
-     * @return ResponseEntity con el nuevo access token (HTTP 200), o 401 si no hay cookie
+     * @param request     solicitud HTTP para leer la cookie
+     * @param response    respuesta HTTP para establecer la nueva cookie
+     * @param httpRequest solicitud HTTP
+     * @return ResponseEntity con ApiResponse del nuevo access token (HTTP 200), o 401 si no hay cookie
      */
     @PostMapping("/refresh")
-    public ResponseEntity<AuthResponse> refresh(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse<AuthResponse>> refresh(HttpServletRequest request, HttpServletResponse response, HttpServletRequest httpRequest) {
         String refreshToken = extractRefreshTokenFromCookie(request);
         if (refreshToken == null) {
-            return ResponseEntity.status(401).build();
+            ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
+                    false, HttpStatus.UNAUTHORIZED.value(), "Refresh token not found", null,
+                    LocalDateTime.now(), httpRequest.getRequestURI()
+            );
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiResponse);
         }
         AuthResponse authResponse = authService.refresh(refreshToken);
         setRefreshTokenCookie(response, authResponse.refreshToken());
-        return ResponseEntity.ok(new AuthResponse(authResponse.accessToken(), null));
+        ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
+                true, HttpStatus.OK.value(), null, new AuthResponse(authResponse.accessToken(), null),
+                LocalDateTime.now(), httpRequest.getRequestURI()
+        );
+        return ResponseEntity.ok(apiResponse);
     }
 
     /**
-     * Cierra la sesion del usuario revocando el refresh token.
+     * Cierra la sesión del usuario revocando el refresh token.
      * Elimina la cookie de refresh token.
      *
      * @param request  solicitud HTTP para leer la cookie
      * @param response respuesta HTTP para eliminar la cookie
-     * @return ResponseEntity con mensaje de exito (HTTP 200)
+     * @return ResponseEntity con ApiResponse de mensaje de éxito (HTTP 200)
      */
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<ApiResponse<String>> logout(HttpServletRequest request, HttpServletResponse response, HttpServletRequest httpRequest) {
         String refreshToken = extractRefreshTokenFromCookie(request);
         if (refreshToken != null) {
             authService.logout(refreshToken);
         }
         clearRefreshTokenCookie(response);
-        return ResponseEntity.ok("Logged out successfully");
+        ApiResponse<String> apiResponse = new ApiResponse<>(
+                true, HttpStatus.OK.value(), "Logged out successfully", null,
+                LocalDateTime.now(), httpRequest.getRequestURI()
+        );
+        return ResponseEntity.ok(apiResponse);
     }
 
     /**
@@ -103,10 +130,10 @@ public class AuthController {
      * @param refreshToken valor del refresh token
      */
     private void setRefreshTokenCookie(HttpServletResponse response, String refreshToken) {
-        Cookie cookie = new Cookie(refreshCookieName, refreshToken);
+        Cookie cookie = new Cookie(REFRESH_COOKIE_NAME, refreshToken);
         cookie.setHttpOnly(true);
         cookie.setSecure(false); // Set to true in production with HTTPS
-        cookie.setPath("/auth");
+        cookie.setPath("/api/v1/auth");
         cookie.setMaxAge(REFRESH_COOKIE_MAX_AGE);
         response.addCookie(cookie);
     }
@@ -117,10 +144,10 @@ public class AuthController {
      * @param response respuesta HTTP
      */
     private void clearRefreshTokenCookie(HttpServletResponse response) {
-        Cookie cookie = new Cookie(refreshCookieName, null);
+        Cookie cookie = new Cookie(REFRESH_COOKIE_NAME, null);
         cookie.setHttpOnly(true);
         cookie.setSecure(false);
-        cookie.setPath("/auth");
+        cookie.setPath("/api/v1/auth");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
     }
@@ -135,7 +162,7 @@ public class AuthController {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (refreshCookieName.equals(cookie.getName())) {
+                if (REFRESH_COOKIE_NAME.equals(cookie.getName())) {
                     return cookie.getValue();
                 }
             }

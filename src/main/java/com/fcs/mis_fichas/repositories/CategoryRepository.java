@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * Repositorio para la gestion de categorias.
+ * Repositorio para la gestion de categorías.
  * Proporciona operaciones de consulta con soporte para soft delete.
  */
 @Repository
@@ -19,7 +19,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
      * Busca una categoria activa por su nombre.
      *
      * @param name nombre de la categoria
-     * @return Optional con la categoria encontrada o vacio si no existe o esta eliminada
+     * @return Optional con la categoria encontrada o vacío si no existe o está eliminada
      */
     Optional<Category> findByNameAndDeletedAtIsNull(String name);
 
@@ -35,15 +35,15 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
      * Busca una categoria activa por su identificador.
      *
      * @param id identificador de la categoria
-     * @return Optional con la categoria encontrada o vacio si no existe o esta eliminada
+     * @return Optional con la categoria encontrada o vacío si no existe o está eliminada
      */
     Optional<Category> findByIdAndDeletedAtIsNull(Long id);
 
     /**
-     * Busca todas las categorias activas (sin soft delete) de forma paginada.
+     * Busca todas las categorías activas (sin soft delete) de forma paginada.
      *
-     * @param pageable informacion de paginacion y ordenamiento
-     * @return pagina de categorias activas
+     * @param pageable información de paginación y ordenamiento
+     * @return página de categorías activas
      */
     Page<Category> findByDeletedAtIsNull(Pageable pageable);
 }

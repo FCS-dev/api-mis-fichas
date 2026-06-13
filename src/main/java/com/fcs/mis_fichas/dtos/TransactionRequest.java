@@ -7,15 +7,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * DTO de solicitud para crear o actualizar una transaccion.
- * El campo {@code userId} se ignora en la creacion (se usa el usuario autenticado).
+ * DTO de solicitud para crear o actualizar una transacción.
+ * El campo {@code userId} se ignora en la creación (se usa el usuario autenticado).
  *
- * @param userId         identificador del usuario (ignorado en POST, relevante para ADMIN en PUT)
- * @param categoryId     identificador de la categoria asociada
- * @param subcategoryId  identificador de la subcategoria asociada
- * @param amount         monto de la transaccion (debe ser positivo)
- * @param description    descripcion opcional de la transaccion
- * @param transactionDate fecha en la que se realizo la transaccion
+ * @param userId          identificador del usuario (ignorado en POST, relevante para ADMIN en PUT)
+ * @param categoryId      identificador de la categoria asociada
+ * @param subcategoryId   identificador de la subcategoría asociada
+ * @param amount          monto de la transacción (debe ser positivo)
+ * @param description     descripción opcional de la transacción
+ * @param transactionDate fecha en la que se realizó la transacción
  */
 public record TransactionRequest(
         Long userId,
