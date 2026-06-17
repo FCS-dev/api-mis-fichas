@@ -5,6 +5,8 @@ import com.fcs.mis_fichas.dtos.AuthResponse;
 import com.fcs.mis_fichas.dtos.LoginRequest;
 import com.fcs.mis_fichas.dtos.RegisterRequest;
 import com.fcs.mis_fichas.services.AuthService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,6 +30,7 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@Tag(name = "Autenticación", description = "Endpoints públicos para registro, login, refresco de tokens y logout")
 public class AuthController {
 
     private final AuthService authService;
@@ -44,6 +47,7 @@ public class AuthController {
      * @return ResponseEntity con ApiResponse de mensaje de éxito (HTTP 200)
      */
     @PostMapping("/register")
+    @Operation(summary = "Registrar un nuevo usuario", description = "Crea una cuenta con rol USER. Devuelve un mensaje de éxito.")
     public ResponseEntity<ApiResponse<String>> register(@Valid @RequestBody RegisterRequest request, HttpServletRequest httpRequest) {
         authService.register(request);
         ApiResponse<String> apiResponse = new ApiResponse<>(
@@ -63,6 +67,7 @@ public class AuthController {
      * @return ResponseEntity con ApiResponse del access token (HTTP 200)
      */
     @PostMapping("/login")
+    @Operation(summary = "Iniciar sesión", description = "Autentica al usuario y devuelve un access token. El refresh token se envía en una cookie HttpOnly.")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request, HttpServletResponse response, HttpServletRequest httpRequest) {
         AuthResponse authResponse = authService.login(request);
         setRefreshTokenCookie(response, authResponse.refreshToken());
@@ -83,6 +88,7 @@ public class AuthController {
      * @return ResponseEntity con ApiResponse del nuevo access token (HTTP 200), o 401 si no hay cookie
      */
     @PostMapping("/refresh")
+    @Operation(summary = "Refrescar access token", description = "Genera un nuevo access token usando el refresh token de la cookie. Aplica rotación de refresh tokens.")
     public ResponseEntity<ApiResponse<AuthResponse>> refresh(HttpServletRequest request, HttpServletResponse response, HttpServletRequest httpRequest) {
         String refreshToken = extractRefreshTokenFromCookie(request);
         if (refreshToken == null) {
@@ -110,6 +116,7 @@ public class AuthController {
      * @return ResponseEntity con ApiResponse de mensaje de éxito (HTTP 200)
      */
     @PostMapping("/logout")
+    @Operation(summary = "Cerrar sesión", description = "Revoca el refresh token y elimina la cookie HttpOnly.")
     public ResponseEntity<ApiResponse<String>> logout(HttpServletRequest request, HttpServletResponse response, HttpServletRequest httpRequest) {
         String refreshToken = extractRefreshTokenFromCookie(request);
         if (refreshToken != null) {

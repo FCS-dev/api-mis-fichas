@@ -2,6 +2,9 @@ package com.fcs.mis_fichas.controllers;
 
 import com.fcs.mis_fichas.dtos.*;
 import com.fcs.mis_fichas.services.SubcategoryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/subcategories")
 @RequiredArgsConstructor
 @PreAuthorize("hasAnyRole('USER','ADMIN')")
+@Tag(name = "Subcategorías", description = "Gestión de subcategorías (USER y ADMIN)")
 public class SubcategoryController {
 
     private final SubcategoryService subcategoryService;
@@ -44,6 +48,7 @@ public class SubcategoryController {
      * @return ResponseEntity con ApiResponse de la subcategoría creada (HTTP 201)
      */
     @PostMapping
+    @Operation(summary = "Crear subcategoría", description = "Crea una nueva subcategoría. ADMIN crea subcategorías del sistema; USER crea subcategorías personales.")
     public ResponseEntity<ApiResponse<SubcategoryResponse>> create(@Valid @RequestBody SubcategoryRequest request, HttpServletRequest httpRequest) {
         SubcategoryResponse response = subcategoryService.create(request);
         ApiResponse<SubcategoryResponse> apiResponse = new ApiResponse<>(
@@ -64,8 +69,9 @@ public class SubcategoryController {
      * @return ResponseEntity con ApiResponse de la subcategoría actualizada (HTTP 200)
      */
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar subcategoría", description = "Actualiza una subcategoría existente. USER solo puede modificar las propias.")
     public ResponseEntity<ApiResponse<SubcategoryResponse>> update(
-            @PathVariable Long id,
+            @Parameter(description = "ID de la subcategoría", example = "1") @PathVariable Long id,
             @Valid @RequestBody SubcategoryRequest request,
             HttpServletRequest httpRequest) {
         SubcategoryResponse response = subcategoryService.update(id, request);
@@ -86,7 +92,10 @@ public class SubcategoryController {
      * @return ResponseEntity con ApiResponse de mensaje de éxito (HTTP 200)
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> delete(@PathVariable Long id, HttpServletRequest httpRequest) {
+    @Operation(summary = "Eliminar subcategoría (soft delete)", description = "Elimina una subcategoría de forma lógica. USER solo puede eliminar las propias.")
+    public ResponseEntity<ApiResponse<String>> delete(
+            @Parameter(description = "ID de la subcategoría", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
         subcategoryService.delete(id);
         ApiResponse<String> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), "Subcategory deleted successfully", null,
@@ -105,7 +114,10 @@ public class SubcategoryController {
      * @return ResponseEntity con ApiResponse de la subcategoría encontrada (HTTP 200)
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<SubcategoryResponse>> findById(@PathVariable Long id, HttpServletRequest httpRequest) {
+    @Operation(summary = "Obtener subcategoría por ID", description = "Devuelve los datos de una subcategoría específica.")
+    public ResponseEntity<ApiResponse<SubcategoryResponse>> findById(
+            @Parameter(description = "ID de la subcategoría", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
         SubcategoryResponse response = subcategoryService.findById(id);
         ApiResponse<SubcategoryResponse> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), null, response,
@@ -126,10 +138,11 @@ public class SubcategoryController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping
+    @Operation(summary = "Listar subcategorías", description = "Lista todas las subcategorías activas paginadas. USER ve solo las del sistema y las propias.")
     public ResponseEntity<ApiResponse<PagedResponse<SubcategoryResponse>>> findAll(
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "name,asc") String sort,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "name,asc") @RequestParam(required = false, defaultValue = "name,asc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<SubcategoryResponse> pageResult = subcategoryService.findAll(pageable);

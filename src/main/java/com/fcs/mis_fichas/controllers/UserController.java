@@ -4,6 +4,9 @@ import com.fcs.mis_fichas.dtos.*;
 import com.fcs.mis_fichas.enums.Role;
 import com.fcs.mis_fichas.enums.Status;
 import com.fcs.mis_fichas.services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +31,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/admin/users")
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('ADMIN')")
+@Tag(name = "Admin - Usuarios", description = "Gestión de usuarios (solo ADMIN)")
 public class UserController {
 
     private final UserService userService;
@@ -45,7 +49,10 @@ public class UserController {
      * @return ResponseEntity con ApiResponse del usuario encontrado (HTTP 200)
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<UserResponse>> findById(@PathVariable Long id, HttpServletRequest httpRequest) {
+    @Operation(summary = "Obtener usuario por ID", description = "Devuelve los datos de un usuario específico.")
+    public ResponseEntity<ApiResponse<UserResponse>> findById(
+            @Parameter(description = "ID del usuario", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
         UserResponse response = userService.findById(id);
         ApiResponse<UserResponse> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), null, response,
@@ -67,12 +74,13 @@ public class UserController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping
+    @Operation(summary = "Listar usuarios", description = "Lista todos los usuarios activos paginados. Permite filtrar por rol y estado.")
     public ResponseEntity<ApiResponse<PagedResponse<UserResponse>>> findAll(
-            @RequestParam(required = false) Role role,
-            @RequestParam(required = false) Status status,
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "name,asc") String sort,
+            @Parameter(description = "Rol a filtrar", example = "USER") @RequestParam(required = false) Role role,
+            @Parameter(description = "Estado a filtrar", example = "ACTIVE") @RequestParam(required = false) Status status,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "name,asc") @RequestParam(required = false, defaultValue = "name,asc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<UserResponse> pageResult = userService.findAll(role, status, pageable);
@@ -94,8 +102,9 @@ public class UserController {
      * @return ResponseEntity con ApiResponse del usuario actualizado (HTTP 200)
      */
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar usuario", description = "Permite modificar nombre, email, rol y estado (incluyendo BLOCKED).")
     public ResponseEntity<ApiResponse<UserResponse>> update(
-            @PathVariable Long id,
+            @Parameter(description = "ID del usuario a actualizar", example = "1") @PathVariable Long id,
             @Valid @RequestBody UserUpdateRequest request,
             HttpServletRequest httpRequest) {
         UserResponse response = userService.update(id, request);
@@ -114,7 +123,10 @@ public class UserController {
      * @return ResponseEntity con ApiResponse de mensaje de éxito (HTTP 200)
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> delete(@PathVariable Long id, HttpServletRequest httpRequest) {
+    @Operation(summary = "Eliminar usuario (soft delete)", description = "Elimina un usuario de forma lógica marcando deletedAt.")
+    public ResponseEntity<ApiResponse<String>> delete(
+            @Parameter(description = "ID del usuario a eliminar", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
         userService.delete(id);
         ApiResponse<String> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), "User deleted successfully", null,

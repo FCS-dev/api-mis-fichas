@@ -5,6 +5,9 @@ import com.fcs.mis_fichas.dtos.CategoryResponse;
 import com.fcs.mis_fichas.dtos.PagedResponse;
 import com.fcs.mis_fichas.dtos.PaginationInfo;
 import com.fcs.mis_fichas.services.CategoryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,6 +32,7 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/categories")
 @RequiredArgsConstructor
+@Tag(name = "Categorías", description = "Consulta pública de categorías activas (requiere autenticación)")
 public class CategoryPublicController {
 
     private final CategoryService categoryService;
@@ -49,10 +53,11 @@ public class CategoryPublicController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping
+    @Operation(summary = "Listar categorías activas", description = "Lista todas las categorías activas paginadas. Requiere autenticación JWT.")
     public ResponseEntity<ApiResponse<PagedResponse<CategoryResponse>>> findAll(
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "name,asc") String sort,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "name,asc") @RequestParam(required = false, defaultValue = "name,asc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<CategoryResponse> pageResult = categoryService.findAll(pageable);

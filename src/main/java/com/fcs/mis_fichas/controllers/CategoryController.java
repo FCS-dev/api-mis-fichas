@@ -2,6 +2,9 @@ package com.fcs.mis_fichas.controllers;
 
 import com.fcs.mis_fichas.dtos.*;
 import com.fcs.mis_fichas.services.CategoryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/admin/categories")
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('ADMIN')")
+@Tag(name = "Admin - Categorías", description = "Gestión de categorías (solo ADMIN)")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -42,6 +46,7 @@ public class CategoryController {
      * @return ResponseEntity con ApiResponse de la categoria creada (HTTP 201)
      */
     @PostMapping
+    @Operation(summary = "Crear categoría", description = "Crea una nueva categoría de ingreso o gasto.")
     public ResponseEntity<ApiResponse<CategoryResponse>> create(@Valid @RequestBody CategoryRequest request, HttpServletRequest httpRequest) {
         CategoryResponse response = categoryService.create(request);
         ApiResponse<CategoryResponse> apiResponse = new ApiResponse<>(
@@ -60,8 +65,9 @@ public class CategoryController {
      * @return ResponseEntity con ApiResponse de la categoria actualizada (HTTP 200)
      */
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar categoría", description = "Actualiza los datos de una categoría existente.")
     public ResponseEntity<ApiResponse<CategoryResponse>> update(
-            @PathVariable Long id,
+            @Parameter(description = "ID de la categoría", example = "1") @PathVariable Long id,
             @Valid @RequestBody CategoryRequest request,
             HttpServletRequest httpRequest) {
         CategoryResponse response = categoryService.update(id, request);
@@ -80,7 +86,10 @@ public class CategoryController {
      * @return ResponseEntity con ApiResponse de mensaje de éxito (HTTP 200)
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> delete(@PathVariable Long id, HttpServletRequest httpRequest) {
+    @Operation(summary = "Eliminar categoría (soft delete)", description = "Elimina una categoría de forma lógica.")
+    public ResponseEntity<ApiResponse<String>> delete(
+            @Parameter(description = "ID de la categoría", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
         categoryService.delete(id);
         ApiResponse<String> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), "Category deleted successfully", null,
@@ -97,7 +106,10 @@ public class CategoryController {
      * @return ResponseEntity con ApiResponse de la categoria encontrada (HTTP 200)
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<CategoryResponse>> findById(@PathVariable Long id, HttpServletRequest httpRequest) {
+    @Operation(summary = "Obtener categoría por ID", description = "Devuelve los datos de una categoría específica.")
+    public ResponseEntity<ApiResponse<CategoryResponse>> findById(
+            @Parameter(description = "ID de la categoría", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
         CategoryResponse response = categoryService.findById(id);
         ApiResponse<CategoryResponse> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), null, response,
@@ -116,10 +128,11 @@ public class CategoryController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping
+    @Operation(summary = "Listar categorías", description = "Lista todas las categorías activas paginadas.")
     public ResponseEntity<ApiResponse<PagedResponse<CategoryResponse>>> findAll(
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "name,asc") String sort,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "name,asc") @RequestParam(required = false, defaultValue = "name,asc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<CategoryResponse> pageResult = categoryService.findAll(pageable);

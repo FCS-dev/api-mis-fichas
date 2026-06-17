@@ -2,6 +2,9 @@ package com.fcs.mis_fichas.controllers;
 
 import com.fcs.mis_fichas.dtos.*;
 import com.fcs.mis_fichas.services.TransactionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +31,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/transactions")
 @RequiredArgsConstructor
 @PreAuthorize("hasAnyRole('USER','ADMIN')")
+@Tag(name = "Transacciones", description = "Gestión de transacciones de ingresos y gastos (USER y ADMIN)")
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -46,6 +50,7 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de la transacción creada (HTTP 201)
      */
     @PostMapping
+    @Operation(summary = "Crear transacción", description = "Crea una nueva transacción de ingreso o gasto.")
     public ResponseEntity<ApiResponse<TransactionResponse>> create(@Valid @RequestBody TransactionRequest request, HttpServletRequest httpRequest) {
         TransactionResponse response = transactionService.create(request);
         ApiResponse<TransactionResponse> apiResponse = new ApiResponse<>(
@@ -66,8 +71,9 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de la transacción actualizada (HTTP 200)
      */
     @PutMapping("/{id}")
+    @Operation(summary = "Actualizar transacción", description = "Actualiza una transacción existente. USER solo puede modificar las propias.")
     public ResponseEntity<ApiResponse<TransactionResponse>> update(
-            @PathVariable Long id,
+            @Parameter(description = "ID de la transacción", example = "1") @PathVariable Long id,
             @Valid @RequestBody TransactionRequest request,
             HttpServletRequest httpRequest) {
         TransactionResponse response = transactionService.update(id, request);
@@ -88,7 +94,10 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de mensaje de éxito (HTTP 200)
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> delete(@PathVariable Long id, HttpServletRequest httpRequest) {
+    @Operation(summary = "Eliminar transacción (soft delete)", description = "Elimina una transacción de forma lógica.")
+    public ResponseEntity<ApiResponse<String>> delete(
+            @Parameter(description = "ID de la transacción", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
         transactionService.delete(id);
         ApiResponse<String> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), "Transaction deleted successfully", null,
@@ -107,7 +116,10 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de la transacción encontrada (HTTP 200)
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<TransactionResponse>> findById(@PathVariable Long id, HttpServletRequest httpRequest) {
+    @Operation(summary = "Obtener transacción por ID", description = "Devuelve los datos de una transacción específica.")
+    public ResponseEntity<ApiResponse<TransactionResponse>> findById(
+            @Parameter(description = "ID de la transacción", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
         TransactionResponse response = transactionService.findById(id);
         ApiResponse<TransactionResponse> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), null, response,
@@ -134,16 +146,17 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping
+    @Operation(summary = "Listar transacciones", description = "Lista transacciones con filtros opcionales y paginación.")
     public ResponseEntity<ApiResponse<PagedResponse<TransactionResponse>>> findAll(
-            @RequestParam(required = false) Long userId,
-            @RequestParam(required = false) Long categoryId,
-            @RequestParam(required = false) Long subcategoryId,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo,
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
+            @Parameter(description = "ID de usuario a filtrar (solo ADMIN)", example = "1") @RequestParam(required = false) Long userId,
+            @Parameter(description = "ID de categoría a filtrar", example = "1") @RequestParam(required = false) Long categoryId,
+            @Parameter(description = "ID de subcategoría a filtrar", example = "1") @RequestParam(required = false) Long subcategoryId,
+            @Parameter(description = "Fecha exacta (ISO)", example = "2024-01-15") @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @Parameter(description = "Fecha inicio del rango (ISO)", example = "2024-01-01") @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
+            @Parameter(description = "Fecha fin del rango (ISO)", example = "2024-01-31") @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "transactionDate,desc") @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<TransactionResponse> pageResult = transactionService.findAll(userId, categoryId, subcategoryId, date, dateFrom, dateTo, pageable);
@@ -167,12 +180,13 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping("/category/{categoryId}")
+    @Operation(summary = "Listar transacciones por categoría", description = "Lista transacciones filtradas por categoría.")
     public ResponseEntity<ApiResponse<PagedResponse<TransactionResponse>>> findByCategory(
-            @PathVariable Long categoryId,
-            @RequestParam(required = false) Long userId,
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
+            @Parameter(description = "ID de la categoría", example = "1") @PathVariable Long categoryId,
+            @Parameter(description = "ID de usuario a filtrar (solo ADMIN)", example = "1") @RequestParam(required = false) Long userId,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "transactionDate,desc") @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<TransactionResponse> pageResult = transactionService.findAll(userId, categoryId, null, null, null, null, pageable);
@@ -196,12 +210,13 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping("/subcategory/{subcategoryId}")
+    @Operation(summary = "Listar transacciones por subcategoría", description = "Lista transacciones filtradas por subcategoría.")
     public ResponseEntity<ApiResponse<PagedResponse<TransactionResponse>>> findBySubcategory(
-            @PathVariable Long subcategoryId,
-            @RequestParam(required = false) Long userId,
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
+            @Parameter(description = "ID de la subcategoría", example = "1") @PathVariable Long subcategoryId,
+            @Parameter(description = "ID de usuario a filtrar (solo ADMIN)", example = "1") @RequestParam(required = false) Long userId,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "transactionDate,desc") @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<TransactionResponse> pageResult = transactionService.findAll(userId, null, subcategoryId, null, null, null, pageable);
@@ -225,12 +240,13 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping("/date/{date}")
+    @Operation(summary = "Listar transacciones por fecha exacta", description = "Lista transacciones filtradas por una fecha exacta.")
     public ResponseEntity<ApiResponse<PagedResponse<TransactionResponse>>> findByDate(
-            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam(required = false) Long userId,
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
+            @Parameter(description = "Fecha exacta (ISO)", example = "2024-01-15") @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @Parameter(description = "ID de usuario a filtrar (solo ADMIN)", example = "1") @RequestParam(required = false) Long userId,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "transactionDate,desc") @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<TransactionResponse> pageResult = transactionService.findAll(userId, null, null, date, null, null, pageable);
@@ -255,13 +271,14 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping("/date-range")
+    @Operation(summary = "Listar transacciones por rango de fechas", description = "Lista transacciones filtradas por un rango de fechas.")
     public ResponseEntity<ApiResponse<PagedResponse<TransactionResponse>>> findByDateRange(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
-            @RequestParam(required = false) Long userId,
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "20") int size,
-            @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
+            @Parameter(description = "Fecha de inicio (ISO)", example = "2024-01-01") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+            @Parameter(description = "Fecha de fin (ISO)", example = "2024-01-31") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
+            @Parameter(description = "ID de usuario a filtrar (solo ADMIN)", example = "1") @RequestParam(required = false) Long userId,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "transactionDate,desc") @RequestParam(required = false, defaultValue = "transactionDate,desc") String sort,
             HttpServletRequest httpRequest) {
         Pageable pageable = buildPageable(page, size, sort);
         Page<TransactionResponse> pageResult = transactionService.findAll(userId, null, null, null, from, to, pageable);
