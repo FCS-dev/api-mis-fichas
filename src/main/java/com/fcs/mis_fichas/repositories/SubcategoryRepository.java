@@ -65,4 +65,26 @@ public interface SubcategoryRepository extends JpaRepository<Subcategory, Long> 
      */
     @Query("SELECT s FROM Subcategory s WHERE s.deletedAt IS NULL")
     Page<Subcategory> findByDeletedAtIsNull(Pageable pageable);
+
+    /**
+     * Busca subcategorías activas de una categoría específica.
+     *
+     * @param categoryId identificador de la categoría
+     * @param pageable   información de paginación
+     * @return página de subcategorías activas de la categoría
+     */
+    @Query("SELECT s FROM Subcategory s WHERE s.deletedAt IS NULL AND s.category.id = :categoryId")
+    Page<Subcategory> findByCategoryIdAndDeletedAtIsNull(@Param("categoryId") Long categoryId, Pageable pageable);
+
+    /**
+     * Busca subcategorías activas de una categoría accesibles para un usuario:
+     * subcategorías del sistema ({@code isSystem = true}) o creadas por el usuario.
+     *
+     * @param categoryId identificador de la categoría
+     * @param userId     identificador del usuario
+     * @param pageable   información de paginación
+     * @return página de subcategorías accesibles al usuario en esa categoría
+     */
+    @Query("SELECT s FROM Subcategory s WHERE s.deletedAt IS NULL AND s.category.id = :categoryId AND (s.createdBy.id = :userId OR s.isSystem = true)")
+    Page<Subcategory> findByCategoryIdAndDeletedAtIsNullAndAccessibleToUser(@Param("categoryId") Long categoryId, @Param("userId") Long userId, Pageable pageable);
 }

@@ -154,6 +154,36 @@ public class SubcategoryController {
         return ResponseEntity.ok(apiResponse);
     }
 
+    /**
+     * Lista subcategorías activas de una categoría específica de forma paginada.
+     * ADMIN: ve todas las subcategorías de la categoría.
+     * USER: ve solo las del sistema y las propias dentro de esa categoría.
+     *
+     * @param categoryId  identificador de la categoría
+     * @param page        número de página (opcional, default 0)
+     * @param size        cantidad de elementos por página (opcional, default 20, max 100)
+     * @param sort        criterio de ordenamiento (opcional, default "name,asc")
+     * @param httpRequest solicitud HTTP
+     * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
+     */
+    @GetMapping("/category/{categoryId}")
+    @Operation(summary = "Listar subcategorías por categoría", description = "Lista las subcategorías activas de una categoría específica paginadas. ADMIN ve todas; USER ve las del sistema y las propias.")
+    public ResponseEntity<ApiResponse<PagedResponse<SubcategoryResponse>>> findByCategoryId(
+            @Parameter(description = "ID de la categoría", example = "1") @PathVariable Long categoryId,
+            @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
+            @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,
+            @Parameter(description = "Criterio de ordenamiento (propiedad,dirección)", example = "name,asc") @RequestParam(required = false, defaultValue = "name,asc") String sort,
+            HttpServletRequest httpRequest) {
+        Pageable pageable = buildPageable(page, size, sort);
+        Page<SubcategoryResponse> pageResult = subcategoryService.findByCategoryId(categoryId, pageable);
+        PagedResponse<SubcategoryResponse> pagedResponse = mapToPagedResponse(pageResult);
+        ApiResponse<PagedResponse<SubcategoryResponse>> apiResponse = new ApiResponse<>(
+                true, HttpStatus.OK.value(), null, pagedResponse,
+                LocalDateTime.now(), httpRequest.getRequestURI()
+        );
+        return ResponseEntity.ok(apiResponse);
+    }
+
     private Pageable buildPageable(int page, int size, String sort) {
         int effectivePage = Math.max(page, DEFAULT_PAGE);
         int effectiveSize = Math.min(Math.max(size, 1), MAX_SIZE);

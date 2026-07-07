@@ -87,4 +87,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return true si existe otro usuario activo con ese email
      */
     boolean existsByEmailAndDeletedAtIsNullAndIdNot(String email, Long id);
+
+    /**
+     * Cuenta la cantidad de usuarios activos (no eliminados).
+     *
+     * @return cantidad de usuarios activos
+     */
+    long countByDeletedAtIsNull();
 }

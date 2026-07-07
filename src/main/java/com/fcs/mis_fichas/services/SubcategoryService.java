@@ -159,6 +159,31 @@ public class SubcategoryService {
     }
 
     /**
+     * Busca subcategorías activas de una categoría específica de forma paginada.
+     * ADMIN: ve todas las subcategorías de la categoría.
+     * USER: ve solo las del sistema y las propias dentro de esa categoría.
+     *
+     * @param categoryId identificador de la categoría
+     * @param pageable   información de paginación y ordenamiento
+     * @return página de subcategorías accesibles de la categoría
+     * @throws IllegalArgumentException si la categoría no existe
+     */
+    @Transactional(readOnly = true)
+    public Page<SubcategoryResponse> findByCategoryId(Long categoryId, Pageable pageable) {
+        categoryRepository.findByIdAndDeletedAtIsNull(categoryId)
+                .orElseThrow(() -> new IllegalArgumentException("Category not found with id: " + categoryId));
+
+        User currentUser = getCurrentUser();
+        if (currentUser.getRole() == Role.ADMIN) {
+            return subcategoryRepository.findByCategoryIdAndDeletedAtIsNull(categoryId, pageable)
+                    .map(this::mapToResponse);
+        } else {
+            return subcategoryRepository.findByCategoryIdAndDeletedAtIsNullAndAccessibleToUser(categoryId, currentUser.getId(), pageable)
+                    .map(this::mapToResponse);
+        }
+    }
+
+    /**
      * Verifica que el usuario tenga permiso para modificar la subcategoría.
      * ADMIN: siempre tiene permiso.
      * USER: solo si la subcategoría no es del sistema y fue creada por él.

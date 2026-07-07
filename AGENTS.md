@@ -30,7 +30,7 @@
   ./mvnw spring-boot:run
   ./mvnw test
   ```
-- Note: `.env` is listed in `.gitignore` but is currently tracked in the repo.
+- Note: `.env` is listed in `.gitignore` and has never been tracked in the repo.
 
 ## Package Structure
 
@@ -102,6 +102,9 @@
   - `PUT /api/v1/admin/categories/{id}` — ADMIN, update category
   - `DELETE /api/v1/admin/categories/{id}` — ADMIN, soft delete category
   - All other endpoints require valid JWT.
+  - **Nota sobre `requestMatchers`**: los patrones en `SecurityConfig.java` NO incluyen el
+    context-path (`/api/v1`). Spring Security los compara contra el servlet-path (sin
+    context-path), por lo tanto usan rutas como `/auth/register` y no `/api/v1/auth/register`.
 
 ## Discrepancies to Watch
 

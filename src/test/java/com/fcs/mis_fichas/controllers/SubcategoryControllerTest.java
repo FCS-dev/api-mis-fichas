@@ -113,4 +113,20 @@ class SubcategoryControllerTest {
                 .andExpect(jsonPath("$.data.pagination.currentPage").value(0))
                 .andExpect(jsonPath("$.data.pagination.pageSize").value(20));
     }
+
+    @Test
+    void findByCategoryId_shouldReturn200() throws Exception {
+        SubcategoryResponse response = sampleResponse(1L, "Groceries");
+        Page<SubcategoryResponse> page = new PageImpl<>(List.of(response), PageRequest.of(0, 20, Sort.by("name").ascending()), 1);
+
+        when(subcategoryService.findByCategoryId(eq(1L), any())).thenReturn(page);
+
+        mockMvc.perform(get("/subcategories/category/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.content[0].name").value("Groceries"))
+                .andExpect(jsonPath("$.data.pagination.currentPage").value(0))
+                .andExpect(jsonPath("$.data.pagination.pageSize").value(20));
+
+        verify(subcategoryService).findByCategoryId(eq(1L), any());
+    }
 }

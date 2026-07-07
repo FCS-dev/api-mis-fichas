@@ -25,7 +25,7 @@ public class OpenApiConfig {
                         .version("v1")
                         .description("API REST para la gestión de gastos e ingresos personales. "
                                 + "Incluye autenticación JWT, CRUD de categorías, subcategorías y transacciones, "
-                                + "y panel de administración de usuarios."))
+                                + "panel de administración de usuarios y dashboard con resúmenes, balances y estadísticas."))
                 .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME))
                 .components(new Components().addSecuritySchemes(SECURITY_SCHEME_NAME,
                         new SecurityScheme()

@@ -9,7 +9,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.fcs.mis_fichas.enums.Type;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -56,4 +59,79 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long>,
             @Param("dateFrom") LocalDate dateFrom,
             @Param("dateTo") LocalDate dateTo,
             Pageable pageable);
+
+    /**
+     * Suma los montos de transacciones de un tipo específico para un usuario en un rango de fechas.
+     *
+     * @param userId identificador del usuario
+     * @param type   tipo de transacción (INCOME o EXPENSE)
+     * @param start  fecha de inicio del rango
+     * @param end    fecha de fin del rango
+     * @return suma total del monto, o 0 si no hay transacciones
+     */
+    @Query("SELECT COALESCE(SUM(t.amount), 0) FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND t.user.id = :userId AND t.category.type = :type " +
+            "AND t.transactionDate BETWEEN :start AND :end")
+    BigDecimal sumByUserAndTypeBetweenDates(
+            @Param("userId") Long userId,
+            @Param("type") Type type,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    /**
+     * Agrupa y suma los gastos (EXPENSE) por categoría, con filtro opcional de usuario y rango de fechas.
+     *
+     * @param userId identificador del usuario (null para incluir todos)
+     * @param start  fecha de inicio del rango
+     * @param end    fecha de fin del rango
+     * @return lista de arreglos: [categoryId, categoryName, total]
+     */
+    @Query("SELECT t.category.id, t.category.name, COALESCE(SUM(t.amount), 0) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
+            "AND t.category.type = 'EXPENSE' " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY t.category.id, t.category.name")
+    List<Object[]> expenseSumGroupedByCategory(
+            @Param("userId") Long userId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    /**
+     * Agrupa y suma los gastos (EXPENSE) por subcategoría dentro de una categoría específica,
+     * con filtro opcional de usuario y rango de fechas.
+     *
+     * @param userId     identificador del usuario (null para incluir todos)
+     * @param categoryId identificador de la categoría a filtrar
+     * @param start      fecha de inicio del rango
+     * @param end        fecha de fin del rango
+     * @return lista de arreglos: [subcategoryId, subcategoryName, categoryId, categoryName, total]
+     */
+    @Query("SELECT t.subcategory.id, t.subcategory.name, t.category.id, t.category.name, COALESCE(SUM(t.amount), 0) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
+            "AND t.category.type = 'EXPENSE' " +
+            "AND t.category.id = :categoryId " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY t.subcategory.id, t.subcategory.name, t.category.id, t.category.name")
+    List<Object[]> expenseSumGroupedBySubcategory(
+            @Param("userId") Long userId,
+            @Param("categoryId") Long categoryId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    /**
+     * Obtiene todas las transacciones activas desde una fecha en adelante,
+     * con filtro opcional de usuario. Incluye la categoría (JOIN FETCH) para evitar N+1.
+     *
+     * @param userId    identificador del usuario (null para incluir todos)
+     * @param sinceDate fecha a partir de la cual incluir transacciones
+     * @return lista de transacciones
+     */
+    @Query("SELECT t FROM Transaction t JOIN FETCH t.category WHERE t.deletedAt IS NULL " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
+            "AND t.transactionDate >= :sinceDate")
+    List<Transaction> findTransactionsSince(
+            @Param("userId") Long userId,
+            @Param("sinceDate") LocalDate sinceDate);
 }

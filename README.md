@@ -135,6 +135,28 @@ Todos los endpoints están prefijados con `/api/v1`.
 | `PUT`    | `/api/v1/admin/categories/{id}` | Actualizar categoría                                                   |
 | `DELETE` | `/api/v1/admin/categories/{id}` | Soft delete de categoría                                               |
 
+### Dashboard (rol `USER`)
+
+| Método | Endpoint                                              | Parámetros                   | Descripción                                                         |
+|--------|-------------------------------------------------------|------------------------------|---------------------------------------------------------------------|
+| `GET`  | `/api/v1/dashboard/me/total-income`                   | `month`, `year`              | Sumatoria de ingresos del mes para el usuario autenticado           |
+| `GET`  | `/api/v1/dashboard/me/total-expense`                  | `month`, `year`              | Sumatoria de gastos del mes para el usuario autenticado             |
+| `GET`  | `/api/v1/dashboard/me/expenses-by-category`           | `month`, `year`              | Gastos agrupados por categoría en un mes/año                        |
+| `GET`  | `/api/v1/dashboard/me/expenses-by-subcategory`        | `categoryId`, `month`, `year`| Gastos agrupados por subcategoría dentro de una categoría           |
+| `GET`  | `/api/v1/dashboard/me/monthly-balance`                | _(ninguno)_                  | Balance mensual (INCOME - EXPENSE) de los últimos 12 meses          |
+
+### Dashboard (rol `ADMIN`)
+
+| Método | Endpoint                                                | Parámetros                                            | Descripción                                                              |
+|--------|---------------------------------------------------------|-------------------------------------------------------|--------------------------------------------------------------------------|
+| `GET`  | `/api/v1/dashboard/admin/stats`                         | _(ninguno)_                                           | Total de usuarios activos y transacciones registradas                    |
+| `GET`  | `/api/v1/dashboard/admin/expenses-by-category`          | `userId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo`| Gastos agrupados por categoría en un rango de fechas                     |
+| `GET`  | `/api/v1/dashboard/admin/expenses-by-subcategory`       | `userId`, `categoryId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo` | Gastos agrupados por subcategoría dentro de una categoría en un rango |
+| `GET`  | `/api/v1/dashboard/admin/avg-income`                    | _(ninguno)_                                           | Promedio mensual de ingresos de los últimos 12 meses                     |
+| `GET`  | `/api/v1/dashboard/admin/avg-expense`                   | _(ninguno)_                                           | Promedio mensual de gastos de los últimos 12 meses                       |
+
+> **Nota sobre `userId` en endpoints ADMIN**: es opcional. Si no se envía o es `0`, se incluyen todos los usuarios. Si se envía un valor mayor a `0`, se filtra por ese usuario específico.
+
 ### Paginación
 
 Los endpoints de listado soportan los siguientes parámetros opcionales:
@@ -168,17 +190,24 @@ com.fcs.mis_fichas
 │   ├── AuthController.java
 │   ├── CategoryController.java
 │   ├── CategoryPublicController.java
+│   ├── DashboardController.java
 │   ├── SubcategoryController.java
 │   ├── TransactionController.java
 │   ├── UserController.java
 │   └── GlobalExceptionHandler.java
 ├── dtos
+│   ├── AdminStatsResponse.java
 │   ├── ApiResponse.java
 │   ├── AuthResponse.java
 │   ├── CategoryRequest.java / CategoryResponse.java
+│   ├── CategorySummaryResponse.java
+│   ├── DashboardTotalResponse.java
 │   ├── LoginRequest.java / RegisterRequest.java
+│   ├── MonthlyAverageResponse.java
+│   ├── MonthlyBalanceResponse.java
 │   ├── PagedResponse.java / PaginationInfo.java
 │   ├── SubcategoryRequest.java / SubcategoryResponse.java
+│   ├── SubcategorySummaryResponse.java
 │   ├── TransactionRequest.java / TransactionResponse.java
 │   ├── UserResponse.java / UserUpdateRequest.java
 │   └── ...
@@ -201,6 +230,7 @@ com.fcs.mis_fichas
 ├── services
 │   ├── AuthService.java
 │   ├── CategoryService.java
+│   ├── DashboardService.java
 │   ├── JwtService.java
 │   ├── RefreshTokenService.java
 │   ├── SubcategoryService.java
@@ -219,7 +249,8 @@ com.fcs.mis_fichas
 - **Schema**: Hibernate `ddl-auto` está configurado como `update` (configurable vía `DDL_AUTO` en `.env`). Esto muta el
   schema automáticamente en cada arranque. Se recomienda usar `validate` en producción y migraciones con Flyway o
   Liquibase en el futuro.
-- **Tests**: actualmente solo existe un test de integración (`@SpringBootTest`) que verifica que el contexto de Spring
-  carga correctamente. Los tests requieren una base de datos MariaDB activa.
+- **Tests**: existen tests unitarios para servicios y controladores (con `Mockito` y `MockMvc`) y un test de integración
+  (`@SpringBootTest`) que verifica que el contexto de Spring carga correctamente.
+  Los tests de integración requieren una base de datos MariaDB activa.
 - **Problemas de compilación**: si aparece `ConflictingBeanDefinitionException` por controladores duplicados, ejecutar
   `./mvnw clean` antes de compilar.

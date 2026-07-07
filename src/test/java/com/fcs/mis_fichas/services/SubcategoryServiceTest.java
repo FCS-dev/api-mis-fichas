@@ -367,4 +367,52 @@ class SubcategoryServiceTest {
 
         assertThat(result.getContent()).hasSize(1);
     }
+
+    @Test
+    void findByCategoryId_shouldReturnAll_whenAdmin() {
+        User admin = mockAuthenticatedUser("admin@example.com", Role.ADMIN);
+        Pageable pageable = PageRequest.of(0, 10);
+        Category category = Category.builder().id(1L).name("Food").type(Type.EXPENSE).build();
+        Subcategory sub = Subcategory.builder().id(1L).name("Sub").category(category).isSystem(false).build();
+        Page<Subcategory> page = new PageImpl<>(List.of(sub));
+
+        when(categoryRepository.findByIdAndDeletedAtIsNull(1L)).thenReturn(Optional.of(category));
+        when(subcategoryRepository.findByCategoryIdAndDeletedAtIsNull(1L, pageable)).thenReturn(page);
+
+        Page<SubcategoryResponse> result = subcategoryService.findByCategoryId(1L, pageable);
+
+        assertThat(result.getContent()).hasSize(1);
+        assertThat(result.getContent().get(0).name()).isEqualTo("Sub");
+    }
+
+    @Test
+    void findByCategoryId_shouldReturnAccessible_whenUser() {
+        User user = mockAuthenticatedUser("user@example.com", Role.USER);
+        Pageable pageable = PageRequest.of(0, 10);
+        Category category = Category.builder().id(1L).name("Food").type(Type.EXPENSE).build();
+        Subcategory sub = Subcategory.builder().id(1L).name("SystemSub").category(category).isSystem(true).build();
+        Page<Subcategory> page = new PageImpl<>(List.of(sub));
+
+        when(categoryRepository.findByIdAndDeletedAtIsNull(1L)).thenReturn(Optional.of(category));
+        when(subcategoryRepository.findByCategoryIdAndDeletedAtIsNullAndAccessibleToUser(1L, user.getId(), pageable)).thenReturn(page);
+
+        Page<SubcategoryResponse> result = subcategoryService.findByCategoryId(1L, pageable);
+
+        assertThat(result.getContent()).hasSize(1);
+        assertThat(result.getContent().get(0).name()).isEqualTo("SystemSub");
+    }
+
+    @Test
+    void findByCategoryId_shouldThrow_whenCategoryNotFound() {
+        Pageable pageable = PageRequest.of(0, 10);
+
+        when(categoryRepository.findByIdAndDeletedAtIsNull(99L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> subcategoryService.findByCategoryId(99L, pageable))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Category not found with id: 99");
+
+        verify(subcategoryRepository, never()).findByCategoryIdAndDeletedAtIsNull(any(), any());
+        verify(subcategoryRepository, never()).findByCategoryIdAndDeletedAtIsNullAndAccessibleToUser(any(), any(), any());
+    }
 }
