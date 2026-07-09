@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,6 +65,19 @@ public class CategoryPublicController {
         PagedResponse<CategoryResponse> pagedResponse = mapToPagedResponse(pageResult);
         ApiResponse<PagedResponse<CategoryResponse>> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), null, pagedResponse,
+                LocalDateTime.now(), httpRequest.getRequestURI()
+        );
+        return ResponseEntity.ok(apiResponse);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Obtener categoría por ID", description = "Devuelve los datos de una categoría específica. Requiere autenticación JWT.")
+    public ResponseEntity<ApiResponse<CategoryResponse>> findById(
+            @Parameter(description = "ID de la categoría", example = "1") @PathVariable Long id,
+            HttpServletRequest httpRequest) {
+        CategoryResponse response = categoryService.findById(id);
+        ApiResponse<CategoryResponse> apiResponse = new ApiResponse<>(
+                true, HttpStatus.OK.value(), null, response,
                 LocalDateTime.now(), httpRequest.getRequestURI()
         );
         return ResponseEntity.ok(apiResponse);

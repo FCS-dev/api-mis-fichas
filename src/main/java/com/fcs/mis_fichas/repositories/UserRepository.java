@@ -94,4 +94,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return cantidad de usuarios activos
      */
     long countByDeletedAtIsNull();
+
+    /**
+     * Cuenta la cantidad de usuarios activos (no eliminados) con un rol específico.
+     *
+     * @param role rol a filtrar
+     * @return cantidad de usuarios activos con el rol especificado
+     */
+    long countByDeletedAtIsNullAndRole(Role role);
 }

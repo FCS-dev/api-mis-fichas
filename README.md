@@ -100,18 +100,21 @@ Todos los endpoints están prefijados con `/api/v1`.
 
 ### Categorías (autenticado)
 
-| Método | Endpoint             | Rol         | Descripción                                    |
-|--------|----------------------|-------------|------------------------------------------------|
-| `GET`  | `/api/v1/categories` | Autenticado | Listar todas las categorías activas (paginado) |
+| Método | Endpoint                   | Rol         | Descripción                                    |
+|--------|----------------------------|-------------|------------------------------------------------|
+| `GET`  | `/api/v1/categories`       | Autenticado | Listar todas las categorías activas (paginado) |
+| `GET`  | `/api/v1/categories/{id}`  | Autenticado | Obtener una categoría por ID                   |
 
 ### Subcategorías (autenticado)
 
-| Método   | Endpoint                     | Rol         | Descripción                                         |
-|----------|------------------------------|-------------|-----------------------------------------------------|
-| `GET`    | `/api/v1/subcategories`      | Autenticado | Listar subcategorías accesibles (sistema + propias) |
-| `POST`   | `/api/v1/subcategories`      | Autenticado | Crear subcategoría personal                         |
-| `PUT`    | `/api/v1/subcategories/{id}` | Autenticado | Actualizar subcategoría propia                      |
-| `DELETE` | `/api/v1/subcategories/{id}` | Autenticado | Eliminar subcategoría propia                        |
+| Método   | Endpoint                                | Rol         | Descripción                                                         |
+|----------|-----------------------------------------|-------------|---------------------------------------------------------------------|
+| `GET`    | `/api/v1/subcategories`                 | Autenticado | Listar subcategorías accesibles (sistema + propias)                 |
+| `GET`    | `/api/v1/subcategories/{id}`            | Autenticado | Obtener una subcategoría por ID                                     |
+| `GET`    | `/api/v1/subcategories/category/{categoryId}` | Autenticado | Listar subcategorías de una categoría específica              |
+| `POST`   | `/api/v1/subcategories`                 | Autenticado | Crear subcategoría personal                                         |
+| `PUT`    | `/api/v1/subcategories/{id}`            | Autenticado | Actualizar subcategoría (USER: propias; ADMIN: cualquier)           |
+| `DELETE` | `/api/v1/subcategories/{id}`            | Autenticado | Eliminar subcategoría (USER: propias; ADMIN: cualquier)             |
 
 ### Transacciones (autenticado)
 
@@ -149,11 +152,11 @@ Todos los endpoints están prefijados con `/api/v1`.
 
 | Método | Endpoint                                                | Parámetros                                            | Descripción                                                              |
 |--------|---------------------------------------------------------|-------------------------------------------------------|--------------------------------------------------------------------------|
-| `GET`  | `/api/v1/dashboard/admin/stats`                         | _(ninguno)_                                           | Total de usuarios activos y transacciones registradas                    |
+| `GET`  | `/api/v1/dashboard/admin/stats`                         | _(ninguno)_                                           | Total de usuarios activos con rol USER y total de transacciones registradas |
 | `GET`  | `/api/v1/dashboard/admin/expenses-by-category`          | `userId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo`| Gastos agrupados por categoría en un rango de fechas                     |
 | `GET`  | `/api/v1/dashboard/admin/expenses-by-subcategory`       | `userId`, `categoryId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo` | Gastos agrupados por subcategoría dentro de una categoría en un rango |
-| `GET`  | `/api/v1/dashboard/admin/avg-income`                    | _(ninguno)_                                           | Promedio mensual de ingresos de los últimos 12 meses                     |
-| `GET`  | `/api/v1/dashboard/admin/avg-expense`                   | _(ninguno)_                                           | Promedio mensual de gastos de los últimos 12 meses                       |
+| `GET`  | `/api/v1/dashboard/admin/avg-income`                    | `userId`                                              | Promedio mensual de ingresos de los últimos 12 meses                     |
+| `GET`  | `/api/v1/dashboard/admin/avg-expense`                   | `userId`                                              | Promedio mensual de gastos de los últimos 12 meses                       |
 
 > **Nota sobre `userId` en endpoints ADMIN**: es opcional. Si no se envía o es `0`, se incluyen todos los usuarios. Si se envía un valor mayor a `0`, se filtra por ese usuario específico.
 

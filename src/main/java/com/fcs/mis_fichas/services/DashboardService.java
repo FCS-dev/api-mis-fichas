@@ -66,7 +66,7 @@ public class DashboardService {
     }
 
     public AdminStatsResponse getAdminStats() {
-        long totalUsers = userRepository.countByDeletedAtIsNull();
+        long totalUsers = userRepository.countByDeletedAtIsNullAndRole(Role.USER);
         long totalTransactions = transactionRepository.count();
         return new AdminStatsResponse(totalUsers, totalTransactions);
     }
@@ -85,17 +85,18 @@ public class DashboardService {
         return mapToSubcategorySummaries(transactionRepository.expenseSumGroupedBySubcategory(effectiveUserId, categoryId, start, end));
     }
 
-    public List<MonthlyAverageResponse> getAvgIncome() {
-        return computeMonthlyAverages(Type.INCOME);
+    public List<MonthlyAverageResponse> getAvgIncome(Long userId) {
+        return computeMonthlyAverages(Type.INCOME, userId);
     }
 
-    public List<MonthlyAverageResponse> getAvgExpense() {
-        return computeMonthlyAverages(Type.EXPENSE);
+    public List<MonthlyAverageResponse> getAvgExpense(Long userId) {
+        return computeMonthlyAverages(Type.EXPENSE, userId);
     }
 
-    private List<MonthlyAverageResponse> computeMonthlyAverages(Type type) {
+    private List<MonthlyAverageResponse> computeMonthlyAverages(Type type, Long userId) {
+        Long effectiveUserId = (userId != null && userId == 0L) ? null : userId;
         LocalDate since = YearMonth.now().minusMonths(MONTHS_HISTORY - 1).atDay(1);
-        List<Transaction> transactions = transactionRepository.findTransactionsSince(null, since);
+        List<Transaction> transactions = transactionRepository.findTransactionsSince(effectiveUserId, since);
         Map<YearMonth, List<BigDecimal>> grouped = transactions.stream()
                 .filter(t -> t.getCategory().getType() == type)
                 .collect(Collectors.groupingBy(

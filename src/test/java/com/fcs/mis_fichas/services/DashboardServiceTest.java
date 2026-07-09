@@ -189,7 +189,7 @@ class DashboardServiceTest {
 
     @Test
     void getAdminStats_shouldReturnCounts() {
-        when(userRepository.countByDeletedAtIsNull()).thenReturn(10L);
+        when(userRepository.countByDeletedAtIsNullAndRole(Role.USER)).thenReturn(10L);
         when(transactionRepository.count()).thenReturn(500L);
 
         AdminStatsResponse response = dashboardService.getAdminStats();
@@ -232,7 +232,7 @@ class DashboardServiceTest {
 
         when(transactionRepository.findTransactionsSince(isNull(), any())).thenReturn(txns);
 
-        List<MonthlyAverageResponse> result = dashboardService.getAvgIncome();
+        List<MonthlyAverageResponse> result = dashboardService.getAvgIncome(0L);
 
         assertThat(result).hasSize(12);
         MonthlyAverageResponse currentMonth = result.get(result.size() - 1);
@@ -245,10 +245,27 @@ class DashboardServiceTest {
     void getAvgIncome_shouldReturnZeroForEmptyMonths() {
         when(transactionRepository.findTransactionsSince(isNull(), any())).thenReturn(List.of());
 
-        List<MonthlyAverageResponse> result = dashboardService.getAvgIncome();
+        List<MonthlyAverageResponse> result = dashboardService.getAvgIncome(0L);
 
         assertThat(result).hasSize(12);
         assertThat(result.get(0).average()).isEqualByComparingTo(BigDecimal.ZERO);
+    }
+
+    @Test
+    void getAvgIncome_withSpecificUserId_shouldFilter() {
+        Category incomeCat = Category.builder().id(1L).type(Type.INCOME).build();
+        YearMonth current = YearMonth.now();
+        List<Transaction> txns = List.of(
+                Transaction.builder().id(1L).category(incomeCat).amount(new BigDecimal("100.00")).transactionDate(current.atDay(1)).build()
+        );
+
+        when(transactionRepository.findTransactionsSince(eq(5L), any())).thenReturn(txns);
+
+        List<MonthlyAverageResponse> result = dashboardService.getAvgIncome(5L);
+
+        assertThat(result).hasSize(12);
+        assertThat(result.get(result.size() - 1).average()).isEqualByComparingTo(new BigDecimal("100.00"));
+        verify(transactionRepository).findTransactionsSince(eq(5L), any());
     }
 
     @Test
@@ -262,10 +279,27 @@ class DashboardServiceTest {
 
         when(transactionRepository.findTransactionsSince(isNull(), any())).thenReturn(txns);
 
-        List<MonthlyAverageResponse> result = dashboardService.getAvgExpense();
+        List<MonthlyAverageResponse> result = dashboardService.getAvgExpense(0L);
 
         assertThat(result).hasSize(12);
         MonthlyAverageResponse currentMonth = result.get(result.size() - 1);
         assertThat(currentMonth.average()).isEqualByComparingTo(new BigDecimal("100.00"));
+    }
+
+    @Test
+    void getAvgExpense_withSpecificUserId_shouldFilter() {
+        Category expenseCat = Category.builder().id(1L).type(Type.EXPENSE).build();
+        YearMonth current = YearMonth.now();
+        List<Transaction> txns = List.of(
+                Transaction.builder().id(1L).category(expenseCat).amount(new BigDecimal("75.00")).transactionDate(current.atDay(1)).build()
+        );
+
+        when(transactionRepository.findTransactionsSince(eq(3L), any())).thenReturn(txns);
+
+        List<MonthlyAverageResponse> result = dashboardService.getAvgExpense(3L);
+
+        assertThat(result).hasSize(12);
+        assertThat(result.get(result.size() - 1).average()).isEqualByComparingTo(new BigDecimal("75.00"));
+        verify(transactionRepository).findTransactionsSince(eq(3L), any());
     }
 }

@@ -160,13 +160,27 @@ class DashboardControllerTest {
         List<MonthlyAverageResponse> list = List.of(
                 new MonthlyAverageResponse(2026, 6, new BigDecimal("150.00"))
         );
-        when(dashboardService.getAvgIncome()).thenReturn(list);
+        when(dashboardService.getAvgIncome(0L)).thenReturn(list);
 
         mockMvc.perform(get("/dashboard/admin/avg-income"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data[0].average").value(150.00));
 
-        verify(dashboardService).getAvgIncome();
+        verify(dashboardService).getAvgIncome(0L);
+    }
+
+    @Test
+    void getAvgIncome_withUserId_shouldReturn200() throws Exception {
+        List<MonthlyAverageResponse> list = List.of(
+                new MonthlyAverageResponse(2026, 6, new BigDecimal("200.00"))
+        );
+        when(dashboardService.getAvgIncome(5L)).thenReturn(list);
+
+        mockMvc.perform(get("/dashboard/admin/avg-income?userId=5"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data[0].average").value(200.00));
+
+        verify(dashboardService).getAvgIncome(5L);
     }
 
     @Test
@@ -174,12 +188,26 @@ class DashboardControllerTest {
         List<MonthlyAverageResponse> list = List.of(
                 new MonthlyAverageResponse(2026, 6, new BigDecimal("100.00"))
         );
-        when(dashboardService.getAvgExpense()).thenReturn(list);
+        when(dashboardService.getAvgExpense(0L)).thenReturn(list);
 
         mockMvc.perform(get("/dashboard/admin/avg-expense"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data[0].average").value(100.00));
 
-        verify(dashboardService).getAvgExpense();
+        verify(dashboardService).getAvgExpense(0L);
+    }
+
+    @Test
+    void getAvgExpense_withUserId_shouldReturn200() throws Exception {
+        List<MonthlyAverageResponse> list = List.of(
+                new MonthlyAverageResponse(2026, 6, new BigDecimal("80.00"))
+        );
+        when(dashboardService.getAvgExpense(3L)).thenReturn(list);
+
+        mockMvc.perform(get("/dashboard/admin/avg-expense?userId=3"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data[0].average").value(80.00));
+
+        verify(dashboardService).getAvgExpense(3L);
     }
 }

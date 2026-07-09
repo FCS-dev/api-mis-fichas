@@ -128,18 +128,26 @@ public class DashboardController {
     @GetMapping("/admin/avg-income")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Promedio mensual de ingresos (últimos 12 meses)",
-            description = "Devuelve el monto promedio de INCOME de cada uno de los últimos 12 meses para todos los usuarios.")
-    public ResponseEntity<ApiResponse<List<MonthlyAverageResponse>>> getAvgIncome(HttpServletRequest httpRequest) {
-        List<MonthlyAverageResponse> data = dashboardService.getAvgIncome();
+            description = "Devuelve el monto promedio de INCOME de cada uno de los últimos 12 meses. " +
+                    "userId opcional: si no se envía o es 0, incluye todos los usuarios; " +
+                    "si es > 0, filtra por ese usuario.")
+    public ResponseEntity<ApiResponse<List<MonthlyAverageResponse>>> getAvgIncome(
+            @Parameter(description = "ID de usuario (0=todos)", example = "0") @RequestParam(required = false, defaultValue = "0") Long userId,
+            HttpServletRequest httpRequest) {
+        List<MonthlyAverageResponse> data = dashboardService.getAvgIncome(userId);
         return buildResponse(data, httpRequest);
     }
 
     @GetMapping("/admin/avg-expense")
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Promedio mensual de gastos (últimos 12 meses)",
-            description = "Devuelve el monto promedio de EXPENSE de cada uno de los últimos 12 meses para todos los usuarios.")
-    public ResponseEntity<ApiResponse<List<MonthlyAverageResponse>>> getAvgExpense(HttpServletRequest httpRequest) {
-        List<MonthlyAverageResponse> data = dashboardService.getAvgExpense();
+            description = "Devuelve el monto promedio de EXPENSE de cada uno de los últimos 12 meses. " +
+                    "userId opcional: si no se envía o es 0, incluye todos los usuarios; " +
+                    "si es > 0, filtra por ese usuario.")
+    public ResponseEntity<ApiResponse<List<MonthlyAverageResponse>>> getAvgExpense(
+            @Parameter(description = "ID de usuario (0=todos)", example = "0") @RequestParam(required = false, defaultValue = "0") Long userId,
+            HttpServletRequest httpRequest) {
+        List<MonthlyAverageResponse> data = dashboardService.getAvgExpense(userId);
         return buildResponse(data, httpRequest);
     }
 
