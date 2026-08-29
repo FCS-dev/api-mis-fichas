@@ -42,6 +42,7 @@ SHOW_SQL=true
 
 # Aplicación
 SERVER_PORT=8080
+SPRING_PROFILES_ACTIVE=developer
 
 # JWT
 JWT_SECRET=your-256-bit-secret-key-here-for-jwt-signing-must-be-at-least-32-characters-long
@@ -74,6 +75,42 @@ ADMIN_PASSWORD=your_admin_password
    ```bash
    ./mvnw test
    ```
+
+## Perfiles de Spring
+
+El proyecto soporta perfiles de Spring para configurar el comportamiento según el ambiente.
+
+### Perfil DEVELOPER
+
+Al iniciar la app con el perfil `developer`, el `AdminSeeder` carga automáticamente **datos de prueba**:
+
+- **43 usuarios** fake (nombres en español, enero-agosto 2026)
+- **~2000 transacciones** con montos realistas y descripciones en español
+- Password de cada usuario: su propio email (ej: `carlos.garcia@prueba.fcs`)
+
+**Condición**: solo se insertan datos fake si la BD no tiene usuarios además del admin.
+
+Para activar el perfil, asegurate de que `.env` contenga:
+```env
+SPRING_PROFILES_ACTIVE=developer
+```
+
+La config del perfil DEVELOPER (`application-developer.yaml`) incluye:
+- `show-sql: true` — queries SQL visibles en consola
+- Logging DEBUG para `com.fcs.mis_fichas` y queries Hibernate
+
+### Generar datos fake manualmente (SQL)
+
+Si preferís ejecutar el SQL directamente contra la BD en vez de usar el AdminSeeder:
+
+```bash
+cd src/main/resources
+pip install bcrypt
+python3 generate_fake_data.py
+mysql -u admin -p misfichasDB < data-fake.sql
+```
+
+El script Python genera `data-fake.sql` con la misma data que el AdminSeeder.
 
 ## Autenticación y seguridad
 
@@ -247,6 +284,9 @@ com.fcs.mis_fichas
 
 - **Admin seeding**: al arrancar la aplicación se crea automáticamente un usuario `ADMIN` si no existe, usando las
   credenciales de `ADMIN_EMAIL` y `ADMIN_PASSWORD`.
+- **Fake data (DEVELOPER)**: si el perfil activo es `developer` y la BD está vacía (solo el admin), el `AdminSeeder`
+  crea automáticamente 43 usuarios de prueba y ~2000 transacciones con montos y fechas realistas. Esto permite
+  probar la aplicación con datos inmediatamente al iniciar.
 - **Categorías y subcategorías de sistema**: se insertan automáticamente al primer arranque (`AdminSeeder`). Son de solo
   lectura para los usuarios `USER`.
 - **Schema**: Hibernate `ddl-auto` está configurado como `update` (configurable vía `DDL_AUTO` en `.env`). Esto muta el
