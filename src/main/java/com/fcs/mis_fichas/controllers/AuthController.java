@@ -70,7 +70,7 @@ public class AuthController {
     @Operation(summary = "Iniciar sesión", description = "Autentica al usuario y devuelve un access token. El refresh token se envía en una cookie HttpOnly.")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request, HttpServletResponse response, HttpServletRequest httpRequest) {
         AuthResponse authResponse = authService.login(request);
-        setRefreshTokenCookie(response, authResponse.refreshToken());
+        setRefreshTokenCookie(response, authResponse.refreshToken(), httpRequest);
         ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), null, new AuthResponse(authResponse.accessToken(), null),
                 LocalDateTime.now(), httpRequest.getRequestURI()
@@ -99,7 +99,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiResponse);
         }
         AuthResponse authResponse = authService.refresh(refreshToken);
-        setRefreshTokenCookie(response, authResponse.refreshToken());
+        setRefreshTokenCookie(response, authResponse.refreshToken(), httpRequest);
         ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), null, new AuthResponse(authResponse.accessToken(), null),
                 LocalDateTime.now(), httpRequest.getRequestURI()
@@ -132,17 +132,22 @@ public class AuthController {
 
     /**
      * Establece la cookie HttpOnly con el refresh token.
+     * Usa SameSite=None; Secure cuando la conexión es HTTPS (producción).
+     * Usa SameSite=Lax cuando la conexión es HTTP (desarrollo local).
      *
      * @param response     respuesta HTTP
      * @param refreshToken valor del refresh token
+     * @param request      solicitud HTTP para verificar si la conexión es segura
      */
-    private void setRefreshTokenCookie(HttpServletResponse response, String refreshToken) {
-        Cookie cookie = new Cookie(REFRESH_COOKIE_NAME, refreshToken);
-        cookie.setHttpOnly(true);
-        cookie.setSecure(false); // Set to true in production with HTTPS
-        cookie.setPath("/api/v1/auth");
-        cookie.setMaxAge(REFRESH_COOKIE_MAX_AGE);
-        response.addCookie(cookie);
+    private void setRefreshTokenCookie(HttpServletResponse response, String refreshToken, HttpServletRequest request) {
+        boolean isSecure = request.isSecure();
+        String sameSite = isSecure ? "None" : "Lax";
+        String secureAttr = isSecure ? "; Secure" : "";
+        String cookie = String.format(
+                "%s=%s; Path=/api/v1/auth; MaxAge=%d; HttpOnly; SameSite=%s%s",
+                REFRESH_COOKIE_NAME, refreshToken, REFRESH_COOKIE_MAX_AGE, sameSite, secureAttr
+        );
+        response.addHeader("Set-Cookie", cookie);
     }
 
     /**
@@ -151,12 +156,11 @@ public class AuthController {
      * @param response respuesta HTTP
      */
     private void clearRefreshTokenCookie(HttpServletResponse response) {
-        Cookie cookie = new Cookie(REFRESH_COOKIE_NAME, null);
-        cookie.setHttpOnly(true);
-        cookie.setSecure(false);
-        cookie.setPath("/api/v1/auth");
-        cookie.setMaxAge(0);
-        response.addCookie(cookie);
+        String cookie = String.format(
+                "%s=; Path=/api/v1/auth; MaxAge=0; HttpOnly; SameSite=None; Secure",
+                REFRESH_COOKIE_NAME
+        );
+        response.addHeader("Set-Cookie", cookie);
     }
 
     /**
