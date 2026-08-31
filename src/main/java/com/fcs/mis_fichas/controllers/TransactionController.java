@@ -271,10 +271,10 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de PagedResponse (HTTP 200)
      */
     @GetMapping("/date-range")
-    @Operation(summary = "Listar transacciones por rango de fechas", description = "Lista transacciones filtradas por un rango de fechas.")
+    @Operation(summary = "Listar transacciones por rango de fechas", description = "Lista transacciones filtradas por un rango de fechas. Si no se envían from/to, retorna todas las transacciones.")
     public ResponseEntity<ApiResponse<PagedResponse<TransactionResponse>>> findByDateRange(
-            @Parameter(description = "Fecha de inicio (ISO)", example = "2024-01-01") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
-            @Parameter(description = "Fecha de fin (ISO)", example = "2024-01-31") @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
+            @Parameter(description = "Fecha de inicio (ISO)", example = "2024-01-01") @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+            @Parameter(description = "Fecha de fin (ISO)", example = "2024-01-31") @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
             @Parameter(description = "ID de usuario a filtrar (solo ADMIN)", example = "1") @RequestParam(required = false) Long userId,
             @Parameter(description = "Número de página (0-based)", example = "0") @RequestParam(required = false, defaultValue = "0") int page,
             @Parameter(description = "Tamaño de página (max 100)", example = "20") @RequestParam(required = false, defaultValue = "20") int size,

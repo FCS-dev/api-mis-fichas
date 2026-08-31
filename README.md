@@ -177,25 +177,31 @@ Todos los endpoints están prefijados con `/api/v1`.
 
 ### Dashboard (rol `USER`)
 
-| Método | Endpoint                                              | Parámetros                   | Descripción                                                         |
-|--------|-------------------------------------------------------|------------------------------|---------------------------------------------------------------------|
-| `GET`  | `/api/v1/dashboard/me/total-income`                   | `month`, `year`              | Sumatoria de ingresos del mes para el usuario autenticado           |
-| `GET`  | `/api/v1/dashboard/me/total-expense`                  | `month`, `year`              | Sumatoria de gastos del mes para el usuario autenticado             |
-| `GET`  | `/api/v1/dashboard/me/expenses-by-category`           | `month`, `year`              | Gastos agrupados por categoría en un mes/año                        |
-| `GET`  | `/api/v1/dashboard/me/expenses-by-subcategory`        | `categoryId`, `month`, `year`| Gastos agrupados por subcategoría dentro de una categoría           |
-| `GET`  | `/api/v1/dashboard/me/monthly-balance`                | _(ninguno)_                  | Balance mensual (INCOME - EXPENSE) de los últimos 12 meses          |
+| Método | Endpoint                           | Parámetros                    | Descripción                                                         |
+|--------|------------------------------------|-------------------------------|---------------------------------------------------------------------|
+| `GET`  | `/api/v1/dashboard/me/total-income`| `month`, `year`               | Sumatoria de ingresos del mes para el usuario autenticado           |
+| `GET`  | `/api/v1/dashboard/me/total-expense`| `month`, `year`              | Sumatoria de gastos del mes para el usuario autenticado             |
+| `GET`  | `/api/v1/dashboard/me/expenses-by-category`| `month`, `year`       | Gastos agrupados por categoría en un mes/año                        |
+| `GET`  | `/api/v1/dashboard/me/expenses-by-subcategory`| `categoryId`, `month`, `year`| Gastos agrupados por subcategoría dentro de una categoría   |
+| `GET`  | `/api/v1/dashboard/me/monthly-balance`| _(ninguno)_                | Balance mensual (INCOME - EXPENSE) de los últimos 12 meses          |
 
 ### Dashboard (rol `ADMIN`)
 
-| Método | Endpoint                                                | Parámetros                                            | Descripción                                                              |
-|--------|---------------------------------------------------------|-------------------------------------------------------|--------------------------------------------------------------------------|
-| `GET`  | `/api/v1/dashboard/admin/stats`                         | _(ninguno)_                                           | Total de usuarios activos con rol USER y total de transacciones registradas |
-| `GET`  | `/api/v1/dashboard/admin/expenses-by-category`          | `userId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo`| Gastos agrupados por categoría en un rango de fechas                     |
-| `GET`  | `/api/v1/dashboard/admin/expenses-by-subcategory`       | `userId`, `categoryId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo` | Gastos agrupados por subcategoría dentro de una categoría en un rango |
-| `GET`  | `/api/v1/dashboard/admin/avg-income`                    | `userId`                                              | Promedio mensual de ingresos de los últimos 12 meses                     |
-| `GET`  | `/api/v1/dashboard/admin/avg-expense`                   | `userId`                                              | Promedio mensual de gastos de los últimos 12 meses                       |
+| Método | Endpoint                                                  | Parámetros                                                      | Descripción                                                                                     |
+|--------|-----------------------------------------------------------|-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| `GET`  | `/api/v1/dashboard/admin/stats`                           | _(ninguno)_                                                     | Total de usuarios activos con rol USER y total de transacciones registradas                     |
+| `GET`  | `/api/v1/dashboard/admin/expenses-by-category`            | `userId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo`          | Gastos agrupados por categoría en un rango de fechas                                            |
+| `GET`  | `/api/v1/dashboard/admin/expenses-by-subcategory`         | `userId`, `categoryId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo`| Gastos agrupados por subcategoría dentro de una categoría en un rango                      |
+| `GET`  | `/api/v1/dashboard/admin/avg-income`                      | `userId`                                                        | Promedio mensual de ingresos (últimos 12 meses)                                                 |
+| `GET`  | `/api/v1/dashboard/admin/avg-expense`                     | `userId`                                                        | Promedio mensual de gastos (últimos 12 meses)                                                   |
+| `GET`  | `/api/v1/dashboard/admin/user-evolution`                  | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`                    | Evolución de usuarios: comparación 1er vs último mes del rango, datos mensuales                 |
+| `GET`  | `/api/v1/dashboard/admin/transaction-evolution`           | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`, `userId`          | Evolución de transacciones: comparativa, promedio/usuario, ingresos/gastos, datos mensuales     |
+| `GET`  | `/api/v1/dashboard/admin/money-movement`                  | `userId`                                                        | Totales de ingresos, gastos y balance                                                           |
+| `GET`  | `/api/v1/dashboard/admin/averages`                        | `userId`                                                        | Promedios globales (excluye ADMIN) y filtrados por usuario (ingresos, gastos, transacciones)   |
+| `GET`  | `/api/v1/dashboard/admin/top-users`                       | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`                    | Top 5 usuarios por transacciones, gastos e ingresos en un rango de meses                       |
+| `GET`  | `/api/v1/dashboard/admin/activity-distribution`           | `month`, `year`                                                 | Distribución de usuarios: Frecuente (>20 tx), Regular (5-20), Ocasional (1-4), Inactivo (0)    |
 
-> **Nota sobre `userId` en endpoints ADMIN**: es opcional. Si no se envía o es `0`, se incluyen todos los usuarios. Si se envía un valor mayor a `0`, se filtra por ese usuario específico.
+> **Nota sobre `userId` en endpoints ADMIN**: es opcional (default `0`). Si no se envía o es `0`, se incluyen todos los usuarios. Si se envía un valor mayor a `0`, se filtra por ese usuario específico.
 
 ### Paginación
 
@@ -217,6 +223,8 @@ Los endpoints de listado soportan los siguientes parámetros opcionales:
 | `date`          | Fecha exacta (`YYYY-MM-DD`)                                                               |
 | `dateFrom`      | Inicio de rango de fechas                                                                 |
 | `dateTo`        | Fin de rango de fechas                                                                    |
+| `from`          | Fecha inicio del rango (endpoint `/date-range`, opcional — si se omite retorna todas)     |
+| `to`            | Fecha fin del rango (endpoint `/date-range`, opcional — si se omite retorna todas)        |
 
 ## Estructura del proyecto
 
@@ -236,19 +244,29 @@ com.fcs.mis_fichas
 │   ├── UserController.java
 │   └── GlobalExceptionHandler.java
 ├── dtos
+│   ├── ActivityCategory.java
+│   ├── ActivityDistributionResponse.java
 │   ├── AdminStatsResponse.java
 │   ├── ApiResponse.java
 │   ├── AuthResponse.java
 │   ├── CategoryRequest.java / CategoryResponse.java
 │   ├── CategorySummaryResponse.java
+│   ├── DashboardAveragesResponse.java
 │   ├── DashboardTotalResponse.java
 │   ├── LoginRequest.java / RegisterRequest.java
+│   ├── MoneyMovementResponse.java
 │   ├── MonthlyAverageResponse.java
 │   ├── MonthlyBalanceResponse.java
 │   ├── PagedResponse.java / PaginationInfo.java
+│   ├── PeriodComparison.java / PeriodComparisonDouble.java
 │   ├── SubcategoryRequest.java / SubcategoryResponse.java
 │   ├── SubcategorySummaryResponse.java
+│   ├── TopUserEntry.java / TopUsersResponse.java
+│   ├── TransactionEvolutionResponse.java / TransactionEvolutionSummary.java
+│   ├── TransactionMonthlyData.java
 │   ├── TransactionRequest.java / TransactionResponse.java
+│   ├── UserEvolutionResponse.java / UserEvolutionSummary.java
+│   ├── UserMonthlyData.java
 │   ├── UserResponse.java / UserUpdateRequest.java
 │   └── ...
 ├── entities
@@ -292,6 +310,18 @@ com.fcs.mis_fichas
 - **Schema**: Hibernate `ddl-auto` está configurado como `update` (configurable vía `DDL_AUTO` en `.env`). Esto muta el
   schema automáticamente en cada arranque. Se recomienda usar `validate` en producción y migraciones con Flyway o
   Liquibase en el futuro.
+- **Dashboard ADMIN - Evolución de usuarios**: compara el 1er mes del rango seleccionado vs el último mes (no el
+  período anterior). Esto permite ver la tendencia de crecimiento a lo largo del tiempo.
+- **Dashboard ADMIN - Distribución de actividad**: "Inactivo" cuenta solo usuarios que fueron registrados en el mes
+  evaluado y no tienen transacciones (no incluye usuarios registrados en meses anteriores). Los porcentajes se
+  calculan sobre el total de usuarios evaluados en ese mes.
+- **Dashboard ADMIN - Promedios**: los promedios globales excluyen usuarios con rol `ADMIN`. Los promedios filtrados
+  por `userId` dividen la suma total por la cantidad de meses desde el registro del usuario hasta el mes actual.
+- **Dashboard ADMIN - Distribución de dinero**: los totales se calculan desde el inicio del sistema (sin filtro de
+  fechas), permitiendo ver el acumulado histórico de ingresos, gastos y balance.
+- **Transactions - Rango de fechas opcional**: el endpoint `/date-range` acepta `from` y `to` opcionales. Si se
+  omiten, retorna todas las transacciones. Esto es utilizado por el panel de transacciones del admin CRUD
+  para mostrar todas las transacciones del usuario seleccionado sin filtro temporal.
 - **Tests**: existen tests unitarios para servicios y controladores (con `Mockito` y `MockMvc`) y un test de integración
   (`@SpringBootTest`) que verifica que el contexto de Spring carga correctamente.
   Los tests de integración requieren una base de datos MariaDB activa.

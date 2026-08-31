@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.fcs.mis_fichas.enums.Type;
+import org.springframework.data.domain.Pageable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -134,4 +135,162 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long>,
     List<Transaction> findTransactionsSince(
             @Param("userId") Long userId,
             @Param("sinceDate") LocalDate sinceDate);
+
+    /**
+     * Cuenta la cantidad de transacciones activas agrupadas por mes en un rango de fechas.
+     * Retorna una lista de Object[] donde: [anio, mes, count].
+     *
+     * @param start fecha de inicio del rango (inclusive)
+     * @param end   fecha de fin del rango (inclusive)
+     * @return lista de arreglos [year, month, count]
+     */
+    @Query("SELECT YEAR(t.transactionDate) as y, MONTH(t.transactionDate) as m, COUNT(t) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate) " +
+            "ORDER BY YEAR(t.transactionDate), MONTH(t.transactionDate)")
+    List<Object[]> countGroupedByMonth(
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    /**
+     * Suma los montos de transacciones agrupadas por tipo y mes en un rango de fechas.
+     * Retorna una lista de Object[] donde: [anio, mes, type, total].
+     *
+     * @param start fecha de inicio del rango (inclusive)
+     * @param end   fecha de fin del rango (inclusive)
+     * @return lista de arreglos [year, month, type, total]
+     */
+    @Query("SELECT YEAR(t.transactionDate) as y, MONTH(t.transactionDate) as m, t.category.type, COALESCE(SUM(t.amount), 0) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate), t.category.type " +
+            "ORDER BY YEAR(t.transactionDate), MONTH(t.transactionDate), t.category.type")
+    List<Object[]> sumByTypeGroupedByMonth(
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    /**
+     * Cuenta usuarios distintos con transacciones activas agrupados por mes en un rango de fechas.
+     * Retorna una lista de Object[] donde: [anio, mes, count].
+     *
+     * @param start fecha de inicio del rango (inclusive)
+     * @param end   fecha de fin del rango (inclusive)
+     * @return lista de arreglos [year, month, count]
+     */
+    @Query("SELECT YEAR(t.transactionDate) as y, MONTH(t.transactionDate) as m, COUNT(DISTINCT t.user.id) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate) " +
+            "ORDER BY YEAR(t.transactionDate), MONTH(t.transactionDate)")
+    List<Object[]> countDistinctUsersGroupedByMonth(
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    /**
+     * Top 5 usuarios con más transacciones en un rango de fechas.
+     * Retorna una lista de Object[] donde: [userId, userName, count].
+     *
+     * @param start fecha de inicio del rango (inclusive)
+     * @param end   fecha de fin del rango (inclusive)
+     * @return lista de arreglos [userId, userName, count]
+     */
+    @Query("SELECT t.user.id, t.user.name, COUNT(t) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY t.user.id, t.user.name " +
+            "ORDER BY COUNT(t) DESC")
+    List<Object[]> topUsersByTransactionCount(
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end,
+            Pageable pageable);
+
+    /**
+     * Top 5 usuarios con mayor suma de montos de un tipo específico en un rango de fechas.
+     * Retorna una lista de Object[] donde: [userId, userName, total].
+     *
+     * @param type  tipo de transacción (INCOME o EXPENSE)
+     * @param start fecha de inicio del rango (inclusive)
+     * @param end   fecha de fin del rango (inclusive)
+     * @return lista de arreglos [userId, userName, total]
+     */
+    @Query("SELECT t.user.id, t.user.name, SUM(t.amount) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND t.category.type = :type " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY t.user.id, t.user.name " +
+            "ORDER BY SUM(t.amount) DESC")
+    List<Object[]> topUsersByTypeSum(
+            @Param("type") Type type,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end,
+            Pageable pageable);
+
+    /**
+     * Cuenta la cantidad de transacciones activas por usuario en un mes específico.
+     * Retorna una lista de Object[] donde: [userId, count].
+     *
+     * @param start fecha de inicio del mes (inclusive)
+     * @param end   fecha de fin del mes (inclusive)
+     * @return lista de arreglos [userId, count]
+     */
+    @Query("SELECT t.user.id, COUNT(t) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY t.user.id")
+    List<Object[]> countPerUserInMonth(
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    /**
+     * Suma los montos de un tipo específico para un usuario (sin filtro de fecha).
+     *
+     * @param userId identificador del usuario (null para incluir todos)
+     * @param type   tipo de transacción (INCOME o EXPENSE)
+     * @return suma total del monto
+     */
+    @Query("SELECT COALESCE(SUM(t.amount), 0) FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
+            "AND t.category.type = :type")
+    BigDecimal sumByType(@Param("userId") Long userId, @Param("type") Type type);
+
+    /**
+     * Cuenta la cantidad total de transacciones activas.
+     *
+     * @return cantidad de transacciones
+     */
+    long countByDeletedAtIsNull();
+
+    @Query("SELECT YEAR(t.transactionDate) as y, MONTH(t.transactionDate) as m, COUNT(t) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate) " +
+            "ORDER BY YEAR(t.transactionDate), MONTH(t.transactionDate)")
+    List<Object[]> countGroupedByMonthWithUser(
+            @Param("userId") Long userId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    @Query("SELECT YEAR(t.transactionDate) as y, MONTH(t.transactionDate) as m, t.category.type, COALESCE(SUM(t.amount), 0) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate), t.category.type " +
+            "ORDER BY YEAR(t.transactionDate), MONTH(t.transactionDate), t.category.type")
+    List<Object[]> sumByTypeGroupedByMonthWithUser(
+            @Param("userId") Long userId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
+
+    @Query("SELECT YEAR(t.transactionDate) as y, MONTH(t.transactionDate) as m, COUNT(DISTINCT t.user.id) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate) " +
+            "ORDER BY YEAR(t.transactionDate), MONTH(t.transactionDate)")
+    List<Object[]> countDistinctUsersGroupedByMonthWithUser(
+            @Param("userId") Long userId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
 }

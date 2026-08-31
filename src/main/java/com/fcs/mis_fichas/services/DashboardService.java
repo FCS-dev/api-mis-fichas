@@ -8,6 +8,8 @@ import com.fcs.mis_fichas.enums.Type;
 import com.fcs.mis_fichas.repositories.TransactionRepository;
 import com.fcs.mis_fichas.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -117,6 +120,252 @@ public class DashboardService {
         return result;
     }
 
+    public UserEvolutionResponse getUserEvolution(int monthFrom, int yearFrom, int monthTo, int yearTo) {
+        LocalDate start = YearMonth.of(yearFrom, monthFrom).atDay(1);
+        LocalDate end = YearMonth.of(yearTo, monthTo).atEndOfMonth();
+
+        LocalDateTime startDt = start.atStartOfDay();
+        LocalDateTime endDt = end.atTime(23, 59, 59);
+
+        List<Object[]> registeredCurrent = userRepository.countRegisteredGroupedByMonth(startDt, endDt);
+        List<Object[]> activeCurrent = transactionRepository.countDistinctUsersGroupedByMonth(start, end);
+
+        Map<String, Long> newUsersCurrentMap = new LinkedHashMap<>();
+        for (Object[] row : registeredCurrent) {
+            int y = ((Number) row[0]).intValue();
+            int m = ((Number) row[1]).intValue();
+            long count = ((Number) row[2]).longValue();
+            newUsersCurrentMap.put(y + "-" + m, count);
+        }
+
+        Map<String, Long> activeCurrentMap = new LinkedHashMap<>();
+        for (Object[] row : activeCurrent) {
+            activeCurrentMap.put(((Number) row[0]).intValue() + "-" + ((Number) row[1]).intValue(), ((Number) row[2]).longValue());
+        }
+
+        String firstKey = yearFrom + "-" + monthFrom;
+        String lastKey = yearTo + "-" + monthTo;
+
+        long firstActive = activeCurrentMap.getOrDefault(firstKey, 0L);
+        long lastActive = activeCurrentMap.getOrDefault(lastKey, 0L);
+
+        long accFirst = 0;
+        long accLast = 0;
+        YearMonth ymAcc = YearMonth.of(yearFrom, monthFrom);
+        YearMonth ymAccEnd = YearMonth.of(yearTo, monthTo);
+        while (!ymAcc.isAfter(ymAccEnd)) {
+            String key = ymAcc.getYear() + "-" + ymAcc.getMonthValue();
+            long newUsers = newUsersCurrentMap.getOrDefault(key, 0L);
+            accLast += newUsers;
+            if (ymAcc.equals(YearMonth.of(yearFrom, monthFrom))) {
+                accFirst = accLast;
+            }
+            ymAcc = ymAcc.plusMonths(1);
+        }
+
+        long firstNew = newUsersCurrentMap.getOrDefault(firstKey, 0L);
+        long lastNew = newUsersCurrentMap.getOrDefault(lastKey, 0L);
+
+        UserEvolutionSummary summary = new UserEvolutionSummary(
+                buildComparison(lastActive, firstActive),
+                buildComparison(accLast, accFirst),
+                buildComparison(lastNew, firstNew)
+        );
+
+        List<UserMonthlyData> monthly = new ArrayList<>();
+        YearMonth ym = YearMonth.of(yearFrom, monthFrom);
+        YearMonth ymEnd = YearMonth.of(yearTo, monthTo);
+        long accumReg = 0;
+        while (!ym.isAfter(ymEnd)) {
+            String key = ym.getYear() + "-" + ym.getMonthValue();
+            long newUsers = newUsersCurrentMap.getOrDefault(key, 0L);
+            accumReg += newUsers;
+            long active = activeCurrentMap.getOrDefault(key, 0L);
+            monthly.add(new UserMonthlyData(ym.getYear(), ym.getMonthValue(), active, accumReg, newUsers));
+            ym = ym.plusMonths(1);
+        }
+
+        return new UserEvolutionResponse(summary, monthly);
+    }
+
+    public TransactionEvolutionResponse getTransactionEvolution(int monthFrom, int yearFrom, int monthTo, int yearTo, Long userId) {
+        Long effectiveUserId = (userId != null && userId == 0L) ? null : userId;
+        LocalDate start = YearMonth.of(yearFrom, monthFrom).atDay(1);
+        LocalDate end = YearMonth.of(yearTo, monthTo).atEndOfMonth();
+
+        int monthsBetween = (yearTo - yearFrom) * 12 + (monthTo - monthFrom);
+        LocalDate prevEnd = start.minusDays(1);
+        LocalDate prevStart = prevEnd.minusMonths(monthsBetween).withDayOfMonth(1);
+
+        List<Object[]> countCurrent = transactionRepository.countGroupedByMonthWithUser(effectiveUserId, start, end);
+        List<Object[]> countPrev = transactionRepository.countGroupedByMonthWithUser(effectiveUserId, prevStart, prevEnd);
+        List<Object[]> sumCurrent = transactionRepository.sumByTypeGroupedByMonthWithUser(effectiveUserId, start, end);
+        List<Object[]> usersCurrent = transactionRepository.countDistinctUsersGroupedByMonthWithUser(effectiveUserId, start, end);
+        List<Object[]> usersPrev = transactionRepository.countDistinctUsersGroupedByMonthWithUser(effectiveUserId, prevStart, prevEnd);
+
+        Map<String, Long> countCurrentMap = new LinkedHashMap<>();
+        Map<String, Long> countPrevMap = new LinkedHashMap<>();
+        for (Object[] row : countCurrent) {
+            countCurrentMap.put(((Number) row[0]).intValue() + "-" + ((Number) row[1]).intValue(), ((Number) row[2]).longValue());
+        }
+        for (Object[] row : countPrev) {
+            countPrevMap.put(((Number) row[0]).intValue() + "-" + ((Number) row[1]).intValue(), ((Number) row[2]).longValue());
+        }
+
+        Map<String, Long> usersCurrentMap = new LinkedHashMap<>();
+        Map<String, Long> usersPrevMap = new LinkedHashMap<>();
+        for (Object[] row : usersCurrent) {
+            usersCurrentMap.put(((Number) row[0]).intValue() + "-" + ((Number) row[1]).intValue(), ((Number) row[2]).longValue());
+        }
+        for (Object[] row : usersPrev) {
+            usersPrevMap.put(((Number) row[0]).intValue() + "-" + ((Number) row[1]).intValue(), ((Number) row[2]).longValue());
+        }
+
+        Map<String, BigDecimal> incomeCurrentMap = new LinkedHashMap<>();
+        Map<String, BigDecimal> expenseCurrentMap = new LinkedHashMap<>();
+        for (Object[] row : sumCurrent) {
+            String key = ((Number) row[0]).intValue() + "-" + ((Number) row[1]).intValue();
+            Type type = (Type) row[2];
+            BigDecimal total = (BigDecimal) row[3];
+            if (type == Type.INCOME) {
+                incomeCurrentMap.put(key, total);
+            } else {
+                expenseCurrentMap.put(key, total);
+            }
+        }
+
+        long totalTxCurrent = countCurrentMap.values().stream().mapToLong(Long::longValue).sum();
+        long totalTxPrev = countPrevMap.values().stream().mapToLong(Long::longValue).sum();
+        long monthsCurrentCount = Math.max(1, countCurrentMap.size());
+        long monthsPrevCount = Math.max(1, countPrevMap.size());
+        BigDecimal avgTxCurrent = BigDecimal.valueOf(totalTxCurrent).divide(BigDecimal.valueOf(monthsCurrentCount), 2, java.math.RoundingMode.HALF_UP);
+        BigDecimal avgTxPrev = BigDecimal.valueOf(totalTxPrev).divide(BigDecimal.valueOf(monthsPrevCount), 2, java.math.RoundingMode.HALF_UP);
+
+        long totalUsersCurrent = usersCurrentMap.values().stream().mapToLong(Long::longValue).sum();
+        long totalUsersPrev = usersPrevMap.values().stream().mapToLong(Long::longValue).sum();
+        BigDecimal avgPerUserCurrent = totalUsersCurrent == 0 ? BigDecimal.ZERO :
+                BigDecimal.valueOf(totalTxCurrent).divide(BigDecimal.valueOf(totalUsersCurrent), 2, java.math.RoundingMode.HALF_UP);
+        BigDecimal avgPerUserPrev = totalUsersPrev == 0 ? BigDecimal.ZERO :
+                BigDecimal.valueOf(totalTxPrev).divide(BigDecimal.valueOf(totalUsersPrev), 2, java.math.RoundingMode.HALF_UP);
+
+        TransactionEvolutionSummary summary = new TransactionEvolutionSummary(
+                buildDoubleComparison(avgTxCurrent, avgTxPrev),
+                buildDoubleComparison(avgPerUserCurrent, avgPerUserPrev)
+        );
+
+        List<TransactionMonthlyData> monthly = new ArrayList<>();
+        YearMonth ym = YearMonth.of(yearFrom, monthFrom);
+        YearMonth ymEnd = YearMonth.of(yearTo, monthTo);
+        while (!ym.isAfter(ymEnd)) {
+            String key = ym.getYear() + "-" + ym.getMonthValue();
+            long txCount = countCurrentMap.getOrDefault(key, 0L);
+            long distinctUsers = usersCurrentMap.getOrDefault(key, 0L);
+            BigDecimal avgPu = distinctUsers == 0 ? BigDecimal.ZERO :
+                    BigDecimal.valueOf(txCount).divide(BigDecimal.valueOf(distinctUsers), 2, java.math.RoundingMode.HALF_UP);
+            BigDecimal income = incomeCurrentMap.getOrDefault(key, BigDecimal.ZERO);
+            BigDecimal expense = expenseCurrentMap.getOrDefault(key, BigDecimal.ZERO);
+            monthly.add(new TransactionMonthlyData(ym.getYear(), ym.getMonthValue(), txCount, avgPu, income, expense));
+            ym = ym.plusMonths(1);
+        }
+
+        return new TransactionEvolutionResponse(summary, monthly);
+    }
+
+    public MoneyMovementResponse getMoneyMovement(Long userId) {
+        Long effectiveUserId = (userId != null && userId == 0L) ? null : userId;
+        BigDecimal income = transactionRepository.sumByType(effectiveUserId, Type.INCOME);
+        BigDecimal expense = transactionRepository.sumByType(effectiveUserId, Type.EXPENSE);
+        return new MoneyMovementResponse(income, expense, income.subtract(expense));
+    }
+
+    public DashboardAveragesResponse getDashboardAverages(Long userId) {
+        Long effectiveUserId = (userId != null && userId == 0L) ? null : userId;
+        long totalUsers = userRepository.countByDeletedAtIsNullAndRoleNot(Role.ADMIN);
+        if (totalUsers == 0) {
+            return new DashboardAveragesResponse(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, null, null, null);
+        }
+
+        BigDecimal totalIncome = transactionRepository.sumByType(null, Type.INCOME);
+        BigDecimal totalExpense = transactionRepository.sumByType(null, Type.EXPENSE);
+        long totalTransactions = transactionRepository.countByDeletedAtIsNull();
+
+        BigDecimal globalAvgIncome = totalUsers == 0 ? BigDecimal.ZERO :
+                totalIncome.divide(BigDecimal.valueOf(totalUsers), 2, java.math.RoundingMode.HALF_UP);
+        BigDecimal globalAvgExpense = totalUsers == 0 ? BigDecimal.ZERO :
+                totalExpense.divide(BigDecimal.valueOf(totalUsers), 2, java.math.RoundingMode.HALF_UP);
+        BigDecimal globalAvgTx = totalUsers == 0 ? BigDecimal.ZERO :
+                BigDecimal.valueOf(totalTransactions).divide(BigDecimal.valueOf(totalUsers), 2, java.math.RoundingMode.HALF_UP);
+
+        BigDecimal filteredIncome = null;
+        BigDecimal filteredExpense = null;
+        Long filteredUserId = null;
+        if (effectiveUserId != null) {
+            filteredUserId = effectiveUserId;
+            BigDecimal sumIncome = transactionRepository.sumByType(effectiveUserId, Type.INCOME);
+            BigDecimal sumExpense = transactionRepository.sumByType(effectiveUserId, Type.EXPENSE);
+
+            Optional<User> userOpt = userRepository.findUserByIdAndDeletedAtIsNull(effectiveUserId);
+            if (userOpt.isPresent()) {
+                LocalDateTime createdAt = userOpt.get().getCreatedAt();
+                YearMonth userStart = YearMonth.from(createdAt);
+                YearMonth now = YearMonth.now();
+                long monthsActive = java.time.temporal.ChronoUnit.MONTHS.between(userStart, now) + 1;
+                monthsActive = Math.max(1, monthsActive);
+
+                filteredIncome = sumIncome.divide(BigDecimal.valueOf(monthsActive), 2, java.math.RoundingMode.HALF_UP);
+                filteredExpense = sumExpense.divide(BigDecimal.valueOf(monthsActive), 2, java.math.RoundingMode.HALF_UP);
+            } else {
+                filteredIncome = sumIncome;
+                filteredExpense = sumExpense;
+            }
+        }
+
+        return new DashboardAveragesResponse(globalAvgIncome, globalAvgExpense, globalAvgTx, filteredUserId, filteredIncome, filteredExpense);
+    }
+
+    public TopUsersResponse getTopUsers(int monthFrom, int yearFrom, int monthTo, int yearTo) {
+        LocalDate start = YearMonth.of(yearFrom, monthFrom).atDay(1);
+        LocalDate end = YearMonth.of(yearTo, monthTo).atEndOfMonth();
+        Pageable top5 = PageRequest.of(0, 5);
+
+        List<Object[]> byTx = transactionRepository.topUsersByTransactionCount(start, end, top5);
+        List<Object[]> byExpense = transactionRepository.topUsersByTypeSum(Type.EXPENSE, start, end, top5);
+        List<Object[]> byIncome = transactionRepository.topUsersByTypeSum(Type.INCOME, start, end, top5);
+
+        return new TopUsersResponse(
+                byTx.stream().map(r -> new TopUserEntry(((Number) r[0]).longValue(), (String) r[1], BigDecimal.valueOf(((Number) r[2]).longValue()))).toList(),
+                byExpense.stream().map(r -> new TopUserEntry(((Number) r[0]).longValue(), (String) r[1], (BigDecimal) r[2])).toList(),
+                byIncome.stream().map(r -> new TopUserEntry(((Number) r[0]).longValue(), (String) r[1], (BigDecimal) r[2])).toList()
+        );
+    }
+
+    public ActivityDistributionResponse getActivityDistribution(int month, int year) {
+        LocalDate start = YearMonth.of(year, month).atDay(1);
+        LocalDate end = YearMonth.of(year, month).atEndOfMonth();
+        LocalDateTime startDt = start.atStartOfDay();
+        LocalDateTime endDt = end.atTime(23, 59, 59);
+
+        List<Object[]> perUser = transactionRepository.countPerUserInMonth(start, end);
+        long registeredInMonth = userRepository.countRegisteredInMonth(startDt, endDt);
+
+        long frecuente = 0, regular = 0, ocasional = 0;
+        for (Object[] row : perUser) {
+            long count = ((Number) row[1]).longValue();
+            if (count > 20) frecuente++;
+            else if (count >= 5) regular++;
+            else ocasional++;
+        }
+        long totalEvaluated = frecuente + regular + ocasional;
+        long inactivo = Math.max(0, registeredInMonth - totalEvaluated);
+
+        return new ActivityDistributionResponse(
+                buildActivityCategory(frecuente, totalEvaluated),
+                buildActivityCategory(regular, totalEvaluated),
+                buildActivityCategory(ocasional, totalEvaluated),
+                buildActivityCategory(inactivo, totalEvaluated)
+        );
+    }
+
     private List<MonthlyBalanceResponse> computeMonthlyBalances(List<Transaction> transactions) {
         Map<YearMonth, List<Transaction>> grouped = transactions.stream()
                 .collect(Collectors.groupingBy(t -> YearMonth.from(t.getTransactionDate())));
@@ -166,5 +415,25 @@ public class DashboardService {
         String email = authentication.getName();
         return userRepository.findByEmailAndDeletedAtIsNull(email)
                 .orElseThrow(() -> new IllegalStateException("Authenticated user not found in database"));
+    }
+
+    private PeriodComparison buildComparison(long current, long previous) {
+        double changePercent = previous == 0 ? (current == 0 ? 0 : 100.0) :
+                ((double) (current - previous) / previous) * 100.0;
+        return new PeriodComparison(current, previous, Math.round(changePercent * 10.0) / 10.0);
+    }
+
+    private PeriodComparisonDouble buildDoubleComparison(BigDecimal current, BigDecimal previous) {
+        double changePercent = previous.compareTo(BigDecimal.ZERO) == 0 ?
+                (current.compareTo(BigDecimal.ZERO) == 0 ? 0.0 : 100.0) :
+                current.subtract(previous).multiply(BigDecimal.valueOf(100))
+                        .divide(previous, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+        return new PeriodComparisonDouble(current, previous, Math.round(changePercent * 10.0) / 10.0);
+    }
+
+    private ActivityCategory buildActivityCategory(long count, long totalUsers) {
+        double percentage = totalUsers == 0 ? 0.0 :
+                Math.round(((double) count / totalUsers) * 1000.0) / 10.0;
+        return new ActivityCategory(count, percentage);
     }
 }
