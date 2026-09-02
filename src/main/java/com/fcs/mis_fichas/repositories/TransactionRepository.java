@@ -293,4 +293,16 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long>,
             @Param("userId") Long userId,
             @Param("start") LocalDate start,
             @Param("end") LocalDate end);
+
+    @Query("SELECT t.subcategory.id, t.subcategory.name, COALESCE(SUM(t.amount), 0) " +
+            "FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND t.user.id = :userId " +
+            "AND t.category.type = 'EXPENSE' " +
+            "AND t.transactionDate BETWEEN :start AND :end " +
+            "GROUP BY t.subcategory.id, t.subcategory.name " +
+            "ORDER BY SUM(t.amount) DESC")
+    List<Object[]> expenseSumGroupedBySubcategoryAll(
+            @Param("userId") Long userId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end);
 }

@@ -82,7 +82,7 @@ public class AuthService {
         }
 
         refreshTokenService.revokeAllUserTokens(user.getId());
-        String accessToken = jwtService.generateAccessToken(user.getEmail(), user.getRole().name());
+        String accessToken = jwtService.generateAccessToken(user.getEmail(), user.getRole().name(), user.getName());
         String refreshToken = refreshTokenService.createRefreshToken(user);
 
         return new AuthResponse(accessToken, refreshToken);
@@ -103,7 +103,7 @@ public class AuthService {
                 .orElseThrow(() -> new IllegalArgumentException("Failed to create new refresh token"));
 
         User user = tokenEntity.getUser();
-        String accessToken = jwtService.generateAccessToken(user.getEmail(), user.getRole().name());
+        String accessToken = jwtService.generateAccessToken(user.getEmail(), user.getRole().name(), user.getName());
 
         return new AuthResponse(accessToken, newRefreshToken);
     }

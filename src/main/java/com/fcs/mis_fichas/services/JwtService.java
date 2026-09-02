@@ -41,19 +41,21 @@ public class JwtService {
 
     /**
      * Genera un nuevo access token JWT.
-     * El token incluye el email como subject y el rol como claim adicional.
+     * El token incluye el email como subject, el rol y el nombre como claims adicionales.
      *
      * @param email correo electrónico del usuario (subject del token)
      * @param role  rol del usuario (claim "role")
+     * @param name  nombre del usuario (claim "name")
      * @return token JWT firmado
      */
-    public String generateAccessToken(String email, String role) {
+    public String generateAccessToken(String email, String role, String name) {
         Instant now = Instant.now();
         Instant expiration = now.plus(accessTokenExpiration, ChronoUnit.MILLIS);
 
         return Jwts.builder()
                 .subject(email)
                 .claim("role", role)
+                .claim("name", name)
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(expiration))
                 .signWith(getSigningKey())

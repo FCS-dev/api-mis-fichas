@@ -61,11 +61,101 @@ public class DashboardService {
         return mapToSubcategorySummaries(transactionRepository.expenseSumGroupedBySubcategory(user.getId(), categoryId, start, end));
     }
 
-    public List<MonthlyBalanceResponse> getMonthlyBalance() {
+    public List<MonthlyBalanceResponse> getMonthlyBalance(int months) {
         User user = getCurrentUser();
-        LocalDate since = YearMonth.now().minusMonths(MONTHS_HISTORY - 1).atDay(1);
+        LocalDate since = YearMonth.now().minusMonths(months - 1).atDay(1);
         List<Transaction> transactions = transactionRepository.findTransactionsSince(user.getId(), since);
-        return computeMonthlyBalances(transactions);
+        return computeMonthlyBalances(transactions, months);
+    }
+
+    public DashboardSummaryCardResponse getSummaryCard(int month, int year) {
+        User user = getCurrentUser();
+        LocalDate start = YearMonth.of(year, month).atDay(1);
+        LocalDate end = YearMonth.of(year, month).atEndOfMonth();
+        BigDecimal income = transactionRepository.sumByUserAndTypeBetweenDates(user.getId(), Type.INCOME, start, end);
+        BigDecimal expense = transactionRepository.sumByUserAndTypeBetweenDates(user.getId(), Type.EXPENSE, start, end);
+        BigDecimal balance = income.subtract(expense);
+        double savingRate = income.compareTo(BigDecimal.ZERO) == 0 ? 0.0 :
+                balance.multiply(BigDecimal.valueOf(100)).divide(income, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+        return new DashboardSummaryCardResponse(income, expense, balance, savingRate);
+    }
+
+    public MonthlyComparisonResponse getMonthlyComparison() {
+        User user = getCurrentUser();
+        YearMonth current = YearMonth.now();
+        YearMonth previous = current.minusMonths(1);
+        LocalDate curStart = current.atDay(1);
+        LocalDate curEnd = current.atEndOfMonth();
+        LocalDate prevStart = previous.atDay(1);
+        LocalDate prevEnd = previous.atEndOfMonth();
+
+        BigDecimal curIncome = transactionRepository.sumByUserAndTypeBetweenDates(user.getId(), Type.INCOME, curStart, curEnd);
+        BigDecimal curExpense = transactionRepository.sumByUserAndTypeBetweenDates(user.getId(), Type.EXPENSE, curStart, curEnd);
+        BigDecimal prevIncome = transactionRepository.sumByUserAndTypeBetweenDates(user.getId(), Type.INCOME, prevStart, prevEnd);
+        BigDecimal prevExpense = transactionRepository.sumByUserAndTypeBetweenDates(user.getId(), Type.EXPENSE, prevStart, prevEnd);
+
+        double expChange = prevExpense.compareTo(BigDecimal.ZERO) == 0 ? 0.0 :
+                curExpense.subtract(prevExpense).multiply(BigDecimal.valueOf(100))
+                        .divide(prevExpense, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+        double incChange = prevIncome.compareTo(BigDecimal.ZERO) == 0 ? 0.0 :
+                curIncome.subtract(prevIncome).multiply(BigDecimal.valueOf(100))
+                        .divide(prevIncome, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+
+        return new MonthlyComparisonResponse(
+                formatExpenseGlossary(expChange),
+                formatIncomeGlossary(incChange),
+                expChange,
+                incChange
+        );
+    }
+
+    public TopExpensesResponse getTopExpenses(int month, int year) {
+        User user = getCurrentUser();
+        LocalDate start = YearMonth.of(year, month).atDay(1);
+        LocalDate end = YearMonth.of(year, month).atEndOfMonth();
+
+        List<Object[]> rawCats = transactionRepository.expenseSumGroupedByCategory(user.getId(), start, end);
+        BigDecimal totalExpense = rawCats.stream()
+                .map(r -> (BigDecimal) r[2])
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        List<TopExpenseEntry> topCats = rawCats.stream()
+                .sorted((a, b) -> ((BigDecimal) b[2]).compareTo((BigDecimal) a[2]))
+                .limit(3)
+                .map(r -> {
+                    BigDecimal amt = (BigDecimal) r[2];
+                    double pct = totalExpense.compareTo(BigDecimal.ZERO) == 0 ? 0.0 :
+                            amt.multiply(BigDecimal.valueOf(100)).divide(totalExpense, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+                    return new TopExpenseEntry((Long) r[0], (String) r[1], amt, pct);
+                }).toList();
+
+        List<Object[]> rawSubs = transactionRepository.expenseSumGroupedBySubcategoryAll(user.getId(), start, end);
+        List<TopExpenseEntry> topSubs = rawSubs.stream()
+                .limit(3)
+                .map(r -> {
+                    BigDecimal amt = (BigDecimal) r[2];
+                    double pct = totalExpense.compareTo(BigDecimal.ZERO) == 0 ? 0.0 :
+                            amt.multiply(BigDecimal.valueOf(100)).divide(totalExpense, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+                    return new TopExpenseEntry((Long) r[0], (String) r[1], amt, pct);
+                }).toList();
+
+        return new TopExpensesResponse(topCats, topSubs);
+    }
+
+    private String formatExpenseGlossary(double pct) {
+        if (pct == 0) return "Tus gastos se mantuvieron igual que el mes pasado.";
+        String abs = String.format("%.1f", Math.abs(pct));
+        return pct < 0
+                ? "Gastaste " + abs + "% menos que el mes pasado."
+                : "Gastaste " + abs + "% más que el mes pasado.";
+    }
+
+    private String formatIncomeGlossary(double pct) {
+        if (pct == 0) return "Tus ingresos se mantuvieron igual que el mes pasado.";
+        String abs = String.format("%.1f", Math.abs(pct));
+        return pct > 0
+                ? "Tus ingresos aumentaron " + abs + "% respecto al mes anterior."
+                : "Tus ingresos disminuyeron " + abs + "% respecto al mes anterior.";
     }
 
     public AdminStatsResponse getAdminStats() {
@@ -366,12 +456,12 @@ public class DashboardService {
         );
     }
 
-    private List<MonthlyBalanceResponse> computeMonthlyBalances(List<Transaction> transactions) {
+    private List<MonthlyBalanceResponse> computeMonthlyBalances(List<Transaction> transactions, int months) {
         Map<YearMonth, List<Transaction>> grouped = transactions.stream()
                 .collect(Collectors.groupingBy(t -> YearMonth.from(t.getTransactionDate())));
         List<MonthlyBalanceResponse> result = new ArrayList<>();
-        YearMonth start = YearMonth.now().minusMonths(MONTHS_HISTORY - 1);
-        for (int i = 0; i < MONTHS_HISTORY; i++) {
+        YearMonth start = YearMonth.now().minusMonths(months - 1);
+        for (int i = 0; i < months; i++) {
             YearMonth ym = start.plusMonths(i);
             List<Transaction> monthTxns = grouped.getOrDefault(ym, Collections.emptyList());
             BigDecimal income = monthTxns.stream()
@@ -383,7 +473,9 @@ public class DashboardService {
                     .map(Transaction::getAmount)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
             BigDecimal balance = income.subtract(expense);
-            result.add(new MonthlyBalanceResponse(ym.getYear(), ym.getMonthValue(), income, expense, balance));
+            double savingRate = income.compareTo(BigDecimal.ZERO) == 0 ? 0.0 :
+                    balance.multiply(BigDecimal.valueOf(100)).divide(income, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+            result.add(new MonthlyBalanceResponse(ym.getYear(), ym.getMonthValue(), income, expense, balance, savingRate));
         }
         return result;
     }

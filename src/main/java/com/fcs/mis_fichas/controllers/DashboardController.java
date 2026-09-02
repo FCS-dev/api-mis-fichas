@@ -74,10 +74,48 @@ public class DashboardController {
 
     @GetMapping("/me/monthly-balance")
     @PreAuthorize("hasRole('USER')")
-    @Operation(summary = "Balance mensual de los últimos 12 meses",
-            description = "Devuelve el balance (INCOME - EXPENSE) de cada uno de los últimos 12 meses para el usuario autenticado.")
-    public ResponseEntity<ApiResponse<List<MonthlyBalanceResponse>>> getMonthlyBalance(HttpServletRequest httpRequest) {
-        List<MonthlyBalanceResponse> data = dashboardService.getMonthlyBalance();
+    @Operation(summary = "Balance mensual de los últimos N meses",
+            description = "Devuelve el balance (INCOME - EXPENSE) y saving rate de cada uno de los últimos N meses para el usuario autenticado.")
+    public ResponseEntity<ApiResponse<List<MonthlyBalanceResponse>>> getMonthlyBalance(
+            @Parameter(description = "Cantidad de meses a mostrar (3, 6 o 12)", example = "3") @RequestParam(defaultValue = "3") int months,
+            HttpServletRequest httpRequest) {
+        if (months != 3 && months != 6 && months != 12) {
+            months = 3;
+        }
+        List<MonthlyBalanceResponse> data = dashboardService.getMonthlyBalance(months);
+        return buildResponse(data, httpRequest);
+    }
+
+    @GetMapping("/me/summary-card")
+    @PreAuthorize("hasRole('USER')")
+    @Operation(summary = "Resumen consolidado del mes",
+            description = "Devuelve ingresos, gastos, balance y saving rate del mes para el usuario autenticado.")
+    public ResponseEntity<ApiResponse<DashboardSummaryCardResponse>> getSummaryCard(
+            @Parameter(description = "Mes (1-12)", example = "6") @RequestParam int month,
+            @Parameter(description = "Año", example = "2026") @RequestParam int year,
+            HttpServletRequest httpRequest) {
+        DashboardSummaryCardResponse data = dashboardService.getSummaryCard(month, year);
+        return buildResponse(data, httpRequest);
+    }
+
+    @GetMapping("/me/monthly-comparison")
+    @PreAuthorize("hasRole('USER')")
+    @Operation(summary = "Glosas comparativas del mes vs anterior",
+            description = "Devuelve glosas con el porcentaje de cambio en ingresos y gastos del mes actual respecto al anterior.")
+    public ResponseEntity<ApiResponse<MonthlyComparisonResponse>> getMonthlyComparison(HttpServletRequest httpRequest) {
+        MonthlyComparisonResponse data = dashboardService.getMonthlyComparison();
+        return buildResponse(data, httpRequest);
+    }
+
+    @GetMapping("/me/top-expenses")
+    @PreAuthorize("hasRole('USER')")
+    @Operation(summary = "Top 3 categorías y subcategorías con más gasto",
+            description = "Devuelve las 3 categorías y 3 subcategorías con mayor monto gastado en el mes dado.")
+    public ResponseEntity<ApiResponse<TopExpensesResponse>> getTopExpenses(
+            @Parameter(description = "Mes (1-12)", example = "6") @RequestParam int month,
+            @Parameter(description = "Año", example = "2026") @RequestParam int year,
+            HttpServletRequest httpRequest) {
+        TopExpensesResponse data = dashboardService.getTopExpenses(month, year);
         return buildResponse(data, httpRequest);
     }
 
