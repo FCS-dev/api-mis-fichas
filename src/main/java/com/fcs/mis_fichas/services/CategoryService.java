@@ -5,6 +5,7 @@ import com.fcs.mis_fichas.dtos.CategoryResponse;
 import com.fcs.mis_fichas.entities.Category;
 import com.fcs.mis_fichas.entities.User;
 import com.fcs.mis_fichas.repositories.CategoryRepository;
+import com.fcs.mis_fichas.repositories.TransactionRepository;
 import com.fcs.mis_fichas.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,7 @@ import java.time.LocalDateTime;
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final TransactionRepository transactionRepository;
     private final UserRepository userRepository;
 
     /**
@@ -90,6 +92,10 @@ public class CategoryService {
     public void delete(Long id) {
         Category category = categoryRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new IllegalArgumentException("Category not found with id: " + id));
+
+        if (transactionRepository.existsByCategoryIdAndDeletedAtIsNull(id)) {
+            throw new IllegalArgumentException("No se puede eliminar: la categoría tiene transacciones activas");
+        }
 
         category.setDeletedAt(LocalDateTime.now());
         categoryRepository.save(category);
