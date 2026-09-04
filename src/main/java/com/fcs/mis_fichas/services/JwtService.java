@@ -48,7 +48,7 @@ public class JwtService {
      * @param name  nombre del usuario (claim "name")
      * @return token JWT firmado
      */
-    public String generateAccessToken(String email, String role, String name) {
+    public String generateAccessToken(String email, String role, String name, Long userId) {
         Instant now = Instant.now();
         Instant expiration = now.plus(accessTokenExpiration, ChronoUnit.MILLIS);
 
@@ -56,6 +56,7 @@ public class JwtService {
                 .subject(email)
                 .claim("role", role)
                 .claim("name", name)
+                .claim("userId", userId)
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(expiration))
                 .signWith(getSigningKey())

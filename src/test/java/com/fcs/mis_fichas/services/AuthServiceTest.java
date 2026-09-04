@@ -90,7 +90,7 @@ class AuthServiceTest {
 
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(auth);
         when(userRepository.findByEmailAndDeletedAtIsNull("user@example.com")).thenReturn(Optional.of(user));
-        when(jwtService.generateAccessToken("user@example.com", "USER")).thenReturn("access-token");
+        when(jwtService.generateAccessToken("user@example.com", "USER", "User", 1L)).thenReturn("access-token");
         when(refreshTokenService.createRefreshToken(user)).thenReturn("refresh-token");
 
         AuthResponse response = authService.login(request);
@@ -143,7 +143,7 @@ class AuthServiceTest {
 
         when(refreshTokenService.rotateRefreshToken("old-refresh")).thenReturn("new-refresh");
         when(refreshTokenService.findByTokenHash("new-refresh")).thenReturn(Optional.of(tokenEntity));
-        when(jwtService.generateAccessToken("user@example.com", "USER")).thenReturn("new-access");
+        when(jwtService.generateAccessToken("user@example.com", "USER", "User", 1L)).thenReturn("new-access");
 
         AuthResponse response = authService.refresh("old-refresh");
 

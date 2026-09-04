@@ -19,7 +19,7 @@ class JwtServiceTest {
 
     @Test
     void generateAccessToken_shouldReturnValidToken() {
-        String token = jwtService.generateAccessToken("user@example.com", "USER");
+        String token = jwtService.generateAccessToken("user@example.com", "USER", "Test User", 1L);
 
         assertThat(token).isNotNull();
         assertThat(token).isNotBlank();
@@ -27,7 +27,7 @@ class JwtServiceTest {
 
     @Test
     void validateToken_shouldReturnTrue_forValidToken() {
-        String token = jwtService.generateAccessToken("user@example.com", "USER");
+        String token = jwtService.generateAccessToken("user@example.com", "USER", "Test User", 1L);
 
         assertThat(jwtService.validateToken(token)).isTrue();
     }
@@ -39,7 +39,7 @@ class JwtServiceTest {
 
     @Test
     void validateToken_shouldReturnFalse_forTamperedToken() {
-        String token = jwtService.generateAccessToken("user@example.com", "USER");
+        String token = jwtService.generateAccessToken("user@example.com", "USER", "Test User", 1L);
         String tampered = token.substring(0, token.length() - 1) + "x";
 
         assertThat(jwtService.validateToken(tampered)).isFalse();
@@ -47,14 +47,14 @@ class JwtServiceTest {
 
     @Test
     void extractEmail_shouldReturnSubject() {
-        String token = jwtService.generateAccessToken("user@example.com", "USER");
+        String token = jwtService.generateAccessToken("user@example.com", "USER", "Test User", 1L);
 
         assertThat(jwtService.extractEmail(token)).isEqualTo("user@example.com");
     }
 
     @Test
     void extractRole_shouldReturnRoleClaim() {
-        String token = jwtService.generateAccessToken("user@example.com", "ADMIN");
+        String token = jwtService.generateAccessToken("user@example.com", "ADMIN", "Admin User", 1L);
 
         assertThat(jwtService.extractRole(token)).isEqualTo("ADMIN");
     }
