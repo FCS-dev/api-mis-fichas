@@ -141,8 +141,10 @@ public class AuthController {
      */
     private void setRefreshTokenCookie(HttpServletResponse response, String refreshToken, HttpServletRequest request) {
         boolean isSecure = request.isSecure();
-        String sameSite = isSecure ? "None" : "Lax";
-        String secureAttr = isSecure ? "; Secure" : "";
+        boolean isLocalhost = "localhost".equals(request.getServerName());
+        boolean useSameSiteNone = isSecure || isLocalhost;
+        String sameSite = useSameSiteNone ? "None" : "Lax";
+        String secureAttr = useSameSiteNone ? "; Secure" : "";
         String cookie = String.format(
                 "%s=%s; Path=/api/v1/auth; MaxAge=%d; HttpOnly; SameSite=%s%s",
                 REFRESH_COOKIE_NAME, refreshToken, REFRESH_COOKIE_MAX_AGE, sameSite, secureAttr
