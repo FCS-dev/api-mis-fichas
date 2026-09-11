@@ -111,4 +111,19 @@ public class JwtService {
                 .getPayload();
         return claims.get("role", String.class);
     }
+
+    /**
+     * Extrae el ID del usuario desde un token JWT.
+     *
+     * @param token token JWT
+     * @return ID del usuario
+     */
+    public Long extractUserId(String token) {
+        Claims claims = Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+        return claims.get("userId", Long.class);
+    }
 }

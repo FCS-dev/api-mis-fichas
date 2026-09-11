@@ -8,6 +8,7 @@ import com.fcs.mis_fichas.enums.Role;
 import com.fcs.mis_fichas.enums.Status;
 import com.fcs.mis_fichas.enums.Type;
 import com.fcs.mis_fichas.repositories.CategoryRepository;
+import com.fcs.mis_fichas.repositories.TransactionRepository;
 import com.fcs.mis_fichas.repositories.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +38,8 @@ class CategoryServiceTest {
     @Mock
     private CategoryRepository categoryRepository;
     @Mock
+    private TransactionRepository transactionRepository;
+    @Mock
     private UserRepository userRepository;
     @Mock
     private Authentication authentication;
@@ -47,7 +50,7 @@ class CategoryServiceTest {
 
     @BeforeEach
     void setUp() {
-        categoryService = new CategoryService(categoryRepository, userRepository);
+        categoryService = new CategoryService(categoryRepository, transactionRepository, userRepository);
     }
 
     @AfterEach

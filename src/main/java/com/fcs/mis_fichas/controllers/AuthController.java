@@ -158,11 +158,13 @@ public class AuthController {
      * @param response respuesta HTTP
      */
     private void clearRefreshTokenCookie(HttpServletResponse response) {
-        String cookie = String.format(
-                "%s=; Path=/api/v1/auth; MaxAge=0; HttpOnly; SameSite=None; Secure",
-                REFRESH_COOKIE_NAME
-        );
-        response.addHeader("Set-Cookie", cookie);
+        Cookie cookie = new Cookie(REFRESH_COOKIE_NAME, "");
+        cookie.setPath("/api/v1/auth");
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        response.addCookie(cookie);
+        response.addHeader("Set-Cookie", REFRESH_COOKIE_NAME + "=; Path=/api/v1/auth; MaxAge=0; HttpOnly; Secure; SameSite=None");
     }
 
     /**

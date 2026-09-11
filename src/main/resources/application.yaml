@@ -31,6 +31,10 @@ admin:
   email: ${ADMIN_EMAIL}
   password: ${ADMIN_PASSWORD}
 
+idempotency:
+  ttl: ${IDEMPOTENCY_TTL:24h}
+  max-entries: ${IDEMPOTENCY_MAX_ENTRIES:1000}
+
 logging:
   level:
     org.hibernate.SQL: INFO

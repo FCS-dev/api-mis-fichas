@@ -154,7 +154,7 @@ class DashboardServiceTest {
 
         when(transactionRepository.findTransactionsSince(eq(1L), any())).thenReturn(List.of(txn));
 
-        List<MonthlyBalanceResponse> result = dashboardService.getMonthlyBalance();
+        List<MonthlyBalanceResponse> result = dashboardService.getMonthlyBalance(12);
 
         assertThat(result).hasSize(12);
         MonthlyBalanceResponse last = result.get(result.size() - 1);
@@ -179,7 +179,7 @@ class DashboardServiceTest {
 
         when(transactionRepository.findTransactionsSince(eq(1L), any())).thenReturn(txns);
 
-        List<MonthlyBalanceResponse> result = dashboardService.getMonthlyBalance();
+        List<MonthlyBalanceResponse> result = dashboardService.getMonthlyBalance(12);
 
         MonthlyBalanceResponse currentMonth = result.get(result.size() - 1);
         assertThat(currentMonth.income()).isEqualByComparingTo(new BigDecimal("2000.00"));

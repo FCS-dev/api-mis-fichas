@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.Idempotent;
 import com.fcs.mis_fichas.dtos.*;
 import com.fcs.mis_fichas.services.SubcategoryService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,6 +49,7 @@ public class SubcategoryController {
      * @return ResponseEntity con ApiResponse de la subcategoría creada (HTTP 201)
      */
     @PostMapping
+    @Idempotent
     @Operation(summary = "Crear subcategoría", description = "Crea una nueva subcategoría. ADMIN crea subcategorías del sistema; USER crea subcategorías personales.")
     public ResponseEntity<ApiResponse<SubcategoryResponse>> create(@Valid @RequestBody SubcategoryRequest request, HttpServletRequest httpRequest) {
         SubcategoryResponse response = subcategoryService.create(request);

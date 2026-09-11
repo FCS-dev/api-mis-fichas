@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.Idempotent;
 import com.fcs.mis_fichas.dtos.*;
 import com.fcs.mis_fichas.services.TransactionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,6 +51,7 @@ public class TransactionController {
      * @return ResponseEntity con ApiResponse de la transacción creada (HTTP 201)
      */
     @PostMapping
+    @Idempotent
     @Operation(summary = "Crear transacción", description = "Crea una nueva transacción de ingreso o gasto.")
     public ResponseEntity<ApiResponse<TransactionResponse>> create(@Valid @RequestBody TransactionRequest request, HttpServletRequest httpRequest) {
         TransactionResponse response = transactionService.create(request);

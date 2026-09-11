@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.IdempotencyConflictException;
 import com.fcs.mis_fichas.dtos.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,28 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+
+    /**
+     * Maneja conflictos de idempotencia (misma key, body diferente).
+     * Devuelve HTTP 409 Conflict.
+     *
+     * @param ex      excepción lanzada
+     * @param request solicitud HTTP
+     * @return ApiResponse con success=false, data=null
+     */
+    @ExceptionHandler(IdempotencyConflictException.class)
+    public ResponseEntity<ApiResponse<Void>> handleIdempotencyConflict(IdempotencyConflictException ex, HttpServletRequest request) {
+        log.warn("Idempotency conflict en {}: {}", request.getRequestURI(), ex.getMessage());
+        ApiResponse<Void> response = new ApiResponse<>(
+                false,
+                HttpStatus.CONFLICT.value(),
+                ex.getMessage(),
+                null,
+                LocalDateTime.now(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
 
     /**
      * Maneja excepciones de argumentos inválidos (lógica de negocio y validaciones manuales).

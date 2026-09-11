@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.Idempotent;
 import com.fcs.mis_fichas.dtos.*;
 import com.fcs.mis_fichas.services.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,6 +47,7 @@ public class CategoryController {
      * @return ResponseEntity con ApiResponse de la categoria creada (HTTP 201)
      */
     @PostMapping
+    @Idempotent
     @Operation(summary = "Crear categoría", description = "Crea una nueva categoría de ingreso o gasto.")
     public ResponseEntity<ApiResponse<CategoryResponse>> create(@Valid @RequestBody CategoryRequest request, HttpServletRequest httpRequest) {
         CategoryResponse response = categoryService.create(request);

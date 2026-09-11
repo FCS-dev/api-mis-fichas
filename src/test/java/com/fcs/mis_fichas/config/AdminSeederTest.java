@@ -7,6 +7,7 @@ import com.fcs.mis_fichas.enums.Role;
 import com.fcs.mis_fichas.enums.Status;
 import com.fcs.mis_fichas.repositories.CategoryRepository;
 import com.fcs.mis_fichas.repositories.SubcategoryRepository;
+import com.fcs.mis_fichas.repositories.TransactionRepository;
 import com.fcs.mis_fichas.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,13 +34,17 @@ class AdminSeederTest {
     @Mock
     private SubcategoryRepository subcategoryRepository;
     @Mock
+    private TransactionRepository transactionRepository;
+    @Mock
     private PasswordEncoder passwordEncoder;
+    @Mock
+    private org.springframework.core.env.Environment environment;
 
     private AdminSeeder adminSeeder;
 
     @BeforeEach
     void setUp() {
-        adminSeeder = new AdminSeeder(userRepository, categoryRepository, subcategoryRepository, passwordEncoder);
+        adminSeeder = new AdminSeeder(userRepository, categoryRepository, subcategoryRepository, transactionRepository, passwordEncoder, environment);
         ReflectionTestUtils.setField(adminSeeder, "adminEmail", "admin@mis-fichas.fcs");
         ReflectionTestUtils.setField(adminSeeder, "adminPassword", "secret-password");
     }
