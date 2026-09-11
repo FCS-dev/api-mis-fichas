@@ -255,6 +255,22 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long>,
     BigDecimal sumByType(@Param("userId") Long userId, @Param("type") Type type);
 
     /**
+     * Suma los montos de un tipo específico para un usuario en un mes/año dado.
+     *
+     * @param userId identificador del usuario (null para incluir todos)
+     * @param type   tipo de transacción (INCOME o EXPENSE)
+     * @param year   año
+     * @param month  mes (1-12)
+     * @return suma total del monto en ese mes
+     */
+    @Query("SELECT COALESCE(SUM(t.amount), 0) FROM Transaction t WHERE t.deletedAt IS NULL " +
+            "AND (:userId IS NULL OR t.user.id = :userId) " +
+            "AND t.category.type = :type " +
+            "AND YEAR(t.transactionDate) = :year AND MONTH(t.transactionDate) = :month")
+    BigDecimal sumByTypeInMonth(@Param("userId") Long userId, @Param("type") Type type,
+                                 @Param("year") int year, @Param("month") int month);
+
+    /**
      * Cuenta la cantidad total de transacciones activas.
      *
      * @return cantidad de transacciones

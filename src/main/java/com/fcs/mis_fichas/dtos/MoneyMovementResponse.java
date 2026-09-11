@@ -13,6 +13,24 @@ public record MoneyMovementResponse(
         BigDecimal totalExpense,
 
         @Schema(description = "Balance total (ingresos - gastos)", example = "13000.00")
-        BigDecimal totalBalance
+        BigDecimal totalBalance,
+
+        @Schema(description = "Ingresos del mes actual")
+        BigDecimal currentMonthIncome,
+
+        @Schema(description = "Ingresos del mes anterior")
+        BigDecimal previousMonthIncome,
+
+        @Schema(description = "Gastos del mes actual")
+        BigDecimal currentMonthExpense,
+
+        @Schema(description = "Gastos del mes anterior")
+        BigDecimal previousMonthExpense,
+
+        @Schema(description = "Balance del mes actual")
+        BigDecimal currentMonthBalance,
+
+        @Schema(description = "Balance del mes anterior")
+        BigDecimal previousMonthBalance
 ) {
 }

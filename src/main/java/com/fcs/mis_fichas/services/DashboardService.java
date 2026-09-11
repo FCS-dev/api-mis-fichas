@@ -365,7 +365,25 @@ public class DashboardService {
         Long effectiveUserId = (userId != null && userId == 0L) ? null : userId;
         BigDecimal income = transactionRepository.sumByType(effectiveUserId, Type.INCOME);
         BigDecimal expense = transactionRepository.sumByType(effectiveUserId, Type.EXPENSE);
-        return new MoneyMovementResponse(income, expense, income.subtract(expense));
+
+        LocalDate now = LocalDate.now();
+        int currentYear = now.getYear();
+        int currentMonth = now.getMonthValue();
+        LocalDate prevMonth = now.minusMonths(1);
+        int prevYear = prevMonth.getYear();
+        int prevMonthNum = prevMonth.getMonthValue();
+
+        BigDecimal currentIncome = transactionRepository.sumByTypeInMonth(effectiveUserId, Type.INCOME, currentYear, currentMonth);
+        BigDecimal prevIncome = transactionRepository.sumByTypeInMonth(effectiveUserId, Type.INCOME, prevYear, prevMonthNum);
+        BigDecimal currentExpense = transactionRepository.sumByTypeInMonth(effectiveUserId, Type.EXPENSE, currentYear, currentMonth);
+        BigDecimal prevExpense = transactionRepository.sumByTypeInMonth(effectiveUserId, Type.EXPENSE, prevYear, prevMonthNum);
+
+        return new MoneyMovementResponse(
+                income, expense, income.subtract(expense),
+                currentIncome, prevIncome,
+                currentExpense, prevExpense,
+                currentIncome.subtract(currentExpense), prevIncome.subtract(prevExpense)
+        );
     }
 
     public DashboardAveragesResponse getDashboardAverages(Long userId) {
