@@ -1,9 +1,11 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.RateLimitInterceptor;
 import com.fcs.mis_fichas.dtos.AuthResponse;
 import com.fcs.mis_fichas.dtos.LoginRequest;
 import com.fcs.mis_fichas.dtos.RegisterRequest;
 import com.fcs.mis_fichas.services.AuthService;
+import com.fcs.mis_fichas.services.BruteForceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.test.web.servlet.MockMvc;
 
 import jakarta.servlet.http.Cookie;
@@ -35,6 +38,12 @@ class AuthControllerTest {
 
     @MockBean
     private AuthService authService;
+
+    @MockBean
+    private BruteForceService bruteForceService;
+
+    @MockBean
+    private RateLimitInterceptor rateLimitInterceptor;
 
     @Test
     void register_shouldReturn200_whenRequestValid() throws Exception {
@@ -122,5 +131,58 @@ class AuthControllerTest {
                 .andExpect(cookie().maxAge("refresh_token", 0));
 
         verify(authService, never()).logout(any());
+    }
+
+    @Test
+    void login_shouldReturn429_whenAccountBlocked() throws Exception {
+        LoginRequest request = new LoginRequest("user@example.com", "password123");
+
+        when(bruteForceService.isBlocked("user@example.com")).thenReturn(true);
+
+        mockMvc.perform(post("/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isTooManyRequests())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.message").value("Account temporarily locked due to too many failed attempts. Try again later."));
+
+        verify(authService, never()).login(any());
+    }
+
+    @Test
+    void login_shouldReturn401_whenBadCredentials() throws Exception {
+        LoginRequest request = new LoginRequest("user@example.com", "wrongpassword");
+
+        when(bruteForceService.isBlocked("user@example.com")).thenReturn(false);
+        when(authService.login(any(LoginRequest.class))).thenThrow(new BadCredentialsException("Invalid credentials"));
+
+        mockMvc.perform(post("/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.message").value("Invalid credentials"));
+
+        verify(bruteForceService).recordFailedAttempt("user@example.com");
+        verify(authService).login(any());
+    }
+
+    @Test
+    void login_shouldResetAttempts_whenCredentialsValid() throws Exception {
+        LoginRequest request = new LoginRequest("user@example.com", "password123");
+        AuthResponse authResponse = new AuthResponse("access-token", "refresh-token");
+
+        when(bruteForceService.isBlocked("user@example.com")).thenReturn(false);
+        when(authService.login(any(LoginRequest.class))).thenReturn(authResponse);
+
+        mockMvc.perform(post("/auth/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data.accessToken").value("access-token"));
+
+        verify(bruteForceService).resetAttempts("user@example.com");
+        verify(bruteForceService, never()).recordFailedAttempt(any());
     }
 }

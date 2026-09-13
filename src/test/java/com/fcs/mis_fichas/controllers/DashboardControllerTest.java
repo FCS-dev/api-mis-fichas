@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.RateLimitInterceptor;
 import com.fcs.mis_fichas.dtos.*;
 import com.fcs.mis_fichas.services.DashboardService;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,9 @@ class DashboardControllerTest {
 
     @MockBean
     private DashboardService dashboardService;
+
+    @MockBean
+    private RateLimitInterceptor rateLimitInterceptor;
 
     @Test
     void getTotalIncome_shouldReturn200() throws Exception {

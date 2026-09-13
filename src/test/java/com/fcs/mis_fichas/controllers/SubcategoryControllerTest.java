@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.RateLimitInterceptor;
 import com.fcs.mis_fichas.dtos.SubcategoryRequest;
 import com.fcs.mis_fichas.dtos.SubcategoryResponse;
 import com.fcs.mis_fichas.services.SubcategoryService;
@@ -40,6 +41,9 @@ class SubcategoryControllerTest {
 
     @MockBean
     private SubcategoryService subcategoryService;
+
+    @MockBean
+    private RateLimitInterceptor rateLimitInterceptor;
 
     private static SubcategoryResponse sampleResponse(Long id, String name) {
         return new SubcategoryResponse(id, name, "Comments", false, 1L, "Food",

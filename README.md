@@ -13,6 +13,10 @@ ingresos (`INCOME`) y gastos (`EXPENSE`), organizados por categorías y subcateg
 - **Maven** (wrapper incluido: `./mvnw`)
 - **Lombok**
 - **Docker Compose**
+- **Caffeine** (caché in-memory para rate limiting y brute-force)
+- **IP Rate Limiting** (sliding window configurable en `/auth/login`)
+- **Brute-Force Protection** (bloqueo temporal por intentos fallidos)
+- **Idempotency** (endpoints POST idempotentes via header `Idempotency-Key`)
 
 ## Requisitos previos
 
@@ -68,8 +72,13 @@ ADMIN_PASSWORD=your_admin_password
 
 3. Compilar y ejecutar:
    ```bash
-   ./mvnw spring-boot:run
+   ./mvnw clean spring-boot:run
    ```
+
+   > **Nota**: se recomienda usar `clean` antes de `spring-boot:run` para evitar problemas de
+   > `ConflictingBeanDefinitionException` causados por archivos `.class` huérfanos en `target/` tras
+   > eliminar o renombrar clases. Si se usa `./mvnw spring-boot:run` directamente y aparece ese error,
+   > ejecutar `./mvnw clean` primero resuelve el problema.
 
 4. Ejecutar tests:
    ```bash
@@ -91,11 +100,13 @@ Al iniciar la app con el perfil `developer`, el `AdminSeeder` carga automáticam
 **Condición**: solo se insertan datos fake si la BD no tiene usuarios además del admin.
 
 Para activar el perfil, asegurate de que `.env` contenga:
+
 ```env
 SPRING_PROFILES_ACTIVE=developer
 ```
 
 La config del perfil DEVELOPER (`application-developer.yaml`) incluye:
+
 - `show-sql: true` — queries SQL visibles en consola
 - Logging DEBUG para `com.fcs.mis_fichas` y queries Hibernate
 
@@ -121,6 +132,18 @@ El script Python genera `data-fake.sql` con la misma data que el AdminSeeder.
   token revocado, se invalidan **todos** los tokens del usuario.
 - **Roles**: `USER` (gestiona sus propios datos) y `ADMIN` (gestión global del sistema).
 - **Soft delete**: todas las entidades principales usan `deletedAt` en lugar de eliminación física.
+- **IP Rate Limiting**: protección contra abuso en `POST /api/v1/auth/login` mediante sliding window por dirección IP.
+  Configurado por defecto a **20 requests por 60 segundos** por IP. Retorna HTTP 429 si se excede el límite.
+  Configurable vía variables de entorno `RATE_LIMIT_MAX_REQUESTS` y `RATE_LIMIT_WINDOW_SECONDS`.
+- **Brute-Force Protection**: protección contra fuerza bruta en login. Después de **5 intentos fallidos** por email,
+  la cuenta queda bloqueada temporalmente por **15 minutos**. Retorna HTTP 429 con mensaje de bloqueo.
+  Configurable vía `BRUTE_FORCE_MAX_ATTEMPTS` y `BRUTE_FORCE_LOCKOUT_MINUTES`.
+- **Protección deshabilitada en developer**: tanto el rate limiting como el brute-force se desactivan automáticamente
+  cuando el perfil activo es `developer` (`security.protection.enabled: false`).
+- **Idempotency**: los endpoints `POST` de categorías, subcategorías y transacciones soportan el header
+  `Idempotency-Key` (UUID). Si se envía, la API cachea la respuesta y la reutiliza para requests con
+  el mismo key + body. Si el key ya fue usado con un body diferente, retorna HTTP 409 Conflict.
+  TTL configurable (default 24h, max 1000 entradas en caché).
 
 ## Endpoints de la API
 
@@ -137,21 +160,21 @@ Todos los endpoints están prefijados con `/api/v1`.
 
 ### Categorías (autenticado)
 
-| Método | Endpoint                   | Rol         | Descripción                                    |
-|--------|----------------------------|-------------|------------------------------------------------|
-| `GET`  | `/api/v1/categories`       | Autenticado | Listar todas las categorías activas (paginado) |
-| `GET`  | `/api/v1/categories/{id}`  | Autenticado | Obtener una categoría por ID                   |
+| Método | Endpoint                  | Rol         | Descripción                                    |
+|--------|---------------------------|-------------|------------------------------------------------|
+| `GET`  | `/api/v1/categories`      | Autenticado | Listar todas las categorías activas (paginado) |
+| `GET`  | `/api/v1/categories/{id}` | Autenticado | Obtener una categoría por ID                   |
 
 ### Subcategorías (autenticado)
 
-| Método   | Endpoint                                | Rol         | Descripción                                                         |
-|----------|-----------------------------------------|-------------|---------------------------------------------------------------------|
-| `GET`    | `/api/v1/subcategories`                 | Autenticado | Listar subcategorías accesibles (sistema + propias)                 |
-| `GET`    | `/api/v1/subcategories/{id}`            | Autenticado | Obtener una subcategoría por ID                                     |
-| `GET`    | `/api/v1/subcategories/category/{categoryId}` | Autenticado | Listar subcategorías de una categoría específica              |
-| `POST`   | `/api/v1/subcategories`                 | Autenticado | Crear subcategoría personal                                         |
-| `PUT`    | `/api/v1/subcategories/{id}`            | Autenticado | Actualizar subcategoría (USER: propias; ADMIN: cualquier)           |
-| `DELETE` | `/api/v1/subcategories/{id}`            | Autenticado | Eliminar subcategoría (USER: propias; ADMIN: cualquier)             |
+| Método   | Endpoint                                      | Rol         | Descripción                                               |
+|----------|-----------------------------------------------|-------------|-----------------------------------------------------------|
+| `GET`    | `/api/v1/subcategories`                       | Autenticado | Listar subcategorías accesibles (sistema + propias)       |
+| `GET`    | `/api/v1/subcategories/{id}`                  | Autenticado | Obtener una subcategoría por ID                           |
+| `GET`    | `/api/v1/subcategories/category/{categoryId}` | Autenticado | Listar subcategorías de una categoría específica          |
+| `POST`   | `/api/v1/subcategories`                       | Autenticado | Crear subcategoría personal                               |
+| `PUT`    | `/api/v1/subcategories/{id}`                  | Autenticado | Actualizar subcategoría (USER: propias; ADMIN: cualquier) |
+| `DELETE` | `/api/v1/subcategories/{id}`                  | Autenticado | Eliminar subcategoría (USER: propias; ADMIN: cualquier)   |
 
 ### Transacciones (autenticado)
 
@@ -177,31 +200,35 @@ Todos los endpoints están prefijados con `/api/v1`.
 
 ### Dashboard (rol `USER`)
 
-| Método | Endpoint                           | Parámetros                    | Descripción                                                         |
-|--------|------------------------------------|-------------------------------|---------------------------------------------------------------------|
-| `GET`  | `/api/v1/dashboard/me/total-income`| `month`, `year`               | Sumatoria de ingresos del mes para el usuario autenticado           |
-| `GET`  | `/api/v1/dashboard/me/total-expense`| `month`, `year`              | Sumatoria de gastos del mes para el usuario autenticado             |
-| `GET`  | `/api/v1/dashboard/me/expenses-by-category`| `month`, `year`       | Gastos agrupados por categoría en un mes/año                        |
-| `GET`  | `/api/v1/dashboard/me/expenses-by-subcategory`| `categoryId`, `month`, `year`| Gastos agrupados por subcategoría dentro de una categoría   |
-| `GET`  | `/api/v1/dashboard/me/monthly-balance`| _(ninguno)_                | Balance mensual (INCOME - EXPENSE) de los últimos 12 meses          |
+| Método | Endpoint                                       | Parámetros                    | Descripción                                                                      |
+|--------|------------------------------------------------|-------------------------------|----------------------------------------------------------------------------------|
+| `GET`  | `/api/v1/dashboard/me/total-income`            | `month`, `year`               | Sumatoria de ingresos del mes para el usuario autenticado                        |
+| `GET`  | `/api/v1/dashboard/me/total-expense`           | `month`, `year`               | Sumatoria de gastos del mes para el usuario autenticado                          |
+| `GET`  | `/api/v1/dashboard/me/expenses-by-category`    | `month`, `year`               | Gastos agrupados por categoría en un mes/año                                     |
+| `GET`  | `/api/v1/dashboard/me/expenses-by-subcategory` | `categoryId`, `month`, `year` | Gastos agrupados por subcategoría dentro de una categoría                        |
+| `GET`  | `/api/v1/dashboard/me/monthly-balance`         | `months`                      | Balance mensual (INCOME - EXPENSE) de los últimos N meses (3, 6 o 12; default 3) |
+| `GET`  | `/api/v1/dashboard/me/summary-card`            | `month`, `year`               | Resumen consolidado del mes: ingresos, gastos, balance y saving rate             |
+| `GET`  | `/api/v1/dashboard/me/monthly-comparison`      | _(ninguno)_                   | Glosas comparativas del mes actual vs el mes anterior                            |
+| `GET`  | `/api/v1/dashboard/me/top-expenses`            | `month`, `year`               | Top 3 categorías y subcategorías con más gasto en el mes dado                    |
 
 ### Dashboard (rol `ADMIN`)
 
-| Método | Endpoint                                                  | Parámetros                                                      | Descripción                                                                                     |
-|--------|-----------------------------------------------------------|-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| `GET`  | `/api/v1/dashboard/admin/stats`                           | _(ninguno)_                                                     | Total de usuarios activos con rol USER y total de transacciones registradas                     |
-| `GET`  | `/api/v1/dashboard/admin/expenses-by-category`            | `userId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo`          | Gastos agrupados por categoría en un rango de fechas                                            |
-| `GET`  | `/api/v1/dashboard/admin/expenses-by-subcategory`         | `userId`, `categoryId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo`| Gastos agrupados por subcategoría dentro de una categoría en un rango                      |
-| `GET`  | `/api/v1/dashboard/admin/avg-income`                      | `userId`                                                        | Promedio mensual de ingresos (últimos 12 meses)                                                 |
-| `GET`  | `/api/v1/dashboard/admin/avg-expense`                     | `userId`                                                        | Promedio mensual de gastos (últimos 12 meses)                                                   |
-| `GET`  | `/api/v1/dashboard/admin/user-evolution`                  | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`                    | Evolución de usuarios: comparación 1er vs último mes del rango, datos mensuales                 |
-| `GET`  | `/api/v1/dashboard/admin/transaction-evolution`           | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`, `userId`          | Evolución de transacciones: comparativa, promedio/usuario, ingresos/gastos, datos mensuales     |
-| `GET`  | `/api/v1/dashboard/admin/money-movement`                  | `userId`                                                        | Totales de ingresos, gastos y balance                                                           |
-| `GET`  | `/api/v1/dashboard/admin/averages`                        | `userId`                                                        | Promedios globales (excluye ADMIN) y filtrados por usuario (ingresos, gastos, transacciones)   |
-| `GET`  | `/api/v1/dashboard/admin/top-users`                       | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`                    | Top 5 usuarios por transacciones, gastos e ingresos en un rango de meses                       |
-| `GET`  | `/api/v1/dashboard/admin/activity-distribution`           | `month`, `year`                                                 | Distribución de usuarios: Frecuente (>20 tx), Regular (5-20), Ocasional (1-4), Inactivo (0)    |
+| Método | Endpoint                                          | Parámetros                                                           | Descripción                                                                                  |
+|--------|---------------------------------------------------|----------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `GET`  | `/api/v1/dashboard/admin/stats`                   | _(ninguno)_                                                          | Total de usuarios activos con rol USER y total de transacciones registradas                  |
+| `GET`  | `/api/v1/dashboard/admin/expenses-by-category`    | `userId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo`               | Gastos agrupados por categoría en un rango de fechas                                         |
+| `GET`  | `/api/v1/dashboard/admin/expenses-by-subcategory` | `userId`, `categoryId`, `monthFrom`, `yearFrom`, `monthTo`, `yearTo` | Gastos agrupados por subcategoría dentro de una categoría en un rango                        |
+| `GET`  | `/api/v1/dashboard/admin/avg-income`              | `userId`                                                             | Promedio mensual de ingresos (últimos 12 meses)                                              |
+| `GET`  | `/api/v1/dashboard/admin/avg-expense`             | `userId`                                                             | Promedio mensual de gastos (últimos 12 meses)                                                |
+| `GET`  | `/api/v1/dashboard/admin/user-evolution`          | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`                         | Evolución de usuarios: comparación 1er vs último mes del rango, datos mensuales              |
+| `GET`  | `/api/v1/dashboard/admin/transaction-evolution`   | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`, `userId`               | Evolución de transacciones: comparativa, promedio/usuario, ingresos/gastos, datos mensuales  |
+| `GET`  | `/api/v1/dashboard/admin/money-movement`          | `userId`                                                             | Totales de ingresos, gastos y balance                                                        |
+| `GET`  | `/api/v1/dashboard/admin/averages`                | `userId`                                                             | Promedios globales (excluye ADMIN) y filtrados por usuario (ingresos, gastos, transacciones) |
+| `GET`  | `/api/v1/dashboard/admin/top-users`               | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`                         | Top 5 usuarios por transacciones, gastos e ingresos en un rango de meses                     |
+| `GET`  | `/api/v1/dashboard/admin/activity-distribution`   | `month`, `year`                                                      | Distribución de usuarios: Frecuente (>20 tx), Regular (5-20), Ocasional (1-4), Inactivo (0)  |
 
-> **Nota sobre `userId` en endpoints ADMIN**: es opcional (default `0`). Si no se envía o es `0`, se incluyen todos los usuarios. Si se envía un valor mayor a `0`, se filtra por ese usuario específico.
+> **Nota sobre `userId` en endpoints ADMIN**: es opcional (default `0`). Si no se envía o es `0`, se incluyen todos los
+> usuarios. Si se envía un valor mayor a `0`, se filtra por ese usuario específico.
 
 ### Paginación
 
@@ -322,8 +349,30 @@ com.fcs.mis_fichas
 - **Transactions - Rango de fechas opcional**: el endpoint `/date-range` acepta `from` y `to` opcionales. Si se
   omiten, retorna todas las transacciones. Esto es utilizado por el panel de transacciones del admin CRUD
   para mostrar todas las transacciones del usuario seleccionado sin filtro temporal.
-- **Tests**: existen tests unitarios para servicios y controladores (con `Mockito` y `MockMvc`) y un test de integración
-  (`@SpringBootTest`) que verifica que el contexto de Spring carga correctamente.
-  Los tests de integración requieren una base de datos MariaDB activa.
+- **Tests**: 26 archivos de test (1 integración, 25 unitarios):
+    - **Controllers** (8): `AuthControllerTest`, `CategoryControllerTest`, `CategoryPublicControllerTest`,
+      `SubcategoryControllerTest`, `TransactionControllerTest`, `DashboardControllerTest`, `UserControllerTest`,
+      `GlobalExceptionHandlerTest`
+    - **Services** (9): `AuthServiceTest`, `JwtServiceTest`, `RefreshTokenServiceTest`, `BruteForceServiceTest`,
+      `IpRateLimitServiceTest`, `UserDetailsServiceImplTest`, `CategoryServiceTest`, `SubcategoryServiceTest`,
+      `TransactionServiceTest`, `UserServiceTest`, `DashboardServiceTest`
+    - **Config** (5): `JwtAuthenticationFilterTest`, `AdminSeederTest`, `IdempotencyServiceTest`,
+      `IdempotencyAspectTest`, `IdempotencyIntegrationTest`
+    - **DTOs** (1): `DtoValidationTest` (validación Jakarta Bean Validation en todos los DTOs)
+    - **Integración** (1): `MisFichasApplicationTests` (`@SpringBootTest`, requiere MariaDB activa)
+    - Los tests unitarios usan `Mockito` y `MockMvc` (controllers). Los tests de integración requieren una base de datos
+      MariaDB activa.
 - **Problemas de compilación**: si aparece `ConflictingBeanDefinitionException` por controladores duplicados, ejecutar
   `./mvnw clean` antes de compilar.
+
+---
+
+## Derechos de autor
+
+© 2026 Franco Calderón Sánchez. Todos los derechos reservados.
+
+Este proyecto es de autoría propia y se publica en este repositorio con fines demostrativos y educativos. Su publicación
+en GitHub no implica la concesión de una licencia para su uso, modificación o redistribución, salvo autorización expresa
+del autor.
+
+El código y los contenidos originales del proyecto permanecen sujetos a los derechos de autor.

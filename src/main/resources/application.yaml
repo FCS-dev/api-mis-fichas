@@ -35,6 +35,24 @@ idempotency:
   ttl: ${IDEMPOTENCY_TTL:24h}
   max-entries: ${IDEMPOTENCY_MAX_ENTRIES:1000}
 
+security:
+  protection:
+    enabled: ${SECURITY_PROTECTION_ENABLED:true}
+
+brute-force:
+  max-attempts: ${BRUTE_FORCE_MAX_ATTEMPTS:5}
+  lockout-minutes: ${BRUTE_FORCE_LOCKOUT_MINUTES:15}
+
+rate-limit:
+  max-requests: ${RATE_LIMIT_MAX_REQUESTS:20}
+  window-seconds: ${RATE_LIMIT_WINDOW_SECONDS:60}
+
 logging:
   level:
     org.hibernate.SQL: INFO
+
+---
+spring.config.activate.on-profile: developer
+security:
+  protection:
+    enabled: false

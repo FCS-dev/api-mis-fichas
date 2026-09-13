@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.RateLimitInterceptor;
 import com.fcs.mis_fichas.dtos.TransactionRequest;
 import com.fcs.mis_fichas.dtos.TransactionResponse;
 import com.fcs.mis_fichas.services.TransactionService;
@@ -40,6 +41,9 @@ class TransactionControllerTest {
 
     @MockBean
     private TransactionService transactionService;
+
+    @MockBean
+    private RateLimitInterceptor rateLimitInterceptor;
 
     private static TransactionResponse sampleResponse(Long id) {
         return new TransactionResponse(id, 1L, "user@example.com", 1L, "Food",

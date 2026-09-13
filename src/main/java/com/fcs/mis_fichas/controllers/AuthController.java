@@ -5,6 +5,7 @@ import com.fcs.mis_fichas.dtos.AuthResponse;
 import com.fcs.mis_fichas.dtos.LoginRequest;
 import com.fcs.mis_fichas.dtos.RegisterRequest;
 import com.fcs.mis_fichas.services.AuthService;
+import com.fcs.mis_fichas.services.BruteForceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
@@ -14,6 +15,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,7 @@ import java.time.LocalDateTime;
 public class AuthController {
 
     private final AuthService authService;
+    private final BruteForceService bruteForceService;
     private static final String REFRESH_COOKIE_NAME = "refresh_token";
 
     private static final int REFRESH_COOKIE_MAX_AGE = 30 * 24 * 60 * 60; // 30 days
@@ -69,13 +72,32 @@ public class AuthController {
     @PostMapping("/login")
     @Operation(summary = "Iniciar sesión", description = "Autentica al usuario y devuelve un access token. El refresh token se envía en una cookie HttpOnly.")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request, HttpServletResponse response, HttpServletRequest httpRequest) {
-        AuthResponse authResponse = authService.login(request);
-        setRefreshTokenCookie(response, authResponse.refreshToken(), httpRequest);
-        ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
-                true, HttpStatus.OK.value(), null, new AuthResponse(authResponse.accessToken(), null),
-                LocalDateTime.now(), httpRequest.getRequestURI()
-        );
-        return ResponseEntity.ok(apiResponse);
+        if (bruteForceService.isBlocked(request.email())) {
+            ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
+                    false, HttpStatus.TOO_MANY_REQUESTS.value(),
+                    "Account temporarily locked due to too many failed attempts. Try again later.",
+                    null, LocalDateTime.now(), httpRequest.getRequestURI()
+            );
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(apiResponse);
+        }
+
+        try {
+            AuthResponse authResponse = authService.login(request);
+            bruteForceService.resetAttempts(request.email());
+            setRefreshTokenCookie(response, authResponse.refreshToken(), httpRequest);
+            ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
+                    true, HttpStatus.OK.value(), null, new AuthResponse(authResponse.accessToken(), null),
+                    LocalDateTime.now(), httpRequest.getRequestURI()
+            );
+            return ResponseEntity.ok(apiResponse);
+        } catch (BadCredentialsException e) {
+            bruteForceService.recordFailedAttempt(request.email());
+            ApiResponse<AuthResponse> apiResponse = new ApiResponse<>(
+                    false, HttpStatus.UNAUTHORIZED.value(), "Invalid credentials", null,
+                    LocalDateTime.now(), httpRequest.getRequestURI()
+            );
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiResponse);
+        }
     }
 
     /**

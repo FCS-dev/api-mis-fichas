@@ -1,7 +1,9 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.RateLimitInterceptor;
 import com.fcs.mis_fichas.dtos.RegisterRequest;
 import com.fcs.mis_fichas.services.AuthService;
+import com.fcs.mis_fichas.services.BruteForceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,12 @@ class GlobalExceptionHandlerTest {
 
     @MockBean
     private AuthService authService;
+
+    @MockBean
+    private BruteForceService bruteForceService;
+
+    @MockBean
+    private RateLimitInterceptor rateLimitInterceptor;
 
     @Test
     void handleIllegalArgumentException_shouldReturn400() throws Exception {

@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.RateLimitInterceptor;
 import com.fcs.mis_fichas.dtos.CategoryResponse;
 import com.fcs.mis_fichas.enums.Type;
 import com.fcs.mis_fichas.services.CategoryService;
@@ -34,6 +35,9 @@ class CategoryPublicControllerTest {
 
     @MockBean
     private CategoryService categoryService;
+
+    @MockBean
+    private RateLimitInterceptor rateLimitInterceptor;
 
     private static CategoryResponse sampleResponse(Long id, String name) {
         return new CategoryResponse(id, name, Type.INCOME, 1L, "user@example.com",

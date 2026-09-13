@@ -1,5 +1,6 @@
 package com.fcs.mis_fichas.controllers;
 
+import com.fcs.mis_fichas.config.RateLimitInterceptor;
 import com.fcs.mis_fichas.dtos.UserResponse;
 import com.fcs.mis_fichas.dtos.UserUpdateRequest;
 import com.fcs.mis_fichas.enums.Role;
@@ -43,6 +44,9 @@ class UserControllerTest {
 
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private RateLimitInterceptor rateLimitInterceptor;
 
     private static UserResponse sampleResponse(Long id, String email, Role role, Status status) {
         return new UserResponse(id, email, "Test User", role, status,
