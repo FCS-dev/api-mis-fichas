@@ -98,11 +98,11 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((request, response, authException) -> {
-                            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                             response.setContentType("application/json");
                             response.setCharacterEncoding("UTF-8");
                             response.getWriter().write(
-                                    "{\"success\":false,\"status\":403,\"message\":\"No autenticado\",\"data\":null}"
+                                    "{\"success\":false,\"status\":401,\"message\":\"No autenticado\",\"data\":null}"
                             );
                         })
                 )

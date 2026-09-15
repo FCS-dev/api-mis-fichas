@@ -190,7 +190,7 @@ class DashboardServiceTest {
     @Test
     void getAdminStats_shouldReturnCounts() {
         when(userRepository.countByDeletedAtIsNullAndRole(Role.USER)).thenReturn(10L);
-        when(transactionRepository.count()).thenReturn(500L);
+        when(transactionRepository.countByDeletedAtIsNull()).thenReturn(500L);
 
         AdminStatsResponse response = dashboardService.getAdminStats();
 

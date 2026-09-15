@@ -171,7 +171,7 @@ public class DashboardService {
 
     public AdminStatsResponse getAdminStats() {
         long totalUsers = userRepository.countByDeletedAtIsNullAndRole(Role.USER);
-        long totalTransactions = transactionRepository.count();
+        long totalTransactions = transactionRepository.countByDeletedAtIsNull();
         return new AdminStatsResponse(totalUsers, totalTransactions);
     }
 

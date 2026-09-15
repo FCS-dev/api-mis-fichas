@@ -62,6 +62,7 @@ public class TransactionService {
         if (!subcategory.getCategory().getId().equals(category.getId())) {
             throw new IllegalArgumentException("Subcategory does not belong to the specified category");
         }
+        checkSubcategoryAccess(subcategory, currentUser);
 
         Transaction transaction = Transaction.builder()
                 .user(targetUser)
@@ -111,6 +112,7 @@ public class TransactionService {
         if (!subcategory.getCategory().getId().equals(category.getId())) {
             throw new IllegalArgumentException("Subcategory does not belong to the specified category");
         }
+        checkSubcategoryAccess(subcategory, currentUser);
 
         transaction.setCategory(category);
         transaction.setSubcategory(subcategory);
@@ -213,6 +215,28 @@ public class TransactionService {
             return;
         }
         throw new IllegalArgumentException("You do not have permission to view this transaction");
+    }
+
+    /**
+     * Verifica que el usuario tenga permiso para usar la subcategoría en una transacción.
+     * ADMIN: siempre tiene permiso.
+     * USER: solo si la subcategoría es del sistema o fue creada por él.
+     *
+     * @param subcategory subcategoría a verificar
+     * @param currentUser usuario autenticado
+     * @throws IllegalArgumentException si el usuario no tiene permisos
+     */
+    private void checkSubcategoryAccess(Subcategory subcategory, User currentUser) {
+        if (currentUser.getRole() == Role.ADMIN) {
+            return;
+        }
+        if (Boolean.TRUE.equals(subcategory.getIsSystem())) {
+            return;
+        }
+        if (subcategory.getCreatedBy() != null && subcategory.getCreatedBy().getId().equals(currentUser.getId())) {
+            return;
+        }
+        throw new IllegalArgumentException("You do not have permission to use this subcategory");
     }
 
     /**

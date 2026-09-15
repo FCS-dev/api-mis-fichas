@@ -92,7 +92,7 @@ class DashboardControllerTest {
         List<MonthlyBalanceResponse> list = List.of(
                 new MonthlyBalanceResponse(2026, 6, new BigDecimal("2000.00"), new BigDecimal("800.00"), new BigDecimal("1200.00"), 60.0)
         );
-        when(dashboardService.getMonthlyBalance(12)).thenReturn(list);
+        when(dashboardService.getMonthlyBalance(3)).thenReturn(list);
 
         mockMvc.perform(get("/dashboard/me/monthly-balance"))
                 .andExpect(status().isOk())
@@ -102,7 +102,7 @@ class DashboardControllerTest {
                 .andExpect(jsonPath("$.data[0].expense").value(800.00))
                 .andExpect(jsonPath("$.data[0].balance").value(1200.00));
 
-        verify(dashboardService).getMonthlyBalance(12);
+        verify(dashboardService).getMonthlyBalance(3);
     }
 
     @Test

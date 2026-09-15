@@ -144,7 +144,7 @@ public class AuthController {
         if (refreshToken != null) {
             authService.logout(refreshToken);
         }
-        clearRefreshTokenCookie(response);
+        clearRefreshTokenCookie(response, request);
         ApiResponse<String> apiResponse = new ApiResponse<>(
                 true, HttpStatus.OK.value(), "Logged out successfully", null,
                 LocalDateTime.now(), httpRequest.getRequestURI()
@@ -168,7 +168,7 @@ public class AuthController {
         String sameSite = useSameSiteNone ? "None" : "Lax";
         String secureAttr = useSameSiteNone ? "; Secure" : "";
         String cookie = String.format(
-                "%s=%s; Path=/api/v1/auth; MaxAge=%d; HttpOnly; SameSite=%s%s",
+                "%s=%s; Path=/api/v1/auth; Max-Age=%d; HttpOnly; SameSite=%s%s",
                 REFRESH_COOKIE_NAME, refreshToken, REFRESH_COOKIE_MAX_AGE, sameSite, secureAttr
         );
         response.addHeader("Set-Cookie", cookie);
@@ -179,14 +179,20 @@ public class AuthController {
      *
      * @param response respuesta HTTP
      */
-    private void clearRefreshTokenCookie(HttpServletResponse response) {
+    private void clearRefreshTokenCookie(HttpServletResponse response, HttpServletRequest request) {
+        boolean isSecure = request.isSecure();
+        boolean isLocalhost = "localhost".equals(request.getServerName());
+        boolean useSameSiteNone = isSecure || isLocalhost;
+        String sameSite = useSameSiteNone ? "None" : "Lax";
+        String secureAttr = useSameSiteNone ? "; Secure" : "";
+
         Cookie cookie = new Cookie(REFRESH_COOKIE_NAME, "");
         cookie.setPath("/api/v1/auth");
         cookie.setMaxAge(0);
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        cookie.setSecure(useSameSiteNone);
         response.addCookie(cookie);
-        response.addHeader("Set-Cookie", REFRESH_COOKIE_NAME + "=; Path=/api/v1/auth; MaxAge=0; HttpOnly; Secure; SameSite=None");
+        response.addHeader("Set-Cookie", REFRESH_COOKIE_NAME + "=; Path=/api/v1/auth; Max-Age=0; HttpOnly; SameSite=" + sameSite + secureAttr);
     }
 
     /**

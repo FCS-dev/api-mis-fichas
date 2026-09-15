@@ -5,6 +5,7 @@ import com.fcs.mis_fichas.dtos.CategoryResponse;
 import com.fcs.mis_fichas.entities.Category;
 import com.fcs.mis_fichas.entities.User;
 import com.fcs.mis_fichas.repositories.CategoryRepository;
+import com.fcs.mis_fichas.repositories.SubcategoryRepository;
 import com.fcs.mis_fichas.repositories.TransactionRepository;
 import com.fcs.mis_fichas.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final TransactionRepository transactionRepository;
+    private final SubcategoryRepository subcategoryRepository;
     private final UserRepository userRepository;
 
     /**
@@ -95,6 +97,9 @@ public class CategoryService {
 
         if (transactionRepository.existsByCategoryIdAndDeletedAtIsNull(id)) {
             throw new IllegalArgumentException("No se puede eliminar: la categoría tiene transacciones activas");
+        }
+        if (subcategoryRepository.existsByCategoryIdAndDeletedAtIsNull(id)) {
+            throw new IllegalArgumentException("No se puede eliminar: la categoría tiene subcategorías activas");
         }
 
         category.setDeletedAt(LocalDateTime.now());

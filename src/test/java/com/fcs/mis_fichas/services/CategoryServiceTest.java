@@ -8,6 +8,7 @@ import com.fcs.mis_fichas.enums.Role;
 import com.fcs.mis_fichas.enums.Status;
 import com.fcs.mis_fichas.enums.Type;
 import com.fcs.mis_fichas.repositories.CategoryRepository;
+import com.fcs.mis_fichas.repositories.SubcategoryRepository;
 import com.fcs.mis_fichas.repositories.TransactionRepository;
 import com.fcs.mis_fichas.repositories.UserRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -40,6 +41,8 @@ class CategoryServiceTest {
     @Mock
     private TransactionRepository transactionRepository;
     @Mock
+    private SubcategoryRepository subcategoryRepository;
+    @Mock
     private UserRepository userRepository;
     @Mock
     private Authentication authentication;
@@ -50,7 +53,7 @@ class CategoryServiceTest {
 
     @BeforeEach
     void setUp() {
-        categoryService = new CategoryService(categoryRepository, transactionRepository, userRepository);
+        categoryService = new CategoryService(categoryRepository, transactionRepository, subcategoryRepository, userRepository);
     }
 
     @AfterEach
@@ -145,6 +148,8 @@ class CategoryServiceTest {
         Category existing = Category.builder().id(1L).name("Food").type(Type.EXPENSE).build();
 
         when(categoryRepository.findByIdAndDeletedAtIsNull(1L)).thenReturn(Optional.of(existing));
+        when(transactionRepository.existsByCategoryIdAndDeletedAtIsNull(1L)).thenReturn(false);
+        when(subcategoryRepository.existsByCategoryIdAndDeletedAtIsNull(1L)).thenReturn(false);
         when(categoryRepository.save(any(Category.class))).thenAnswer(inv -> inv.getArgument(0));
 
         categoryService.delete(1L);

@@ -1,6 +1,5 @@
 -- ============================================================
 -- data-fake.sql — Datos de prueba para misfichasDB
--- Generado automáticamente por generate_fake_data.py
 -- Ejecutar: mysql -u admin -p misfichasDB < data-fake.sql
 -- ============================================================
 
@@ -9,2122 +8,565 @@
 -- USERS
 -- ============================================================
 
-INSERT INTO users (id, email, password_hash, name, role, status, created_at, updated_at, deleted_at)
-VALUES
-  (2, 'carlos.garcia@prueba.fcs', '$2b$12$SoKK1pPJ4KmZsbg4i2Gap.9RZaQzKOtXqShzfsdFnfPFxUzUMLLLO', 'Carlos García', 'USER', 'ACTIVE', '2026-01-01 00:00:00', '2026-01-01 00:00:00', NULL),
-  (3, 'maria.lopez@prueba.fcs', '$2b$12$NX4D8FBSonuwA5wOTwciwea/T.8i7b8ijBLfAlqpRPn1E9Z3nsMQ2', 'María López', 'USER', 'ACTIVE', '2026-01-01 00:00:00', '2026-01-01 00:00:00', NULL),
-  (4, 'juan.martinez@prueba.fcs', '$2b$12$QBI5PnQj4BLIGVdBJJWPu.Kn.nEo1zpYn0GrcBJplxgi75XCQl0Q6', 'Juan Martínez', 'USER', 'ACTIVE', '2026-01-01 00:00:00', '2026-01-01 00:00:00', NULL),
-  (5, 'ana.rodriguez@prueba.fcs', '$2b$12$vQDw3DVmxzoqxCkbdb/6SO2QdiEM1ekqPKQG6jxm/TE6EMHgKMO8m', 'Ana Rodríguez', 'USER', 'ACTIVE', '2026-01-01 00:00:00', '2026-01-01 00:00:00', NULL),
-  (6, 'pedro.sanchez@prueba.fcs', '$2b$12$7lLT1b9Ls29JCraUquJg1.VrhrjiLhCoPZEvohiyGctEA6scFYQJe', 'Pedro Sánchez', 'USER', 'ACTIVE', '2026-01-01 00:00:00', '2026-01-01 00:00:00', NULL),
-  (7, 'laura.fernandez@prueba.fcs', '$2b$12$8391D4vuqNcq6mQIVAuIg.xbiLkK.mpwyC2ZKH22pzqKz2LXzkBJO', 'Laura Fernández', 'USER', 'ACTIVE', '2026-02-01 00:00:00', '2026-02-01 00:00:00', NULL),
-  (8, 'diego.torres@prueba.fcs', '$2b$12$DeanZzewSJmWHTwAG9DuNuHwcJLgd.fQpPSWh3ORyPPlFMAaTP9BC', 'Diego Torres', 'USER', 'ACTIVE', '2026-02-01 00:00:00', '2026-02-01 00:00:00', NULL),
-  (9, 'sofia.diaz@prueba.fcs', '$2b$12$bpnmpnl6gqAdSMAwioxGnOLiUYlhVZW8lSh70.g0TMi2vQSHRSCKG', 'Sofía Díaz', 'USER', 'ACTIVE', '2026-02-01 00:00:00', '2026-02-01 00:00:00', NULL),
-  (10, 'andres.ruiz@prueba.fcs', '$2b$12$6pOK5QpVEcIDVRQVyveVDeWEUG/JE.rsam6JcbeOXkQar95a2OW5a', 'Andrés Ruiz', 'USER', 'ACTIVE', '2026-02-01 00:00:00', '2026-02-01 00:00:00', NULL),
-  (11, 'valentina.morales@prueba.fcs', '$2b$12$KdL.vGqUuL4P7cvOE8urueLKZ8f5jUGpAbsMyE9qymYIldPb8tW5S', 'Valentina Morales', 'USER', 'ACTIVE', '2026-02-01 00:00:00', '2026-02-01 00:00:00', NULL),
-  (12, 'martin.castro@prueba.fcs', '$2b$12$KcQfO.c3KxUYIbUFpLcZ.OhEM52HIXPdC.YuqNvux1jkEW83mYad.', 'Martín Castro', 'USER', 'ACTIVE', '2026-03-01 00:00:00', '2026-03-01 00:00:00', NULL),
-  (13, 'camila.vargas@prueba.fcs', '$2b$12$VV2lMMK9P6V326m2E/UpBuW18BF30Vdd6JH4loha9Mg.ya0mcwNZS', 'Camila Vargas', 'USER', 'ACTIVE', '2026-03-01 00:00:00', '2026-03-01 00:00:00', NULL),
-  (14, 'lucas.herrera@prueba.fcs', '$2b$12$yH.9OqIs.hJtRqU1rzMJnOUPi3kU2NhanH2nXbC5gi11HZ8Ddb/d.', 'Lucas Herrera', 'USER', 'ACTIVE', '2026-03-01 00:00:00', '2026-03-01 00:00:00', NULL),
-  (15, 'isabella.moreno@prueba.fcs', '$2b$12$tFB9XT3M2aN1C4IKFQRBeeE2PF.QW8NOjjrRM5E055LmFSAZuutDS', 'Isabella Moreno', 'USER', 'ACTIVE', '2026-03-01 00:00:00', '2026-03-01 00:00:00', NULL),
-  (16, 'felipe.rios@prueba.fcs', '$2b$12$TQo5QUxt2UvwFbeyMzVzouaSXMm2od0tHuFoO42Wml1CntyXYLPR2', 'Felipe Ríos', 'USER', 'ACTIVE', '2026-03-01 00:00:00', '2026-03-01 00:00:00', NULL),
-  (17, 'gabriela.munoz@prueba.fcs', '$2b$12$pdWoG8R8TS/zN7utZZUMN.t.OilJBjKin7cFnhDuuvzQUATSaVtEa', 'Gabriela Muñoz', 'USER', 'ACTIVE', '2026-04-01 00:00:00', '2026-04-01 00:00:00', NULL),
-  (18, 'nicolas.romero@prueba.fcs', '$2b$12$LdyoRqaDE71aA6O3pNv7SeqAaMEVuJF108tZYFdaiSJKOPgLIugPS', 'Nicolás Romero', 'USER', 'ACTIVE', '2026-04-01 00:00:00', '2026-04-01 00:00:00', NULL),
-  (19, 'paula.alvarez@prueba.fcs', '$2b$12$hO8T.tF343b.eFt6xbwqFufMQDUKX.bJwdn9BBBGJbd/r9dAIpVkW', 'Paula Álvarez', 'USER', 'ACTIVE', '2026-04-01 00:00:00', '2026-04-01 00:00:00', NULL),
-  (20, 'alejandro.silva@prueba.fcs', '$2b$12$SJYlZOK2d1U4JvWjp02Pzu1kjQiXbNkntrWTgvCcdvPau4hc6rgOq', 'Alejandro Silva', 'USER', 'ACTIVE', '2026-04-01 00:00:00', '2026-04-01 00:00:00', NULL),
-  (21, 'daniela.cruz@prueba.fcs', '$2b$12$0cdxTe.qoQ3vA4Sg1.Kk0uPK3yxno/J7mB.o6BQTMCW4NfpSeOQnG', 'Daniela Cruz', 'USER', 'ACTIVE', '2026-04-01 00:00:00', '2026-04-01 00:00:00', NULL),
-  (22, 'roberto.reyes@prueba.fcs', '$2b$12$feGR22S1AUhBEySU3WliEuDxbXNzSWVKY0h8WWYYmwx52r0W6uUsO', 'Roberto Reyes', 'USER', 'ACTIVE', '2026-05-01 00:00:00', '2026-05-01 00:00:00', NULL),
-  (23, 'claudia.pena@prueba.fcs', '$2b$12$X1hgM/GIV8YFP0XGV8V0g.lzwnJUgPxjpvLi.nX9Q9zf6mjg1EA02', 'Claudia Peña', 'USER', 'ACTIVE', '2026-05-01 00:00:00', '2026-05-01 00:00:00', NULL),
-  (24, 'fernando.ortiz@prueba.fcs', '$2b$12$U9WIqtiM4/nBi4uf38xm1OyjFak0zx/tDM0/fEvARBIjGjCx/M37.', 'Fernando Ortiz', 'USER', 'ACTIVE', '2026-05-01 00:00:00', '2026-05-01 00:00:00', NULL),
-  (25, 'patricia.navarro@prueba.fcs', '$2b$12$qTGcI5pSYFYDpEhPKUV2N.LGJAZ4Ual3dQXbxrfdgUh.VQMT8iwX6', 'Patricia Navarro', 'USER', 'ACTIVE', '2026-05-01 00:00:00', '2026-05-01 00:00:00', NULL),
-  (26, 'mauricio.flores@prueba.fcs', '$2b$12$iJmkdBaoGG9pr.56r.85kOobiT6VL2tA3aqLBBtn8dIxWQ.wNGvuO', 'Mauricio Flores', 'USER', 'ACTIVE', '2026-05-01 00:00:00', '2026-05-01 00:00:00', NULL),
-  (27, 'carolina.jimenez@prueba.fcs', '$2b$12$wtx5URabZeZOgu7na7qFnefXSuyZFnMSn8igQ1vePO8IvG7zD2nR.', 'Carolina Jiménez', 'USER', 'ACTIVE', '2026-05-01 00:00:00', '2026-05-01 00:00:00', NULL),
-  (28, 'oscar.medina@prueba.fcs', '$2b$12$b0gddbzOPu2BbJb2IKtBzO1C3Lb0LiE5KuIaLhZ9I51gK4y1betKe', 'Oscar Medina', 'USER', 'ACTIVE', '2026-06-01 00:00:00', '2026-06-01 00:00:00', NULL),
-  (29, 'diana.paredes@prueba.fcs', '$2b$12$n2SP2tRuTCEZAtQ.dX2XDO05XxpGNrd5B1U4L8UD.sHrycp9Fgo7i', 'Diana Paredes', 'USER', 'ACTIVE', '2026-06-01 00:00:00', '2026-06-01 00:00:00', NULL),
-  (30, 'enrique.suarez@prueba.fcs', '$2b$12$8N5x9nKz9n690ez1XI.tL..68nzPCzlgWECu9rRtIkJFZQL5etMoy', 'Enrique Suárez', 'USER', 'ACTIVE', '2026-06-01 00:00:00', '2026-06-01 00:00:00', NULL),
-  (31, 'monica.vega@prueba.fcs', '$2b$12$DDtf.t7XfErwL75ZDwLd9OKOBHu/3ruJiWF.be7leXKxp1TzrgkCq', 'Mónica Vega', 'USER', 'ACTIVE', '2026-06-01 00:00:00', '2026-06-01 00:00:00', NULL),
-  (32, 'ricardo.campos@prueba.fcs', '$2b$12$.d1pMUm3uYsa/3lUEvG41evTCj4qmMQGfCqHmqn5qNaYCSJEeFZ6q', 'Ricardo Campos', 'USER', 'ACTIVE', '2026-06-01 00:00:00', '2026-06-01 00:00:00', NULL),
-  (33, 'laura.mendoza@prueba.fcs', '$2b$12$pXCggapb.xPFmua/MWUddOz57eUnTMNVcDDVuvKOq7uqg1Y4mIJrq', 'Laura Mendoza', 'USER', 'ACTIVE', '2026-06-01 00:00:00', '2026-06-01 00:00:00', NULL),
-  (34, 'arturo.rojas@prueba.fcs', '$2b$12$KxcHt3IouinpTKwu.ryy.OVdxhxrChgmIPXgn0fTpzsNvmJRBxTfS', 'Arturo Rojas', 'USER', 'ACTIVE', '2026-07-01 00:00:00', '2026-07-01 00:00:00', NULL),
-  (35, 'alejandra.delgado@prueba.fcs', '$2b$12$TdEAshR9sgB8uLcW/RyraOOozU25VQ.t62c7IOmbiA0/jKgropxN2', 'Alejandra Delgado', 'USER', 'ACTIVE', '2026-07-01 00:00:00', '2026-07-01 00:00:00', NULL),
-  (36, 'sergio.guerrero@prueba.fcs', '$2b$12$QPVj6zocj6wTMXNL/N1ahON6oQyu6U8utSR.b7q71fAiZ1J.m2HIy', 'Sergio Guerrero', 'USER', 'ACTIVE', '2026-07-01 00:00:00', '2026-07-01 00:00:00', NULL),
-  (37, 'natalie.cortes@prueba.fcs', '$2b$12$QXf3SPFBYwPOXqll9GtmrOZe417.PG1SjlPinclPbPjsSYtwWjo0u', 'Natalie Cortés', 'USER', 'ACTIVE', '2026-07-01 00:00:00', '2026-07-01 00:00:00', NULL),
-  (38, 'emilio.contreras@prueba.fcs', '$2b$12$NDreexuSxMqC7FQMZJNJH.FBg.oRj.VvD4aygs7fBLXOFxweXts3G', 'Emilio Contreras', 'USER', 'ACTIVE', '2026-07-01 00:00:00', '2026-07-01 00:00:00', NULL),
-  (39, 'beatriz.luna@prueba.fcs', '$2b$12$spuV5FO9LTudjk84vN4RDOjzA308SN9lNI02FITqRhaH0XW8U01Za', 'Beatriz Luna', 'USER', 'ACTIVE', '2026-07-01 00:00:00', '2026-07-01 00:00:00', NULL),
-  (40, 'pablo.salazar@prueba.fcs', '$2b$12$7TAXfKJBdK3ATX7/XhDfr.ruLmGkQ2pK4kdg//E5ZLO4WNaDcwu2S', 'Pablo Salazar', 'USER', 'ACTIVE', '2026-08-01 00:00:00', '2026-08-01 00:00:00', NULL),
-  (41, 'cristina.herrera@prueba.fcs', '$2b$12$j3sEVw81m0M2jo1V2Z070es/hzgBiNlddBM7MhcjgfPLTbQnB34lu', 'Cristina Herrera', 'USER', 'ACTIVE', '2026-08-01 00:00:00', '2026-08-01 00:00:00', NULL),
-  (42, 'tomas.aguilar@prueba.fcs', '$2b$12$EdXy4lyC024F08YPnb.22.R.Nq9hV99VL8ocw.aUMQpCWHxi6XyuO', 'Tomás Aguilar', 'USER', 'ACTIVE', '2026-08-01 00:00:00', '2026-08-01 00:00:00', NULL),
-  (43, 'jessica.miranda@prueba.fcs', '$2b$12$7k75St1oN09.gjdwnnALf.jMZJoExvZo86MelewnEWZqqZpGTnMPC', 'Jessica Miranda', 'USER', 'ACTIVE', '2026-08-01 00:00:00', '2026-08-01 00:00:00', NULL),
-  (44, 'adrian.castillo@prueba.fcs', '$2b$12$PFV.4E4OicotvRzpCE2hw.PpNSAptDnsawyhMoEmaA2BugDDoeh6i', 'Adrián Castillo', 'USER', 'ACTIVE', '2026-08-01 00:00:00', '2026-08-01 00:00:00', NULL);
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('2', '2026-01-01 00:00:00.000000', NULL, 'carlos.garcia@prueba.fcs', 'Carlos García', '$2a$10$IECYVyXPiZNsLsKaLbTUA.LCVOf5PolrpMsNSgWuhauiw1bZxiVC2', 'USER', 'ACTIVE', '2026-01-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('3', '2026-01-01 00:00:00.000000', NULL, 'maria.lopez@prueba.fcs', 'María López', '$2a$10$9HbEqi2S34pU/QWI5JR3k.wSjd8IMbRh8/9aQ4bz/YDXVDyQM9LIW', 'USER', 'ACTIVE', '2026-01-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('4', '2026-01-01 00:00:00.000000', NULL, 'juan.martinez@prueba.fcs', 'Juan Martínez', '$2a$10$vCoIpe5zaRUrz9CX0N4OAOOGdriVs2I3JJBFmNPonGt34Of9JBOhq', 'USER', 'ACTIVE', '2026-01-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('5', '2026-01-01 00:00:00.000000', NULL, 'ana.rodriguez@prueba.fcs', 'Ana Rodríguez', '$2a$10$.qwzyeJYk0CvHUUSN/x0POAMoIensyZ26bZ/WJRzVAk9CriE3FB1C', 'USER', 'ACTIVE', '2026-01-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('6', '2026-02-01 00:00:00.000000', NULL, 'pedro.sanchez@prueba.fcs', 'Pedro Sánchez', '$2a$10$aww/8ilXcfh5YIXUYIxl5uyuB8wA4giYcHZBvUpit1sx/roOU3NzG', 'USER', 'ACTIVE', '2026-02-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('7', '2026-02-01 00:00:00.000000', NULL, 'laura.fernandez@prueba.fcs', 'Laura Fernández', '$2a$10$580Oop8Iywi/T1SGFTqqrOtG5dR7nr7/PfnYOGoMIDDAlGc/3wB0i', 'USER', 'ACTIVE', '2026-02-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('8', '2026-02-01 00:00:00.000000', NULL, 'diego.torres@prueba.fcs', 'Diego Torres', '$2a$10$971FAC8N.6YJtO/LtAqNd.ytRPdSSwLNt5GBcomRRuLgAdmZjLEcy', 'USER', 'ACTIVE', '2026-02-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('9', '2026-02-01 00:00:00.000000', NULL, 'sofia.diaz@prueba.fcs', 'Sofía Díaz', '$2a$10$JUhWZYBN9cZoxLAD0z.9Aeq3xsBSN0heQa.82GbI2GCYXeTstLZRa', 'USER', 'ACTIVE', '2026-02-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('10', '2026-03-01 00:00:00.000000', NULL, 'andres.ruiz@prueba.fcs', 'Andrés Ruiz', '$2a$10$GHTdVoQKy0y/xxW8ed.QgOCHCzvd3.mSLxRMJQT5ApHteW4OtUsOq', 'USER', 'ACTIVE', '2026-03-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('11', '2026-03-01 00:00:00.000000', NULL, 'valentina.morales@prueba.fcs', 'Valentina Morales', '$2a$10$SscQ.IeTsdweyHhZ6jSQ8um2hhNq3h6Xb248H725tSNgM8GKBiQdK', 'USER', 'ACTIVE', '2026-03-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('12', '2026-03-01 00:00:00.000000', NULL, 'martin.castro@prueba.fcs', 'Martín Castro', '$2a$10$8nt.8y9.qJW1L/pDV3C1UO8qZb4CDGAkXhGy2bLuWvv4UQTuGjnSy', 'USER', 'ACTIVE', '2026-03-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('13', '2026-03-01 00:00:00.000000', NULL, 'camila.vargas@prueba.fcs', 'Camila Vargas', '$2a$10$1aRbY.K5sU.0TkPFoxqvueX1T1hv5Tg8oSU3xI8NOtLi5FgNgweMi', 'USER', 'ACTIVE', '2026-03-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('14', '2026-03-01 00:00:00.000000', NULL, 'lucas.herrera@prueba.fcs', 'Lucas Herrera', '$2a$10$CTNrpLUDdQCWDGgNfJ7p2Oml5HZ1nNe5sYOX07JIFpUvB45fh0cCi', 'USER', 'ACTIVE', '2026-03-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('15', '2026-04-01 00:00:00.000000', NULL, 'isabella.moreno@prueba.fcs', 'Isabella Moreno', '$2a$10$fR/TRgokcWWrtdNd.AB17OENl0BMsxTCMmLc3kgLRnBq4n9wQOYOu', 'USER', 'ACTIVE', '2026-04-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('16', '2026-04-01 00:00:00.000000', NULL, 'felipe.rios@prueba.fcs', 'Felipe Ríos', '$2a$10$anC1a9LyuD.T51ACClh9Te.wosGvOErIDs4OqPIXput90T2TmL3/.', 'USER', 'ACTIVE', '2026-04-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('17', '2026-04-01 00:00:00.000000', NULL, 'gabriela.munoz@prueba.fcs', 'Gabriela Muñoz', '$2a$10$XyklJ6TOApg9yTAxkT2hZO/b52YsOAkxVPccniwlz1WUZdJDD4sBa', 'USER', 'ACTIVE', '2026-04-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('18', '2026-04-01 00:00:00.000000', NULL, 'nicolas.romero@prueba.fcs', 'Nicolás Romero', '$2a$10$55pSVtYVdsDLFTiG9Y/lCe5656nLGKKdKTxPONjvP3JQIBXhfP/am', 'USER', 'ACTIVE', '2026-04-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('19', '2026-04-01 00:00:00.000000', NULL, 'paula.alvarez@prueba.fcs', 'Paula Álvarez', '$2a$10$i09qWg/1YEsXPiR9lav7HuJEC7G8PVCbJwzX1u/5KJfLF0TZI10dm', 'USER', 'ACTIVE', '2026-04-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('20', '2026-05-01 00:00:00.000000', NULL, 'alejandro.silva@prueba.fcs', 'Alejandro Silva', '$2a$10$Wb9IyrDC4LndPUpOjD6Xg.d2ZFOtHtxG1Pu/gIGX2b.xqA52ZYZcy', 'USER', 'ACTIVE', '2026-05-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('21', '2026-05-01 00:00:00.000000', NULL, 'daniela.cruz@prueba.fcs', 'Daniela Cruz', '$2a$10$YJ7BaIc5qPZ426NyqAy1UezYz6JyHAnqNpi46NW./wd7OT02ETTdi', 'USER', 'ACTIVE', '2026-05-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('22', '2026-05-01 00:00:00.000000', NULL, 'roberto.reyes@prueba.fcs', 'Roberto Reyes', '$2a$10$UUsvNreEbgFggeZcG13ezO2ymxTvlEewnt3l1.cMP/VGsn6TARbC2', 'USER', 'ACTIVE', '2026-05-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('23', '2026-05-01 00:00:00.000000', NULL, 'claudia.pena@prueba.fcs', 'Claudia Peña', '$2a$10$lpq6nchc5YymvwhIEMXW6ugTVphTcAfSF9tILbKfmkHcSReDtSiFy', 'USER', 'ACTIVE', '2026-05-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('24', '2026-05-01 00:00:00.000000', NULL, 'fernando.ortiz@prueba.fcs', 'Fernando Ortiz', '$2a$10$1ghRyy8pa3X5/P/NAxV81.HcA5ym6SImYcJohAy1KuB0pGGHxOE52', 'USER', 'ACTIVE', '2026-05-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('25', '2026-05-01 00:00:00.000000', NULL, 'patricia.navarro@prueba.fcs', 'Patricia Navarro', '$2a$10$wzDkpyLSh8CKOJDro0RX8OHsiE1exvZmKDcE0tK3PJoODmSP.mTZS', 'USER', 'ACTIVE', '2026-05-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('26', '2026-06-01 00:00:00.000000', NULL, 'mauricio.flores@prueba.fcs', 'Mauricio Flores', '$2a$10$ifiEKd3oGqocN8uLfMlK0ORy2sPEzFuIXFEIc4aMX/qJEP0tcgL/2', 'USER', 'ACTIVE', '2026-06-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('27', '2026-06-01 00:00:00.000000', NULL, 'carolina.jimenez@prueba.fcs', 'Carolina Jiménez', '$2a$10$hNFTs73CCjnEbgXw.Mczrem0uMyoXNXMnyi3b.jSF3rsAwJfbm3RW', 'USER', 'ACTIVE', '2026-06-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('28', '2026-06-01 00:00:00.000000', NULL, 'oscar.medina@prueba.fcs', 'Oscar Medina', '$2a$10$fI4cX8mIdiXNogaoBR1rwe/54j91sfdPpkwZDk9d16pBTkIgtH9/C', 'USER', 'ACTIVE', '2026-06-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('29', '2026-06-01 00:00:00.000000', NULL, 'diana.paredes@prueba.fcs', 'Diana Paredes', '$2a$10$zxndkVMCWuVRhBCqJryQjukHjHqNALBFWdD1SqEH6FrSyDGX1xgie', 'USER', 'ACTIVE', '2026-06-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('30', '2026-06-01 00:00:00.000000', NULL, 'enrique.suarez@prueba.fcs', 'Enrique Suárez', '$2a$10$lWiS37Jpd.7S1B7zBKeeqOLY6KKFdZ/YRCW7YldEikESajNDElOAy', 'USER', 'ACTIVE', '2026-06-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('31', '2026-06-01 00:00:00.000000', NULL, 'monica.vega@prueba.fcs', 'Mónica Vega', '$2a$10$JJ7eJIw/Lm1FKUcGr3me..5aRWMLBn.EyOI546bf1z4VrFe1EXeyC', 'USER', 'ACTIVE', '2026-06-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('32', '2026-07-01 00:00:00.000000', NULL, 'ricardo.campos@prueba.fcs', 'Ricardo Campos', '$2a$10$La5Spe/gzunAmIIwHCqT7e.srcQamstlr5avfi2d1N7ZMdvrRruiO', 'USER', 'ACTIVE', '2026-07-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('33', '2026-07-01 00:00:00.000000', NULL, 'laura.mendoza@prueba.fcs', 'Laura Mendoza', '$2a$10$lQF041MzTSbjCqlMBaK5PegEkY7toUgI0xltwAhYn3v9uKBmShX7K', 'USER', 'ACTIVE', '2026-07-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('34', '2026-07-01 00:00:00.000000', NULL, 'arturo.rojas@prueba.fcs', 'Arturo Rojas', '$2a$10$LVEmZiyfB/T3/ySLFmbynOSISlmrdkxFfKJ5ZHyMQEAHixNRW2xue', 'USER', 'ACTIVE', '2026-07-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('35', '2026-07-01 00:00:00.000000', NULL, 'alejandra.delgado@prueba.fcs', 'Alejandra Delgado', '$2a$10$pqGHZL5UDVApfNe2NZahrO8aKPpqTmoL7x3ZU1ahu33bPKHs3QZ1K', 'USER', 'ACTIVE', '2026-07-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('36', '2026-07-01 00:00:00.000000', NULL, 'sergio.guerrero@prueba.fcs', 'Sergio Guerrero', '$2a$10$PXF2LUuVHHIAHGrkz9xotesPXcBNXeuE3g5tfwrnUmotYNKNcurrC', 'USER', 'ACTIVE', '2026-07-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('37', '2026-07-01 00:00:00.000000', NULL, 'natalie.cortes@prueba.fcs', 'Natalie Cortés', '$2a$10$UVFT3fXt8xO4KXxVwjJPpuLNFcmxC8Us9x6mzFTEfaI1ntCogeVD2', 'USER', 'ACTIVE', '2026-07-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('38', '2026-07-01 00:00:00.000000', NULL, 'emilio.contreras@prueba.fcs', 'Emilio Contreras', '$2a$10$tE.ZyL5DV5PPACjizezWe.6DTDjBZhyE6bv924whMFW1Vwdt.4LvO', 'USER', 'ACTIVE', '2026-07-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('39', '2026-08-01 00:00:00.000000', NULL, 'beatriz.luna@prueba.fcs', 'Beatriz Luna', '$2a$10$TnxNtyUazPYLe5vFcmGQK.Pzui9j38A3aiyWLSBHFPAYVAz3yQ8Xi', 'USER', 'ACTIVE', '2026-08-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('40', '2026-08-01 00:00:00.000000', NULL, 'pablo.salazar@prueba.fcs', 'Pablo Salazar', '$2a$10$8DEteCPyVeUjvvE6.miSK.DAPygfN4l1OVGHNV0tywY28QSVC3zW.', 'USER', 'ACTIVE', '2026-08-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('41', '2026-08-01 00:00:00.000000', NULL, 'cristina.herrera@prueba.fcs', 'Cristina Herrera', '$2a$10$ATUBIj.3GcleAu2.9PGKwuKQpjSWc21Vlefcz4xxt4.FBbmVLA1My', 'USER', 'ACTIVE', '2026-08-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('42', '2026-08-01 00:00:00.000000', NULL, 'tomas.aguilar@prueba.fcs', 'Tomás Aguilar', '$2a$10$N3n0DI6MiHbgE9ix7ybBjufQiy1L05XkvEhyi5Bky8E8YL6g9lu3q', 'USER', 'ACTIVE', '2026-08-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('43', '2026-08-01 00:00:00.000000', NULL, 'jessica.miranda@prueba.fcs', 'Jessica Miranda', '$2a$10$7JlYHUn8x1pLHdXxjfxvpuwv8urRTyujALqKzRXPfo9lPQSe3C58q', 'USER', 'ACTIVE', '2026-08-01 00:00:00.000000');
+INSERT INTO `users` (`id`, `created_at`, `deleted_at`, `email`, `name`, `password_hash`, `role`, `status`, `updated_at`) VALUES ('44', '2026-08-01 00:00:00.000000', NULL, 'adrian.castillo@prueba.fcs', 'Adrián Castillo', '$2a$10$59fyLSieuFHWsCTLfCFznOKef88poGV8NB4LfhOazUlddLcgjguWy', 'USER', 'ACTIVE', '2026-08-01 00:00:00.000000');
 
 -- ============================================================
 -- TRANSACTIONS
 -- ============================================================
 
-INSERT INTO transactions (id, user_id, category_id, subcategory_id, amount, description, transaction_date, created_at, updated_at, deleted_at)
-VALUES
-  (1, 2, 1, 1, 912.54, 'Reembolso de gastos', '2026-01-04', '2026-01-05 09:43:47', '2026-01-05 09:43:47', NULL),
-  (2, 2, 2, 14, 492.87, 'Suscripción a streaming', '2026-01-11', '2026-01-11 09:13:14', '2026-01-11 09:13:14', NULL),
-  (3, 2, 3, 27, 42.47, 'Pedido a domicilio', '2026-01-16', '2026-01-19 11:28:37', '2026-01-19 11:28:37', NULL),
-  (4, 2, 2, 15, 228.76, 'Plan de telefonía móvil', '2026-01-20', '2026-01-22 10:13:48', '2026-01-22 10:13:48', NULL),
-  (5, 2, 3, 23, 45.75, 'Compra de frutas y verduras', '2026-01-18', '2026-01-18 15:34:07', '2026-01-18 15:34:07', NULL),
-  (6, 2, 3, 28, 9.15, 'Café con compañeros', '2026-01-21', '2026-01-22 09:02:42', '2026-01-22 09:02:42', NULL),
-  (7, 2, 1, 1, 1453.53, 'Regalo en efectivo', '2026-02-06', '2026-02-07 13:22:13', '2026-02-07 13:22:13', NULL),
-  (8, 2, 1, 1, 1904.98, 'Bonificación por desempeño', '2026-02-02', '2026-02-03 16:46:15', '2026-02-03 16:46:15', NULL),
-  (9, 2, 1, 1, 904.92, 'Cobro mensual del salario', '2026-02-09', '2026-02-10 18:20:53', '2026-02-10 18:20:53', NULL),
-  (10, 2, 1, 1, 548.15, 'Pensión mensual', '2026-02-06', '2026-02-09 12:04:13', '2026-02-09 12:04:13', NULL),
-  (11, 2, 2, 18, 209.47, 'Servicio de internet', '2026-02-25', '2026-02-28 18:29:09', '2026-02-28 18:29:09', NULL),
-  (12, 2, 3, 24, 145.91, 'Compra de frutas y verduras', '2026-02-27', '2026-03-31 23:59:59', '2026-03-31 23:59:59', NULL),
-  (13, 2, 2, 21, 420.14, 'Cuota de seguro del hogar', '2026-02-11', '2026-02-11 10:40:10', '2026-02-11 10:40:10', NULL),
-  (14, 2, 8, 58, 180.79, 'Artículo electrónico', '2026-02-24', '2026-02-26 16:55:00', '2026-02-26 16:55:00', NULL),
-  (15, 2, 12, 83, 226.51, 'Regalo para amigo', '2026-02-20', '2026-02-20 12:27:10', '2026-02-20 12:27:10', NULL),
-  (16, 2, 3, 27, 388.12, 'Café con compañeros', '2026-02-26', '2026-02-26 18:19:53', '2026-02-26 18:19:53', NULL),
-  (17, 2, 1, 9, 1916.30, 'Cobro mensual del salario', '2026-03-09', '2026-03-09 17:20:31', '2026-03-09 17:20:31', NULL),
-  (18, 2, 1, 1, 1044.47, 'Pensión mensual', '2026-03-05', '2026-03-06 08:15:56', '2026-03-06 08:15:56', NULL),
-  (19, 2, 1, 2, 1517.43, 'Reembolso de gastos', '2026-03-02', '2026-03-03 10:42:30', '2026-03-03 10:42:30', NULL),
-  (20, 2, 2, 15, 248.79, 'Factura de gas', '2026-03-29', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (21, 2, 3, 28, 176.51, 'Cena especial', '2026-03-31', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (22, 2, 2, 14, 303.56, 'Servicio de electricidad', '2026-03-28', '2026-03-29 17:14:00', '2026-03-29 17:14:00', NULL),
-  (23, 2, 2, 16, 100.55, 'Servicio de internet', '2026-03-11', '2026-03-13 09:32:15', '2026-03-13 09:32:15', NULL),
-  (24, 2, 5, 41, 44.03, 'Reparación de grifería', '2026-03-28', '2026-03-31 11:50:30', '2026-03-31 11:50:30', NULL),
-  (25, 2, 2, 19, 315.72, 'Servicio de electricidad', '2026-03-23', '2026-03-26 08:43:41', '2026-03-26 08:43:41', NULL),
-  (26, 2, 3, 23, 157.06, 'Cena especial', '2026-03-24', '2026-03-25 14:11:17', '2026-03-25 14:11:17', NULL),
-  (27, 2, 2, 20, 656.02, 'Pago de alquiler mensual', '2026-03-27', '2026-03-27 08:41:34', '2026-03-27 08:41:34', NULL),
-  (28, 2, 1, 1, 1228.46, 'Cobro mensual del salario', '2026-04-04', '2026-04-07 08:10:24', '2026-04-07 08:10:24', NULL),
-  (29, 2, 1, 5, 1867.73, 'Reembolso de gastos', '2026-04-08', '2026-04-10 14:44:46', '2026-04-10 14:44:46', NULL),
-  (30, 2, 2, 20, 166.10, 'Suscripción a streaming', '2026-04-19', '2026-04-20 08:37:47', '2026-04-20 08:37:47', NULL),
-  (31, 2, 3, 23, 117.15, 'Almuerzo rápido', '2026-04-28', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (32, 2, 2, 15, 101.39, 'Cuota de comunidad', '2026-04-12', '2026-04-13 14:07:56', '2026-04-13 14:07:56', NULL),
-  (33, 2, 2, 22, 111.49, 'Plan de telefonía móvil', '2026-04-28', '2026-04-30 12:13:42', '2026-04-30 12:13:42', NULL),
-  (34, 2, 3, 24, 345.69, 'Cena en restaurante', '2026-04-19', '2026-04-22 13:59:48', '2026-04-22 13:59:48', NULL),
-  (35, 2, 2, 14, 453.23, 'Servicio de electricidad', '2026-04-26', '2026-04-28 10:59:22', '2026-04-28 10:59:22', NULL),
-  (36, 2, 7, 52, 51.54, 'Examen de certificación profesional', '2026-04-27', '2026-04-29 17:51:41', '2026-04-29 17:51:41', NULL),
-  (37, 2, 3, 28, 78.69, 'Almuerzo rápido', '2026-04-14', '2026-04-16 09:56:06', '2026-04-16 09:56:06', NULL),
-  (38, 2, 1, 12, 817.18, 'Cobro mensual del salario', '2026-05-05', '2026-05-08 12:57:58', '2026-05-08 12:57:58', NULL),
-  (39, 2, 1, 1, 1135.36, 'Bonificación por desempeño', '2026-05-05', '2026-05-05 08:21:49', '2026-05-05 08:21:49', NULL),
-  (40, 2, 1, 5, 490.85, 'Ingreso por servicios profesionales', '2026-05-08', '2026-05-11 16:00:07', '2026-05-11 16:00:07', NULL),
-  (41, 2, 2, 15, 459.19, 'Servicio de internet', '2026-05-21', '2026-05-22 14:08:02', '2026-05-22 14:08:02', NULL),
-  (42, 2, 3, 25, 452.52, 'Cena en restaurante', '2026-05-11', '2026-05-13 11:43:15', '2026-05-13 11:43:15', NULL),
-  (43, 2, 3, 27, 382.25, 'Compra semanal del supermercado', '2026-05-17', '2026-05-18 10:56:26', '2026-05-18 10:56:26', NULL),
-  (44, 2, 3, 26, 407.05, 'Cena en restaurante', '2026-05-17', '2026-05-19 10:50:44', '2026-05-19 10:50:44', NULL),
-  (45, 2, 2, 20, 216.83, 'Factura de gas', '2026-05-24', '2026-05-26 12:52:50', '2026-05-26 12:52:50', NULL),
-  (46, 2, 2, 19, 224.97, 'Cuota de seguro del hogar', '2026-05-12', '2026-05-14 13:41:32', '2026-05-14 13:41:32', NULL),
-  (47, 2, 10, 70, 44.99, 'Gasto para los hijos', '2026-05-13', '2026-05-15 10:37:16', '2026-05-15 10:37:16', NULL),
-  (48, 2, 3, 25, 9.00, 'Compra de frutas y verduras', '2026-05-20', '2026-05-23 17:32:07', '2026-05-23 17:32:07', NULL),
-  (49, 2, 1, 1, 1888.36, 'Regalo en efectivo', '2026-06-09', '2026-06-10 13:27:04', '2026-06-10 13:27:04', NULL),
-  (50, 2, 1, 10, 765.05, 'Rendimiento de inversiones', '2026-06-02', '2026-06-04 16:19:42', '2026-06-04 16:19:42', NULL),
-  (51, 2, 1, 1, 1545.81, 'Rendimiento de inversiones', '2026-06-09', '2026-06-10 11:26:42', '2026-06-10 11:26:42', NULL),
-  (52, 2, 1, 3, 1307.93, 'Trabajo independiente', '2026-06-05', '2026-06-08 16:53:00', '2026-06-08 16:53:00', NULL),
-  (53, 2, 2, 17, 207.64, 'Factura de gas', '2026-06-28', '2026-06-30 15:28:28', '2026-06-30 15:28:28', NULL),
-  (54, 2, 3, 27, 252.40, 'Snacks y bebidas varias', '2026-06-15', '2026-06-15 12:32:42', '2026-06-15 12:32:42', NULL),
-  (55, 2, 2, 17, 218.48, 'Pago de impuestos anuales', '2026-06-16', '2026-06-17 08:02:15', '2026-06-17 08:02:15', NULL),
-  (56, 2, 3, 26, 224.79, 'Café con compañeros', '2026-06-30', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (57, 2, 2, 14, 633.82, 'Suscripción a streaming', '2026-06-17', '2026-06-18 16:29:03', '2026-06-18 16:29:03', NULL),
-  (58, 2, 2, 20, 150.00, 'Suscripción a streaming', '2026-06-24', '2026-06-26 15:39:52', '2026-06-26 15:39:52', NULL),
-  (59, 2, 1, 1, 738.74, 'Regalo en efectivo', '2026-07-08', '2026-07-11 12:48:15', '2026-07-11 12:48:15', NULL),
-  (60, 2, 1, 1, 1666.51, 'Comisión por ventas', '2026-07-08', '2026-07-09 12:28:04', '2026-07-09 12:28:04', NULL),
-  (61, 2, 1, 1, 907.57, 'Rendimiento de inversiones', '2026-07-06', '2026-07-06 10:09:14', '2026-07-06 10:09:14', NULL),
-  (62, 2, 1, 12, 585.12, 'Rendimiento de inversiones', '2026-07-07', '2026-07-10 13:34:29', '2026-07-10 13:34:29', NULL),
-  (63, 2, 1, 1, 1749.34, 'Cobro mensual del salario', '2026-07-07', '2026-07-07 17:24:30', '2026-07-07 17:24:30', NULL),
-  (64, 2, 2, 18, 273.96, 'Suscripción a streaming', '2026-07-22', '2026-07-25 16:47:47', '2026-07-25 16:47:47', NULL),
-  (65, 2, 3, 27, 451.97, 'Compra semanal del supermercado', '2026-07-25', '2026-07-26 12:27:31', '2026-07-26 12:27:31', NULL),
-  (66, 2, 3, 28, 107.57, 'Compra de frutas y verduras', '2026-07-24', '2026-07-25 17:34:01', '2026-07-25 17:34:01', NULL),
-  (67, 2, 12, 81, 29.76, 'Regalo para amigo', '2026-07-23', '2026-07-24 15:11:03', '2026-07-24 15:11:03', NULL),
-  (68, 2, 2, 20, 295.13, 'Servicio de electricidad', '2026-07-22', '2026-07-24 14:16:53', '2026-07-24 14:16:53', NULL),
-  (69, 2, 13, 84, 299.97, 'Gasto de emergencia', '2026-07-21', '2026-07-22 18:04:49', '2026-07-22 18:04:49', NULL),
-  (70, 2, 5, 38, 252.57, 'Compra de productos de limpieza', '2026-07-29', '2026-07-30 11:08:30', '2026-07-30 11:08:30', NULL),
-  (71, 2, 2, 20, 574.60, 'Servicio de electricidad', '2026-07-21', '2026-07-22 17:38:47', '2026-07-22 17:38:47', NULL),
-  (72, 2, 1, 1, 538.52, 'Ingreso por servicios profesionales', '2026-08-05', '2026-08-08 14:45:12', '2026-08-08 14:45:12', NULL),
-  (73, 2, 1, 11, 637.13, 'Ingreso por alquiler de propiedad', '2026-08-05', '2026-08-05 17:50:02', '2026-08-05 17:50:02', NULL),
-  (74, 2, 1, 11, 867.03, 'Venta de artículos personales', '2026-08-09', '2026-08-11 08:54:26', '2026-08-11 08:54:26', NULL),
-  (75, 2, 2, 14, 375.14, 'Suscripción a streaming', '2026-08-21', '2026-08-24 10:27:11', '2026-08-24 10:27:11', NULL),
-  (76, 2, 3, 28, 156.94, 'Pedido a domicilio', '2026-08-27', '2026-08-30 15:27:52', '2026-08-30 15:27:52', NULL),
-  (77, 2, 2, 14, 259.20, 'Cuota de seguro del hogar', '2026-08-24', '2026-08-25 15:36:39', '2026-08-25 15:36:39', NULL),
-  (78, 2, 3, 25, 115.46, 'Pedido a domicilio', '2026-08-16', '2026-08-18 12:21:17', '2026-08-18 12:21:17', NULL),
-  (79, 2, 10, 69, 30.26, 'Alimentación de mascota', '2026-08-23', '2026-08-26 16:48:15', '2026-08-26 16:48:15', NULL),
-  (80, 2, 13, 87, 137.21, 'Gasto relacionado con trabajo', '2026-08-10', '2026-08-10 12:14:25', '2026-08-10 12:14:25', NULL),
-  (81, 2, 3, 26, 290.13, 'Cena especial', '2026-08-21', '2026-08-24 16:21:22', '2026-08-24 16:21:22', NULL),
-  (82, 2, 3, 24, 86.71, 'Almuerzo rápido', '2026-08-16', '2026-08-18 09:47:34', '2026-08-18 09:47:34', NULL),
-  (83, 3, 1, 5, 1504.25, 'Trabajo independiente', '2026-01-09', '2026-01-11 09:53:12', '2026-01-11 09:53:12', NULL),
-  (84, 3, 1, 1, 769.16, 'Reembolso de gastos', '2026-01-01', '2026-01-02 12:02:03', '2026-01-02 12:02:03', NULL),
-  (85, 3, 2, 17, 573.06, 'Cuota de comunidad', '2026-01-14', '2026-01-17 09:55:00', '2026-01-17 09:55:00', NULL),
-  (86, 3, 3, 25, 250.62, 'Cena especial', '2026-01-24', '2026-01-26 10:03:16', '2026-01-26 10:03:16', NULL),
-  (87, 3, 2, 19, 418.81, 'Cuota de comunidad', '2026-01-28', '2026-01-28 10:09:51', '2026-01-28 10:09:51', NULL),
-  (88, 3, 3, 24, 85.67, 'Cena especial', '2026-01-23', '2026-01-24 16:24:28', '2026-01-24 16:24:28', NULL),
-  (89, 3, 3, 25, 297.26, 'Pedido a domicilio', '2026-01-11', '2026-01-11 11:40:13', '2026-01-11 11:40:13', NULL),
-  (90, 3, 4, 32, 56.27, 'Mantenimiento preventivo del auto', '2026-01-12', '2026-01-13 08:26:28', '2026-01-13 08:26:28', NULL),
-  (91, 3, 6, 43, 73.29, 'Compra de medicamentos', '2026-01-19', '2026-01-22 09:43:14', '2026-01-22 09:43:14', NULL),
-  (92, 3, 12, 83, 200.05, 'Ayuda familiar directa', '2026-01-16', '2026-01-19 09:34:14', '2026-01-19 09:34:14', NULL),
-  (93, 3, 3, 24, 63.56, 'Pedido a domicilio', '2026-01-15', '2026-01-17 17:47:52', '2026-01-17 17:47:52', NULL),
-  (94, 3, 1, 1, 956.14, 'Venta de artículos personales', '2026-02-07', '2026-02-09 16:34:31', '2026-02-09 16:34:31', NULL),
-  (95, 3, 2, 14, 498.53, 'Servicio de electricidad', '2026-02-23', '2026-02-25 17:16:01', '2026-02-25 17:16:01', NULL),
-  (96, 3, 3, 24, 289.60, 'Compra semanal del supermercado', '2026-02-28', '2026-02-28 18:52:17', '2026-02-28 18:52:17', NULL),
-  (97, 3, 4, 36, 57.92, 'Mantenimiento preventivo del auto', '2026-02-24', '2026-02-26 10:37:27', '2026-02-26 10:37:27', NULL),
-  (98, 3, 3, 26, 11.58, 'Almuerzo rápido', '2026-02-20', '2026-02-22 18:06:54', '2026-02-22 18:06:54', NULL),
-  (99, 3, 1, 9, 266.05, 'Rendimiento de inversiones', '2026-03-02', '2026-03-04 12:20:07', '2026-03-04 12:20:07', NULL),
-  (100, 3, 1, 1, 1383.79, 'Reembolso de gastos', '2026-03-09', '2026-03-12 14:03:12', '2026-03-12 14:03:12', NULL),
-  (101, 3, 1, 1, 1634.66, 'Bonificación por desempeño', '2026-03-08', '2026-03-08 11:17:35', '2026-03-08 11:17:35', NULL),
-  (102, 3, 1, 8, 1785.52, 'Pago por horas extraordinarias', '2026-03-08', '2026-03-08 08:40:38', '2026-03-08 08:40:38', NULL),
-  (103, 3, 2, 15, 283.06, 'Servicio de electricidad', '2026-03-10', '2026-03-13 09:14:53', '2026-03-13 09:14:53', NULL),
-  (104, 3, 3, 26, 475.12, 'Pedido a domicilio', '2026-03-30', '2026-03-31 15:59:45', '2026-03-31 15:59:45', NULL),
-  (105, 3, 6, 46, 251.24, 'Pago de seguro médico', '2026-03-25', '2026-03-26 15:35:09', '2026-03-26 15:35:09', NULL),
-  (106, 3, 2, 14, 257.19, 'Pago de alquiler mensual', '2026-03-23', '2026-03-25 16:17:52', '2026-03-25 16:17:52', NULL),
-  (107, 3, 3, 27, 302.56, 'Cena especial', '2026-03-31', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (108, 3, 3, 26, 468.44, 'Compra de frutas y verduras', '2026-03-16', '2026-03-17 17:24:14', '2026-03-17 17:24:14', NULL),
-  (109, 3, 3, 28, 459.31, 'Almuerzo rápido', '2026-03-22', '2026-03-25 18:50:52', '2026-03-25 18:50:52', NULL),
-  (110, 3, 2, 15, 426.72, 'Pago de impuestos anuales', '2026-03-28', '2026-03-30 09:55:54', '2026-03-30 09:55:54', NULL),
-  (111, 3, 3, 23, 222.99, 'Pedido a domicilio', '2026-03-30', '2026-03-31 09:30:50', '2026-03-31 09:30:50', NULL),
-  (112, 3, 3, 28, 67.75, 'Cena especial', '2026-03-20', '2026-03-23 13:40:45', '2026-03-23 13:40:45', NULL),
-  (113, 3, 2, 22, 101.32, 'Cuota de seguro del hogar', '2026-03-30', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (114, 3, 1, 1, 1541.00, 'Trabajo independiente', '2026-04-01', '2026-04-01 13:50:03', '2026-04-01 13:50:03', NULL),
-  (115, 3, 2, 18, 331.13, 'Cuenta de agua', '2026-04-14', '2026-04-15 16:26:36', '2026-04-15 16:26:36', NULL),
-  (116, 3, 3, 24, 112.28, 'Cena especial', '2026-04-29', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (117, 3, 4, 32, 141.04, 'Pago de seguro vehicular', '2026-04-18', '2026-04-21 12:42:00', '2026-04-21 12:42:00', NULL),
-  (118, 3, 6, 48, 166.25, 'Cuota mensual del gimnasio', '2026-04-12', '2026-04-15 13:37:19', '2026-04-15 13:37:19', NULL),
-  (119, 3, 13, 86, 139.77, 'Gasto de emergencia', '2026-04-19', '2026-04-20 14:54:30', '2026-04-20 14:54:30', NULL),
-  (120, 3, 3, 27, 169.06, 'Compra semanal del supermercado', '2026-04-19', '2026-04-19 18:25:17', '2026-04-19 18:25:17', NULL),
-  (121, 3, 12, 83, 292.21, 'Donación a organización benéfica', '2026-04-29', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (122, 3, 7, 51, 28.13, 'Curso online especializado', '2026-04-29', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (123, 3, 12, 83, 5.62, 'Donación a organización benéfica', '2026-04-24', '2026-04-24 17:23:46', '2026-04-24 17:23:46', NULL),
-  (124, 3, 1, 1, 1123.25, 'Reembolso de gastos', '2026-05-04', '2026-05-05 16:56:23', '2026-05-05 16:56:23', NULL),
-  (125, 3, 1, 5, 1694.85, 'Ingreso por alquiler de propiedad', '2026-05-05', '2026-05-08 12:47:55', '2026-05-08 12:47:55', NULL),
-  (126, 3, 1, 8, 1933.21, 'Rendimiento de inversiones', '2026-05-03', '2026-05-04 18:46:43', '2026-05-04 18:46:43', NULL),
-  (127, 3, 2, 21, 324.33, 'Pago de impuestos anuales', '2026-05-22', '2026-05-22 12:34:07', '2026-05-22 12:34:07', NULL),
-  (128, 3, 3, 25, 346.23, 'Snacks y bebidas varias', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (129, 3, 2, 20, 68.77, 'Servicio de electricidad', '2026-05-27', '2026-05-29 17:14:41', '2026-05-29 17:14:41', NULL),
-  (130, 3, 9, 66, 94.15, 'Videojuego nuevo', '2026-05-23', '2026-05-23 10:02:02', '2026-05-23 10:02:02', NULL),
-  (131, 3, 3, 23, 261.26, 'Compra de frutas y verduras', '2026-05-22', '2026-05-25 13:42:47', '2026-05-25 13:42:47', NULL),
-  (132, 3, 13, 85, 266.20, 'Gasto reembolsable pendiente', '2026-05-30', '2026-05-30 15:39:26', '2026-05-30 15:39:26', NULL),
-  (133, 3, 3, 24, 238.39, 'Snacks y bebidas varias', '2026-05-17', '2026-05-19 09:43:23', '2026-05-19 09:43:23', NULL),
-  (134, 3, 1, 1, 1952.31, 'Regalo en efectivo', '2026-06-08', '2026-06-08 18:13:41', '2026-06-08 18:13:41', NULL),
-  (135, 3, 1, 1, 291.04, 'Pago por horas extraordinarias', '2026-06-06', '2026-06-07 10:50:36', '2026-06-07 10:50:36', NULL),
-  (136, 3, 1, 1, 1647.74, 'Bonificación por desempeño', '2026-06-04', '2026-06-05 11:21:49', '2026-06-05 11:21:49', NULL),
-  (137, 3, 1, 10, 205.10, 'Bonificación por desempeño', '2026-06-03', '2026-06-04 16:16:51', '2026-06-04 16:16:51', NULL),
-  (138, 3, 2, 14, 545.79, 'Factura de gas', '2026-06-10', '2026-06-11 08:22:50', '2026-06-11 08:22:50', NULL),
-  (139, 3, 3, 27, 182.17, 'Compra de frutas y verduras', '2026-06-15', '2026-06-17 08:08:47', '2026-06-17 08:08:47', NULL),
-  (140, 3, 13, 84, 145.49, 'Gasto de emergencia', '2026-06-21', '2026-06-21 15:32:14', '2026-06-21 15:32:14', NULL),
-  (141, 3, 12, 83, 93.98, 'Regalo para amigo', '2026-06-30', '2026-06-30 08:30:54', '2026-06-30 08:30:54', NULL),
-  (142, 3, 3, 26, 364.83, 'Almuerzo rápido', '2026-06-24', '2026-06-24 09:20:38', '2026-06-24 09:20:38', NULL),
-  (143, 3, 3, 27, 327.55, 'Pedido a domicilio', '2026-06-27', '2026-06-29 14:38:33', '2026-06-29 14:38:33', NULL),
-  (144, 3, 1, 2, 1627.57, 'Pago por horas extraordinarias', '2026-07-02', '2026-07-03 14:28:56', '2026-07-03 14:28:56', NULL),
-  (145, 3, 1, 1, 1741.13, 'Ingreso por alquiler de propiedad', '2026-07-07', '2026-07-10 09:20:27', '2026-07-10 09:20:27', NULL),
-  (146, 3, 1, 6, 1916.47, 'Ingreso por servicios profesionales', '2026-07-08', '2026-07-08 09:53:05', '2026-07-08 09:53:05', NULL),
-  (147, 3, 1, 1, 1616.88, 'Reembolso de gastos', '2026-07-06', '2026-07-07 16:03:37', '2026-07-07 16:03:37', NULL),
-  (148, 3, 1, 11, 420.02, 'Trabajo independiente', '2026-07-06', '2026-07-09 08:18:38', '2026-07-09 08:18:38', NULL),
-  (149, 3, 2, 18, 127.70, 'Factura de gas', '2026-07-26', '2026-07-27 10:42:30', '2026-07-27 10:42:30', NULL),
-  (150, 3, 3, 23, 266.88, 'Compra de frutas y verduras', '2026-07-13', '2026-07-15 17:14:51', '2026-07-15 17:14:51', NULL),
-  (151, 3, 11, 79, 204.12, 'Transferencia a tercero', '2026-07-27', '2026-07-27 17:59:42', '2026-07-27 17:59:42', NULL),
-  (152, 3, 2, 17, 577.02, 'Cuenta de agua', '2026-07-19', '2026-07-21 13:00:11', '2026-07-21 13:00:11', NULL),
-  (153, 3, 8, 55, 46.85, 'Par de zapatos', '2026-07-30', '2026-07-30 09:47:33', '2026-07-30 09:47:33', NULL),
-  (154, 3, 3, 25, 103.98, 'Compra semanal del supermercado', '2026-07-19', '2026-07-21 17:38:05', '2026-07-21 17:38:05', NULL),
-  (155, 3, 2, 14, 254.08, 'Cuota de seguro del hogar', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (156, 3, 2, 18, 372.44, 'Pago de alquiler mensual', '2026-07-19', '2026-07-22 16:42:19', '2026-07-22 16:42:19', NULL),
-  (157, 3, 1, 1, 213.84, 'Trabajo independiente', '2026-08-05', '2026-08-06 10:48:16', '2026-08-06 10:48:16', NULL),
-  (158, 3, 1, 1, 511.59, 'Comisión por ventas', '2026-08-07', '2026-08-08 10:24:34', '2026-08-08 10:24:34', NULL),
-  (159, 3, 1, 1, 1338.09, 'Cobro mensual del salario', '2026-08-06', '2026-08-06 14:55:47', '2026-08-06 14:55:47', NULL),
-  (160, 3, 1, 1, 1189.63, 'Rendimiento de inversiones', '2026-08-02', '2026-08-04 17:27:36', '2026-08-04 17:27:36', NULL),
-  (161, 3, 2, 19, 267.14, 'Cuota de comunidad', '2026-08-22', '2026-08-22 13:10:51', '2026-08-22 13:10:51', NULL),
-  (162, 3, 3, 26, 421.05, 'Café con compañeros', '2026-08-21', '2026-08-21 14:54:06', '2026-08-21 14:54:06', NULL),
-  (163, 3, 8, 59, 28.20, 'Par de zapatos', '2026-08-19', '2026-08-21 11:21:49', '2026-08-21 11:21:49', NULL),
-  (164, 3, 2, 21, 432.46, 'Factura de gas', '2026-08-21', '2026-08-23 18:52:09', '2026-08-23 18:52:09', NULL),
-  (165, 3, 3, 24, 111.54, 'Cena especial', '2026-08-14', '2026-08-14 10:49:40', '2026-08-14 10:49:40', NULL),
-  (166, 3, 11, 79, 137.43, 'Pago tarjeta de crédito', '2026-08-28', '2026-08-30 18:20:09', '2026-08-30 18:20:09', NULL),
-  (167, 3, 3, 28, 172.33, 'Pedido a domicilio', '2026-08-18', '2026-08-18 13:32:04', '2026-08-18 13:32:04', NULL),
-  (168, 4, 1, 1, 1053.11, 'Ingreso por servicios profesionales', '2026-01-05', '2026-01-05 18:55:54', '2026-01-05 18:55:54', NULL),
-  (169, 4, 1, 9, 892.07, 'Pensión mensual', '2026-01-10', '2026-01-10 15:58:51', '2026-01-10 15:58:51', NULL),
-  (170, 4, 1, 6, 1289.01, 'Ingreso por alquiler de propiedad', '2026-01-09', '2026-01-10 08:28:06', '2026-01-10 08:28:06', NULL),
-  (171, 4, 1, 2, 1108.19, 'Venta de artículos personales', '2026-01-03', '2026-01-03 11:45:28', '2026-01-03 11:45:28', NULL),
-  (172, 4, 2, 21, 442.06, 'Cuota de seguro del hogar', '2026-01-15', '2026-01-17 13:58:18', '2026-01-17 13:58:18', NULL),
-  (173, 4, 3, 26, 394.00, 'Cena en restaurante', '2026-01-31', '2026-01-31 18:41:21', '2026-01-31 18:41:21', NULL),
-  (174, 4, 3, 25, 148.44, 'Almuerzo rápido', '2026-01-31', '2026-02-28 23:59:59', '2026-02-28 23:59:59', NULL),
-  (175, 4, 6, 48, 211.05, 'Compra de medicamentos', '2026-01-22', '2026-01-23 17:45:05', '2026-01-23 17:45:05', NULL),
-  (176, 4, 12, 82, 244.89, 'Ayuda familiar directa', '2026-01-31', '2026-01-31 18:42:27', '2026-01-31 18:42:27', NULL),
-  (177, 4, 3, 25, 114.72, 'Almuerzo rápido', '2026-01-16', '2026-01-18 15:12:14', '2026-01-18 15:12:14', NULL),
-  (178, 4, 3, 23, 261.93, 'Almuerzo rápido', '2026-01-26', '2026-01-26 18:21:56', '2026-01-26 18:21:56', NULL),
-  (179, 4, 4, 31, 58.35, 'Traslado en taxi', '2026-01-29', '2026-01-30 15:02:26', '2026-01-30 15:02:26', NULL),
-  (180, 4, 5, 40, 185.13, 'Reparación de grifería', '2026-01-24', '2026-01-25 16:15:19', '2026-01-25 16:15:19', NULL),
-  (181, 4, 1, 10, 1971.99, 'Rendimiento de inversiones', '2026-02-08', '2026-02-10 14:32:33', '2026-02-10 14:32:33', NULL),
-  (182, 4, 1, 4, 1642.27, 'Ingreso por alquiler de propiedad', '2026-02-03', '2026-02-05 08:41:30', '2026-02-05 08:41:30', NULL),
-  (183, 4, 1, 2, 1480.52, 'Bonificación por desempeño', '2026-02-09', '2026-02-09 12:05:48', '2026-02-09 12:05:48', NULL),
-  (184, 4, 2, 17, 386.99, 'Factura de gas', '2026-02-26', '2026-02-27 14:05:58', '2026-02-27 14:05:58', NULL),
-  (185, 4, 3, 26, 445.78, 'Snacks y bebidas varias', '2026-02-10', '2026-02-13 08:25:32', '2026-02-13 08:25:32', NULL),
-  (186, 4, 2, 18, 218.40, 'Cuenta de agua', '2026-02-20', '2026-02-20 18:21:50', '2026-02-20 18:21:50', NULL),
-  (187, 4, 3, 26, 357.15, 'Cena en restaurante', '2026-02-14', '2026-02-17 15:39:00', '2026-02-17 15:39:00', NULL),
-  (188, 4, 2, 15, 461.60, 'Factura de gas', '2026-02-26', '2026-03-31 23:59:59', '2026-03-31 23:59:59', NULL),
-  (189, 4, 2, 16, 364.87, 'Pago de impuestos anuales', '2026-02-24', '2026-02-24 09:53:57', '2026-02-24 09:53:57', NULL),
-  (190, 4, 2, 21, 481.29, 'Plan de telefonía móvil', '2026-02-14', '2026-02-16 14:00:39', '2026-02-16 14:00:39', NULL),
-  (191, 4, 3, 24, 342.25, 'Compra semanal del supermercado', '2026-02-12', '2026-02-14 09:33:34', '2026-02-14 09:33:34', NULL),
-  (192, 4, 1, 1, 1080.32, 'Ingreso por servicios profesionales', '2026-03-06', '2026-03-08 08:22:50', '2026-03-08 08:22:50', NULL),
-  (193, 4, 1, 1, 1599.41, 'Reembolso de gastos', '2026-03-02', '2026-03-04 10:02:22', '2026-03-04 10:02:22', NULL),
-  (194, 4, 1, 1, 1464.19, 'Bonificación por desempeño', '2026-03-08', '2026-03-11 18:11:51', '2026-03-11 18:11:51', NULL),
-  (195, 4, 1, 1, 1664.29, 'Pago por horas extraordinarias', '2026-03-08', '2026-03-08 12:12:02', '2026-03-08 12:12:02', NULL),
-  (196, 4, 2, 13, 555.04, 'Factura de gas', '2026-03-22', '2026-03-25 12:02:48', '2026-03-25 12:02:48', NULL),
-  (197, 4, 3, 25, 197.78, 'Snacks y bebidas varias', '2026-03-11', '2026-03-13 12:07:51', '2026-03-13 12:07:51', NULL),
-  (198, 4, 8, 60, 134.72, 'Producto de cosmética', '2026-03-22', '2026-03-24 10:31:44', '2026-03-24 10:31:44', NULL),
-  (199, 4, 3, 23, 123.68, 'Cena en restaurante', '2026-03-29', '2026-03-30 16:18:20', '2026-03-30 16:18:20', NULL),
-  (200, 4, 3, 25, 239.58, 'Compra semanal del supermercado', '2026-03-23', '2026-03-24 15:22:28', '2026-03-24 15:22:28', NULL),
-  (201, 4, 7, 54, 299.45, 'Material escolar', '2026-03-18', '2026-03-18 09:42:40', '2026-03-18 09:42:40', NULL),
-  (202, 4, 2, 13, 703.79, 'Plan de telefonía móvil', '2026-03-24', '2026-03-24 10:04:15', '2026-03-24 10:04:15', NULL),
-  (203, 4, 2, 22, 165.08, 'Servicio de electricidad', '2026-03-24', '2026-03-26 13:28:48', '2026-03-26 13:28:48', NULL),
-  (204, 4, 10, 70, 122.42, 'Alimentación de mascota', '2026-03-30', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (205, 4, 1, 9, 411.97, 'Comisión por ventas', '2026-04-05', '2026-04-08 11:39:18', '2026-04-08 11:39:18', NULL),
-  (206, 4, 1, 8, 560.32, 'Comisión por ventas', '2026-04-03', '2026-04-03 15:11:57', '2026-04-03 15:11:57', NULL),
-  (207, 4, 1, 1, 631.69, 'Trabajo independiente', '2026-04-06', '2026-04-08 09:35:34', '2026-04-08 09:35:34', NULL),
-  (208, 4, 1, 3, 1481.26, 'Pago por horas extraordinarias', '2026-04-03', '2026-04-05 16:14:07', '2026-04-05 16:14:07', NULL),
-  (209, 4, 2, 15, 227.55, 'Plan de telefonía móvil', '2026-04-25', '2026-04-25 13:35:36', '2026-04-25 13:35:36', NULL),
-  (210, 4, 3, 26, 407.72, 'Cena en restaurante', '2026-04-27', '2026-04-28 17:56:05', '2026-04-28 17:56:05', NULL),
-  (211, 4, 3, 27, 223.07, 'Cena en restaurante', '2026-04-23', '2026-04-23 10:20:41', '2026-04-23 10:20:41', NULL),
-  (212, 4, 12, 83, 106.63, 'Donación a organización benéfica', '2026-04-27', '2026-04-28 10:27:32', '2026-04-28 10:27:32', NULL),
-  (213, 4, 10, 69, 94.72, 'Pago de colegio', '2026-04-15', '2026-04-17 11:22:33', '2026-04-17 11:22:33', NULL),
-  (214, 4, 6, 44, 192.34, 'Sesión de terapia', '2026-04-27', '2026-04-29 10:40:19', '2026-04-29 10:40:19', NULL),
-  (215, 4, 10, 73, 54.75, 'Alimentación de mascota', '2026-04-28', '2026-04-29 10:42:39', '2026-04-29 10:42:39', NULL),
-  (216, 4, 1, 10, 274.15, 'Pensión mensual', '2026-05-01', '2026-05-01 08:41:49', '2026-05-01 08:41:49', NULL),
-  (217, 4, 1, 1, 816.21, 'Venta de artículos personales', '2026-05-10', '2026-05-13 17:40:01', '2026-05-13 17:40:01', NULL),
-  (218, 4, 1, 9, 721.41, 'Regalo en efectivo', '2026-05-05', '2026-05-08 11:51:51', '2026-05-08 11:51:51', NULL),
-  (219, 4, 2, 19, 273.08, 'Pago de impuestos anuales', '2026-05-12', '2026-05-12 10:28:26', '2026-05-12 10:28:26', NULL),
-  (220, 4, 3, 26, 125.89, 'Snacks y bebidas varias', '2026-05-29', '2026-05-30 13:55:45', '2026-05-30 13:55:45', NULL),
-  (221, 4, 7, 53, 43.58, 'Pago de matrícula', '2026-05-21', '2026-05-21 13:15:29', '2026-05-21 13:15:29', NULL),
-  (222, 4, 2, 15, 122.61, 'Cuenta de agua', '2026-05-19', '2026-05-22 17:26:15', '2026-05-22 17:26:15', NULL),
-  (223, 4, 11, 80, 97.25, 'Pago cuota préstamo', '2026-05-15', '2026-05-18 16:29:31', '2026-05-18 16:29:31', NULL),
-  (224, 4, 3, 26, 267.56, 'Compra semanal del supermercado', '2026-05-17', '2026-05-18 17:22:03', '2026-05-18 17:22:03', NULL),
-  (225, 4, 3, 25, 282.24, 'Snacks y bebidas varias', '2026-05-13', '2026-05-16 10:56:16', '2026-05-16 10:56:16', NULL),
-  (226, 4, 7, 50, 123.17, 'Pago de matrícula', '2026-05-28', '2026-05-29 13:35:18', '2026-05-29 13:35:18', NULL),
-  (227, 4, 3, 27, 161.47, 'Snacks y bebidas varias', '2026-05-29', '2026-05-29 10:06:25', '2026-05-29 10:06:25', NULL),
-  (228, 4, 7, 54, 106.99, 'Examen de certificación profesional', '2026-05-14', '2026-05-15 17:32:25', '2026-05-15 17:32:25', NULL),
-  (229, 4, 2, 15, 21.40, 'Suscripción a streaming', '2026-05-25', '2026-05-28 10:38:57', '2026-05-28 10:38:57', NULL),
-  (230, 4, 1, 6, 492.50, 'Reembolso de gastos', '2026-06-10', '2026-06-12 17:21:32', '2026-06-12 17:21:32', NULL),
-  (231, 4, 1, 12, 1213.26, 'Ingreso por servicios profesionales', '2026-06-08', '2026-06-08 13:21:43', '2026-06-08 13:21:43', NULL),
-  (232, 4, 1, 10, 753.82, 'Pensión mensual', '2026-06-01', '2026-06-04 12:41:50', '2026-06-04 12:41:50', NULL),
-  (233, 4, 2, 22, 220.66, 'Cuota de comunidad', '2026-06-11', '2026-06-14 10:33:40', '2026-06-14 10:33:40', NULL),
-  (234, 4, 3, 26, 99.45, 'Café con compañeros', '2026-06-17', '2026-06-17 17:44:07', '2026-06-17 17:44:07', NULL),
-  (235, 4, 3, 26, 101.17, 'Cena especial', '2026-06-16', '2026-06-19 16:49:39', '2026-06-19 16:49:39', NULL),
-  (236, 4, 13, 84, 213.20, 'Gasto imprevisto del mes', '2026-06-26', '2026-06-27 16:20:42', '2026-06-27 16:20:42', NULL),
-  (237, 4, 7, 51, 140.60, 'Compra de libros de texto', '2026-06-27', '2026-06-29 16:22:43', '2026-06-29 16:22:43', NULL),
-  (238, 4, 5, 38, 87.31, 'Compra de productos de limpieza', '2026-06-19', '2026-06-20 12:49:18', '2026-06-20 12:49:18', NULL),
-  (239, 4, 3, 25, 255.51, 'Compra de frutas y verduras', '2026-06-27', '2026-06-29 12:07:36', '2026-06-29 12:07:36', NULL),
-  (240, 4, 8, 57, 286.61, 'Compra de ropa nueva', '2026-06-14', '2026-06-16 08:18:45', '2026-06-16 08:18:45', NULL),
-  (241, 4, 1, 12, 1062.34, 'Bonificación por desempeño', '2026-07-04', '2026-07-06 16:44:17', '2026-07-06 16:44:17', NULL),
-  (242, 4, 1, 1, 1611.34, 'Reembolso de gastos', '2026-07-04', '2026-07-05 08:42:57', '2026-07-05 08:42:57', NULL),
-  (243, 4, 1, 1, 849.25, 'Ingreso por servicios profesionales', '2026-07-02', '2026-07-05 13:45:30', '2026-07-05 13:45:30', NULL),
-  (244, 4, 1, 3, 209.33, 'Venta de artículos personales', '2026-07-09', '2026-07-10 14:41:59', '2026-07-10 14:41:59', NULL),
-  (245, 4, 2, 20, 537.90, 'Servicio de electricidad', '2026-07-19', '2026-07-21 12:41:03', '2026-07-21 12:41:03', NULL),
-  (246, 4, 3, 28, 299.84, 'Almuerzo rápido', '2026-07-27', '2026-07-27 10:26:56', '2026-07-27 10:26:56', NULL),
-  (247, 4, 2, 19, 640.97, 'Cuota de comunidad', '2026-07-15', '2026-07-17 08:00:19', '2026-07-17 08:00:19', NULL),
-  (248, 4, 7, 52, 139.03, 'Material escolar', '2026-07-30', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (249, 4, 2, 18, 171.87, 'Plan de telefonía móvil', '2026-07-24', '2026-07-26 10:00:47', '2026-07-26 10:00:47', NULL),
-  (250, 4, 11, 80, 228.40, 'Transferencia a cuenta de ahorro', '2026-07-15', '2026-07-18 14:32:20', '2026-07-18 14:32:20', NULL),
-  (251, 4, 3, 24, 491.39, 'Compra de frutas y verduras', '2026-07-25', '2026-07-27 11:00:16', '2026-07-27 11:00:16', NULL),
-  (252, 4, 3, 25, 171.91, 'Café con compañeros', '2026-07-28', '2026-07-28 12:41:23', '2026-07-28 12:41:23', NULL),
-  (253, 4, 1, 1, 739.58, 'Trabajo independiente', '2026-08-09', '2026-08-11 09:40:58', '2026-08-11 09:40:58', NULL),
-  (254, 4, 2, 18, 510.97, 'Cuota de comunidad', '2026-08-17', '2026-08-18 15:09:29', '2026-08-18 15:09:29', NULL),
-  (255, 4, 3, 25, 123.72, 'Café con compañeros', '2026-08-27', '2026-08-30 16:51:42', '2026-08-30 16:51:42', NULL),
-  (256, 4, 12, 83, 24.75, 'Donación a organización benéfica', '2026-08-12', '2026-08-15 16:45:23', '2026-08-15 16:45:23', NULL),
-  (257, 4, 3, 23, 5.00, 'Cena especial', '2026-08-16', '2026-08-17 10:20:54', '2026-08-17 10:20:54', NULL),
-  (258, 5, 1, 8, 1655.65, 'Pensión mensual', '2026-01-08', '2026-01-09 16:26:29', '2026-01-09 16:26:29', NULL),
-  (259, 5, 2, 13, 736.38, 'Pago de alquiler mensual', '2026-01-19', '2026-01-19 14:16:52', '2026-01-19 14:16:52', NULL),
-  (260, 5, 3, 28, 132.41, 'Cena en restaurante', '2026-01-12', '2026-01-12 14:22:44', '2026-01-12 14:22:44', NULL),
-  (261, 5, 2, 14, 497.04, 'Cuenta de agua', '2026-01-25', '2026-01-25 12:26:11', '2026-01-25 12:26:11', NULL),
-  (262, 5, 13, 87, 115.47, 'Gasto relacionado con trabajo', '2026-01-22', '2026-01-25 14:24:05', '2026-01-25 14:24:05', NULL),
-  (263, 5, 7, 50, 7.03, 'Curso online especializado', '2026-01-27', '2026-01-30 16:08:46', '2026-01-30 16:08:46', NULL),
-  (264, 5, 1, 1, 1068.91, 'Trabajo independiente', '2026-02-04', '2026-02-05 15:22:09', '2026-02-05 15:22:09', NULL),
-  (265, 5, 1, 1, 1812.81, 'Cobro mensual del salario', '2026-02-02', '2026-02-02 18:26:39', '2026-02-02 18:26:39', NULL),
-  (266, 5, 1, 1, 600.94, 'Comisión por ventas', '2026-02-10', '2026-02-10 15:38:43', '2026-02-10 15:38:43', NULL),
-  (267, 5, 1, 4, 1532.97, 'Cobro mensual del salario', '2026-02-07', '2026-02-10 11:34:13', '2026-02-10 11:34:13', NULL),
-  (268, 5, 1, 1, 1990.23, 'Regalo en efectivo', '2026-02-04', '2026-02-06 17:38:49', '2026-02-06 17:38:49', NULL),
-  (269, 5, 2, 18, 227.68, 'Pago de alquiler mensual', '2026-02-14', '2026-02-15 14:19:17', '2026-02-15 14:19:17', NULL),
-  (270, 5, 3, 27, 475.80, 'Snacks y bebidas varias', '2026-02-15', '2026-02-18 16:31:03', '2026-02-18 16:31:03', NULL),
-  (271, 5, 12, 82, 236.81, 'Regalo para amigo', '2026-02-20', '2026-02-23 14:09:19', '2026-02-23 14:09:19', NULL),
-  (272, 5, 3, 24, 429.19, 'Compra de frutas y verduras', '2026-02-19', '2026-02-20 15:58:03', '2026-02-20 15:58:03', NULL),
-  (273, 5, 10, 72, 44.56, 'Gasto para los hijos', '2026-02-17', '2026-02-19 11:21:41', '2026-02-19 11:21:41', NULL),
-  (274, 5, 7, 50, 163.01, 'Examen de certificación profesional', '2026-02-16', '2026-02-16 12:24:43', '2026-02-16 12:24:43', NULL),
-  (275, 5, 3, 24, 408.19, 'Snacks y bebidas varias', '2026-02-28', '2026-03-31 23:59:59', '2026-03-31 23:59:59', NULL),
-  (276, 5, 2, 16, 752.87, 'Factura de gas', '2026-02-13', '2026-02-16 11:44:38', '2026-02-16 11:44:38', NULL),
-  (277, 5, 1, 5, 885.19, 'Reembolso de gastos', '2026-03-09', '2026-03-11 12:16:23', '2026-03-11 12:16:23', NULL),
-  (278, 5, 1, 8, 377.49, 'Rendimiento de inversiones', '2026-03-08', '2026-03-10 11:23:20', '2026-03-10 11:23:20', NULL),
-  (279, 5, 2, 13, 510.64, 'Cuota de comunidad', '2026-03-14', '2026-03-14 12:35:59', '2026-03-14 12:35:59', NULL),
-  (280, 5, 3, 27, 368.41, 'Compra de frutas y verduras', '2026-03-19', '2026-03-20 11:21:14', '2026-03-20 11:21:14', NULL),
-  (281, 5, 5, 40, 167.44, 'Reparación de grifería', '2026-03-31', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (282, 5, 12, 83, 71.94, 'Ayuda familiar directa', '2026-03-15', '2026-03-17 10:08:46', '2026-03-17 10:08:46', NULL),
-  (283, 5, 10, 73, 14.39, 'Gasto para los hijos', '2026-03-26', '2026-03-26 09:52:42', '2026-03-26 09:52:42', NULL),
-  (284, 5, 1, 1, 726.54, 'Regalo en efectivo', '2026-04-04', '2026-04-07 13:03:39', '2026-04-07 13:03:39', NULL),
-  (285, 5, 1, 10, 1842.95, 'Rendimiento de inversiones', '2026-04-08', '2026-04-08 08:34:35', '2026-04-08 08:34:35', NULL),
-  (286, 5, 2, 13, 761.10, 'Cuota de seguro del hogar', '2026-04-27', '2026-04-29 08:32:52', '2026-04-29 08:32:52', NULL),
-  (287, 5, 3, 24, 80.30, 'Pedido a domicilio', '2026-04-13', '2026-04-14 11:12:39', '2026-04-14 11:12:39', NULL),
-  (288, 5, 6, 49, 122.08, 'Cuota mensual del gimnasio', '2026-04-21', '2026-04-24 15:36:15', '2026-04-24 15:36:15', NULL),
-  (289, 5, 2, 13, 589.63, 'Cuenta de agua', '2026-04-27', '2026-04-30 08:40:00', '2026-04-30 08:40:00', NULL),
-  (290, 5, 3, 28, 398.66, 'Café con compañeros', '2026-04-28', '2026-04-28 16:58:02', '2026-04-28 16:58:02', NULL),
-  (291, 5, 3, 25, 51.88, 'Compra semanal del supermercado', '2026-04-12', '2026-04-14 16:36:42', '2026-04-14 16:36:42', NULL),
-  (292, 5, 3, 23, 276.11, 'Café con compañeros', '2026-04-22', '2026-04-22 12:10:36', '2026-04-22 12:10:36', NULL),
-  (293, 5, 8, 60, 26.22, 'Artículo electrónico', '2026-04-20', '2026-04-23 10:50:44', '2026-04-23 10:50:44', NULL),
-  (294, 5, 3, 23, 5.25, 'Compra de frutas y verduras', '2026-04-12', '2026-04-14 17:49:39', '2026-04-14 17:49:39', NULL),
-  (295, 5, 1, 8, 1083.09, 'Pensión mensual', '2026-05-06', '2026-05-09 14:11:43', '2026-05-09 14:11:43', NULL),
-  (296, 5, 1, 2, 1589.90, 'Bonificación por desempeño', '2026-05-05', '2026-05-06 09:05:17', '2026-05-06 09:05:17', NULL),
-  (297, 5, 1, 1, 1675.84, 'Ingreso por servicios profesionales', '2026-05-03', '2026-05-06 13:23:06', '2026-05-06 13:23:06', NULL),
-  (298, 5, 2, 13, 622.37, 'Cuota de seguro del hogar', '2026-05-18', '2026-05-18 10:05:11', '2026-05-18 10:05:11', NULL),
-  (299, 5, 3, 26, 291.78, 'Snacks y bebidas varias', '2026-05-26', '2026-05-29 09:01:05', '2026-05-29 09:01:05', NULL),
-  (300, 5, 11, 79, 236.41, 'Transferencia a cuenta de ahorro', '2026-05-22', '2026-05-22 12:26:24', '2026-05-22 12:26:24', NULL),
-  (301, 5, 10, 69, 173.73, 'Pago de colegio', '2026-05-15', '2026-05-18 10:08:17', '2026-05-18 10:08:17', NULL),
-  (302, 5, 2, 14, 175.41, 'Servicio de electricidad', '2026-05-18', '2026-05-21 12:30:50', '2026-05-21 12:30:50', NULL),
-  (303, 5, 2, 20, 495.35, 'Pago de alquiler mensual', '2026-05-16', '2026-05-19 09:08:19', '2026-05-19 09:08:19', NULL),
-  (304, 5, 7, 54, 117.07, 'Examen de certificación profesional', '2026-05-20', '2026-05-23 13:27:52', '2026-05-23 13:27:52', NULL),
-  (305, 5, 3, 27, 475.22, 'Snacks y bebidas varias', '2026-05-16', '2026-05-19 13:11:25', '2026-05-19 13:11:25', NULL),
-  (306, 5, 3, 27, 397.53, 'Compra de frutas y verduras', '2026-05-20', '2026-05-23 12:52:50', '2026-05-23 12:52:50', NULL),
-  (307, 5, 2, 22, 797.95, 'Pago de impuestos anuales', '2026-05-15', '2026-05-15 15:45:13', '2026-05-15 15:45:13', NULL),
-  (308, 5, 13, 84, 104.90, 'Gasto relacionado con trabajo', '2026-05-23', '2026-05-26 10:40:19', '2026-05-26 10:40:19', NULL),
-  (309, 5, 2, 19, 20.98, 'Cuota de seguro del hogar', '2026-05-12', '2026-05-15 17:30:37', '2026-05-15 17:30:37', NULL),
-  (310, 5, 1, 12, 952.94, 'Ingreso por servicios profesionales', '2026-06-01', '2026-06-03 16:38:40', '2026-06-03 16:38:40', NULL),
-  (311, 5, 1, 1, 872.35, 'Pensión mensual', '2026-06-06', '2026-06-07 18:39:02', '2026-06-07 18:39:02', NULL),
-  (312, 5, 1, 11, 1364.14, 'Trabajo independiente', '2026-06-06', '2026-06-09 09:00:06', '2026-06-09 09:00:06', NULL),
-  (313, 5, 1, 1, 1620.28, 'Venta de artículos personales', '2026-06-09', '2026-06-10 15:23:25', '2026-06-10 15:23:25', NULL),
-  (314, 5, 1, 10, 1442.79, 'Trabajo independiente', '2026-06-03', '2026-06-05 08:30:06', '2026-06-05 08:30:06', NULL),
-  (315, 5, 2, 19, 740.41, 'Plan de telefonía móvil', '2026-06-12', '2026-06-12 10:22:19', '2026-06-12 10:22:19', NULL),
-  (316, 5, 3, 26, 398.61, 'Cena especial', '2026-06-26', '2026-06-29 13:30:06', '2026-06-29 13:30:06', NULL),
-  (317, 5, 9, 63, 24.82, 'Material para hobby', '2026-06-11', '2026-06-11 08:54:21', '2026-06-11 08:54:21', NULL),
-  (318, 5, 2, 16, 437.00, 'Pago de impuestos anuales', '2026-06-27', '2026-06-28 13:35:27', '2026-06-28 13:35:27', NULL),
-  (319, 5, 3, 28, 116.69, 'Café con compañeros', '2026-06-30', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (320, 5, 8, 58, 6.31, 'Compra de ropa nueva', '2026-06-16', '2026-06-17 12:48:45', '2026-06-17 12:48:45', NULL),
-  (321, 5, 10, 69, 112.91, 'Consulta veterinaria', '2026-06-16', '2026-06-19 09:16:42', '2026-06-19 09:16:42', NULL),
-  (322, 5, 12, 82, 181.11, 'Regalo para amigo', '2026-06-29', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (323, 5, 11, 76, 245.05, 'Transferencia a cuenta de ahorro', '2026-06-19', '2026-06-19 18:08:20', '2026-06-19 18:08:20', NULL),
-  (324, 5, 1, 1, 1059.96, 'Pensión mensual', '2026-07-03', '2026-07-06 14:38:08', '2026-07-06 14:38:08', NULL),
-  (325, 5, 1, 1, 778.63, 'Trabajo independiente', '2026-07-09', '2026-07-10 16:10:31', '2026-07-10 16:10:31', NULL),
-  (326, 5, 1, 1, 971.87, 'Bonificación por desempeño', '2026-07-08', '2026-07-08 13:00:31', '2026-07-08 13:00:31', NULL),
-  (327, 5, 2, 16, 661.41, 'Cuota de seguro del hogar', '2026-07-27', '2026-07-30 14:43:31', '2026-07-30 14:43:31', NULL),
-  (328, 5, 3, 28, 424.75, 'Café con compañeros', '2026-07-25', '2026-07-26 09:36:01', '2026-07-26 09:36:01', NULL),
-  (329, 5, 3, 24, 282.68, 'Cena especial', '2026-07-15', '2026-07-18 17:47:49', '2026-07-18 17:47:49', NULL),
-  (330, 5, 3, 27, 83.68, 'Compra semanal del supermercado', '2026-07-27', '2026-07-29 16:52:48', '2026-07-29 16:52:48', NULL),
-  (331, 5, 9, 65, 69.47, 'Videojuego nuevo', '2026-07-23', '2026-07-23 18:48:15', '2026-07-23 18:48:15', NULL),
-  (332, 5, 2, 20, 247.11, 'Factura de gas', '2026-07-12', '2026-07-15 09:49:51', '2026-07-15 09:49:51', NULL),
-  (333, 5, 3, 28, 316.82, 'Café con compañeros', '2026-07-23', '2026-07-24 17:08:50', '2026-07-24 17:08:50', NULL),
-  (334, 5, 2, 22, 313.11, 'Servicio de internet', '2026-07-18', '2026-07-19 13:45:18', '2026-07-19 13:45:18', NULL),
-  (335, 5, 1, 9, 1973.88, 'Trabajo independiente', '2026-08-02', '2026-08-03 14:58:03', '2026-08-03 14:58:03', NULL),
-  (336, 5, 1, 3, 1462.57, 'Pago por horas extraordinarias', '2026-08-03', '2026-08-04 10:45:20', '2026-08-04 10:45:20', NULL),
-  (337, 5, 1, 11, 906.86, 'Venta de artículos personales', '2026-08-03', '2026-08-05 18:26:24', '2026-08-05 18:26:24', NULL),
-  (338, 5, 2, 14, 525.22, 'Plan de telefonía móvil', '2026-08-12', '2026-08-15 16:47:17', '2026-08-15 16:47:17', NULL),
-  (339, 5, 3, 26, 476.62, 'Snacks y bebidas varias', '2026-08-20', '2026-08-20 09:46:29', '2026-08-20 09:46:29', NULL),
-  (340, 5, 10, 71, 69.26, 'Consulta veterinaria', '2026-08-23', '2026-08-24 15:17:20', '2026-08-24 15:17:20', NULL),
-  (341, 5, 2, 22, 689.32, 'Pago de impuestos anuales', '2026-08-20', '2026-08-20 08:06:40', '2026-08-20 08:06:40', NULL),
-  (342, 5, 2, 20, 392.39, 'Servicio de internet', '2026-08-23', '2026-08-24 10:56:41', '2026-08-24 10:56:41', NULL),
-  (343, 5, 3, 23, 175.12, 'Pedido a domicilio', '2026-08-21', '2026-08-22 08:25:40', '2026-08-22 08:25:40', NULL),
-  (344, 5, 5, 40, 198.37, 'Electrodoméstico para el hogar', '2026-08-13', '2026-08-13 11:30:04', '2026-08-13 11:30:04', NULL),
-  (345, 5, 10, 73, 136.29, 'Alimentación de mascota', '2026-08-10', '2026-08-12 09:55:27', '2026-08-12 09:55:27', NULL),
-  (346, 5, 2, 16, 337.30, 'Servicio de internet', '2026-08-13', '2026-08-13 13:23:56', '2026-08-13 13:23:56', NULL),
-  (347, 5, 2, 15, 101.31, 'Pago de impuestos anuales', '2026-08-28', '2026-08-28 17:41:10', '2026-08-28 17:41:10', NULL),
-  (348, 5, 2, 15, 739.92, 'Servicio de electricidad', '2026-08-29', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (349, 6, 1, 7, 832.76, 'Regalo en efectivo', '2026-01-07', '2026-01-09 10:15:17', '2026-01-09 10:15:17', NULL),
-  (350, 6, 2, 14, 236.13, 'Servicio de internet', '2026-01-29', '2026-01-31 08:54:54', '2026-01-31 08:54:54', NULL),
-  (351, 6, 3, 24, 273.34, 'Compra semanal del supermercado', '2026-01-26', '2026-01-27 14:18:41', '2026-01-27 14:18:41', NULL),
-  (352, 6, 5, 40, 118.84, 'Servicio de jardinería', '2026-01-17', '2026-01-20 18:38:04', '2026-01-20 18:38:04', NULL),
-  (353, 6, 2, 18, 96.94, 'Suscripción a streaming', '2026-01-14', '2026-01-17 17:26:23', '2026-01-17 17:26:23', NULL),
-  (354, 6, 9, 67, 19.39, 'Entradas al cine', '2026-01-28', '2026-01-28 08:16:13', '2026-01-28 08:16:13', NULL),
-  (355, 6, 1, 7, 1463.26, 'Ingreso por servicios profesionales', '2026-02-02', '2026-02-03 12:05:19', '2026-02-03 12:05:19', NULL),
-  (356, 6, 1, 4, 1953.76, 'Regalo en efectivo', '2026-02-03', '2026-02-05 14:37:40', '2026-02-05 14:37:40', NULL),
-  (357, 6, 1, 2, 758.31, 'Rendimiento de inversiones', '2026-02-07', '2026-02-08 08:15:05', '2026-02-08 08:15:05', NULL),
-  (358, 6, 1, 1, 1418.45, 'Comisión por ventas', '2026-02-01', '2026-02-03 18:47:42', '2026-02-03 18:47:42', NULL),
-  (359, 6, 1, 1, 519.00, 'Reembolso de gastos', '2026-02-03', '2026-02-03 10:31:22', '2026-02-03 10:31:22', NULL),
-  (360, 6, 2, 21, 637.24, 'Servicio de internet', '2026-02-18', '2026-02-19 13:08:47', '2026-02-19 13:08:47', NULL),
-  (361, 6, 3, 28, 446.61, 'Cena en restaurante', '2026-02-10', '2026-02-12 14:17:33', '2026-02-12 14:17:33', NULL),
-  (362, 6, 2, 20, 391.40, 'Cuenta de agua', '2026-02-21', '2026-02-21 15:54:36', '2026-02-21 15:54:36', NULL),
-  (363, 6, 3, 23, 302.24, 'Compra semanal del supermercado', '2026-02-13', '2026-02-14 16:00:02', '2026-02-14 16:00:02', NULL),
-  (364, 6, 3, 25, 210.00, 'Compra de frutas y verduras', '2026-02-14', '2026-02-15 08:35:51', '2026-02-15 08:35:51', NULL),
-  (365, 6, 2, 19, 736.89, 'Servicio de electricidad', '2026-02-20', '2026-02-22 09:36:23', '2026-02-22 09:36:23', NULL),
-  (366, 6, 2, 15, 217.39, 'Pago de impuestos anuales', '2026-02-26', '2026-02-26 14:04:56', '2026-02-26 14:04:56', NULL),
-  (367, 6, 1, 1, 1329.64, 'Trabajo independiente', '2026-03-01', '2026-03-03 11:18:36', '2026-03-03 11:18:36', NULL),
-  (368, 6, 1, 4, 1035.07, 'Reembolso de gastos', '2026-03-10', '2026-03-13 11:46:57', '2026-03-13 11:46:57', NULL),
-  (369, 6, 1, 4, 471.02, 'Regalo en efectivo', '2026-03-07', '2026-03-07 11:34:22', '2026-03-07 11:34:22', NULL),
-  (370, 6, 2, 13, 400.73, 'Suscripción a streaming', '2026-03-31', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (371, 6, 3, 24, 227.31, 'Café con compañeros', '2026-03-11', '2026-03-12 12:05:02', '2026-03-12 12:05:02', NULL),
-  (372, 6, 10, 71, 211.75, 'Compra para mascota', '2026-03-21', '2026-03-24 09:37:06', '2026-03-24 09:37:06', NULL),
-  (373, 6, 3, 23, 118.68, 'Snacks y bebidas varias', '2026-03-31', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (374, 6, 8, 60, 250.41, 'Compra de ropa nueva', '2026-03-20', '2026-03-22 15:17:14', '2026-03-22 15:17:14', NULL),
-  (375, 6, 4, 30, 50.85, 'Carga de combustible', '2026-03-15', '2026-03-18 15:20:26', '2026-03-18 15:20:26', NULL),
-  (376, 6, 5, 40, 95.95, 'Compra de productos de limpieza', '2026-03-18', '2026-03-18 09:10:51', '2026-03-18 09:10:51', NULL),
-  (377, 6, 2, 16, 676.94, 'Plan de telefonía móvil', '2026-03-20', '2026-03-21 09:45:15', '2026-03-21 09:45:15', NULL),
-  (378, 6, 2, 17, 245.13, 'Suscripción a streaming', '2026-03-15', '2026-03-15 14:54:28', '2026-03-15 14:54:28', NULL),
-  (379, 6, 1, 1, 1193.06, 'Pago por horas extraordinarias', '2026-04-03', '2026-04-03 08:03:53', '2026-04-03 08:03:53', NULL),
-  (380, 6, 1, 1, 1735.51, 'Ingreso por servicios profesionales', '2026-04-06', '2026-04-06 17:37:16', '2026-04-06 17:37:16', NULL),
-  (381, 6, 1, 1, 596.71, 'Ingreso por alquiler de propiedad', '2026-04-08', '2026-04-09 09:57:54', '2026-04-09 09:57:54', NULL),
-  (382, 6, 1, 1, 1913.42, 'Comisión por ventas', '2026-04-01', '2026-04-02 17:27:52', '2026-04-02 17:27:52', NULL),
-  (383, 6, 1, 1, 544.22, 'Bonificación por desempeño', '2026-04-07', '2026-04-08 13:13:58', '2026-04-08 13:13:58', NULL),
-  (384, 6, 2, 17, 259.89, 'Factura de gas', '2026-04-14', '2026-04-14 17:39:39', '2026-04-14 17:39:39', NULL),
-  (385, 6, 3, 28, 168.70, 'Compra de frutas y verduras', '2026-04-23', '2026-04-26 08:05:17', '2026-04-26 08:05:17', NULL),
-  (386, 6, 2, 21, 236.86, 'Plan de telefonía móvil', '2026-04-27', '2026-04-27 14:50:45', '2026-04-27 14:50:45', NULL),
-  (387, 6, 9, 63, 274.24, 'Entradas al cine', '2026-04-26', '2026-04-28 14:17:11', '2026-04-28 14:17:11', NULL),
-  (388, 6, 2, 13, 789.27, 'Cuota de comunidad', '2026-04-11', '2026-04-14 16:22:49', '2026-04-14 16:22:49', NULL),
-  (389, 6, 4, 30, 78.12, 'Mantenimiento preventivo del auto', '2026-04-17', '2026-04-19 16:52:50', '2026-04-19 16:52:50', NULL),
-  (390, 6, 2, 22, 684.88, 'Cuota de comunidad', '2026-04-22', '2026-04-24 10:11:15', '2026-04-24 10:11:15', NULL),
-  (391, 6, 3, 27, 43.26, 'Cena especial', '2026-04-21', '2026-04-22 17:12:53', '2026-04-22 17:12:53', NULL),
-  (392, 6, 4, 36, 16.20, 'Pago de peaje', '2026-04-11', '2026-04-12 17:14:01', '2026-04-12 17:14:01', NULL),
-  (393, 6, 7, 54, 64.43, 'Compra de libros de texto', '2026-04-14', '2026-04-16 10:58:51', '2026-04-16 10:58:51', NULL),
-  (394, 6, 1, 1, 1557.04, 'Ingreso por servicios profesionales', '2026-05-03', '2026-05-03 16:55:23', '2026-05-03 16:55:23', NULL),
-  (395, 6, 2, 18, 578.40, 'Servicio de internet', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (396, 6, 3, 25, 94.13, 'Snacks y bebidas varias', '2026-05-15', '2026-05-18 18:31:41', '2026-05-18 18:31:41', NULL),
-  (397, 6, 3, 24, 342.80, 'Pedido a domicilio', '2026-05-15', '2026-05-18 12:46:44', '2026-05-18 12:46:44', NULL),
-  (398, 6, 2, 22, 343.70, 'Cuota de comunidad', '2026-05-28', '2026-05-28 10:38:20', '2026-05-28 10:38:20', NULL),
-  (399, 6, 2, 20, 33.84, 'Servicio de electricidad', '2026-05-12', '2026-05-13 13:20:10', '2026-05-13 13:20:10', NULL),
-  (400, 6, 12, 83, 6.77, 'Donación a organización benéfica', '2026-05-20', '2026-05-23 08:16:13', '2026-05-23 08:16:13', NULL),
-  (401, 6, 1, 1, 1157.33, 'Rendimiento de inversiones', '2026-06-07', '2026-06-08 14:31:56', '2026-06-08 14:31:56', NULL),
-  (402, 6, 2, 18, 459.52, 'Factura de gas', '2026-06-13', '2026-06-16 17:41:48', '2026-06-16 17:41:48', NULL),
-  (403, 6, 3, 24, 242.11, 'Cena en restaurante', '2026-06-11', '2026-06-13 08:20:16', '2026-06-13 08:20:16', NULL),
-  (404, 6, 2, 19, 170.68, 'Pago de impuestos anuales', '2026-06-12', '2026-06-12 13:38:39', '2026-06-12 13:38:39', NULL),
-  (405, 6, 8, 60, 53.67, 'Par de zapatos', '2026-06-23', '2026-06-24 08:06:21', '2026-06-24 08:06:21', NULL),
-  (406, 6, 8, 60, 92.49, 'Par de zapatos', '2026-06-27', '2026-06-29 18:18:19', '2026-06-29 18:18:19', NULL),
-  (407, 6, 3, 27, 18.50, 'Compra de frutas y verduras', '2026-06-25', '2026-06-26 08:23:00', '2026-06-26 08:23:00', NULL),
-  (408, 6, 1, 1, 1457.29, 'Rendimiento de inversiones', '2026-07-02', '2026-07-05 09:19:50', '2026-07-05 09:19:50', NULL),
-  (409, 6, 2, 20, 416.82, 'Cuota de seguro del hogar', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (410, 6, 3, 24, 204.38, 'Pedido a domicilio', '2026-07-22', '2026-07-24 10:28:02', '2026-07-24 10:28:02', NULL),
-  (411, 6, 6, 44, 251.94, 'Cuota mensual del gimnasio', '2026-07-28', '2026-07-28 10:48:44', '2026-07-28 10:48:44', NULL),
-  (412, 6, 3, 27, 224.57, 'Compra de frutas y verduras', '2026-07-28', '2026-07-29 16:03:53', '2026-07-29 16:03:53', NULL),
-  (413, 6, 8, 59, 207.69, 'Producto de cosmética', '2026-07-25', '2026-07-26 15:19:05', '2026-07-26 15:19:05', NULL),
-  (414, 6, 13, 84, 5.00, 'Gasto relacionado con trabajo', '2026-07-26', '2026-07-27 09:48:28', '2026-07-27 09:48:28', NULL),
-  (415, 6, 1, 1, 617.55, 'Pensión mensual', '2026-08-07', '2026-08-08 18:09:53', '2026-08-08 18:09:53', NULL),
-  (416, 6, 1, 1, 1866.21, 'Reembolso de gastos', '2026-08-02', '2026-08-02 14:35:25', '2026-08-02 14:35:25', NULL),
-  (417, 6, 2, 18, 692.47, 'Cuota de comunidad', '2026-08-26', '2026-08-29 08:50:44', '2026-08-29 08:50:44', NULL),
-  (418, 6, 3, 27, 275.60, 'Cena en restaurante', '2026-08-23', '2026-08-23 14:09:09', '2026-08-23 14:09:09', NULL),
-  (419, 6, 11, 75, 236.79, 'Transferencia a tercero', '2026-08-27', '2026-08-29 14:16:24', '2026-08-29 14:16:24', NULL),
-  (420, 6, 11, 78, 16.05, 'Transferencia a tercero', '2026-08-18', '2026-08-21 10:39:38', '2026-08-21 10:39:38', NULL),
-  (421, 6, 2, 19, 717.18, 'Servicio de internet', '2026-08-20', '2026-08-21 08:47:30', '2026-08-21 08:47:30', NULL),
-  (422, 6, 2, 18, 237.84, 'Servicio de electricidad', '2026-08-19', '2026-08-21 12:53:31', '2026-08-21 12:53:31', NULL),
-  (423, 6, 5, 38, 47.56, 'Servicio de jardinería', '2026-08-24', '2026-08-26 12:46:26', '2026-08-26 12:46:26', NULL),
-  (424, 6, 5, 40, 9.52, 'Compra de mueble nuevo', '2026-08-23', '2026-08-26 16:55:23', '2026-08-26 16:55:23', NULL),
-  (425, 7, 1, 1, 1670.77, 'Pago por horas extraordinarias', '2026-02-09', '2026-02-09 10:12:56', '2026-02-09 10:12:56', NULL),
-  (426, 7, 1, 4, 259.53, 'Venta de artículos personales', '2026-02-01', '2026-02-03 11:17:23', '2026-02-03 11:17:23', NULL),
-  (427, 7, 1, 11, 1861.53, 'Venta de artículos personales', '2026-02-01', '2026-02-02 13:31:38', '2026-02-02 13:31:38', NULL),
-  (428, 7, 1, 1, 1805.72, 'Trabajo independiente', '2026-02-10', '2026-02-12 13:10:53', '2026-02-12 13:10:53', NULL),
-  (429, 7, 1, 12, 362.71, 'Pensión mensual', '2026-02-01', '2026-02-04 08:10:54', '2026-02-04 08:10:54', NULL),
-  (430, 7, 2, 16, 692.83, 'Suscripción a streaming', '2026-02-17', '2026-02-18 12:41:26', '2026-02-18 12:41:26', NULL),
-  (431, 7, 3, 23, 390.14, 'Compra semanal del supermercado', '2026-02-10', '2026-02-13 10:41:11', '2026-02-13 10:41:11', NULL),
-  (432, 7, 3, 28, 484.50, 'Cena especial', '2026-02-18', '2026-02-21 14:54:22', '2026-02-21 14:54:22', NULL),
-  (433, 7, 3, 25, 348.28, 'Snacks y bebidas varias', '2026-02-22', '2026-02-22 08:32:42', '2026-02-22 08:32:42', NULL),
-  (434, 7, 11, 79, 88.39, 'Transferencia a tercero', '2026-02-13', '2026-02-16 09:21:17', '2026-02-16 09:21:17', NULL),
-  (435, 7, 3, 25, 338.38, 'Café con compañeros', '2026-02-19', '2026-02-20 10:33:48', '2026-02-20 10:33:48', NULL),
-  (436, 7, 11, 78, 199.86, 'Pago cuota préstamo', '2026-02-14', '2026-02-14 18:31:18', '2026-02-14 18:31:18', NULL),
-  (437, 7, 1, 1, 552.98, 'Pago por horas extraordinarias', '2026-03-10', '2026-03-11 13:46:45', '2026-03-11 13:46:45', NULL),
-  (438, 7, 1, 11, 1612.81, 'Reembolso de gastos', '2026-03-06', '2026-03-08 10:53:42', '2026-03-08 10:53:42', NULL),
-  (439, 7, 1, 1, 646.40, 'Bonificación por desempeño', '2026-03-03', '2026-03-05 16:48:58', '2026-03-05 16:48:58', NULL),
-  (440, 7, 1, 6, 1377.98, 'Trabajo independiente', '2026-03-04', '2026-03-06 11:47:55', '2026-03-06 11:47:55', NULL),
-  (441, 7, 2, 19, 641.07, 'Pago de impuestos anuales', '2026-03-20', '2026-03-22 12:37:18', '2026-03-22 12:37:18', NULL),
-  (442, 7, 3, 23, 359.92, 'Cena en restaurante', '2026-03-28', '2026-03-28 15:56:12', '2026-03-28 15:56:12', NULL),
-  (443, 7, 8, 59, 93.01, 'Producto de cosmética', '2026-03-11', '2026-03-12 10:12:21', '2026-03-12 10:12:21', NULL),
-  (444, 7, 9, 62, 98.33, 'Suscripción mensual streaming', '2026-03-15', '2026-03-15 15:21:40', '2026-03-15 15:21:40', NULL),
-  (445, 7, 2, 13, 504.69, 'Servicio de electricidad', '2026-03-15', '2026-03-16 15:50:48', '2026-03-16 15:50:48', NULL),
-  (446, 7, 3, 28, 231.82, 'Café con compañeros', '2026-03-23', '2026-03-26 14:00:02', '2026-03-26 14:00:02', NULL),
-  (447, 7, 2, 18, 617.64, 'Factura de gas', '2026-03-26', '2026-03-27 08:43:00', '2026-03-27 08:43:00', NULL),
-  (448, 7, 3, 25, 90.60, 'Compra semanal del supermercado', '2026-03-22', '2026-03-24 10:04:52', '2026-03-24 10:04:52', NULL),
-  (449, 7, 3, 26, 372.08, 'Almuerzo rápido', '2026-03-29', '2026-03-31 14:56:43', '2026-03-31 14:56:43', NULL),
-  (450, 7, 1, 1, 782.64, 'Bonificación por desempeño', '2026-04-07', '2026-04-07 11:14:46', '2026-04-07 11:14:46', NULL),
-  (451, 7, 1, 1, 532.87, 'Regalo en efectivo', '2026-04-09', '2026-04-10 09:23:45', '2026-04-10 09:23:45', NULL),
-  (452, 7, 1, 7, 1777.78, 'Ingreso por servicios profesionales', '2026-04-05', '2026-04-05 17:03:42', '2026-04-05 17:03:42', NULL),
-  (453, 7, 1, 1, 286.82, 'Reembolso de gastos', '2026-04-02', '2026-04-05 15:24:07', '2026-04-05 15:24:07', NULL),
-  (454, 7, 2, 17, 405.80, 'Servicio de internet', '2026-04-14', '2026-04-15 18:40:00', '2026-04-15 18:40:00', NULL),
-  (455, 7, 3, 26, 340.98, 'Almuerzo rápido', '2026-04-26', '2026-04-28 17:38:44', '2026-04-28 17:38:44', NULL),
-  (456, 7, 3, 27, 367.82, 'Cena especial', '2026-04-13', '2026-04-15 09:50:06', '2026-04-15 09:50:06', NULL),
-  (457, 7, 2, 17, 673.62, 'Pago de alquiler mensual', '2026-04-16', '2026-04-18 14:18:10', '2026-04-18 14:18:10', NULL),
-  (458, 7, 5, 42, 280.27, 'Compra de mueble nuevo', '2026-04-20', '2026-04-21 08:00:42', '2026-04-21 08:00:42', NULL),
-  (459, 7, 11, 80, 150.76, 'Transferencia a tercero', '2026-04-12', '2026-04-12 09:57:16', '2026-04-12 09:57:16', NULL),
-  (460, 7, 3, 25, 248.21, 'Snacks y bebidas varias', '2026-04-13', '2026-04-14 08:54:18', '2026-04-14 08:54:18', NULL),
-  (461, 7, 7, 53, 222.87, 'Curso online especializado', '2026-04-13', '2026-04-13 08:54:08', '2026-04-13 08:54:08', NULL),
-  (462, 7, 1, 10, 682.96, 'Rendimiento de inversiones', '2026-05-02', '2026-05-04 13:11:07', '2026-05-04 13:11:07', NULL),
-  (463, 7, 1, 1, 1184.81, 'Bonificación por desempeño', '2026-05-07', '2026-05-10 14:41:56', '2026-05-10 14:41:56', NULL),
-  (464, 7, 1, 1, 1544.25, 'Pensión mensual', '2026-05-01', '2026-05-02 09:26:58', '2026-05-02 09:26:58', NULL),
-  (465, 7, 2, 20, 651.70, 'Plan de telefonía móvil', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (466, 7, 3, 27, 43.54, 'Cena en restaurante', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (467, 7, 9, 61, 23.68, 'Material para hobby', '2026-05-30', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (468, 7, 13, 85, 293.48, 'Gasto de emergencia', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (469, 7, 13, 85, 147.17, 'Gasto de emergencia', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (470, 7, 2, 21, 686.63, 'Plan de telefonía móvil', '2026-05-25', '2026-05-26 09:48:31', '2026-05-26 09:48:31', NULL),
-  (471, 7, 3, 23, 265.15, 'Cena especial', '2026-05-22', '2026-05-25 11:05:29', '2026-05-25 11:05:29', NULL),
-  (472, 7, 9, 61, 257.69, 'Material para hobby', '2026-05-24', '2026-05-26 09:31:47', '2026-05-26 09:31:47', NULL),
-  (473, 7, 3, 26, 46.84, 'Pedido a domicilio', '2026-05-27', '2026-05-27 09:50:38', '2026-05-27 09:50:38', NULL),
-  (474, 7, 1, 1, 1507.21, 'Venta de artículos personales', '2026-06-06', '2026-06-08 08:52:14', '2026-06-08 08:52:14', NULL),
-  (475, 7, 1, 1, 1651.12, 'Venta de artículos personales', '2026-06-10', '2026-06-13 18:23:45', '2026-06-13 18:23:45', NULL),
-  (476, 7, 1, 1, 1638.98, 'Regalo en efectivo', '2026-06-04', '2026-06-04 13:22:53', '2026-06-04 13:22:53', NULL),
-  (477, 7, 1, 5, 1185.84, 'Venta de artículos personales', '2026-06-06', '2026-06-06 08:57:10', '2026-06-06 08:57:10', NULL),
-  (478, 7, 1, 1, 1575.28, 'Pago por horas extraordinarias', '2026-06-07', '2026-06-07 12:39:12', '2026-06-07 12:39:12', NULL),
-  (479, 7, 2, 14, 747.66, 'Factura de gas', '2026-06-22', '2026-06-23 15:52:50', '2026-06-23 15:52:50', NULL),
-  (480, 7, 3, 28, 188.83, 'Cena en restaurante', '2026-06-23', '2026-06-23 18:53:43', '2026-06-23 18:53:43', NULL),
-  (481, 7, 9, 64, 199.24, 'Material para hobby', '2026-06-26', '2026-06-27 15:00:33', '2026-06-27 15:00:33', NULL),
-  (482, 7, 3, 27, 256.98, 'Almuerzo rápido', '2026-06-26', '2026-06-27 17:11:46', '2026-06-27 17:11:46', NULL),
-  (483, 7, 3, 27, 444.25, 'Pedido a domicilio', '2026-06-23', '2026-06-24 12:25:21', '2026-06-24 12:25:21', NULL),
-  (484, 7, 4, 31, 126.76, 'Mantenimiento preventivo del auto', '2026-06-26', '2026-06-28 16:55:20', '2026-06-28 16:55:20', NULL),
-  (485, 7, 10, 73, 69.12, 'Alimentación de mascota', '2026-06-16', '2026-06-18 18:22:58', '2026-06-18 18:22:58', NULL),
-  (486, 7, 2, 21, 456.87, 'Suscripción a streaming', '2026-06-30', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (487, 7, 11, 80, 214.49, 'Comisión bancaria', '2026-06-27', '2026-06-29 14:51:00', '2026-06-29 14:51:00', NULL),
-  (488, 7, 1, 1, 579.60, 'Bonificación por desempeño', '2026-07-01', '2026-07-02 12:48:50', '2026-07-02 12:48:50', NULL),
-  (489, 7, 2, 17, 417.31, 'Suscripción a streaming', '2026-07-14', '2026-07-14 12:13:48', '2026-07-14 12:13:48', NULL),
-  (490, 7, 3, 23, 83.46, 'Café con compañeros', '2026-07-29', '2026-07-30 18:35:24', '2026-07-30 18:35:24', NULL),
-  (491, 7, 13, 86, 16.70, 'Gasto reembolsable pendiente', '2026-07-11', '2026-07-14 14:26:50', '2026-07-14 14:26:50', NULL),
-  (492, 7, 1, 1, 1803.27, 'Regalo en efectivo', '2026-08-08', '2026-08-09 18:45:45', '2026-08-09 18:45:45', NULL),
-  (493, 7, 1, 1, 1382.58, 'Bonificación por desempeño', '2026-08-10', '2026-08-11 11:18:28', '2026-08-11 11:18:28', NULL),
-  (494, 7, 1, 2, 536.56, 'Trabajo independiente', '2026-08-03', '2026-08-03 14:02:27', '2026-08-03 14:02:27', NULL),
-  (495, 7, 2, 21, 248.18, 'Cuenta de agua', '2026-08-15', '2026-08-17 08:21:29', '2026-08-17 08:21:29', NULL),
-  (496, 7, 3, 23, 196.79, 'Snacks y bebidas varias', '2026-08-11', '2026-08-13 15:50:36', '2026-08-13 15:50:36', NULL),
-  (497, 7, 3, 27, 133.38, 'Compra de frutas y verduras', '2026-08-15', '2026-08-15 16:10:26', '2026-08-15 16:10:26', NULL),
-  (498, 7, 2, 16, 547.50, 'Cuota de comunidad', '2026-08-20', '2026-08-22 12:13:48', '2026-08-22 12:13:48', NULL),
-  (499, 7, 10, 74, 226.88, 'Ayuda a familiar', '2026-08-30', '2026-08-30 09:42:22', '2026-08-30 09:42:22', NULL),
-  (500, 7, 2, 13, 560.47, 'Servicio de internet', '2026-08-13', '2026-08-16 12:34:46', '2026-08-16 12:34:46', NULL),
-  (501, 7, 3, 27, 407.32, 'Café con compañeros', '2026-08-24', '2026-08-27 08:18:57', '2026-08-27 08:18:57', NULL),
-  (502, 7, 2, 14, 175.55, 'Factura de gas', '2026-08-27', '2026-08-27 18:04:13', '2026-08-27 18:04:13', NULL),
-  (503, 7, 8, 55, 65.65, 'Producto de cosmética', '2026-08-23', '2026-08-23 18:09:01', '2026-08-23 18:09:01', NULL),
-  (504, 7, 2, 14, 104.94, 'Factura de gas', '2026-08-15', '2026-08-17 16:04:36', '2026-08-17 16:04:36', NULL),
-  (505, 7, 8, 58, 138.08, 'Artículo electrónico', '2026-08-22', '2026-08-25 13:01:24', '2026-08-25 13:01:24', NULL),
-  (506, 7, 2, 22, 97.43, 'Suscripción a streaming', '2026-08-28', '2026-08-28 09:22:59', '2026-08-28 09:22:59', NULL),
-  (507, 8, 1, 5, 1291.82, 'Regalo en efectivo', '2026-02-05', '2026-02-08 14:25:52', '2026-02-08 14:25:52', NULL),
-  (508, 8, 1, 1, 734.49, 'Reembolso de gastos', '2026-02-04', '2026-02-05 14:50:51', '2026-02-05 14:50:51', NULL),
-  (509, 8, 1, 1, 1451.07, 'Reembolso de gastos', '2026-02-05', '2026-02-07 08:35:55', '2026-02-07 08:35:55', NULL),
-  (510, 8, 2, 15, 142.43, 'Servicio de internet', '2026-02-10', '2026-02-13 16:35:05', '2026-02-13 16:35:05', NULL),
-  (511, 8, 3, 24, 381.70, 'Almuerzo rápido', '2026-02-21', '2026-02-22 14:57:41', '2026-02-22 14:57:41', NULL),
-  (512, 8, 2, 22, 676.06, 'Cuota de comunidad', '2026-02-16', '2026-02-16 10:42:51', '2026-02-16 10:42:51', NULL),
-  (513, 8, 10, 71, 195.18, 'Gasto para los hijos', '2026-02-12', '2026-02-14 18:04:16', '2026-02-14 18:04:16', NULL),
-  (514, 8, 3, 25, 197.86, 'Café con compañeros', '2026-02-17', '2026-02-17 12:39:04', '2026-02-17 12:39:04', NULL),
-  (515, 8, 3, 25, 319.68, 'Snacks y bebidas varias', '2026-02-19', '2026-02-20 17:36:23', '2026-02-20 17:36:23', NULL),
-  (516, 8, 4, 29, 97.40, 'Boleto de transporte público', '2026-02-17', '2026-02-20 12:53:23', '2026-02-20 12:53:23', NULL),
-  (517, 8, 1, 8, 1001.64, 'Regalo en efectivo', '2026-03-05', '2026-03-08 16:06:11', '2026-03-08 16:06:11', NULL),
-  (518, 8, 1, 5, 1745.68, 'Regalo en efectivo', '2026-03-03', '2026-03-04 12:46:56', '2026-03-04 12:46:56', NULL),
-  (519, 8, 1, 1, 613.10, 'Pensión mensual', '2026-03-01', '2026-03-01 17:37:25', '2026-03-01 17:37:25', NULL),
-  (520, 8, 2, 16, 729.73, 'Pago de impuestos anuales', '2026-03-27', '2026-03-29 16:57:34', '2026-03-29 16:57:34', NULL),
-  (521, 8, 3, 28, 394.34, 'Pedido a domicilio', '2026-03-21', '2026-03-24 11:57:49', '2026-03-24 11:57:49', NULL),
-  (522, 8, 2, 19, 322.90, 'Suscripción a streaming', '2026-03-10', '2026-03-11 17:43:10', '2026-03-11 17:43:10', NULL),
-  (523, 8, 2, 15, 474.77, 'Factura de gas', '2026-03-28', '2026-03-29 15:22:02', '2026-03-29 15:22:02', NULL),
-  (524, 8, 5, 37, 82.99, 'Artículo de decoración', '2026-03-17', '2026-03-17 18:13:33', '2026-03-17 18:13:33', NULL),
-  (525, 8, 3, 23, 294.56, 'Almuerzo rápido', '2026-03-13', '2026-03-15 12:37:34', '2026-03-15 12:37:34', NULL),
-  (526, 8, 3, 25, 306.21, 'Compra de frutas y verduras', '2026-03-12', '2026-03-14 14:58:14', '2026-03-14 14:58:14', NULL),
-  (527, 8, 3, 26, 402.55, 'Cena especial', '2026-03-29', '2026-03-29 16:56:08', '2026-03-29 16:56:08', NULL),
-  (528, 8, 2, 21, 13.06, 'Cuota de comunidad', '2026-03-16', '2026-03-17 10:10:23', '2026-03-17 10:10:23', NULL),
-  (529, 8, 1, 12, 404.01, 'Regalo en efectivo', '2026-04-08', '2026-04-11 11:37:10', '2026-04-11 11:37:10', NULL),
-  (530, 8, 1, 1, 638.61, 'Cobro mensual del salario', '2026-04-03', '2026-04-04 10:40:32', '2026-04-04 10:40:32', NULL),
-  (531, 8, 1, 3, 300.64, 'Pensión mensual', '2026-04-05', '2026-04-06 16:25:38', '2026-04-06 16:25:38', NULL),
-  (532, 8, 1, 12, 1510.35, 'Venta de artículos personales', '2026-04-05', '2026-04-05 11:28:38', '2026-04-05 11:28:38', NULL),
-  (533, 8, 2, 20, 177.93, 'Cuenta de agua', '2026-04-23', '2026-04-24 17:52:49', '2026-04-24 17:52:49', NULL),
-  (534, 8, 3, 27, 340.03, 'Cena especial', '2026-04-18', '2026-04-19 18:21:59', '2026-04-19 18:21:59', NULL),
-  (535, 8, 3, 24, 207.76, 'Compra de frutas y verduras', '2026-04-14', '2026-04-14 08:12:33', '2026-04-14 08:12:33', NULL),
-  (536, 8, 11, 75, 57.34, 'Transferencia a cuenta de ahorro', '2026-04-29', '2026-04-29 16:32:48', '2026-04-29 16:32:48', NULL),
-  (537, 8, 2, 22, 454.46, 'Pago de alquiler mensual', '2026-04-10', '2026-04-13 16:26:23', '2026-04-13 16:26:23', NULL),
-  (538, 8, 8, 56, 281.83, 'Artículo electrónico', '2026-04-25', '2026-04-28 13:37:51', '2026-04-28 13:37:51', NULL),
-  (539, 8, 13, 84, 130.52, 'Gasto de emergencia', '2026-04-18', '2026-04-21 11:58:54', '2026-04-21 11:58:54', NULL),
-  (540, 8, 1, 7, 664.05, 'Reembolso de gastos', '2026-05-01', '2026-05-01 17:33:07', '2026-05-01 17:33:07', NULL),
-  (541, 8, 1, 1, 1481.82, 'Rendimiento de inversiones', '2026-05-06', '2026-05-09 13:06:09', '2026-05-09 13:06:09', NULL),
-  (542, 8, 1, 5, 670.35, 'Trabajo independiente', '2026-05-09', '2026-05-12 17:23:39', '2026-05-12 17:23:39', NULL),
-  (543, 8, 1, 7, 1558.95, 'Reembolso de gastos', '2026-05-07', '2026-05-10 10:23:35', '2026-05-10 10:23:35', NULL),
-  (544, 8, 1, 1, 1982.76, 'Regalo en efectivo', '2026-05-10', '2026-05-12 14:47:08', '2026-05-12 14:47:08', NULL),
-  (545, 8, 2, 14, 610.86, 'Cuota de seguro del hogar', '2026-05-24', '2026-05-25 09:13:32', '2026-05-25 09:13:32', NULL),
-  (546, 8, 3, 25, 406.40, 'Compra semanal del supermercado', '2026-05-29', '2026-05-29 10:24:40', '2026-05-29 10:24:40', NULL),
-  (547, 8, 4, 36, 278.13, 'Traslado en taxi', '2026-05-23', '2026-05-23 09:16:14', '2026-05-23 09:16:14', NULL),
-  (548, 8, 2, 19, 748.01, 'Cuenta de agua', '2026-05-22', '2026-05-24 17:03:49', '2026-05-24 17:03:49', NULL),
-  (549, 8, 9, 61, 64.50, 'Disco de música', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (550, 8, 13, 85, 186.48, 'Gasto de emergencia', '2026-05-31', '2026-05-31 13:15:41', '2026-05-31 13:15:41', NULL),
-  (551, 8, 3, 25, 396.45, 'Compra semanal del supermercado', '2026-05-21', '2026-05-24 14:37:12', '2026-05-24 14:37:12', NULL),
-  (552, 8, 1, 9, 712.09, 'Pago por horas extraordinarias', '2026-06-09', '2026-06-11 13:52:17', '2026-06-11 13:52:17', NULL),
-  (553, 8, 2, 22, 512.70, 'Cuenta de agua', '2026-06-24', '2026-06-27 17:00:16', '2026-06-27 17:00:16', NULL),
-  (554, 8, 3, 26, 102.54, 'Cena en restaurante', '2026-06-27', '2026-06-27 16:18:21', '2026-06-27 16:18:21', NULL),
-  (555, 8, 6, 47, 20.51, 'Pago de seguro médico', '2026-06-28', '2026-06-30 15:24:36', '2026-06-30 15:24:36', NULL),
-  (556, 8, 7, 53, 5.00, 'Pago de matrícula', '2026-06-28', '2026-06-28 15:07:16', '2026-06-28 15:07:16', NULL),
-  (557, 8, 1, 9, 1164.17, 'Regalo en efectivo', '2026-07-05', '2026-07-06 12:05:25', '2026-07-06 12:05:25', NULL),
-  (558, 8, 1, 6, 336.85, 'Pensión mensual', '2026-07-03', '2026-07-06 13:22:13', '2026-07-06 13:22:13', NULL),
-  (559, 8, 1, 1, 1920.68, 'Pago por horas extraordinarias', '2026-07-04', '2026-07-07 11:15:47', '2026-07-07 11:15:47', NULL),
-  (560, 8, 1, 4, 612.57, 'Ingreso por servicios profesionales', '2026-07-04', '2026-07-06 10:49:06', '2026-07-06 10:49:06', NULL),
-  (561, 8, 2, 14, 556.86, 'Suscripción a streaming', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (562, 8, 3, 23, 211.36, 'Cena especial', '2026-07-20', '2026-07-23 17:55:17', '2026-07-23 17:55:17', NULL),
-  (563, 8, 3, 26, 134.38, 'Compra de frutas y verduras', '2026-07-28', '2026-07-29 08:33:51', '2026-07-29 08:33:51', NULL),
-  (564, 8, 10, 68, 153.23, 'Compra para mascota', '2026-07-22', '2026-07-23 15:07:44', '2026-07-23 15:07:44', NULL),
-  (565, 8, 13, 84, 8.49, 'Gasto reembolsable pendiente', '2026-07-16', '2026-07-19 17:06:20', '2026-07-19 17:06:20', NULL),
-  (566, 8, 6, 44, 166.83, 'Compra de medicamentos', '2026-07-17', '2026-07-19 15:39:21', '2026-07-19 15:39:21', NULL),
-  (567, 8, 3, 24, 226.97, 'Almuerzo rápido', '2026-07-21', '2026-07-23 14:17:28', '2026-07-23 14:17:28', NULL),
-  (568, 8, 11, 80, 72.43, 'Pago tarjeta de crédito', '2026-07-13', '2026-07-15 11:35:27', '2026-07-15 11:35:27', NULL),
-  (569, 8, 1, 12, 469.19, 'Regalo en efectivo', '2026-08-01', '2026-08-02 14:31:08', '2026-08-02 14:31:08', NULL),
-  (570, 8, 1, 12, 768.31, 'Pensión mensual', '2026-08-08', '2026-08-10 12:35:54', '2026-08-10 12:35:54', NULL),
-  (571, 8, 2, 13, 745.27, 'Servicio de electricidad', '2026-08-11', '2026-08-12 12:30:53', '2026-08-12 12:30:53', NULL),
-  (572, 8, 3, 26, 294.78, 'Pedido a domicilio', '2026-08-18', '2026-08-20 13:35:35', '2026-08-20 13:35:35', NULL),
-  (573, 8, 3, 23, 58.96, 'Almuerzo rápido', '2026-08-29', '2026-08-30 17:36:41', '2026-08-30 17:36:41', NULL),
-  (574, 8, 6, 45, 11.79, 'Pago de seguro médico', '2026-08-26', '2026-08-29 15:56:05', '2026-08-29 15:56:05', NULL),
-  (575, 9, 1, 6, 959.27, 'Ingreso por alquiler de propiedad', '2026-02-10', '2026-02-13 09:05:10', '2026-02-13 09:05:10', NULL),
-  (576, 9, 1, 1, 975.32, 'Trabajo independiente', '2026-02-05', '2026-02-07 17:41:25', '2026-02-07 17:41:25', NULL),
-  (577, 9, 2, 20, 635.73, 'Pago de alquiler mensual', '2026-02-21', '2026-02-24 14:10:11', '2026-02-24 14:10:11', NULL),
-  (578, 9, 3, 24, 372.05, 'Cena en restaurante', '2026-02-18', '2026-02-18 11:10:25', '2026-02-18 11:10:25', NULL),
-  (579, 9, 3, 27, 55.30, 'Almuerzo rápido', '2026-02-22', '2026-02-22 09:16:39', '2026-02-22 09:16:39', NULL),
-  (580, 9, 3, 25, 137.80, 'Almuerzo rápido', '2026-02-19', '2026-02-22 18:08:08', '2026-02-22 18:08:08', NULL),
-  (581, 9, 3, 25, 436.19, 'Almuerzo rápido', '2026-02-24', '2026-02-26 16:28:08', '2026-02-26 16:28:08', NULL),
-  (582, 9, 9, 66, 83.25, 'Disco de música', '2026-02-28', '2026-03-31 23:59:59', '2026-03-31 23:59:59', NULL),
-  (583, 9, 3, 26, 16.65, 'Pedido a domicilio', '2026-02-12', '2026-02-15 12:23:26', '2026-02-15 12:23:26', NULL),
-  (584, 9, 1, 1, 1203.80, 'Rendimiento de inversiones', '2026-03-01', '2026-03-04 15:19:00', '2026-03-04 15:19:00', NULL),
-  (585, 9, 1, 10, 616.19, 'Reembolso de gastos', '2026-03-01', '2026-03-03 11:26:56', '2026-03-03 11:26:56', NULL),
-  (586, 9, 2, 19, 346.06, 'Servicio de electricidad', '2026-03-15', '2026-03-18 14:14:16', '2026-03-18 14:14:16', NULL),
-  (587, 9, 3, 26, 323.90, 'Pedido a domicilio', '2026-03-26', '2026-03-28 12:41:47', '2026-03-28 12:41:47', NULL),
-  (588, 9, 3, 24, 94.21, 'Cena especial', '2026-03-13', '2026-03-16 17:28:17', '2026-03-16 17:28:17', NULL),
-  (589, 9, 2, 15, 87.22, 'Servicio de internet', '2026-03-27', '2026-03-27 10:06:18', '2026-03-27 10:06:18', NULL),
-  (590, 9, 3, 28, 33.86, 'Snacks y bebidas varias', '2026-03-12', '2026-03-13 08:31:13', '2026-03-13 08:31:13', NULL),
-  (591, 9, 9, 63, 141.79, 'Suscripción mensual streaming', '2026-03-11', '2026-03-13 09:53:48', '2026-03-13 09:53:48', NULL),
-  (592, 9, 3, 23, 154.48, 'Café con compañeros', '2026-03-18', '2026-03-21 08:07:49', '2026-03-21 08:07:49', NULL),
-  (593, 9, 3, 24, 376.68, 'Cena en restaurante', '2026-03-11', '2026-03-12 15:47:49', '2026-03-12 15:47:49', NULL),
-  (594, 9, 5, 40, 63.83, 'Compra de mueble nuevo', '2026-03-19', '2026-03-21 10:40:46', '2026-03-21 10:40:46', NULL),
-  (595, 9, 10, 72, 12.77, 'Gasto para los hijos', '2026-03-25', '2026-03-27 11:23:56', '2026-03-27 11:23:56', NULL),
-  (596, 9, 1, 1, 751.04, 'Cobro mensual del salario', '2026-04-05', '2026-04-05 14:50:15', '2026-04-05 14:50:15', NULL),
-  (597, 9, 1, 10, 1610.26, 'Pago por horas extraordinarias', '2026-04-08', '2026-04-09 13:49:05', '2026-04-09 13:49:05', NULL),
-  (598, 9, 1, 1, 637.10, 'Ingreso por alquiler de propiedad', '2026-04-10', '2026-04-12 18:03:03', '2026-04-12 18:03:03', NULL),
-  (599, 9, 1, 12, 1165.44, 'Reembolso de gastos', '2026-04-02', '2026-04-03 15:14:20', '2026-04-03 15:14:20', NULL),
-  (600, 9, 2, 18, 654.14, 'Plan de telefonía móvil', '2026-04-24', '2026-04-25 08:44:24', '2026-04-25 08:44:24', NULL),
-  (601, 9, 3, 28, 93.32, 'Cena especial', '2026-04-11', '2026-04-14 15:35:18', '2026-04-14 15:35:18', NULL),
-  (602, 9, 2, 21, 310.75, 'Suscripción a streaming', '2026-04-24', '2026-04-26 17:58:55', '2026-04-26 17:58:55', NULL),
-  (603, 9, 2, 20, 271.75, 'Suscripción a streaming', '2026-04-18', '2026-04-20 15:00:49', '2026-04-20 15:00:49', NULL),
-  (604, 9, 2, 13, 582.04, 'Suscripción a streaming', '2026-04-29', '2026-04-30 13:46:04', '2026-04-30 13:46:04', NULL),
-  (605, 9, 5, 41, 206.55, 'Reparación de grifería', '2026-04-27', '2026-04-28 17:18:20', '2026-04-28 17:18:20', NULL),
-  (606, 9, 3, 23, 120.00, 'Cena especial', '2026-04-14', '2026-04-15 08:12:06', '2026-04-15 08:12:06', NULL),
-  (607, 9, 1, 1, 1462.63, 'Pensión mensual', '2026-05-07', '2026-05-10 16:39:44', '2026-05-10 16:39:44', NULL),
-  (608, 9, 2, 17, 86.81, 'Factura de gas', '2026-05-17', '2026-05-17 08:59:58', '2026-05-17 08:59:58', NULL),
-  (609, 9, 3, 28, 260.96, 'Compra de frutas y verduras', '2026-05-12', '2026-05-15 18:03:23', '2026-05-15 18:03:23', NULL),
-  (610, 9, 13, 84, 247.97, 'Gasto de emergencia', '2026-05-18', '2026-05-18 09:53:19', '2026-05-18 09:53:19', NULL),
-  (611, 9, 10, 68, 34.86, 'Alimentación de mascota', '2026-05-17', '2026-05-20 11:12:33', '2026-05-20 11:12:33', NULL),
-  (612, 9, 2, 21, 611.90, 'Pago de impuestos anuales', '2026-05-23', '2026-05-23 18:36:22', '2026-05-23 18:36:22', NULL),
-  (613, 9, 8, 55, 54.21, 'Par de zapatos', '2026-05-15', '2026-05-18 16:21:42', '2026-05-18 16:21:42', NULL),
-  (614, 9, 11, 78, 15.73, 'Transferencia a tercero', '2026-05-20', '2026-05-22 13:26:48', '2026-05-22 13:26:48', NULL),
-  (615, 9, 1, 4, 875.11, 'Rendimiento de inversiones', '2026-06-09', '2026-06-11 13:28:28', '2026-06-11 13:28:28', NULL),
-  (616, 9, 1, 1, 551.99, 'Trabajo independiente', '2026-06-05', '2026-06-05 16:08:56', '2026-06-05 16:08:56', NULL),
-  (617, 9, 2, 13, 510.94, 'Suscripción a streaming', '2026-06-20', '2026-06-20 12:58:35', '2026-06-20 12:58:35', NULL),
-  (618, 9, 3, 27, 298.21, 'Snacks y bebidas varias', '2026-06-28', '2026-06-29 09:02:29', '2026-06-29 09:02:29', NULL),
-  (619, 9, 3, 25, 448.12, 'Cena en restaurante', '2026-06-17', '2026-06-18 12:51:19', '2026-06-18 12:51:19', NULL),
-  (620, 9, 11, 76, 21.70, 'Transferencia a tercero', '2026-06-20', '2026-06-23 10:31:52', '2026-06-23 10:31:52', NULL),
-  (621, 9, 3, 27, 5.00, 'Snacks y bebidas varias', '2026-06-11', '2026-06-14 09:49:03', '2026-06-14 09:49:03', NULL),
-  (622, 9, 1, 10, 1871.58, 'Ingreso por alquiler de propiedad', '2026-07-07', '2026-07-07 12:33:02', '2026-07-07 12:33:02', NULL),
-  (623, 9, 1, 3, 788.30, 'Rendimiento de inversiones', '2026-07-04', '2026-07-05 08:43:46', '2026-07-05 08:43:46', NULL),
-  (624, 9, 2, 20, 614.63, 'Cuota de seguro del hogar', '2026-07-28', '2026-07-28 11:27:18', '2026-07-28 11:27:18', NULL),
-  (625, 9, 3, 24, 92.13, 'Compra de frutas y verduras', '2026-07-12', '2026-07-15 17:47:03', '2026-07-15 17:47:03', NULL),
-  (626, 9, 3, 27, 234.21, 'Cena especial', '2026-07-14', '2026-07-15 15:35:12', '2026-07-15 15:35:12', NULL),
-  (627, 9, 2, 21, 512.00, 'Cuota de seguro del hogar', '2026-07-26', '2026-07-27 11:04:17', '2026-07-27 11:04:17', NULL),
-  (628, 9, 2, 14, 553.81, 'Plan de telefonía móvil', '2026-07-23', '2026-07-25 13:12:20', '2026-07-25 13:12:20', NULL),
-  (629, 9, 2, 17, 176.94, 'Pago de alquiler mensual', '2026-07-21', '2026-07-24 17:09:28', '2026-07-24 17:09:28', NULL),
-  (630, 9, 5, 38, 207.18, 'Electrodoméstico para el hogar', '2026-07-14', '2026-07-14 09:47:03', '2026-07-14 09:47:03', NULL),
-  (631, 9, 1, 2, 749.21, 'Reembolso de gastos', '2026-08-08', '2026-08-08 13:13:47', '2026-08-08 13:13:47', NULL),
-  (632, 9, 1, 1, 1319.64, 'Comisión por ventas', '2026-08-05', '2026-08-08 17:46:09', '2026-08-08 17:46:09', NULL),
-  (633, 9, 1, 1, 877.89, 'Trabajo independiente', '2026-08-09', '2026-08-09 12:10:03', '2026-08-09 12:10:03', NULL),
-  (634, 9, 2, 16, 641.89, 'Pago de alquiler mensual', '2026-08-29', '2026-08-31 08:29:41', '2026-08-31 08:29:41', NULL),
-  (635, 9, 3, 23, 181.39, 'Compra de frutas y verduras', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (636, 9, 3, 27, 489.01, 'Cena en restaurante', '2026-08-13', '2026-08-15 15:55:38', '2026-08-15 15:55:38', NULL),
-  (637, 9, 3, 27, 465.38, 'Pedido a domicilio', '2026-08-10', '2026-08-10 11:59:33', '2026-08-10 11:59:33', NULL),
-  (638, 9, 3, 28, 103.79, 'Café con compañeros', '2026-08-21', '2026-08-23 13:40:19', '2026-08-23 13:40:19', NULL),
-  (639, 9, 10, 70, 244.51, 'Gasto para los hijos', '2026-08-30', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (640, 9, 6, 44, 49.75, 'Sesión de terapia', '2026-08-22', '2026-08-23 09:46:24', '2026-08-23 09:46:24', NULL),
-  (641, 10, 1, 11, 609.37, 'Pensión mensual', '2026-02-04', '2026-02-05 14:19:58', '2026-02-05 14:19:58', NULL),
-  (642, 10, 1, 1, 1313.35, 'Pago por horas extraordinarias', '2026-02-04', '2026-02-05 17:34:43', '2026-02-05 17:34:43', NULL),
-  (643, 10, 1, 5, 1439.36, 'Bonificación por desempeño', '2026-02-09', '2026-02-10 14:58:49', '2026-02-10 14:58:49', NULL),
-  (644, 10, 1, 10, 1850.80, 'Ingreso por servicios profesionales', '2026-02-06', '2026-02-06 16:34:46', '2026-02-06 16:34:46', NULL),
-  (645, 10, 1, 1, 1759.28, 'Rendimiento de inversiones', '2026-02-03', '2026-02-03 13:56:26', '2026-02-03 13:56:26', NULL),
-  (646, 10, 2, 17, 382.25, 'Cuenta de agua', '2026-02-18', '2026-02-19 11:06:08', '2026-02-19 11:06:08', NULL),
-  (647, 10, 3, 23, 283.59, 'Compra semanal del supermercado', '2026-02-18', '2026-02-19 17:14:14', '2026-02-19 17:14:14', NULL),
-  (648, 10, 3, 24, 266.09, 'Cena especial', '2026-02-25', '2026-02-27 10:54:24', '2026-02-27 10:54:24', NULL),
-  (649, 10, 4, 32, 71.75, 'Mantenimiento preventivo del auto', '2026-02-23', '2026-02-23 12:26:14', '2026-02-23 12:26:14', NULL),
-  (650, 10, 5, 38, 24.51, 'Electrodoméstico para el hogar', '2026-02-24', '2026-02-27 13:55:29', '2026-02-27 13:55:29', NULL),
-  (651, 10, 2, 22, 601.50, 'Cuota de comunidad', '2026-02-22', '2026-02-24 14:39:47', '2026-02-24 14:39:47', NULL),
-  (652, 10, 10, 73, 263.36, 'Gasto para los hijos', '2026-02-11', '2026-02-11 15:29:52', '2026-02-11 15:29:52', NULL),
-  (653, 10, 5, 41, 163.67, 'Compra de mueble nuevo', '2026-02-11', '2026-02-14 16:48:40', '2026-02-14 16:48:40', NULL),
-  (654, 10, 3, 26, 445.67, 'Compra semanal del supermercado', '2026-02-19', '2026-02-22 10:27:18', '2026-02-22 10:27:18', NULL),
-  (655, 10, 4, 36, 249.82, 'Pago de seguro vehicular', '2026-02-24', '2026-02-24 16:07:11', '2026-02-24 16:07:11', NULL),
-  (656, 10, 1, 1, 1120.34, 'Comisión por ventas', '2026-03-08', '2026-03-08 10:29:37', '2026-03-08 10:29:37', NULL),
-  (657, 10, 1, 8, 362.32, 'Comisión por ventas', '2026-03-06', '2026-03-07 09:05:07', '2026-03-07 09:05:07', NULL),
-  (658, 10, 1, 1, 1044.42, 'Rendimiento de inversiones', '2026-03-09', '2026-03-12 16:39:10', '2026-03-12 16:39:10', NULL),
-  (659, 10, 1, 1, 1582.87, 'Bonificación por desempeño', '2026-03-06', '2026-03-07 10:55:09', '2026-03-07 10:55:09', NULL),
-  (660, 10, 1, 1, 955.25, 'Ingreso por servicios profesionales', '2026-03-05', '2026-03-08 12:40:11', '2026-03-08 12:40:11', NULL),
-  (661, 10, 2, 15, 770.33, 'Pago de impuestos anuales', '2026-03-10', '2026-03-12 08:29:31', '2026-03-12 08:29:31', NULL),
-  (662, 10, 3, 27, 409.50, 'Cena especial', '2026-03-29', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (663, 10, 9, 61, 182.36, 'Material para hobby', '2026-03-10', '2026-03-11 16:17:39', '2026-03-11 16:17:39', NULL),
-  (664, 10, 5, 37, 59.53, 'Compra de mueble nuevo', '2026-03-11', '2026-03-13 08:09:54', '2026-03-13 08:09:54', NULL),
-  (665, 10, 11, 77, 102.68, 'Inversión en fondo', '2026-03-12', '2026-03-12 09:26:11', '2026-03-12 09:26:11', NULL),
-  (666, 10, 11, 80, 209.00, 'Pago cuota préstamo', '2026-03-29', '2026-03-30 15:47:37', '2026-03-30 15:47:37', NULL),
-  (667, 10, 3, 25, 181.73, 'Cena en restaurante', '2026-03-22', '2026-03-22 14:53:35', '2026-03-22 14:53:35', NULL),
-  (668, 10, 2, 14, 570.96, 'Factura de gas', '2026-03-18', '2026-03-20 16:26:33', '2026-03-20 16:26:33', NULL),
-  (669, 10, 11, 75, 37.24, 'Comisión bancaria', '2026-03-30', '2026-03-30 15:46:44', '2026-03-30 15:46:44', NULL),
-  (670, 10, 1, 1, 1771.70, 'Venta de artículos personales', '2026-04-05', '2026-04-07 10:39:36', '2026-04-07 10:39:36', NULL),
-  (671, 10, 1, 11, 1095.93, 'Ingreso por servicios profesionales', '2026-04-03', '2026-04-04 12:12:00', '2026-04-04 12:12:00', NULL),
-  (672, 10, 1, 1, 1438.19, 'Cobro mensual del salario', '2026-04-02', '2026-04-03 17:26:26', '2026-04-03 17:26:26', NULL),
-  (673, 10, 2, 18, 312.24, 'Servicio de internet', '2026-04-30', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (674, 10, 3, 25, 401.39, 'Compra semanal del supermercado', '2026-04-19', '2026-04-21 16:35:20', '2026-04-21 16:35:20', NULL),
-  (675, 10, 3, 25, 216.14, 'Snacks y bebidas varias', '2026-04-28', '2026-04-28 10:12:21', '2026-04-28 10:12:21', NULL),
-  (676, 10, 9, 64, 240.19, 'Entrada a evento deportivo', '2026-04-30', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (677, 10, 10, 70, 141.43, 'Alimentación de mascota', '2026-04-23', '2026-04-23 16:19:36', '2026-04-23 16:19:36', NULL),
-  (678, 10, 10, 72, 10.52, 'Pago de colegio', '2026-04-28', '2026-04-30 13:04:09', '2026-04-30 13:04:09', NULL),
-  (679, 10, 7, 53, 189.82, 'Compra de libros de texto', '2026-04-15', '2026-04-18 10:38:07', '2026-04-18 10:38:07', NULL),
-  (680, 10, 7, 50, 85.09, 'Compra de libros de texto', '2026-04-12', '2026-04-15 11:23:28', '2026-04-15 11:23:28', NULL),
-  (681, 10, 3, 24, 82.75, 'Compra semanal del supermercado', '2026-04-11', '2026-04-12 09:28:32', '2026-04-12 09:28:32', NULL),
-  (682, 10, 10, 69, 61.11, 'Consulta veterinaria', '2026-04-25', '2026-04-27 13:09:49', '2026-04-27 13:09:49', NULL),
-  (683, 10, 2, 16, 593.43, 'Servicio de internet', '2026-04-24', '2026-04-27 16:07:00', '2026-04-27 16:07:00', NULL),
-  (684, 10, 12, 83, 262.20, 'Ayuda familiar directa', '2026-04-20', '2026-04-23 08:06:33', '2026-04-23 08:06:33', NULL),
-  (685, 10, 1, 1, 1637.74, 'Trabajo independiente', '2026-05-04', '2026-05-06 11:12:18', '2026-05-06 11:12:18', NULL),
-  (686, 10, 1, 8, 1408.02, 'Cobro mensual del salario', '2026-05-05', '2026-05-06 10:17:07', '2026-05-06 10:17:07', NULL),
-  (687, 10, 1, 9, 1125.31, 'Bonificación por desempeño', '2026-05-04', '2026-05-06 16:20:17', '2026-05-06 16:20:17', NULL),
-  (688, 10, 2, 17, 480.56, 'Plan de telefonía móvil', '2026-05-15', '2026-05-15 12:39:57', '2026-05-15 12:39:57', NULL),
-  (689, 10, 3, 27, 238.51, 'Compra semanal del supermercado', '2026-05-14', '2026-05-14 15:57:43', '2026-05-14 15:57:43', NULL),
-  (690, 10, 2, 14, 369.85, 'Plan de telefonía móvil', '2026-05-15', '2026-05-18 17:22:19', '2026-05-18 17:22:19', NULL),
-  (691, 10, 13, 84, 292.24, 'Gasto imprevisto del mes', '2026-05-24', '2026-05-25 09:52:51', '2026-05-25 09:52:51', NULL),
-  (692, 10, 3, 28, 332.88, 'Pedido a domicilio', '2026-05-24', '2026-05-27 11:14:09', '2026-05-27 11:14:09', NULL),
-  (693, 10, 8, 56, 211.39, 'Compra de ropa nueva', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (694, 10, 2, 18, 408.99, 'Cuenta de agua', '2026-05-15', '2026-05-17 13:38:36', '2026-05-17 13:38:36', NULL),
-  (695, 10, 8, 60, 240.04, 'Producto de cosmética', '2026-05-20', '2026-05-20 12:34:29', '2026-05-20 12:34:29', NULL),
-  (696, 10, 5, 41, 76.89, 'Electrodoméstico para el hogar', '2026-05-15', '2026-05-18 14:04:21', '2026-05-18 14:04:21', NULL),
-  (697, 10, 11, 78, 236.37, 'Inversión en fondo', '2026-05-23', '2026-05-25 16:44:15', '2026-05-25 16:44:15', NULL),
-  (698, 10, 3, 28, 467.51, 'Cena especial', '2026-05-28', '2026-05-31 09:37:38', '2026-05-31 09:37:38', NULL),
-  (699, 10, 2, 20, 182.13, 'Cuota de comunidad', '2026-05-22', '2026-05-22 17:06:43', '2026-05-22 17:06:43', NULL),
-  (700, 10, 1, 1, 1490.25, 'Regalo en efectivo', '2026-06-02', '2026-06-03 10:56:37', '2026-06-03 10:56:37', NULL),
-  (701, 10, 1, 3, 1389.59, 'Venta de artículos personales', '2026-06-08', '2026-06-10 14:39:36', '2026-06-10 14:39:36', NULL),
-  (702, 10, 1, 1, 1522.28, 'Regalo en efectivo', '2026-06-06', '2026-06-08 17:50:58', '2026-06-08 17:50:58', NULL),
-  (703, 10, 2, 17, 738.88, 'Cuota de comunidad', '2026-06-23', '2026-06-25 09:37:00', '2026-06-25 09:37:00', NULL),
-  (704, 10, 3, 27, 219.97, 'Compra semanal del supermercado', '2026-06-14', '2026-06-16 08:23:57', '2026-06-16 08:23:57', NULL),
-  (705, 10, 3, 23, 359.70, 'Snacks y bebidas varias', '2026-06-17', '2026-06-20 17:25:40', '2026-06-20 17:25:40', NULL),
-  (706, 10, 8, 58, 133.38, 'Dispositivo tecnológico', '2026-06-16', '2026-06-17 15:08:12', '2026-06-17 15:08:12', NULL),
-  (707, 10, 3, 26, 102.51, 'Compra semanal del supermercado', '2026-06-14', '2026-06-15 08:04:41', '2026-06-15 08:04:41', NULL),
-  (708, 10, 3, 28, 235.27, 'Compra de frutas y verduras', '2026-06-14', '2026-06-14 10:41:51', '2026-06-14 10:41:51', NULL),
-  (709, 10, 13, 87, 188.86, 'Gasto imprevisto del mes', '2026-06-24', '2026-06-27 16:52:28', '2026-06-27 16:52:28', NULL),
-  (710, 10, 2, 19, 503.43, 'Servicio de internet', '2026-06-28', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (711, 10, 10, 72, 113.26, 'Ayuda a familiar', '2026-06-11', '2026-06-14 13:07:37', '2026-06-14 13:07:37', NULL),
-  (712, 10, 3, 24, 373.19, 'Cena en restaurante', '2026-06-26', '2026-06-28 15:33:05', '2026-06-28 15:33:05', NULL),
-  (713, 10, 1, 11, 1928.74, 'Ingreso por alquiler de propiedad', '2026-07-02', '2026-07-04 17:03:57', '2026-07-04 17:03:57', NULL),
-  (714, 10, 1, 1, 1043.96, 'Rendimiento de inversiones', '2026-07-09', '2026-07-12 17:46:21', '2026-07-12 17:46:21', NULL),
-  (715, 10, 1, 1, 1966.64, 'Pensión mensual', '2026-07-05', '2026-07-07 10:02:44', '2026-07-07 10:02:44', NULL),
-  (716, 10, 1, 12, 1613.04, 'Bonificación por desempeño', '2026-07-05', '2026-07-05 18:30:37', '2026-07-05 18:30:37', NULL),
-  (717, 10, 2, 22, 88.71, 'Cuenta de agua', '2026-07-19', '2026-07-19 12:31:05', '2026-07-19 12:31:05', NULL),
-  (718, 10, 3, 27, 66.13, 'Pedido a domicilio', '2026-07-18', '2026-07-20 10:39:17', '2026-07-20 10:39:17', NULL),
-  (719, 10, 2, 14, 502.87, 'Cuenta de agua', '2026-07-28', '2026-07-29 18:28:23', '2026-07-29 18:28:23', NULL),
-  (720, 10, 2, 20, 185.61, 'Cuota de comunidad', '2026-07-26', '2026-07-26 13:05:09', '2026-07-26 13:05:09', NULL),
-  (721, 10, 4, 36, 227.06, 'Mantenimiento preventivo del auto', '2026-07-23', '2026-07-26 11:42:28', '2026-07-26 11:42:28', NULL),
-  (722, 10, 5, 41, 221.64, 'Compra de mueble nuevo', '2026-07-21', '2026-07-21 18:16:48', '2026-07-21 18:16:48', NULL),
-  (723, 10, 3, 26, 253.83, 'Compra de frutas y verduras', '2026-07-25', '2026-07-26 14:43:45', '2026-07-26 14:43:45', NULL),
-  (724, 10, 1, 1, 1805.42, 'Ingreso por alquiler de propiedad', '2026-08-01', '2026-08-03 15:24:43', '2026-08-03 15:24:43', NULL),
-  (725, 10, 1, 11, 1920.57, 'Regalo en efectivo', '2026-08-02', '2026-08-04 14:39:58', '2026-08-04 14:39:58', NULL),
-  (726, 10, 1, 6, 686.59, 'Venta de artículos personales', '2026-08-02', '2026-08-04 18:37:25', '2026-08-04 18:37:25', NULL),
-  (727, 10, 2, 16, 600.74, 'Cuenta de agua', '2026-08-28', '2026-08-29 16:21:43', '2026-08-29 16:21:43', NULL),
-  (728, 10, 3, 25, 287.38, 'Cena en restaurante', '2026-08-31', '2026-08-31 09:00:26', '2026-08-31 09:00:26', NULL),
-  (729, 10, 12, 82, 108.70, 'Ayuda familiar directa', '2026-08-19', '2026-08-21 11:02:01', '2026-08-21 11:02:01', NULL),
-  (730, 10, 2, 22, 528.56, 'Cuota de comunidad', '2026-08-13', '2026-08-13 17:08:24', '2026-08-13 17:08:24', NULL),
-  (731, 10, 4, 30, 210.22, 'Carga de combustible', '2026-08-18', '2026-08-20 15:42:59', '2026-08-20 15:42:59', NULL),
-  (732, 10, 6, 49, 130.96, 'Consulta médica general', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (733, 10, 2, 19, 341.44, 'Servicio de electricidad', '2026-08-11', '2026-08-13 12:11:28', '2026-08-13 12:11:28', NULL),
-  (734, 10, 5, 41, 120.83, 'Reparación de grifería', '2026-08-30', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (735, 10, 2, 20, 586.55, 'Servicio de internet', '2026-08-13', '2026-08-13 09:04:36', '2026-08-13 09:04:36', NULL),
-  (736, 10, 2, 20, 161.64, 'Servicio de internet', '2026-08-30', '2026-08-30 08:42:24', '2026-08-30 08:42:24', NULL),
-  (737, 11, 1, 10, 206.67, 'Comisión por ventas', '2026-02-08', '2026-02-11 14:25:54', '2026-02-11 14:25:54', NULL),
-  (738, 11, 1, 2, 1172.23, 'Reembolso de gastos', '2026-02-01', '2026-02-04 15:07:36', '2026-02-04 15:07:36', NULL),
-  (739, 11, 1, 6, 800.19, 'Ingreso por servicios profesionales', '2026-02-05', '2026-02-08 08:40:41', '2026-02-08 08:40:41', NULL),
-  (740, 11, 2, 18, 450.97, 'Servicio de internet', '2026-02-20', '2026-02-20 15:48:49', '2026-02-20 15:48:49', NULL),
-  (741, 11, 3, 28, 125.47, 'Pedido a domicilio', '2026-02-27', '2026-02-27 14:42:12', '2026-02-27 14:42:12', NULL),
-  (742, 11, 3, 28, 353.76, 'Café con compañeros', '2026-02-25', '2026-02-25 18:28:47', '2026-02-25 18:28:47', NULL),
-  (743, 11, 2, 13, 696.47, 'Servicio de internet', '2026-02-25', '2026-02-28 09:50:34', '2026-02-28 09:50:34', NULL),
-  (744, 11, 9, 61, 15.93, 'Suscripción mensual streaming', '2026-02-11', '2026-02-13 08:25:07', '2026-02-13 08:25:07', NULL),
-  (745, 11, 12, 83, 140.22, 'Donación a organización benéfica', '2026-02-27', '2026-02-28 17:14:59', '2026-02-28 17:14:59', NULL),
-  (746, 11, 2, 20, 142.69, 'Cuenta de agua', '2026-02-25', '2026-02-25 11:44:41', '2026-02-25 11:44:41', NULL),
-  (747, 11, 2, 17, 28.54, 'Cuota de comunidad', '2026-02-13', '2026-02-16 17:10:53', '2026-02-16 17:10:53', NULL),
-  (748, 11, 1, 1, 1392.47, 'Rendimiento de inversiones', '2026-03-10', '2026-03-11 09:51:12', '2026-03-11 09:51:12', NULL),
-  (749, 11, 2, 18, 658.64, 'Cuota de comunidad', '2026-03-31', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (750, 11, 3, 27, 94.54, 'Cena en restaurante', '2026-03-16', '2026-03-16 17:11:21', '2026-03-16 17:11:21', NULL),
-  (751, 11, 2, 19, 176.04, 'Cuota de comunidad', '2026-03-21', '2026-03-22 15:15:59', '2026-03-22 15:15:59', NULL),
-  (752, 11, 2, 22, 259.20, 'Pago de alquiler mensual', '2026-03-15', '2026-03-15 15:05:00', '2026-03-15 15:05:00', NULL),
-  (753, 11, 2, 22, 51.84, 'Servicio de internet', '2026-03-23', '2026-03-26 10:13:09', '2026-03-26 10:13:09', NULL),
-  (754, 11, 8, 56, 10.37, 'Producto de cosmética', '2026-03-29', '2026-03-29 17:11:45', '2026-03-29 17:11:45', NULL),
-  (755, 11, 1, 1, 1336.57, 'Ingreso por alquiler de propiedad', '2026-04-04', '2026-04-04 16:06:39', '2026-04-04 16:06:39', NULL),
-  (756, 11, 1, 9, 1113.57, 'Ingreso por servicios profesionales', '2026-04-08', '2026-04-09 12:03:12', '2026-04-09 12:03:12', NULL),
-  (757, 11, 1, 11, 1718.81, 'Cobro mensual del salario', '2026-04-08', '2026-04-11 10:10:42', '2026-04-11 10:10:42', NULL),
-  (758, 11, 2, 13, 542.53, 'Pago de impuestos anuales', '2026-04-23', '2026-04-25 13:39:51', '2026-04-25 13:39:51', NULL),
-  (759, 11, 3, 23, 115.74, 'Cena especial', '2026-04-27', '2026-04-28 10:50:01', '2026-04-28 10:50:01', NULL),
-  (760, 11, 3, 24, 369.06, 'Snacks y bebidas varias', '2026-04-28', '2026-04-30 14:12:47', '2026-04-30 14:12:47', NULL),
-  (761, 11, 2, 18, 220.84, 'Factura de gas', '2026-04-17', '2026-04-20 11:24:57', '2026-04-20 11:24:57', NULL),
-  (762, 11, 3, 23, 143.48, 'Almuerzo rápido', '2026-04-29', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (763, 11, 5, 42, 110.78, 'Compra de productos de limpieza', '2026-04-18', '2026-04-19 13:08:02', '2026-04-19 13:08:02', NULL),
-  (764, 11, 6, 44, 37.78, 'Compra de medicamentos', '2026-04-24', '2026-04-27 14:10:48', '2026-04-27 14:10:48', NULL),
-  (765, 11, 3, 27, 103.69, 'Café con compañeros', '2026-04-30', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (766, 11, 3, 24, 308.04, 'Café con compañeros', '2026-04-24', '2026-04-26 08:46:27', '2026-04-26 08:46:27', NULL),
-  (767, 11, 1, 1, 833.61, 'Rendimiento de inversiones', '2026-05-10', '2026-05-11 17:57:00', '2026-05-11 17:57:00', NULL),
-  (768, 11, 1, 1, 1984.29, 'Venta de artículos personales', '2026-05-09', '2026-05-09 14:33:25', '2026-05-09 14:33:25', NULL),
-  (769, 11, 1, 12, 1678.32, 'Cobro mensual del salario', '2026-05-08', '2026-05-11 11:05:35', '2026-05-11 11:05:35', NULL),
-  (770, 11, 2, 19, 762.45, 'Servicio de electricidad', '2026-05-14', '2026-05-16 12:15:41', '2026-05-16 12:15:41', NULL),
-  (771, 11, 3, 23, 191.45, 'Almuerzo rápido', '2026-05-24', '2026-05-24 15:29:49', '2026-05-24 15:29:49', NULL),
-  (772, 11, 8, 56, 238.01, 'Artículo electrónico', '2026-05-21', '2026-05-24 18:00:55', '2026-05-24 18:00:55', NULL),
-  (773, 11, 3, 27, 45.38, 'Café con compañeros', '2026-05-23', '2026-05-25 17:34:36', '2026-05-25 17:34:36', NULL),
-  (774, 11, 3, 27, 444.00, 'Snacks y bebidas varias', '2026-05-11', '2026-05-13 08:07:24', '2026-05-13 08:07:24', NULL),
-  (775, 11, 2, 18, 324.82, 'Factura de gas', '2026-05-30', '2026-05-30 16:45:49', '2026-05-30 16:45:49', NULL),
-  (776, 11, 3, 24, 283.63, 'Café con compañeros', '2026-05-30', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (777, 11, 5, 39, 109.05, 'Artículo de decoración', '2026-05-18', '2026-05-21 12:03:04', '2026-05-21 12:03:04', NULL),
-  (778, 11, 1, 1, 1290.02, 'Reembolso de gastos', '2026-06-02', '2026-06-05 16:43:52', '2026-06-05 16:43:52', NULL),
-  (779, 11, 1, 8, 1317.71, 'Rendimiento de inversiones', '2026-06-02', '2026-06-03 15:05:05', '2026-06-03 15:05:05', NULL),
-  (780, 11, 1, 5, 1924.86, 'Comisión por ventas', '2026-06-02', '2026-06-02 10:17:07', '2026-06-02 10:17:07', NULL),
-  (781, 11, 1, 1, 725.75, 'Reembolso de gastos', '2026-06-04', '2026-06-04 12:26:43', '2026-06-04 12:26:43', NULL),
-  (782, 11, 2, 15, 405.43, 'Factura de gas', '2026-06-23', '2026-06-26 18:01:18', '2026-06-26 18:01:18', NULL),
-  (783, 11, 3, 23, 340.60, 'Snacks y bebidas varias', '2026-06-26', '2026-06-28 14:37:21', '2026-06-28 14:37:21', NULL),
-  (784, 11, 12, 83, 161.40, 'Donación a organización benéfica', '2026-06-27', '2026-06-30 15:19:36', '2026-06-30 15:19:36', NULL),
-  (785, 11, 6, 44, 237.83, 'Producto de bienestar personal', '2026-06-17', '2026-06-20 13:18:49', '2026-06-20 13:18:49', NULL),
-  (786, 11, 3, 25, 244.29, 'Almuerzo rápido', '2026-06-15', '2026-06-16 16:18:11', '2026-06-16 16:18:11', NULL),
-  (787, 11, 13, 85, 52.57, 'Gasto imprevisto del mes', '2026-06-13', '2026-06-13 13:36:08', '2026-06-13 13:36:08', NULL),
-  (788, 11, 2, 16, 471.87, 'Pago de impuestos anuales', '2026-06-11', '2026-06-13 13:09:23', '2026-06-13 13:09:23', NULL),
-  (789, 11, 4, 33, 40.84, 'Estacionamiento en centro comercial', '2026-06-10', '2026-06-13 15:49:09', '2026-06-13 15:49:09', NULL),
-  (790, 11, 1, 1, 1607.74, 'Venta de artículos personales', '2026-07-09', '2026-07-11 18:45:18', '2026-07-11 18:45:18', NULL),
-  (791, 11, 1, 10, 1400.40, 'Comisión por ventas', '2026-07-10', '2026-07-13 13:44:07', '2026-07-13 13:44:07', NULL),
-  (792, 11, 2, 20, 725.13, 'Cuota de comunidad', '2026-07-14', '2026-07-14 12:01:25', '2026-07-14 12:01:25', NULL),
-  (793, 11, 3, 24, 239.61, 'Café con compañeros', '2026-07-12', '2026-07-14 08:38:41', '2026-07-14 08:38:41', NULL),
-  (794, 11, 5, 39, 62.74, 'Servicio de jardinería', '2026-07-12', '2026-07-15 18:42:05', '2026-07-15 18:42:05', NULL),
-  (795, 11, 3, 25, 313.49, 'Almuerzo rápido', '2026-07-26', '2026-07-26 18:23:25', '2026-07-26 18:23:25', NULL),
-  (796, 11, 8, 57, 118.90, 'Producto de cosmética', '2026-07-10', '2026-07-12 13:22:19', '2026-07-12 13:22:19', NULL),
-  (797, 11, 3, 24, 372.09, 'Compra de frutas y verduras', '2026-07-24', '2026-07-27 15:18:10', '2026-07-27 15:18:10', NULL),
-  (798, 11, 8, 56, 251.48, 'Producto de cosmética', '2026-07-29', '2026-07-29 10:13:19', '2026-07-29 10:13:19', NULL),
-  (799, 11, 10, 70, 24.50, 'Alimentación de mascota', '2026-07-28', '2026-07-31 09:00:26', '2026-07-31 09:00:26', NULL),
-  (800, 11, 8, 56, 168.97, 'Producto de cosmética', '2026-07-28', '2026-07-29 11:11:53', '2026-07-29 11:11:53', NULL),
-  (801, 11, 3, 23, 190.60, 'Cena especial', '2026-07-28', '2026-07-30 15:35:47', '2026-07-30 15:35:47', NULL),
-  (802, 11, 1, 3, 672.82, 'Trabajo independiente', '2026-08-08', '2026-08-08 18:42:57', '2026-08-08 18:42:57', NULL),
-  (803, 11, 2, 19, 184.53, 'Servicio de internet', '2026-08-30', '2026-08-31 08:07:48', '2026-08-31 08:07:48', NULL),
-  (804, 11, 3, 26, 336.81, 'Compra de frutas y verduras', '2026-08-12', '2026-08-14 17:30:36', '2026-08-14 17:30:36', NULL),
-  (805, 11, 12, 83, 67.36, 'Donación a organización benéfica', '2026-08-13', '2026-08-15 16:46:36', '2026-08-15 16:46:36', NULL),
-  (806, 11, 4, 29, 13.47, 'Traslado en taxi', '2026-08-24', '2026-08-25 13:10:03', '2026-08-25 13:10:03', NULL),
-  (807, 12, 1, 2, 1124.96, 'Reembolso de gastos', '2026-03-03', '2026-03-03 17:48:10', '2026-03-03 17:48:10', NULL),
-  (808, 12, 1, 1, 974.32, 'Ingreso por alquiler de propiedad', '2026-03-05', '2026-03-07 18:44:44', '2026-03-07 18:44:44', NULL),
-  (809, 12, 1, 1, 1370.07, 'Ingreso por alquiler de propiedad', '2026-03-03', '2026-03-03 10:33:18', '2026-03-03 10:33:18', NULL),
-  (810, 12, 2, 20, 359.00, 'Factura de gas', '2026-03-15', '2026-03-15 11:09:32', '2026-03-15 11:09:32', NULL),
-  (811, 12, 3, 24, 403.70, 'Cena en restaurante', '2026-03-27', '2026-03-27 14:29:58', '2026-03-27 14:29:58', NULL),
-  (812, 12, 2, 13, 555.79, 'Suscripción a streaming', '2026-03-21', '2026-03-22 15:56:38', '2026-03-22 15:56:38', NULL),
-  (813, 12, 7, 51, 214.42, 'Curso online especializado', '2026-03-10', '2026-03-10 11:08:54', '2026-03-10 11:08:54', NULL),
-  (814, 12, 6, 44, 66.90, 'Producto de bienestar personal', '2026-03-12', '2026-03-15 09:04:01', '2026-03-15 09:04:01', NULL),
-  (815, 12, 8, 55, 62.92, 'Accesorio personal', '2026-03-11', '2026-03-11 15:07:58', '2026-03-11 15:07:58', NULL),
-  (816, 12, 3, 28, 34.83, 'Café con compañeros', '2026-03-13', '2026-03-13 17:13:37', '2026-03-13 17:13:37', NULL),
-  (817, 12, 3, 23, 353.76, 'Café con compañeros', '2026-03-18', '2026-03-20 13:10:54', '2026-03-20 13:10:54', NULL),
-  (818, 12, 3, 23, 328.97, 'Compra semanal del supermercado', '2026-03-26', '2026-03-27 11:18:10', '2026-03-27 11:18:10', NULL),
-  (819, 12, 1, 9, 1732.33, 'Regalo en efectivo', '2026-04-08', '2026-04-10 17:11:28', '2026-04-10 17:11:28', NULL),
-  (820, 12, 2, 14, 185.64, 'Factura de gas', '2026-04-21', '2026-04-24 14:13:32', '2026-04-24 14:13:32', NULL),
-  (821, 12, 3, 26, 83.04, 'Almuerzo rápido', '2026-04-20', '2026-04-20 15:07:33', '2026-04-20 15:07:33', NULL),
-  (822, 12, 7, 52, 169.35, 'Material escolar', '2026-04-11', '2026-04-11 13:31:07', '2026-04-11 13:31:07', NULL),
-  (823, 12, 3, 28, 488.80, 'Compra de frutas y verduras', '2026-04-24', '2026-04-25 16:26:18', '2026-04-25 16:26:18', NULL),
-  (824, 12, 2, 20, 505.81, 'Servicio de electricidad', '2026-04-21', '2026-04-22 08:43:31', '2026-04-22 08:43:31', NULL),
-  (825, 12, 2, 14, 101.17, 'Factura de gas', '2026-04-22', '2026-04-22 10:04:23', '2026-04-22 10:04:23', NULL),
-  (826, 12, 3, 23, 20.23, 'Compra de frutas y verduras', '2026-04-25', '2026-04-27 17:37:17', '2026-04-27 17:37:17', NULL),
-  (827, 12, 3, 26, 5.00, 'Cena especial', '2026-04-14', '2026-04-17 09:07:16', '2026-04-17 09:07:16', NULL),
-  (828, 12, 1, 2, 1096.64, 'Ingreso por alquiler de propiedad', '2026-05-01', '2026-05-02 14:38:43', '2026-05-02 14:38:43', NULL),
-  (829, 12, 2, 15, 277.06, 'Suscripción a streaming', '2026-05-29', '2026-05-29 09:42:48', '2026-05-29 09:42:48', NULL),
-  (830, 12, 3, 26, 402.58, 'Pedido a domicilio', '2026-05-16', '2026-05-18 18:31:31', '2026-05-18 18:31:31', NULL),
-  (831, 12, 10, 72, 10.21, 'Pago de colegio', '2026-05-11', '2026-05-14 09:24:28', '2026-05-14 09:24:28', NULL),
-  (832, 12, 9, 64, 15.61, 'Suscripción mensual streaming', '2026-05-15', '2026-05-17 10:31:27', '2026-05-17 10:31:27', NULL),
-  (833, 12, 3, 26, 225.21, 'Cena especial', '2026-05-28', '2026-05-31 18:35:43', '2026-05-31 18:35:43', NULL),
-  (834, 12, 4, 29, 45.04, 'Pago de seguro vehicular', '2026-05-25', '2026-05-28 17:43:22', '2026-05-28 17:43:22', NULL),
-  (835, 12, 7, 50, 9.01, 'Examen de certificación profesional', '2026-05-11', '2026-05-12 13:22:51', '2026-05-12 13:22:51', NULL),
-  (836, 12, 1, 1, 1036.05, 'Pago por horas extraordinarias', '2026-06-06', '2026-06-06 18:15:15', '2026-06-06 18:15:15', NULL),
-  (837, 12, 1, 10, 352.90, 'Cobro mensual del salario', '2026-06-02', '2026-06-04 09:21:10', '2026-06-04 09:21:10', NULL),
-  (838, 12, 1, 1, 1029.64, 'Venta de artículos personales', '2026-06-07', '2026-06-10 12:01:44', '2026-06-10 12:01:44', NULL),
-  (839, 12, 1, 6, 879.93, 'Venta de artículos personales', '2026-06-07', '2026-06-09 17:06:51', '2026-06-09 17:06:51', NULL),
-  (840, 12, 2, 14, 568.15, 'Plan de telefonía móvil', '2026-06-16', '2026-06-18 15:32:51', '2026-06-18 15:32:51', NULL),
-  (841, 12, 3, 24, 318.97, 'Cena en restaurante', '2026-06-21', '2026-06-24 11:31:40', '2026-06-24 11:31:40', NULL),
-  (842, 12, 10, 69, 89.77, 'Cuota de guardería', '2026-06-11', '2026-06-13 17:25:51', '2026-06-13 17:25:51', NULL),
-  (843, 12, 3, 28, 426.77, 'Cena especial', '2026-06-13', '2026-06-15 12:04:36', '2026-06-15 12:04:36', NULL),
-  (844, 12, 7, 50, 197.20, 'Compra de libros de texto', '2026-06-19', '2026-06-21 14:42:34', '2026-06-21 14:42:34', NULL),
-  (845, 12, 3, 25, 323.73, 'Almuerzo rápido', '2026-06-24', '2026-06-25 08:40:45', '2026-06-25 08:40:45', NULL),
-  (846, 12, 1, 1, 1943.18, 'Pensión mensual', '2026-07-08', '2026-07-10 18:34:51', '2026-07-10 18:34:51', NULL),
-  (847, 12, 1, 7, 1882.34, 'Pago por horas extraordinarias', '2026-07-01', '2026-07-02 13:29:09', '2026-07-02 13:29:09', NULL),
-  (848, 12, 1, 1, 1527.96, 'Ingreso por servicios profesionales', '2026-07-05', '2026-07-08 14:20:55', '2026-07-08 14:20:55', NULL),
-  (849, 12, 1, 7, 680.48, 'Pago por horas extraordinarias', '2026-07-05', '2026-07-06 12:43:38', '2026-07-06 12:43:38', NULL),
-  (850, 12, 2, 19, 228.86, 'Servicio de internet', '2026-07-14', '2026-07-15 08:15:51', '2026-07-15 08:15:51', NULL),
-  (851, 12, 3, 26, 258.13, 'Café con compañeros', '2026-07-23', '2026-07-26 18:57:02', '2026-07-26 18:57:02', NULL),
-  (852, 12, 2, 13, 801.77, 'Pago de impuestos anuales', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (853, 12, 2, 14, 285.43, 'Servicio de electricidad', '2026-07-19', '2026-07-19 14:57:23', '2026-07-19 14:57:23', NULL),
-  (854, 12, 2, 16, 133.95, 'Cuota de comunidad', '2026-07-26', '2026-07-26 16:42:53', '2026-07-26 16:42:53', NULL),
-  (855, 12, 10, 70, 151.45, 'Consulta veterinaria', '2026-07-12', '2026-07-13 17:07:49', '2026-07-13 17:07:49', NULL),
-  (856, 12, 3, 28, 379.66, 'Café con compañeros', '2026-07-23', '2026-07-24 10:06:11', '2026-07-24 10:06:11', NULL),
-  (857, 12, 9, 64, 80.02, 'Material para hobby', '2026-07-28', '2026-07-28 15:34:23', '2026-07-28 15:34:23', NULL),
-  (858, 12, 7, 54, 130.02, 'Curso online especializado', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (859, 12, 3, 25, 39.90, 'Café con compañeros', '2026-07-29', '2026-07-29 18:51:03', '2026-07-29 18:51:03', NULL),
-  (860, 12, 1, 1, 1458.42, 'Venta de artículos personales', '2026-08-06', '2026-08-06 16:55:15', '2026-08-06 16:55:15', NULL),
-  (861, 12, 1, 1, 1864.68, 'Pago por horas extraordinarias', '2026-08-07', '2026-08-09 12:05:59', '2026-08-09 12:05:59', NULL),
-  (862, 12, 1, 1, 1789.13, 'Regalo en efectivo', '2026-08-03', '2026-08-06 18:20:56', '2026-08-06 18:20:56', NULL),
-  (863, 12, 1, 1, 550.82, 'Ingreso por alquiler de propiedad', '2026-08-02', '2026-08-05 15:47:26', '2026-08-05 15:47:26', NULL),
-  (864, 12, 1, 2, 1683.92, 'Comisión por ventas', '2026-08-05', '2026-08-05 13:26:38', '2026-08-05 13:26:38', NULL),
-  (865, 12, 2, 21, 603.34, 'Cuenta de agua', '2026-08-24', '2026-08-24 08:41:41', '2026-08-24 08:41:41', NULL),
-  (866, 12, 3, 28, 238.40, 'Pedido a domicilio', '2026-08-30', '2026-08-31 08:25:12', '2026-08-31 08:25:12', NULL),
-  (867, 12, 2, 14, 168.37, 'Plan de telefonía móvil', '2026-08-26', '2026-08-27 17:43:26', '2026-08-27 17:43:26', NULL),
-  (868, 12, 13, 85, 81.90, 'Gasto imprevisto del mes', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (869, 12, 3, 26, 474.04, 'Café con compañeros', '2026-08-28', '2026-08-29 08:01:59', '2026-08-29 08:01:59', NULL),
-  (870, 12, 9, 62, 82.23, 'Disco de música', '2026-08-15', '2026-08-15 14:39:27', '2026-08-15 14:39:27', NULL),
-  (871, 12, 2, 18, 177.59, 'Cuota de seguro del hogar', '2026-08-28', '2026-08-28 08:45:33', '2026-08-28 08:45:33', NULL),
-  (872, 13, 1, 1, 1570.35, 'Rendimiento de inversiones', '2026-03-04', '2026-03-06 12:47:31', '2026-03-06 12:47:31', NULL),
-  (873, 13, 1, 1, 1784.51, 'Pago por horas extraordinarias', '2026-03-10', '2026-03-11 12:46:43', '2026-03-11 12:46:43', NULL),
-  (874, 13, 1, 1, 1112.79, 'Pensión mensual', '2026-03-03', '2026-03-03 12:16:15', '2026-03-03 12:16:15', NULL),
-  (875, 13, 1, 1, 872.48, 'Bonificación por desempeño', '2026-03-10', '2026-03-13 09:00:30', '2026-03-13 09:00:30', NULL),
-  (876, 13, 2, 18, 780.80, 'Cuota de comunidad', '2026-03-22', '2026-03-23 14:45:27', '2026-03-23 14:45:27', NULL),
-  (877, 13, 3, 25, 64.34, 'Café con compañeros', '2026-03-27', '2026-03-27 08:21:59', '2026-03-27 08:21:59', NULL),
-  (878, 13, 7, 54, 282.10, 'Examen de certificación profesional', '2026-03-29', '2026-03-29 08:16:32', '2026-03-29 08:16:32', NULL),
-  (879, 13, 3, 28, 204.32, 'Almuerzo rápido', '2026-03-27', '2026-03-27 17:11:16', '2026-03-27 17:11:16', NULL),
-  (880, 13, 7, 53, 43.92, 'Compra de libros de texto', '2026-03-20', '2026-03-23 10:16:07', '2026-03-23 10:16:07', NULL),
-  (881, 13, 2, 20, 703.76, 'Servicio de internet', '2026-03-18', '2026-03-20 14:18:57', '2026-03-20 14:18:57', NULL),
-  (882, 13, 6, 47, 97.34, 'Sesión de terapia', '2026-03-15', '2026-03-17 15:48:09', '2026-03-17 15:48:09', NULL),
-  (883, 13, 12, 83, 240.47, 'Donación a organización benéfica', '2026-03-11', '2026-03-12 10:03:14', '2026-03-12 10:03:14', NULL),
-  (884, 13, 3, 24, 361.80, 'Snacks y bebidas varias', '2026-03-23', '2026-03-23 15:02:28', '2026-03-23 15:02:28', NULL),
-  (885, 13, 1, 1, 1239.48, 'Trabajo independiente', '2026-04-03', '2026-04-03 13:05:13', '2026-04-03 13:05:13', NULL),
-  (886, 13, 1, 1, 752.44, 'Pensión mensual', '2026-04-09', '2026-04-11 17:57:42', '2026-04-11 17:57:42', NULL),
-  (887, 13, 1, 1, 1997.01, 'Pago por horas extraordinarias', '2026-04-01', '2026-04-02 14:58:04', '2026-04-02 14:58:04', NULL),
-  (888, 13, 1, 11, 369.75, 'Ingreso por servicios profesionales', '2026-04-06', '2026-04-06 12:43:43', '2026-04-06 12:43:43', NULL),
-  (889, 13, 1, 1, 1385.51, 'Venta de artículos personales', '2026-04-02', '2026-04-04 10:01:05', '2026-04-04 10:01:05', NULL),
-  (890, 13, 2, 20, 390.54, 'Cuota de comunidad', '2026-04-18', '2026-04-18 13:02:41', '2026-04-18 13:02:41', NULL),
-  (891, 13, 3, 26, 182.71, 'Pedido a domicilio', '2026-04-28', '2026-04-29 11:55:03', '2026-04-29 11:55:03', NULL),
-  (892, 13, 2, 14, 460.37, 'Cuenta de agua', '2026-04-29', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (893, 13, 3, 23, 162.47, 'Almuerzo rápido', '2026-04-22', '2026-04-25 12:41:48', '2026-04-25 12:41:48', NULL),
-  (894, 13, 3, 26, 375.87, 'Snacks y bebidas varias', '2026-04-19', '2026-04-20 13:42:06', '2026-04-20 13:42:06', NULL),
-  (895, 13, 9, 64, 266.20, 'Entradas al cine', '2026-04-25', '2026-04-27 17:38:27', '2026-04-27 17:38:27', NULL),
-  (896, 13, 7, 54, 59.97, 'Compra de libros de texto', '2026-04-30', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (897, 13, 12, 81, 196.05, 'Ayuda familiar directa', '2026-04-14', '2026-04-17 16:40:41', '2026-04-17 16:40:41', NULL),
-  (898, 13, 3, 26, 67.22, 'Pedido a domicilio', '2026-04-25', '2026-04-27 10:08:43', '2026-04-27 10:08:43', NULL),
-  (899, 13, 10, 71, 92.17, 'Compra para mascota', '2026-04-11', '2026-04-11 08:32:06', '2026-04-11 08:32:06', NULL),
-  (900, 13, 1, 1, 1491.28, 'Ingreso por servicios profesionales', '2026-05-10', '2026-05-12 13:16:37', '2026-05-12 13:16:37', NULL),
-  (901, 13, 1, 1, 405.08, 'Cobro mensual del salario', '2026-05-08', '2026-05-09 10:53:25', '2026-05-09 10:53:25', NULL),
-  (902, 13, 1, 1, 1815.13, 'Regalo en efectivo', '2026-05-05', '2026-05-07 17:46:29', '2026-05-07 17:46:29', NULL),
-  (903, 13, 1, 1, 1711.75, 'Comisión por ventas', '2026-05-06', '2026-05-07 11:11:05', '2026-05-07 11:11:05', NULL),
-  (904, 13, 2, 22, 244.49, 'Pago de alquiler mensual', '2026-05-31', '2026-05-31 14:34:01', '2026-05-31 14:34:01', NULL),
-  (905, 13, 3, 26, 84.84, 'Cena especial', '2026-05-15', '2026-05-18 15:44:25', '2026-05-18 15:44:25', NULL),
-  (906, 13, 3, 28, 346.69, 'Almuerzo rápido', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (907, 13, 2, 13, 494.11, 'Factura de gas', '2026-05-10', '2026-05-11 15:41:09', '2026-05-11 15:41:09', NULL),
-  (908, 13, 12, 83, 61.32, 'Donación a organización benéfica', '2026-05-19', '2026-05-22 10:30:27', '2026-05-22 10:30:27', NULL),
-  (909, 13, 2, 20, 772.90, 'Factura de gas', '2026-05-25', '2026-05-25 15:37:15', '2026-05-25 15:37:15', NULL),
-  (910, 13, 3, 23, 130.80, 'Pedido a domicilio', '2026-05-23', '2026-05-26 15:47:37', '2026-05-26 15:47:37', NULL),
-  (911, 13, 3, 26, 271.28, 'Compra semanal del supermercado', '2026-05-29', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (912, 13, 7, 54, 23.74, 'Examen de certificación profesional', '2026-05-30', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (913, 13, 1, 1, 1154.35, 'Venta de artículos personales', '2026-06-03', '2026-06-05 11:30:22', '2026-06-05 11:30:22', NULL),
-  (914, 13, 1, 1, 829.55, 'Comisión por ventas', '2026-06-06', '2026-06-09 10:56:18', '2026-06-09 10:56:18', NULL),
-  (915, 13, 1, 7, 1699.55, 'Trabajo independiente', '2026-06-06', '2026-06-09 10:39:13', '2026-06-09 10:39:13', NULL),
-  (916, 13, 2, 14, 550.29, 'Pago de impuestos anuales', '2026-06-14', '2026-06-15 11:10:38', '2026-06-15 11:10:38', NULL),
-  (917, 13, 3, 23, 382.92, 'Compra semanal del supermercado', '2026-06-25', '2026-06-27 11:13:35', '2026-06-27 11:13:35', NULL),
-  (918, 13, 7, 52, 110.33, 'Pago de matrícula', '2026-06-15', '2026-06-16 16:02:51', '2026-06-16 16:02:51', NULL),
-  (919, 13, 2, 22, 220.02, 'Plan de telefonía móvil', '2026-06-27', '2026-06-28 15:16:21', '2026-06-28 15:16:21', NULL),
-  (920, 13, 10, 70, 269.41, 'Consulta veterinaria', '2026-06-26', '2026-06-26 08:59:28', '2026-06-26 08:59:28', NULL),
-  (921, 13, 3, 23, 282.90, 'Cena en restaurante', '2026-06-13', '2026-06-13 16:06:10', '2026-06-13 16:06:10', NULL),
-  (922, 13, 7, 51, 219.86, 'Compra de libros de texto', '2026-06-24', '2026-06-27 09:09:41', '2026-06-27 09:09:41', NULL),
-  (923, 13, 2, 14, 686.45, 'Pago de impuestos anuales', '2026-06-24', '2026-06-27 08:15:53', '2026-06-27 08:15:53', NULL),
-  (924, 13, 2, 14, 249.51, 'Cuenta de agua', '2026-06-23', '2026-06-25 18:42:15', '2026-06-25 18:42:15', NULL),
-  (925, 13, 10, 71, 237.23, 'Ayuda a familiar', '2026-06-14', '2026-06-17 14:58:26', '2026-06-17 14:58:26', NULL),
-  (926, 13, 10, 74, 84.95, 'Alimentación de mascota', '2026-06-10', '2026-06-13 10:49:00', '2026-06-13 10:49:00', NULL),
-  (927, 13, 3, 23, 16.99, 'Compra semanal del supermercado', '2026-06-15', '2026-06-18 08:25:48', '2026-06-18 08:25:48', NULL),
-  (928, 13, 1, 1, 1959.92, 'Regalo en efectivo', '2026-07-09', '2026-07-11 14:25:56', '2026-07-11 14:25:56', NULL),
-  (929, 13, 1, 5, 1498.79, 'Reembolso de gastos', '2026-07-06', '2026-07-08 08:52:17', '2026-07-08 08:52:17', NULL),
-  (930, 13, 2, 22, 740.34, 'Suscripción a streaming', '2026-07-22', '2026-07-25 18:13:56', '2026-07-25 18:13:56', NULL),
-  (931, 13, 3, 27, 400.52, 'Compra de frutas y verduras', '2026-07-30', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (932, 13, 6, 43, 15.91, 'Compra de medicamentos', '2026-07-20', '2026-07-23 10:33:34', '2026-07-23 10:33:34', NULL),
-  (933, 13, 3, 27, 190.13, 'Pedido a domicilio', '2026-07-30', '2026-07-31 08:01:56', '2026-07-31 08:01:56', NULL),
-  (934, 13, 3, 28, 228.69, 'Pedido a domicilio', '2026-07-26', '2026-07-26 08:53:23', '2026-07-26 08:53:23', NULL),
-  (935, 13, 7, 50, 19.08, 'Pago de matrícula', '2026-07-30', '2026-07-30 15:19:36', '2026-07-30 15:19:36', NULL),
-  (936, 13, 5, 42, 296.76, 'Compra de productos de limpieza', '2026-07-28', '2026-07-29 13:19:18', '2026-07-29 13:19:18', NULL),
-  (937, 13, 13, 85, 215.73, 'Gasto relacionado con trabajo', '2026-07-26', '2026-07-27 09:20:33', '2026-07-27 09:20:33', NULL),
-  (938, 13, 7, 53, 33.91, 'Material escolar', '2026-07-23', '2026-07-26 09:05:03', '2026-07-26 09:05:03', NULL),
-  (939, 13, 9, 62, 136.62, 'Viaje de fin de semana', '2026-07-21', '2026-07-24 17:35:33', '2026-07-24 17:35:33', NULL),
-  (940, 13, 3, 27, 264.45, 'Almuerzo rápido', '2026-07-23', '2026-07-26 15:46:26', '2026-07-26 15:46:26', NULL),
-  (941, 13, 2, 20, 456.56, 'Pago de alquiler mensual', '2026-07-14', '2026-07-14 11:29:30', '2026-07-14 11:29:30', NULL),
-  (942, 13, 10, 70, 91.31, 'Compra para mascota', '2026-07-13', '2026-07-16 09:07:23', '2026-07-16 09:07:23', NULL),
-  (943, 13, 1, 2, 868.64, 'Bonificación por desempeño', '2026-08-06', '2026-08-08 12:31:01', '2026-08-08 12:31:01', NULL),
-  (944, 13, 2, 15, 637.84, 'Factura de gas', '2026-08-23', '2026-08-23 12:56:18', '2026-08-23 12:56:18', NULL),
-  (945, 13, 3, 24, 115.15, 'Cena en restaurante', '2026-08-25', '2026-08-25 09:35:22', '2026-08-25 09:35:22', NULL),
-  (946, 13, 8, 58, 23.03, 'Producto de cosmética', '2026-08-28', '2026-08-31 13:50:24', '2026-08-31 13:50:24', NULL),
-  (947, 13, 11, 76, 5.00, 'Inversión en fondo', '2026-08-26', '2026-08-29 15:42:28', '2026-08-29 15:42:28', NULL),
-  (948, 14, 1, 1, 849.23, 'Venta de artículos personales', '2026-03-07', '2026-03-09 16:02:42', '2026-03-09 16:02:42', NULL),
-  (949, 14, 1, 11, 359.35, 'Comisión por ventas', '2026-03-03', '2026-03-03 17:40:50', '2026-03-03 17:40:50', NULL),
-  (950, 14, 1, 1, 1467.74, 'Pensión mensual', '2026-03-09', '2026-03-09 11:39:34', '2026-03-09 11:39:34', NULL),
-  (951, 14, 1, 10, 1139.16, 'Reembolso de gastos', '2026-03-08', '2026-03-08 09:42:59', '2026-03-08 09:42:59', NULL),
-  (952, 14, 1, 1, 528.46, 'Reembolso de gastos', '2026-03-04', '2026-03-05 17:28:05', '2026-03-05 17:28:05', NULL),
-  (953, 14, 2, 22, 290.32, 'Pago de alquiler mensual', '2026-03-28', '2026-03-28 15:55:59', '2026-03-28 15:55:59', NULL),
-  (954, 14, 3, 25, 235.40, 'Pedido a domicilio', '2026-03-23', '2026-03-23 16:20:24', '2026-03-23 16:20:24', NULL),
-  (955, 14, 2, 21, 176.12, 'Cuenta de agua', '2026-03-14', '2026-03-15 12:49:05', '2026-03-15 12:49:05', NULL),
-  (956, 14, 3, 28, 109.52, 'Compra semanal del supermercado', '2026-03-29', '2026-03-31 10:01:45', '2026-03-31 10:01:45', NULL),
-  (957, 14, 2, 18, 156.85, 'Servicio de electricidad', '2026-03-20', '2026-03-22 14:52:57', '2026-03-22 14:52:57', NULL),
-  (958, 14, 2, 22, 489.52, 'Plan de telefonía móvil', '2026-03-25', '2026-03-28 09:17:03', '2026-03-28 09:17:03', NULL),
-  (959, 14, 8, 55, 147.83, 'Dispositivo tecnológico', '2026-03-23', '2026-03-24 08:17:35', '2026-03-24 08:17:35', NULL),
-  (960, 14, 5, 41, 197.21, 'Compra de mueble nuevo', '2026-03-14', '2026-03-16 17:26:28', '2026-03-16 17:26:28', NULL),
-  (961, 14, 10, 69, 235.95, 'Cuota de guardería', '2026-03-14', '2026-03-16 16:10:50', '2026-03-16 16:10:50', NULL),
-  (962, 14, 1, 9, 1013.14, 'Bonificación por desempeño', '2026-04-01', '2026-04-04 17:18:41', '2026-04-04 17:18:41', NULL),
-  (963, 14, 1, 1, 1900.26, 'Regalo en efectivo', '2026-04-08', '2026-04-10 17:16:53', '2026-04-10 17:16:53', NULL),
-  (964, 14, 1, 1, 1027.13, 'Reembolso de gastos', '2026-04-04', '2026-04-06 08:10:47', '2026-04-06 08:10:47', NULL),
-  (965, 14, 1, 5, 361.49, 'Rendimiento de inversiones', '2026-04-02', '2026-04-03 16:17:56', '2026-04-03 16:17:56', NULL),
-  (966, 14, 2, 16, 507.83, 'Pago de impuestos anuales', '2026-04-20', '2026-04-22 18:16:48', '2026-04-22 18:16:48', NULL),
-  (967, 14, 3, 25, 145.59, 'Snacks y bebidas varias', '2026-04-20', '2026-04-22 11:29:38', '2026-04-22 11:29:38', NULL),
-  (968, 14, 2, 13, 402.14, 'Pago de impuestos anuales', '2026-04-10', '2026-04-11 14:35:57', '2026-04-11 14:35:57', NULL),
-  (969, 14, 10, 68, 237.26, 'Consulta veterinaria', '2026-04-30', '2026-04-30 16:01:57', '2026-04-30 16:01:57', NULL),
-  (970, 14, 9, 66, 41.41, 'Viaje de fin de semana', '2026-04-22', '2026-04-24 14:11:53', '2026-04-24 14:11:53', NULL),
-  (971, 14, 2, 14, 397.02, 'Pago de alquiler mensual', '2026-04-16', '2026-04-19 08:14:47', '2026-04-19 08:14:47', NULL),
-  (972, 14, 12, 83, 110.56, 'Regalo para amigo', '2026-04-12', '2026-04-14 11:14:31', '2026-04-14 11:14:31', NULL),
-  (973, 14, 3, 28, 362.27, 'Compra de frutas y verduras', '2026-04-16', '2026-04-16 11:52:40', '2026-04-16 11:52:40', NULL),
-  (974, 14, 3, 27, 265.15, 'Almuerzo rápido', '2026-04-15', '2026-04-16 18:47:36', '2026-04-16 18:47:36', NULL),
-  (975, 14, 2, 14, 145.57, 'Servicio de internet', '2026-04-28', '2026-04-29 16:46:50', '2026-04-29 16:46:50', NULL),
-  (976, 14, 1, 12, 1419.92, 'Venta de artículos personales', '2026-05-10', '2026-05-12 18:35:56', '2026-05-12 18:35:56', NULL),
-  (977, 14, 2, 13, 720.48, 'Cuota de seguro del hogar', '2026-05-30', '2026-05-30 13:27:54', '2026-05-30 13:27:54', NULL),
-  (978, 14, 3, 25, 87.21, 'Compra semanal del supermercado', '2026-05-26', '2026-05-29 15:23:33', '2026-05-29 15:23:33', NULL),
-  (979, 14, 5, 37, 86.99, 'Electrodoméstico para el hogar', '2026-05-23', '2026-05-26 13:00:25', '2026-05-26 13:00:25', NULL),
-  (980, 14, 2, 16, 306.60, 'Plan de telefonía móvil', '2026-05-23', '2026-05-23 11:12:10', '2026-05-23 11:12:10', NULL),
-  (981, 14, 2, 13, 61.32, 'Pago de impuestos anuales', '2026-05-28', '2026-05-30 12:15:06', '2026-05-30 12:15:06', NULL),
-  (982, 14, 3, 23, 12.26, 'Cena en restaurante', '2026-05-17', '2026-05-17 17:39:28', '2026-05-17 17:39:28', NULL),
-  (983, 14, 1, 7, 763.90, 'Venta de artículos personales', '2026-06-02', '2026-06-03 08:58:51', '2026-06-03 08:58:51', NULL),
-  (984, 14, 2, 13, 550.01, 'Pago de alquiler mensual', '2026-06-12', '2026-06-12 18:03:35', '2026-06-12 18:03:35', NULL),
-  (985, 14, 3, 25, 110.00, 'Café con compañeros', '2026-06-22', '2026-06-22 17:48:26', '2026-06-22 17:48:26', NULL),
-  (986, 14, 12, 83, 8.13, 'Ayuda familiar directa', '2026-06-22', '2026-06-25 14:56:39', '2026-06-25 14:56:39', NULL),
-  (987, 14, 2, 20, 15.50, 'Cuota de comunidad', '2026-06-28', '2026-06-29 09:06:00', '2026-06-29 09:06:00', NULL),
-  (988, 14, 1, 5, 839.70, 'Cobro mensual del salario', '2026-07-08', '2026-07-11 10:15:08', '2026-07-11 10:15:08', NULL),
-  (989, 14, 1, 1, 967.50, 'Reembolso de gastos', '2026-07-07', '2026-07-09 12:37:56', '2026-07-09 12:37:56', NULL),
-  (990, 14, 2, 15, 160.56, 'Suscripción a streaming', '2026-07-19', '2026-07-21 12:23:00', '2026-07-21 12:23:00', NULL),
-  (991, 14, 3, 27, 339.11, 'Compra semanal del supermercado', '2026-07-14', '2026-07-14 11:32:52', '2026-07-14 11:32:52', NULL),
-  (992, 14, 5, 38, 193.96, 'Reparación de grifería', '2026-07-16', '2026-07-16 13:12:42', '2026-07-16 13:12:42', NULL),
-  (993, 14, 9, 65, 209.26, 'Videojuego nuevo', '2026-07-28', '2026-07-30 17:19:26', '2026-07-30 17:19:26', NULL),
-  (994, 14, 3, 23, 375.99, 'Café con compañeros', '2026-07-30', '2026-07-31 11:29:39', '2026-07-31 11:29:39', NULL),
-  (995, 14, 3, 28, 206.68, 'Cena en restaurante', '2026-07-22', '2026-07-23 08:23:00', '2026-07-23 08:23:00', NULL),
-  (996, 14, 2, 15, 112.74, 'Factura de gas', '2026-07-16', '2026-07-18 08:01:12', '2026-07-18 08:01:12', NULL),
-  (997, 14, 2, 17, 22.54, 'Cuenta de agua', '2026-07-20', '2026-07-21 10:12:01', '2026-07-21 10:12:01', NULL),
-  (998, 14, 3, 23, 5.00, 'Pedido a domicilio', '2026-07-30', '2026-07-30 13:59:13', '2026-07-30 13:59:13', NULL),
-  (999, 14, 1, 10, 1786.99, 'Bonificación por desempeño', '2026-08-02', '2026-08-02 10:56:59', '2026-08-02 10:56:59', NULL),
-  (1000, 14, 1, 4, 1158.60, 'Pago por horas extraordinarias', '2026-08-06', '2026-08-08 17:27:40', '2026-08-08 17:27:40', NULL),
-  (1001, 14, 2, 13, 693.66, 'Pago de alquiler mensual', '2026-08-27', '2026-08-29 10:20:15', '2026-08-29 10:20:15', NULL),
-  (1002, 14, 3, 28, 403.94, 'Cena especial', '2026-08-14', '2026-08-17 11:46:05', '2026-08-17 11:46:05', NULL),
-  (1003, 14, 11, 75, 54.39, 'Inversión en fondo', '2026-08-22', '2026-08-24 15:33:29', '2026-08-24 15:33:29', NULL),
-  (1004, 14, 3, 27, 356.42, 'Compra semanal del supermercado', '2026-08-25', '2026-08-28 12:37:25', '2026-08-28 12:37:25', NULL),
-  (1005, 14, 2, 20, 697.38, 'Cuota de seguro del hogar', '2026-08-22', '2026-08-23 12:27:56', '2026-08-23 12:27:56', NULL),
-  (1006, 14, 7, 52, 167.41, 'Compra de libros de texto', '2026-08-14', '2026-08-14 12:28:33', '2026-08-14 12:28:33', NULL),
-  (1007, 14, 2, 20, 222.26, 'Cuota de seguro del hogar', '2026-08-20', '2026-08-23 15:29:27', '2026-08-23 15:29:27', NULL),
-  (1008, 14, 3, 25, 44.46, 'Cena en restaurante', '2026-08-10', '2026-08-11 15:14:16', '2026-08-11 15:14:16', NULL),
-  (1009, 14, 2, 17, 8.89, 'Servicio de electricidad', '2026-08-26', '2026-08-26 12:59:14', '2026-08-26 12:59:14', NULL),
-  (1010, 15, 1, 1, 1512.66, 'Pago por horas extraordinarias', '2026-03-05', '2026-03-07 18:54:17', '2026-03-07 18:54:17', NULL),
-  (1011, 15, 1, 3, 1997.13, 'Trabajo independiente', '2026-03-09', '2026-03-11 08:49:19', '2026-03-11 08:49:19', NULL),
-  (1012, 15, 2, 18, 637.35, 'Pago de alquiler mensual', '2026-03-22', '2026-03-25 17:48:41', '2026-03-25 17:48:41', NULL),
-  (1013, 15, 3, 26, 337.42, 'Café con compañeros', '2026-03-14', '2026-03-17 11:14:46', '2026-03-17 11:14:46', NULL),
-  (1014, 15, 10, 72, 236.86, 'Pago de colegio', '2026-03-24', '2026-03-27 13:50:05', '2026-03-27 13:50:05', NULL),
-  (1015, 15, 8, 60, 128.22, 'Par de zapatos', '2026-03-24', '2026-03-27 16:01:23', '2026-03-27 16:01:23', NULL),
-  (1016, 15, 4, 33, 283.29, 'Traslado en taxi', '2026-03-10', '2026-03-13 18:53:22', '2026-03-13 18:53:22', NULL),
-  (1017, 15, 3, 28, 383.73, 'Compra semanal del supermercado', '2026-03-27', '2026-03-29 13:37:01', '2026-03-29 13:37:01', NULL),
-  (1018, 15, 4, 34, 172.62, 'Carga de combustible', '2026-03-29', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (1019, 15, 5, 40, 37.05, 'Compra de mueble nuevo', '2026-03-28', '2026-03-31 18:57:19', '2026-03-31 18:57:19', NULL),
-  (1020, 15, 2, 13, 701.68, 'Cuota de seguro del hogar', '2026-03-10', '2026-03-11 11:04:58', '2026-03-11 11:04:58', NULL),
-  (1021, 15, 2, 17, 192.47, 'Pago de alquiler mensual', '2026-03-12', '2026-03-15 08:23:33', '2026-03-15 08:23:33', NULL),
-  (1022, 15, 3, 26, 38.50, 'Cena en restaurante', '2026-03-13', '2026-03-14 16:26:30', '2026-03-14 16:26:30', NULL),
-  (1023, 15, 2, 15, 7.70, 'Cuota de comunidad', '2026-03-19', '2026-03-22 18:30:10', '2026-03-22 18:30:10', NULL),
-  (1024, 15, 1, 9, 1490.19, 'Venta de artículos personales', '2026-04-08', '2026-04-10 11:00:09', '2026-04-10 11:00:09', NULL),
-  (1025, 15, 1, 1, 1098.86, 'Venta de artículos personales', '2026-04-04', '2026-04-06 17:56:31', '2026-04-06 17:56:31', NULL),
-  (1026, 15, 1, 1, 558.63, 'Venta de artículos personales', '2026-04-02', '2026-04-04 18:56:58', '2026-04-04 18:56:58', NULL),
-  (1027, 15, 2, 18, 575.24, 'Cuenta de agua', '2026-04-19', '2026-04-22 17:52:51', '2026-04-22 17:52:51', NULL),
-  (1028, 15, 3, 26, 147.09, 'Almuerzo rápido', '2026-04-29', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (1029, 15, 3, 26, 358.36, 'Pedido a domicilio', '2026-04-11', '2026-04-12 10:17:56', '2026-04-12 10:17:56', NULL),
-  (1030, 15, 3, 28, 371.47, 'Cena en restaurante', '2026-04-16', '2026-04-19 14:48:35', '2026-04-19 14:48:35', NULL),
-  (1031, 15, 3, 23, 333.85, 'Compra semanal del supermercado', '2026-04-23', '2026-04-26 10:16:13', '2026-04-26 10:16:13', NULL),
-  (1032, 15, 3, 28, 356.41, 'Café con compañeros', '2026-04-24', '2026-04-27 13:47:25', '2026-04-27 13:47:25', NULL),
-  (1033, 15, 2, 17, 136.01, 'Pago de impuestos anuales', '2026-04-14', '2026-04-16 18:47:29', '2026-04-16 18:47:29', NULL),
-  (1034, 15, 3, 27, 338.80, 'Almuerzo rápido', '2026-04-24', '2026-04-25 15:52:17', '2026-04-25 15:52:17', NULL),
-  (1035, 15, 2, 22, 125.39, 'Cuenta de agua', '2026-04-19', '2026-04-19 16:47:25', '2026-04-19 16:47:25', NULL),
-  (1036, 15, 2, 17, 72.23, 'Suscripción a streaming', '2026-04-21', '2026-04-22 11:45:02', '2026-04-22 11:45:02', NULL),
-  (1037, 15, 2, 21, 14.45, 'Cuota de comunidad', '2026-04-13', '2026-04-16 12:28:03', '2026-04-16 12:28:03', NULL),
-  (1038, 15, 1, 4, 1871.88, 'Rendimiento de inversiones', '2026-05-06', '2026-05-07 11:05:01', '2026-05-07 11:05:01', NULL),
-  (1039, 15, 2, 13, 568.56, 'Cuenta de agua', '2026-05-16', '2026-05-16 11:56:06', '2026-05-16 11:56:06', NULL),
-  (1040, 15, 3, 28, 108.51, 'Café con compañeros', '2026-05-23', '2026-05-23 13:20:35', '2026-05-23 13:20:35', NULL),
-  (1041, 15, 10, 71, 281.98, 'Pago de colegio', '2026-05-13', '2026-05-14 11:06:22', '2026-05-14 11:06:22', NULL),
-  (1042, 15, 3, 28, 178.63, 'Pedido a domicilio', '2026-05-22', '2026-05-23 15:14:04', '2026-05-23 15:14:04', NULL),
-  (1043, 15, 7, 50, 24.86, 'Material escolar', '2026-05-16', '2026-05-19 12:49:38', '2026-05-19 12:49:38', NULL),
-  (1044, 15, 3, 28, 282.01, 'Snacks y bebidas varias', '2026-05-28', '2026-05-29 12:06:38', '2026-05-29 12:06:38', NULL),
-  (1045, 15, 13, 87, 204.98, 'Gasto reembolsable pendiente', '2026-05-14', '2026-05-16 10:40:48', '2026-05-16 10:40:48', NULL),
-  (1046, 15, 12, 82, 24.92, 'Ayuda familiar directa', '2026-05-10', '2026-05-13 14:32:40', '2026-05-13 14:32:40', NULL),
-  (1047, 15, 2, 16, 8.19, 'Factura de gas', '2026-05-13', '2026-05-15 11:47:27', '2026-05-15 11:47:27', NULL),
-  (1048, 15, 1, 1, 1061.79, 'Regalo en efectivo', '2026-06-05', '2026-06-06 10:24:13', '2026-06-06 10:24:13', NULL),
-  (1049, 15, 2, 13, 762.65, 'Pago de alquiler mensual', '2026-06-24', '2026-06-26 10:17:20', '2026-06-26 10:17:20', NULL),
-  (1050, 15, 3, 27, 154.37, 'Snacks y bebidas varias', '2026-06-23', '2026-06-25 08:14:54', '2026-06-25 08:14:54', NULL),
-  (1051, 15, 2, 21, 30.87, 'Suscripción a streaming', '2026-06-17', '2026-06-18 17:55:24', '2026-06-18 17:55:24', NULL),
-  (1052, 15, 3, 28, 6.18, 'Almuerzo rápido', '2026-06-25', '2026-06-25 11:03:40', '2026-06-25 11:03:40', NULL),
-  (1053, 15, 1, 4, 625.36, 'Comisión por ventas', '2026-07-02', '2026-07-05 15:19:10', '2026-07-05 15:19:10', NULL),
-  (1054, 15, 1, 1, 1136.03, 'Venta de artículos personales', '2026-07-10', '2026-07-11 12:18:36', '2026-07-11 12:18:36', NULL),
-  (1055, 15, 1, 4, 689.35, 'Bonificación por desempeño', '2026-07-08', '2026-07-08 13:25:24', '2026-07-08 13:25:24', NULL),
-  (1056, 15, 1, 1, 1134.05, 'Venta de artículos personales', '2026-07-10', '2026-07-13 10:52:50', '2026-07-13 10:52:50', NULL),
-  (1057, 15, 1, 1, 1072.13, 'Reembolso de gastos', '2026-07-02', '2026-07-04 17:34:09', '2026-07-04 17:34:09', NULL),
-  (1058, 15, 2, 15, 242.97, 'Suscripción a streaming', '2026-07-24', '2026-07-26 15:18:24', '2026-07-26 15:18:24', NULL),
-  (1059, 15, 3, 27, 256.00, 'Café con compañeros', '2026-07-20', '2026-07-21 15:12:09', '2026-07-21 15:12:09', NULL),
-  (1060, 15, 3, 26, 220.14, 'Pedido a domicilio', '2026-07-23', '2026-07-26 13:24:31', '2026-07-26 13:24:31', NULL),
-  (1061, 15, 11, 75, 125.59, 'Inversión en fondo', '2026-07-11', '2026-07-11 14:59:36', '2026-07-11 14:59:36', NULL),
-  (1062, 15, 3, 25, 392.50, 'Compra semanal del supermercado', '2026-07-21', '2026-07-24 18:44:23', '2026-07-24 18:44:23', NULL),
-  (1063, 15, 8, 60, 77.80, 'Artículo electrónico', '2026-07-25', '2026-07-25 13:40:45', '2026-07-25 13:40:45', NULL),
-  (1064, 15, 1, 1, 1183.21, 'Regalo en efectivo', '2026-08-03', '2026-08-05 11:38:37', '2026-08-05 11:38:37', NULL),
-  (1065, 15, 1, 1, 410.12, 'Ingreso por servicios profesionales', '2026-08-02', '2026-08-05 14:45:37', '2026-08-05 14:45:37', NULL),
-  (1066, 15, 2, 21, 732.46, 'Servicio de internet', '2026-08-23', '2026-08-24 14:16:44', '2026-08-24 14:16:44', NULL),
-  (1067, 15, 3, 27, 484.81, 'Compra de frutas y verduras', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1068, 15, 13, 84, 37.24, 'Gasto relacionado con trabajo', '2026-08-28', '2026-08-30 10:17:47', '2026-08-30 10:17:47', NULL),
-  (1069, 15, 8, 60, 95.89, 'Artículo electrónico', '2026-08-15', '2026-08-18 08:06:04', '2026-08-18 08:06:04', NULL),
-  (1070, 15, 8, 60, 66.88, 'Artículo electrónico', '2026-08-23', '2026-08-24 10:23:11', '2026-08-24 10:23:11', NULL),
-  (1071, 15, 3, 24, 13.37, 'Almuerzo rápido', '2026-08-13', '2026-08-16 17:52:13', '2026-08-16 17:52:13', NULL),
-  (1072, 16, 1, 1, 1869.46, 'Rendimiento de inversiones', '2026-03-02', '2026-03-03 09:18:05', '2026-03-03 09:18:05', NULL),
-  (1073, 16, 1, 1, 596.39, 'Ingreso por servicios profesionales', '2026-03-01', '2026-03-02 15:31:43', '2026-03-02 15:31:43', NULL),
-  (1074, 16, 1, 1, 899.12, 'Cobro mensual del salario', '2026-03-01', '2026-03-01 09:13:33', '2026-03-01 09:13:33', NULL),
-  (1075, 16, 1, 1, 1280.11, 'Pensión mensual', '2026-03-05', '2026-03-08 15:48:21', '2026-03-08 15:48:21', NULL),
-  (1076, 16, 2, 19, 302.41, 'Plan de telefonía móvil', '2026-03-31', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (1077, 16, 3, 28, 217.28, 'Cena en restaurante', '2026-03-29', '2026-03-29 13:55:21', '2026-03-29 13:55:21', NULL),
-  (1078, 16, 3, 28, 422.65, 'Pedido a domicilio', '2026-03-14', '2026-03-14 17:07:55', '2026-03-14 17:07:55', NULL),
-  (1079, 16, 5, 39, 138.32, 'Electrodoméstico para el hogar', '2026-03-31', '2026-04-30 23:59:59', '2026-04-30 23:59:59', NULL),
-  (1080, 16, 3, 23, 362.03, 'Compra de frutas y verduras', '2026-03-20', '2026-03-23 11:38:31', '2026-03-23 11:38:31', NULL),
-  (1081, 16, 3, 25, 231.12, 'Café con compañeros', '2026-03-25', '2026-03-25 14:18:38', '2026-03-25 14:18:38', NULL),
-  (1082, 16, 10, 72, 236.53, 'Gasto para los hijos', '2026-03-26', '2026-03-26 10:31:50', '2026-03-26 10:31:50', NULL),
-  (1083, 16, 3, 24, 451.31, 'Café con compañeros', '2026-03-13', '2026-03-16 18:34:15', '2026-03-16 18:34:15', NULL),
-  (1084, 16, 1, 11, 1459.84, 'Ingreso por alquiler de propiedad', '2026-04-02', '2026-04-05 08:10:59', '2026-04-05 08:10:59', NULL),
-  (1085, 16, 1, 5, 596.68, 'Bonificación por desempeño', '2026-04-05', '2026-04-08 18:07:42', '2026-04-08 18:07:42', NULL),
-  (1086, 16, 2, 21, 525.16, 'Cuota de comunidad', '2026-04-25', '2026-04-25 13:55:14', '2026-04-25 13:55:14', NULL),
-  (1087, 16, 3, 27, 60.39, 'Compra de frutas y verduras', '2026-04-20', '2026-04-23 14:41:41', '2026-04-23 14:41:41', NULL),
-  (1088, 16, 5, 39, 39.13, 'Servicio de jardinería', '2026-04-12', '2026-04-12 09:21:47', '2026-04-12 09:21:47', NULL),
-  (1089, 16, 13, 84, 173.99, 'Gasto de emergencia', '2026-04-14', '2026-04-16 14:36:47', '2026-04-16 14:36:47', NULL),
-  (1090, 16, 2, 19, 784.89, 'Cuenta de agua', '2026-04-20', '2026-04-22 18:59:50', '2026-04-22 18:59:50', NULL),
-  (1091, 16, 11, 79, 70.53, 'Pago cuota préstamo', '2026-04-22', '2026-04-22 16:54:29', '2026-04-22 16:54:29', NULL),
-  (1092, 16, 3, 24, 157.42, 'Compra semanal del supermercado', '2026-04-24', '2026-04-25 17:18:09', '2026-04-25 17:18:09', NULL),
-  (1093, 16, 6, 47, 31.49, 'Producto de bienestar personal', '2026-04-13', '2026-04-15 17:30:40', '2026-04-15 17:30:40', NULL),
-  (1094, 16, 3, 28, 6.29, 'Café con compañeros', '2026-04-11', '2026-04-13 10:52:45', '2026-04-13 10:52:45', NULL),
-  (1095, 16, 1, 1, 1861.68, 'Regalo en efectivo', '2026-05-03', '2026-05-06 14:19:52', '2026-05-06 14:19:52', NULL),
-  (1096, 16, 1, 3, 1983.91, 'Venta de artículos personales', '2026-05-09', '2026-05-12 13:27:43', '2026-05-12 13:27:43', NULL),
-  (1097, 16, 2, 18, 618.29, 'Servicio de internet', '2026-05-22', '2026-05-22 16:46:18', '2026-05-22 16:46:18', NULL),
-  (1098, 16, 3, 28, 463.84, 'Compra semanal del supermercado', '2026-05-27', '2026-05-30 09:08:20', '2026-05-30 09:08:20', NULL),
-  (1099, 16, 13, 86, 139.97, 'Gasto reembolsable pendiente', '2026-05-15', '2026-05-16 15:44:30', '2026-05-16 15:44:30', NULL),
-  (1100, 16, 5, 38, 242.29, 'Servicio de jardinería', '2026-05-16', '2026-05-16 13:46:54', '2026-05-16 13:46:54', NULL),
-  (1101, 16, 2, 19, 762.80, 'Pago de impuestos anuales', '2026-05-23', '2026-05-24 08:06:22', '2026-05-24 08:06:22', NULL),
-  (1102, 16, 2, 14, 785.21, 'Cuota de seguro del hogar', '2026-05-30', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (1103, 16, 2, 16, 347.48, 'Servicio de electricidad', '2026-05-19', '2026-05-20 18:47:24', '2026-05-20 18:47:24', NULL),
-  (1104, 16, 12, 82, 86.19, 'Donación a organización benéfica', '2026-05-30', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (1105, 16, 3, 28, 11.97, 'Cena especial', '2026-05-26', '2026-05-27 08:37:36', '2026-05-27 08:37:36', NULL),
-  (1106, 16, 1, 1, 1466.89, 'Ingreso por alquiler de propiedad', '2026-06-07', '2026-06-09 17:08:06', '2026-06-09 17:08:06', NULL),
-  (1107, 16, 1, 1, 1863.32, 'Cobro mensual del salario', '2026-06-09', '2026-06-10 14:52:44', '2026-06-10 14:52:44', NULL),
-  (1108, 16, 1, 1, 1726.19, 'Pensión mensual', '2026-06-09', '2026-06-12 09:33:53', '2026-06-12 09:33:53', NULL),
-  (1109, 16, 1, 11, 423.36, 'Comisión por ventas', '2026-06-04', '2026-06-04 10:55:38', '2026-06-04 10:55:38', NULL),
-  (1110, 16, 2, 15, 53.99, 'Cuota de comunidad', '2026-06-24', '2026-06-26 09:02:08', '2026-06-26 09:02:08', NULL),
-  (1111, 16, 3, 24, 336.74, 'Pedido a domicilio', '2026-06-12', '2026-06-14 08:05:07', '2026-06-14 08:05:07', NULL),
-  (1112, 16, 2, 19, 782.83, 'Servicio de internet', '2026-06-10', '2026-06-11 12:02:33', '2026-06-11 12:02:33', NULL),
-  (1113, 16, 9, 62, 175.24, 'Suscripción mensual streaming', '2026-06-20', '2026-06-22 17:34:32', '2026-06-22 17:34:32', NULL),
-  (1114, 16, 12, 81, 74.94, 'Donación a organización benéfica', '2026-06-16', '2026-06-17 12:54:53', '2026-06-17 12:54:53', NULL),
-  (1115, 16, 11, 79, 68.73, 'Pago tarjeta de crédito', '2026-06-21', '2026-06-23 10:46:39', '2026-06-23 10:46:39', NULL),
-  (1116, 16, 3, 25, 209.44, 'Compra de frutas y verduras', '2026-06-15', '2026-06-18 15:05:16', '2026-06-18 15:05:16', NULL),
-  (1117, 16, 1, 2, 1333.22, 'Regalo en efectivo', '2026-07-05', '2026-07-06 13:36:42', '2026-07-06 13:36:42', NULL),
-  (1118, 16, 1, 10, 495.28, 'Pensión mensual', '2026-07-03', '2026-07-05 14:24:01', '2026-07-05 14:24:01', NULL),
-  (1119, 16, 2, 16, 108.14, 'Servicio de electricidad', '2026-07-13', '2026-07-13 18:35:26', '2026-07-13 18:35:26', NULL),
-  (1120, 16, 3, 25, 330.88, 'Café con compañeros', '2026-07-21', '2026-07-23 12:09:55', '2026-07-23 12:09:55', NULL),
-  (1121, 16, 2, 19, 784.61, 'Servicio de electricidad', '2026-07-17', '2026-07-20 09:50:59', '2026-07-20 09:50:59', NULL),
-  (1122, 16, 3, 27, 416.03, 'Pedido a domicilio', '2026-07-25', '2026-07-25 16:22:44', '2026-07-25 16:22:44', NULL),
-  (1123, 16, 11, 75, 5.00, 'Transferencia a tercero', '2026-07-15', '2026-07-17 14:11:22', '2026-07-17 14:11:22', NULL),
-  (1124, 16, 1, 1, 691.36, 'Rendimiento de inversiones', '2026-08-01', '2026-08-02 18:08:09', '2026-08-02 18:08:09', NULL),
-  (1125, 16, 1, 5, 295.16, 'Comisión por ventas', '2026-08-06', '2026-08-07 18:38:26', '2026-08-07 18:38:26', NULL),
-  (1126, 16, 1, 1, 1158.44, 'Rendimiento de inversiones', '2026-08-06', '2026-08-09 16:18:17', '2026-08-09 16:18:17', NULL),
-  (1127, 16, 1, 12, 1786.50, 'Trabajo independiente', '2026-08-04', '2026-08-06 18:54:05', '2026-08-06 18:54:05', NULL),
-  (1128, 16, 2, 19, 627.93, 'Servicio de electricidad', '2026-08-12', '2026-08-12 09:46:15', '2026-08-12 09:46:15', NULL),
-  (1129, 16, 3, 24, 300.40, 'Compra semanal del supermercado', '2026-08-12', '2026-08-14 16:59:31', '2026-08-14 16:59:31', NULL),
-  (1130, 16, 8, 60, 155.06, 'Artículo electrónico', '2026-08-14', '2026-08-17 15:32:43', '2026-08-17 15:32:43', NULL),
-  (1131, 16, 13, 84, 124.61, 'Gasto reembolsable pendiente', '2026-08-29', '2026-08-30 08:45:27', '2026-08-30 08:45:27', NULL),
-  (1132, 16, 2, 22, 386.49, 'Cuenta de agua', '2026-08-15', '2026-08-16 10:04:23', '2026-08-16 10:04:23', NULL),
-  (1133, 16, 2, 19, 421.63, 'Factura de gas', '2026-08-15', '2026-08-17 09:21:58', '2026-08-17 09:21:58', NULL),
-  (1134, 16, 3, 25, 170.61, 'Compra de frutas y verduras', '2026-08-19', '2026-08-21 11:00:47', '2026-08-21 11:00:47', NULL),
-  (1135, 16, 3, 28, 272.30, 'Compra semanal del supermercado', '2026-08-11', '2026-08-14 17:54:31', '2026-08-14 17:54:31', NULL),
-  (1136, 16, 3, 25, 170.22, 'Almuerzo rápido', '2026-08-13', '2026-08-13 13:56:46', '2026-08-13 13:56:46', NULL),
-  (1137, 16, 2, 14, 373.10, 'Cuenta de agua', '2026-08-16', '2026-08-16 16:32:57', '2026-08-16 16:32:57', NULL),
-  (1138, 17, 1, 1, 480.13, 'Trabajo independiente', '2026-04-05', '2026-04-06 15:25:23', '2026-04-06 15:25:23', NULL),
-  (1139, 17, 2, 18, 371.26, 'Pago de impuestos anuales', '2026-04-15', '2026-04-17 09:28:42', '2026-04-17 09:28:42', NULL),
-  (1140, 17, 3, 24, 48.69, 'Café con compañeros', '2026-04-23', '2026-04-23 13:56:55', '2026-04-23 13:56:55', NULL),
-  (1141, 17, 3, 23, 9.73, 'Cena especial', '2026-04-20', '2026-04-20 10:42:12', '2026-04-20 10:42:12', NULL),
-  (1142, 17, 1, 11, 1485.78, 'Comisión por ventas', '2026-05-06', '2026-05-09 16:46:59', '2026-05-09 16:46:59', NULL),
-  (1143, 17, 1, 7, 436.55, 'Reembolso de gastos', '2026-05-02', '2026-05-02 10:09:22', '2026-05-02 10:09:22', NULL),
-  (1144, 17, 1, 1, 1526.66, 'Cobro mensual del salario', '2026-05-01', '2026-05-03 14:38:47', '2026-05-03 14:38:47', NULL),
-  (1145, 17, 1, 1, 934.20, 'Bonificación por desempeño', '2026-05-08', '2026-05-08 14:15:39', '2026-05-08 14:15:39', NULL),
-  (1146, 17, 2, 21, 190.15, 'Cuota de seguro del hogar', '2026-05-18', '2026-05-18 12:44:15', '2026-05-18 12:44:15', NULL),
-  (1147, 17, 3, 24, 252.73, 'Almuerzo rápido', '2026-05-13', '2026-05-14 11:54:37', '2026-05-14 11:54:37', NULL),
-  (1148, 17, 2, 19, 78.77, 'Factura de gas', '2026-05-16', '2026-05-17 14:01:39', '2026-05-17 14:01:39', NULL),
-  (1149, 17, 2, 19, 355.47, 'Pago de impuestos anuales', '2026-05-19', '2026-05-20 11:21:27', '2026-05-20 11:21:27', NULL),
-  (1150, 17, 3, 28, 54.28, 'Compra de frutas y verduras', '2026-05-13', '2026-05-15 13:17:22', '2026-05-15 13:17:22', NULL),
-  (1151, 17, 2, 15, 80.67, 'Servicio de internet', '2026-05-11', '2026-05-13 11:18:30', '2026-05-13 11:18:30', NULL),
-  (1152, 17, 3, 26, 116.87, 'Cena en restaurante', '2026-05-25', '2026-05-27 13:19:07', '2026-05-27 13:19:07', NULL),
-  (1153, 17, 12, 83, 232.29, 'Regalo para amigo', '2026-05-14', '2026-05-16 13:47:51', '2026-05-16 13:47:51', NULL),
-  (1154, 17, 11, 79, 183.39, 'Transferencia a cuenta de ahorro', '2026-05-17', '2026-05-19 11:37:24', '2026-05-19 11:37:24', NULL),
-  (1155, 17, 1, 10, 416.64, 'Ingreso por servicios profesionales', '2026-06-10', '2026-06-11 11:45:28', '2026-06-11 11:45:28', NULL),
-  (1156, 17, 1, 1, 1319.87, 'Reembolso de gastos', '2026-06-06', '2026-06-08 15:48:12', '2026-06-08 15:48:12', NULL),
-  (1157, 17, 2, 15, 82.86, 'Suscripción a streaming', '2026-06-16', '2026-06-19 16:45:16', '2026-06-19 16:45:16', NULL),
-  (1158, 17, 3, 25, 450.61, 'Compra de frutas y verduras', '2026-06-24', '2026-06-24 14:04:30', '2026-06-24 14:04:30', NULL),
-  (1159, 17, 10, 74, 11.45, 'Compra para mascota', '2026-06-29', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1160, 17, 2, 19, 421.27, 'Suscripción a streaming', '2026-06-27', '2026-06-27 10:28:48', '2026-06-27 10:28:48', NULL),
-  (1161, 17, 3, 26, 315.39, 'Café con compañeros', '2026-06-16', '2026-06-17 08:10:36', '2026-06-17 08:10:36', NULL),
-  (1162, 17, 2, 21, 225.02, 'Servicio de internet', '2026-06-26', '2026-06-28 12:54:14', '2026-06-28 12:54:14', NULL),
-  (1163, 17, 10, 68, 55.48, 'Cuota de guardería', '2026-06-11', '2026-06-12 12:02:40', '2026-06-12 12:02:40', NULL),
-  (1164, 17, 1, 4, 1981.17, 'Regalo en efectivo', '2026-07-04', '2026-07-04 08:41:22', '2026-07-04 08:41:22', NULL),
-  (1165, 17, 2, 22, 779.16, 'Cuenta de agua', '2026-07-20', '2026-07-20 16:16:46', '2026-07-20 16:16:46', NULL),
-  (1166, 17, 3, 26, 452.22, 'Compra semanal del supermercado', '2026-07-19', '2026-07-21 08:40:52', '2026-07-21 08:40:52', NULL),
-  (1167, 17, 5, 42, 289.74, 'Servicio de jardinería', '2026-07-15', '2026-07-17 08:34:42', '2026-07-17 08:34:42', NULL),
-  (1168, 17, 3, 28, 150.95, 'Pedido a domicilio', '2026-07-30', '2026-07-31 15:14:20', '2026-07-31 15:14:20', NULL),
-  (1169, 17, 3, 24, 88.79, 'Cena en restaurante', '2026-07-23', '2026-07-25 10:57:30', '2026-07-25 10:57:30', NULL),
-  (1170, 17, 9, 62, 17.75, 'Suscripción mensual streaming', '2026-07-15', '2026-07-16 17:31:46', '2026-07-16 17:31:46', NULL),
-  (1171, 17, 1, 11, 1294.08, 'Venta de artículos personales', '2026-08-02', '2026-08-03 09:27:15', '2026-08-03 09:27:15', NULL),
-  (1172, 17, 1, 7, 380.42, 'Rendimiento de inversiones', '2026-08-09', '2026-08-10 08:38:06', '2026-08-10 08:38:06', NULL),
-  (1173, 17, 2, 19, 65.54, 'Servicio de electricidad', '2026-08-10', '2026-08-10 10:15:49', '2026-08-10 10:15:49', NULL),
-  (1174, 17, 3, 25, 97.04, 'Snacks y bebidas varias', '2026-08-30', '2026-08-30 08:50:06', '2026-08-30 08:50:06', NULL),
-  (1175, 17, 3, 24, 95.44, 'Cena especial', '2026-08-28', '2026-08-31 10:19:21', '2026-08-31 10:19:21', NULL),
-  (1176, 17, 2, 21, 569.03, 'Servicio de electricidad', '2026-08-30', '2026-08-30 08:52:02', '2026-08-30 08:52:02', NULL),
-  (1177, 17, 3, 27, 446.63, 'Compra semanal del supermercado', '2026-08-23', '2026-08-24 08:58:14', '2026-08-24 08:58:14', NULL),
-  (1178, 17, 3, 24, 196.06, 'Cena en restaurante', '2026-08-19', '2026-08-20 18:24:43', '2026-08-20 18:24:43', NULL),
-  (1179, 17, 3, 24, 29.85, 'Cena en restaurante', '2026-08-19', '2026-08-21 09:39:21', '2026-08-21 09:39:21', NULL),
-  (1180, 17, 2, 13, 5.97, 'Cuota de seguro del hogar', '2026-08-26', '2026-08-28 17:11:43', '2026-08-28 17:11:43', NULL),
-  (1181, 18, 1, 5, 1849.22, 'Bonificación por desempeño', '2026-04-06', '2026-04-08 09:50:00', '2026-04-08 09:50:00', NULL),
-  (1182, 18, 1, 3, 776.46, 'Ingreso por servicios profesionales', '2026-04-07', '2026-04-10 15:52:04', '2026-04-10 15:52:04', NULL),
-  (1183, 18, 1, 12, 701.26, 'Rendimiento de inversiones', '2026-04-02', '2026-04-04 10:11:49', '2026-04-04 10:11:49', NULL),
-  (1184, 18, 2, 18, 289.49, 'Plan de telefonía móvil', '2026-04-23', '2026-04-26 14:38:50', '2026-04-26 14:38:50', NULL),
-  (1185, 18, 3, 24, 407.01, 'Cena especial', '2026-04-30', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (1186, 18, 9, 65, 163.18, 'Entrada a evento deportivo', '2026-04-17', '2026-04-20 09:37:45', '2026-04-20 09:37:45', NULL),
-  (1187, 18, 13, 85, 212.41, 'Gasto de emergencia', '2026-04-17', '2026-04-19 08:13:54', '2026-04-19 08:13:54', NULL),
-  (1188, 18, 3, 24, 462.82, 'Almuerzo rápido', '2026-04-11', '2026-04-13 13:54:54', '2026-04-13 13:54:54', NULL),
-  (1189, 18, 2, 21, 778.86, 'Pago de alquiler mensual', '2026-04-23', '2026-04-24 11:52:14', '2026-04-24 11:52:14', NULL),
-  (1190, 18, 3, 28, 360.86, 'Cena en restaurante', '2026-04-22', '2026-04-22 14:23:03', '2026-04-22 14:23:03', NULL),
-  (1191, 18, 3, 26, 255.69, 'Cena en restaurante', '2026-04-15', '2026-04-15 10:23:09', '2026-04-15 10:23:09', NULL),
-  (1192, 18, 2, 22, 51.14, 'Cuenta de agua', '2026-04-23', '2026-04-24 10:30:47', '2026-04-24 10:30:47', NULL),
-  (1193, 18, 1, 5, 1046.33, 'Trabajo independiente', '2026-05-06', '2026-05-09 18:44:00', '2026-05-09 18:44:00', NULL),
-  (1194, 18, 1, 1, 590.00, 'Rendimiento de inversiones', '2026-05-01', '2026-05-02 16:10:00', '2026-05-02 16:10:00', NULL),
-  (1195, 18, 1, 11, 1906.84, 'Comisión por ventas', '2026-05-08', '2026-05-10 17:32:19', '2026-05-10 17:32:19', NULL),
-  (1196, 18, 1, 1, 1897.18, 'Comisión por ventas', '2026-05-05', '2026-05-05 16:24:08', '2026-05-05 16:24:08', NULL),
-  (1197, 18, 1, 1, 1428.57, 'Reembolso de gastos', '2026-05-04', '2026-05-07 10:52:47', '2026-05-07 10:52:47', NULL),
-  (1198, 18, 2, 22, 681.28, 'Cuota de seguro del hogar', '2026-05-24', '2026-05-27 13:41:41', '2026-05-27 13:41:41', NULL),
-  (1199, 18, 3, 26, 107.47, 'Cena en restaurante', '2026-05-21', '2026-05-24 11:17:06', '2026-05-24 11:17:06', NULL),
-  (1200, 18, 3, 23, 148.83, 'Pedido a domicilio', '2026-05-13', '2026-05-13 11:38:00', '2026-05-13 11:38:00', NULL),
-  (1201, 18, 2, 13, 442.52, 'Pago de alquiler mensual', '2026-05-28', '2026-05-28 17:50:30', '2026-05-28 17:50:30', NULL),
-  (1202, 18, 2, 17, 56.36, 'Plan de telefonía móvil', '2026-05-21', '2026-05-23 14:32:12', '2026-05-23 14:32:12', NULL),
-  (1203, 18, 13, 86, 292.29, 'Gasto de emergencia', '2026-05-31', '2026-05-31 13:26:57', '2026-05-31 13:26:57', NULL),
-  (1204, 18, 4, 29, 178.22, 'Carga de combustible', '2026-05-22', '2026-05-25 17:55:54', '2026-05-25 17:55:54', NULL),
-  (1205, 18, 2, 20, 109.06, 'Cuenta de agua', '2026-05-30', '2026-05-30 11:56:13', '2026-05-30 11:56:13', NULL),
-  (1206, 18, 4, 34, 137.01, 'Pago de seguro vehicular', '2026-05-14', '2026-05-16 12:23:39', '2026-05-16 12:23:39', NULL),
-  (1207, 18, 2, 19, 229.33, 'Pago de impuestos anuales', '2026-05-29', '2026-05-29 10:36:40', '2026-05-29 10:36:40', NULL),
-  (1208, 18, 1, 1, 1805.69, 'Ingreso por alquiler de propiedad', '2026-06-09', '2026-06-09 15:06:29', '2026-06-09 15:06:29', NULL),
-  (1209, 18, 2, 15, 750.54, 'Plan de telefonía móvil', '2026-06-15', '2026-06-15 12:36:23', '2026-06-15 12:36:23', NULL),
-  (1210, 18, 3, 23, 313.20, 'Cena especial', '2026-06-24', '2026-06-26 15:16:48', '2026-06-26 15:16:48', NULL),
-  (1211, 18, 4, 30, 291.65, 'Estacionamiento en centro comercial', '2026-06-25', '2026-06-25 13:54:18', '2026-06-25 13:54:18', NULL),
-  (1212, 18, 11, 80, 43.05, 'Pago tarjeta de crédito', '2026-06-21', '2026-06-23 13:05:43', '2026-06-23 13:05:43', NULL),
-  (1213, 18, 6, 48, 17.59, 'Sesión de terapia', '2026-06-30', '2026-06-30 11:44:52', '2026-06-30 11:44:52', NULL),
-  (1214, 18, 2, 17, 167.27, 'Pago de impuestos anuales', '2026-06-28', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1215, 18, 7, 53, 33.46, 'Pago de matrícula', '2026-06-27', '2026-06-30 09:05:11', '2026-06-30 09:05:11', NULL),
-  (1216, 18, 8, 58, 6.69, 'Producto de cosmética', '2026-06-20', '2026-06-20 13:21:38', '2026-06-20 13:21:38', NULL),
-  (1217, 18, 1, 1, 733.61, 'Pensión mensual', '2026-07-08', '2026-07-09 18:13:20', '2026-07-09 18:13:20', NULL),
-  (1218, 18, 1, 1, 1401.62, 'Venta de artículos personales', '2026-07-07', '2026-07-07 13:50:27', '2026-07-07 13:50:27', NULL),
-  (1219, 18, 1, 1, 817.24, 'Bonificación por desempeño', '2026-07-01', '2026-07-04 12:16:40', '2026-07-04 12:16:40', NULL),
-  (1220, 18, 1, 1, 603.89, 'Venta de artículos personales', '2026-07-07', '2026-07-07 12:55:45', '2026-07-07 12:55:45', NULL),
-  (1221, 18, 2, 19, 443.58, 'Servicio de electricidad', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (1222, 18, 3, 26, 190.75, 'Cena especial', '2026-07-19', '2026-07-20 11:22:26', '2026-07-20 11:22:26', NULL),
-  (1223, 18, 13, 85, 289.85, 'Gasto de emergencia', '2026-07-23', '2026-07-25 17:24:52', '2026-07-25 17:24:52', NULL),
-  (1224, 18, 11, 76, 27.95, 'Transferencia a tercero', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (1225, 18, 13, 86, 9.19, 'Gasto de emergencia', '2026-07-24', '2026-07-25 15:55:20', '2026-07-25 15:55:20', NULL),
-  (1226, 18, 12, 82, 82.53, 'Ayuda familiar directa', '2026-07-10', '2026-07-13 10:40:28', '2026-07-13 10:40:28', NULL),
-  (1227, 18, 3, 23, 393.71, 'Snacks y bebidas varias', '2026-07-23', '2026-07-24 17:24:13', '2026-07-24 17:24:13', NULL),
-  (1228, 18, 2, 22, 766.33, 'Servicio de internet', '2026-07-21', '2026-07-23 08:19:57', '2026-07-23 08:19:57', NULL),
-  (1229, 18, 1, 11, 1998.29, 'Reembolso de gastos', '2026-08-07', '2026-08-10 13:22:53', '2026-08-10 13:22:53', NULL),
-  (1230, 18, 2, 19, 442.38, 'Plan de telefonía móvil', '2026-08-20', '2026-08-20 10:29:27', '2026-08-20 10:29:27', NULL),
-  (1231, 18, 3, 24, 289.79, 'Compra de frutas y verduras', '2026-08-15', '2026-08-18 14:18:54', '2026-08-18 14:18:54', NULL),
-  (1232, 18, 13, 84, 298.63, 'Gasto imprevisto del mes', '2026-08-13', '2026-08-13 18:01:39', '2026-08-13 18:01:39', NULL),
-  (1233, 18, 2, 20, 427.52, 'Pago de impuestos anuales', '2026-08-11', '2026-08-13 14:13:14', '2026-08-13 14:13:14', NULL),
-  (1234, 18, 3, 24, 272.11, 'Compra de frutas y verduras', '2026-08-13', '2026-08-15 15:26:58', '2026-08-15 15:26:58', NULL),
-  (1235, 18, 3, 24, 54.42, 'Compra de frutas y verduras', '2026-08-18', '2026-08-20 12:53:57', '2026-08-20 12:53:57', NULL),
-  (1236, 18, 2, 19, 10.89, 'Suscripción a streaming', '2026-08-10', '2026-08-11 13:53:52', '2026-08-11 13:53:52', NULL),
-  (1237, 19, 1, 7, 635.30, 'Cobro mensual del salario', '2026-04-07', '2026-04-08 17:41:25', '2026-04-08 17:41:25', NULL),
-  (1238, 19, 1, 10, 972.38, 'Reembolso de gastos', '2026-04-07', '2026-04-08 14:57:20', '2026-04-08 14:57:20', NULL),
-  (1239, 19, 2, 15, 378.05, 'Cuota de comunidad', '2026-04-13', '2026-04-14 16:07:40', '2026-04-14 16:07:40', NULL),
-  (1240, 19, 3, 26, 426.22, 'Café con compañeros', '2026-04-30', '2026-05-31 23:59:59', '2026-05-31 23:59:59', NULL),
-  (1241, 19, 2, 19, 58.65, 'Suscripción a streaming', '2026-04-28', '2026-04-29 08:39:45', '2026-04-29 08:39:45', NULL),
-  (1242, 19, 3, 27, 209.73, 'Snacks y bebidas varias', '2026-04-14', '2026-04-17 18:40:49', '2026-04-17 18:40:49', NULL),
-  (1243, 19, 2, 17, 195.37, 'Servicio de internet', '2026-04-17', '2026-04-20 12:42:03', '2026-04-20 12:42:03', NULL),
-  (1244, 19, 2, 13, 143.11, 'Servicio de electricidad', '2026-04-13', '2026-04-13 15:59:38', '2026-04-13 15:59:38', NULL),
-  (1245, 19, 3, 25, 28.63, 'Café con compañeros', '2026-04-12', '2026-04-12 15:54:23', '2026-04-12 15:54:23', NULL),
-  (1246, 19, 3, 23, 5.72, 'Compra de frutas y verduras', '2026-04-30', '2026-04-30 11:43:26', '2026-04-30 11:43:26', NULL),
-  (1247, 19, 1, 1, 1855.46, 'Venta de artículos personales', '2026-05-10', '2026-05-10 09:21:22', '2026-05-10 09:21:22', NULL),
-  (1248, 19, 1, 10, 1183.67, 'Cobro mensual del salario', '2026-05-03', '2026-05-05 09:12:38', '2026-05-05 09:12:38', NULL),
-  (1249, 19, 2, 21, 67.28, 'Servicio de electricidad', '2026-05-26', '2026-05-27 11:55:23', '2026-05-27 11:55:23', NULL),
-  (1250, 19, 3, 24, 43.86, 'Almuerzo rápido', '2026-05-14', '2026-05-15 09:46:44', '2026-05-15 09:46:44', NULL),
-  (1251, 19, 3, 24, 478.02, 'Cena especial', '2026-05-21', '2026-05-23 15:47:51', '2026-05-23 15:47:51', NULL),
-  (1252, 19, 8, 56, 78.78, 'Dispositivo tecnológico', '2026-05-16', '2026-05-18 14:06:37', '2026-05-18 14:06:37', NULL),
-  (1253, 19, 2, 20, 375.10, 'Plan de telefonía móvil', '2026-05-24', '2026-05-27 17:47:17', '2026-05-27 17:47:17', NULL),
-  (1254, 19, 11, 78, 131.65, 'Transferencia a cuenta de ahorro', '2026-05-28', '2026-05-30 13:57:40', '2026-05-30 13:57:40', NULL),
-  (1255, 19, 2, 21, 239.80, 'Suscripción a streaming', '2026-05-23', '2026-05-25 17:52:56', '2026-05-25 17:52:56', NULL),
-  (1256, 19, 2, 14, 184.93, 'Servicio de electricidad', '2026-05-20', '2026-05-23 10:22:15', '2026-05-23 10:22:15', NULL),
-  (1257, 19, 3, 25, 98.17, 'Compra semanal del supermercado', '2026-05-20', '2026-05-20 08:20:44', '2026-05-20 08:20:44', NULL),
-  (1258, 19, 1, 1, 1351.20, 'Trabajo independiente', '2026-06-06', '2026-06-07 16:04:24', '2026-06-07 16:04:24', NULL),
-  (1259, 19, 1, 9, 591.43, 'Regalo en efectivo', '2026-06-09', '2026-06-11 17:56:51', '2026-06-11 17:56:51', NULL),
-  (1260, 19, 1, 1, 1839.00, 'Pago por horas extraordinarias', '2026-06-07', '2026-06-10 13:52:20', '2026-06-10 13:52:20', NULL),
-  (1261, 19, 2, 16, 87.24, 'Servicio de electricidad', '2026-06-25', '2026-06-28 08:17:26', '2026-06-28 08:17:26', NULL),
-  (1262, 19, 3, 23, 280.43, 'Pedido a domicilio', '2026-06-28', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1263, 19, 2, 20, 263.27, 'Pago de alquiler mensual', '2026-06-22', '2026-06-22 16:58:33', '2026-06-22 16:58:33', NULL),
-  (1264, 19, 2, 14, 402.42, 'Plan de telefonía móvil', '2026-06-23', '2026-06-25 12:20:48', '2026-06-25 12:20:48', NULL),
-  (1265, 19, 10, 74, 97.39, 'Ayuda a familiar', '2026-06-29', '2026-06-29 14:19:44', '2026-06-29 14:19:44', NULL),
-  (1266, 19, 12, 81, 253.71, 'Donación a organización benéfica', '2026-06-29', '2026-06-29 08:14:03', '2026-06-29 08:14:03', NULL),
-  (1267, 19, 3, 28, 370.40, 'Snacks y bebidas varias', '2026-06-17', '2026-06-18 09:12:46', '2026-06-18 09:12:46', NULL),
-  (1268, 19, 10, 68, 280.56, 'Pago de colegio', '2026-06-11', '2026-06-13 08:07:03', '2026-06-13 08:07:03', NULL),
-  (1269, 19, 3, 28, 317.99, 'Cena especial', '2026-06-22', '2026-06-24 10:59:08', '2026-06-24 10:59:08', NULL),
-  (1270, 19, 3, 24, 383.93, 'Café con compañeros', '2026-06-23', '2026-06-26 18:07:33', '2026-06-26 18:07:33', NULL),
-  (1271, 19, 12, 82, 293.02, 'Regalo para amigo', '2026-06-20', '2026-06-23 11:05:16', '2026-06-23 11:05:16', NULL),
-  (1272, 19, 7, 54, 251.48, 'Pago de matrícula', '2026-06-17', '2026-06-18 09:04:31', '2026-06-18 09:04:31', NULL),
-  (1273, 19, 1, 8, 1673.32, 'Pensión mensual', '2026-07-04', '2026-07-07 09:21:13', '2026-07-07 09:21:13', NULL),
-  (1274, 19, 2, 21, 435.45, 'Suscripción a streaming', '2026-07-20', '2026-07-22 15:41:09', '2026-07-22 15:41:09', NULL),
-  (1275, 19, 3, 23, 165.64, 'Café con compañeros', '2026-07-21', '2026-07-24 15:55:39', '2026-07-24 15:55:39', NULL),
-  (1276, 19, 5, 37, 86.96, 'Electrodoméstico para el hogar', '2026-07-15', '2026-07-17 17:41:06', '2026-07-17 17:41:06', NULL),
-  (1277, 19, 3, 28, 81.79, 'Cena especial', '2026-07-10', '2026-07-13 10:17:01', '2026-07-13 10:17:01', NULL),
-  (1278, 19, 9, 63, 83.35, 'Suscripción mensual streaming', '2026-07-27', '2026-07-27 13:27:13', '2026-07-27 13:27:13', NULL),
-  (1279, 19, 3, 27, 186.86, 'Compra de frutas y verduras', '2026-07-24', '2026-07-26 13:06:03', '2026-07-26 13:06:03', NULL),
-  (1280, 19, 8, 56, 91.73, 'Dispositivo tecnológico', '2026-07-22', '2026-07-23 17:17:33', '2026-07-23 17:17:33', NULL),
-  (1281, 19, 8, 55, 205.94, 'Compra de ropa nueva', '2026-07-30', '2026-07-31 09:14:07', '2026-07-31 09:14:07', NULL),
-  (1282, 19, 11, 77, 75.44, 'Comisión bancaria', '2026-07-27', '2026-07-27 12:14:56', '2026-07-27 12:14:56', NULL),
-  (1283, 19, 8, 58, 74.26, 'Par de zapatos', '2026-07-17', '2026-07-19 15:13:10', '2026-07-19 15:13:10', NULL),
-  (1284, 19, 1, 5, 1520.99, 'Pensión mensual', '2026-08-02', '2026-08-03 16:58:44', '2026-08-03 16:58:44', NULL),
-  (1285, 19, 1, 1, 957.99, 'Bonificación por desempeño', '2026-08-04', '2026-08-05 13:43:04', '2026-08-05 13:43:04', NULL),
-  (1286, 19, 1, 1, 1849.80, 'Ingreso por alquiler de propiedad', '2026-08-03', '2026-08-03 18:30:27', '2026-08-03 18:30:27', NULL),
-  (1287, 19, 2, 13, 531.92, 'Pago de alquiler mensual', '2026-08-12', '2026-08-13 18:48:54', '2026-08-13 18:48:54', NULL),
-  (1288, 19, 3, 27, 195.51, 'Cena especial', '2026-08-25', '2026-08-25 15:55:15', '2026-08-25 15:55:15', NULL),
-  (1289, 19, 2, 22, 560.03, 'Cuenta de agua', '2026-08-19', '2026-08-20 16:32:10', '2026-08-20 16:32:10', NULL),
-  (1290, 19, 3, 25, 407.83, 'Pedido a domicilio', '2026-08-20', '2026-08-23 15:47:22', '2026-08-23 15:47:22', NULL),
-  (1291, 19, 6, 45, 140.33, 'Producto de bienestar personal', '2026-08-21', '2026-08-23 13:57:33', '2026-08-23 13:57:33', NULL),
-  (1292, 19, 11, 78, 38.26, 'Inversión en fondo', '2026-08-31', '2026-08-31 10:26:54', '2026-08-31 10:26:54', NULL),
-  (1293, 19, 4, 34, 151.86, 'Carga de combustible', '2026-08-17', '2026-08-20 13:13:47', '2026-08-20 13:13:47', NULL),
-  (1294, 19, 3, 28, 80.73, 'Snacks y bebidas varias', '2026-08-18', '2026-08-21 16:11:16', '2026-08-21 16:11:16', NULL),
-  (1295, 19, 8, 59, 128.10, 'Dispositivo tecnológico', '2026-08-18', '2026-08-20 11:02:37', '2026-08-20 11:02:37', NULL),
-  (1296, 20, 1, 2, 980.23, 'Venta de artículos personales', '2026-04-08', '2026-04-10 12:07:00', '2026-04-10 12:07:00', NULL),
-  (1297, 20, 1, 3, 1039.37, 'Bonificación por desempeño', '2026-04-03', '2026-04-05 17:35:42', '2026-04-05 17:35:42', NULL),
-  (1298, 20, 1, 1, 932.39, 'Trabajo independiente', '2026-04-05', '2026-04-05 15:02:13', '2026-04-05 15:02:13', NULL),
-  (1299, 20, 2, 22, 142.58, 'Pago de alquiler mensual', '2026-04-25', '2026-04-27 08:27:22', '2026-04-27 08:27:22', NULL),
-  (1300, 20, 3, 23, 205.07, 'Almuerzo rápido', '2026-04-19', '2026-04-20 09:45:17', '2026-04-20 09:45:17', NULL),
-  (1301, 20, 5, 40, 177.64, 'Artículo de decoración', '2026-04-12', '2026-04-14 11:02:30', '2026-04-14 11:02:30', NULL),
-  (1302, 20, 3, 26, 217.58, 'Almuerzo rápido', '2026-04-13', '2026-04-15 12:38:19', '2026-04-15 12:38:19', NULL),
-  (1303, 20, 12, 82, 242.29, 'Ayuda familiar directa', '2026-04-14', '2026-04-15 12:08:26', '2026-04-15 12:08:26', NULL),
-  (1304, 20, 3, 23, 378.14, 'Compra de frutas y verduras', '2026-04-24', '2026-04-25 14:50:56', '2026-04-25 14:50:56', NULL),
-  (1305, 20, 3, 28, 177.23, 'Compra de frutas y verduras', '2026-04-21', '2026-04-24 13:27:29', '2026-04-24 13:27:29', NULL),
-  (1306, 20, 9, 61, 274.20, 'Disco de música', '2026-04-10', '2026-04-13 09:48:08', '2026-04-13 09:48:08', NULL),
-  (1307, 20, 5, 41, 156.10, 'Reparación de grifería', '2026-04-14', '2026-04-16 08:48:54', '2026-04-16 08:48:54', NULL),
-  (1308, 20, 2, 20, 655.61, 'Servicio de internet', '2026-04-26', '2026-04-29 08:05:03', '2026-04-29 08:05:03', NULL),
-  (1309, 20, 12, 81, 24.28, 'Regalo para amigo', '2026-04-13', '2026-04-15 17:30:44', '2026-04-15 17:30:44', NULL),
-  (1310, 20, 3, 28, 5.00, 'Cena especial', '2026-04-26', '2026-04-26 11:33:09', '2026-04-26 11:33:09', NULL),
-  (1311, 20, 1, 11, 1734.06, 'Pensión mensual', '2026-05-05', '2026-05-07 08:51:31', '2026-05-07 08:51:31', NULL),
-  (1312, 20, 1, 2, 320.86, 'Pago por horas extraordinarias', '2026-05-03', '2026-05-03 16:06:15', '2026-05-03 16:06:15', NULL),
-  (1313, 20, 2, 14, 405.31, 'Servicio de electricidad', '2026-05-26', '2026-05-29 14:03:59', '2026-05-29 14:03:59', NULL),
-  (1314, 20, 3, 25, 220.14, 'Cena especial', '2026-05-15', '2026-05-16 16:16:52', '2026-05-16 16:16:52', NULL),
-  (1315, 20, 11, 75, 132.54, 'Transferencia a tercero', '2026-05-30', '2026-05-30 10:09:52', '2026-05-30 10:09:52', NULL),
-  (1316, 20, 4, 32, 145.47, 'Estacionamiento en centro comercial', '2026-05-19', '2026-05-21 18:06:37', '2026-05-21 18:06:37', NULL),
-  (1317, 20, 3, 26, 211.34, 'Almuerzo rápido', '2026-05-13', '2026-05-16 14:52:27', '2026-05-16 14:52:27', NULL),
-  (1318, 20, 3, 23, 103.31, 'Cena especial', '2026-05-19', '2026-05-19 18:41:57', '2026-05-19 18:41:57', NULL),
-  (1319, 20, 3, 24, 249.92, 'Café con compañeros', '2026-05-24', '2026-05-26 08:10:22', '2026-05-26 08:10:22', NULL),
-  (1320, 20, 3, 27, 59.50, 'Snacks y bebidas varias', '2026-05-30', '2026-05-31 13:41:46', '2026-05-31 13:41:46', NULL),
-  (1321, 20, 4, 33, 236.56, 'Pago de seguro vehicular', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (1322, 20, 1, 1, 1207.63, 'Pensión mensual', '2026-06-03', '2026-06-05 10:44:20', '2026-06-05 10:44:20', NULL),
-  (1323, 20, 1, 6, 1252.09, 'Comisión por ventas', '2026-06-07', '2026-06-07 08:01:54', '2026-06-07 08:01:54', NULL),
-  (1324, 20, 1, 1, 644.81, 'Pago por horas extraordinarias', '2026-06-02', '2026-06-05 18:30:20', '2026-06-05 18:30:20', NULL),
-  (1325, 20, 1, 12, 1632.09, 'Ingreso por servicios profesionales', '2026-06-02', '2026-06-03 14:48:26', '2026-06-03 14:48:26', NULL),
-  (1326, 20, 2, 13, 457.24, 'Pago de alquiler mensual', '2026-06-12', '2026-06-15 13:38:40', '2026-06-15 13:38:40', NULL),
-  (1327, 20, 3, 24, 180.94, 'Café con compañeros', '2026-06-24', '2026-06-27 10:40:36', '2026-06-27 10:40:36', NULL),
-  (1328, 20, 3, 26, 349.06, 'Café con compañeros', '2026-06-17', '2026-06-18 10:27:52', '2026-06-18 10:27:52', NULL),
-  (1329, 20, 2, 14, 202.65, 'Cuota de comunidad', '2026-06-14', '2026-06-14 13:49:26', '2026-06-14 13:49:26', NULL),
-  (1330, 20, 3, 25, 117.09, 'Cena especial', '2026-06-30', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1331, 20, 7, 54, 270.43, 'Material escolar', '2026-06-14', '2026-06-14 15:27:40', '2026-06-14 15:27:40', NULL),
-  (1332, 20, 11, 75, 42.52, 'Inversión en fondo', '2026-06-26', '2026-06-28 09:07:31', '2026-06-28 09:07:31', NULL),
-  (1333, 20, 3, 23, 382.19, 'Almuerzo rápido', '2026-06-18', '2026-06-21 13:04:55', '2026-06-21 13:04:55', NULL),
-  (1334, 20, 3, 27, 300.42, 'Cena en restaurante', '2026-06-26', '2026-06-28 14:39:03', '2026-06-28 14:39:03', NULL),
-  (1335, 20, 6, 48, 13.84, 'Producto de bienestar personal', '2026-06-20', '2026-06-23 12:12:21', '2026-06-23 12:12:21', NULL),
-  (1336, 20, 2, 21, 662.57, 'Cuota de comunidad', '2026-06-20', '2026-06-20 11:31:04', '2026-06-20 11:31:04', NULL),
-  (1337, 20, 1, 1, 606.14, 'Trabajo independiente', '2026-07-07', '2026-07-07 16:30:08', '2026-07-07 16:30:08', NULL),
-  (1338, 20, 2, 13, 436.42, 'Factura de gas', '2026-07-17', '2026-07-19 14:30:19', '2026-07-19 14:30:19', NULL),
-  (1339, 20, 3, 23, 107.91, 'Compra semanal del supermercado', '2026-07-16', '2026-07-19 18:43:47', '2026-07-19 18:43:47', NULL),
-  (1340, 20, 1, 1, 1140.25, 'Pensión mensual', '2026-08-03', '2026-08-03 15:07:57', '2026-08-03 15:07:57', NULL),
-  (1341, 20, 1, 6, 833.22, 'Ingreso por servicios profesionales', '2026-08-06', '2026-08-09 08:15:14', '2026-08-09 08:15:14', NULL),
-  (1342, 20, 2, 22, 57.54, 'Factura de gas', '2026-08-23', '2026-08-23 08:55:46', '2026-08-23 08:55:46', NULL),
-  (1343, 20, 3, 23, 138.01, 'Café con compañeros', '2026-08-15', '2026-08-17 08:20:22', '2026-08-17 08:20:22', NULL),
-  (1344, 20, 4, 35, 146.22, 'Boleto de transporte público', '2026-08-13', '2026-08-13 09:16:34', '2026-08-13 09:16:34', NULL),
-  (1345, 20, 13, 86, 269.80, 'Gasto reembolsable pendiente', '2026-08-17', '2026-08-20 12:23:49', '2026-08-20 12:23:49', NULL),
-  (1346, 20, 5, 41, 268.43, 'Reparación de grifería', '2026-08-20', '2026-08-20 08:22:57', '2026-08-20 08:22:57', NULL),
-  (1347, 20, 11, 78, 87.54, 'Transferencia a tercero', '2026-08-16', '2026-08-17 16:14:19', '2026-08-17 16:14:19', NULL),
-  (1348, 20, 3, 25, 370.71, 'Cena especial', '2026-08-14', '2026-08-14 11:44:28', '2026-08-14 11:44:28', NULL),
-  (1349, 20, 2, 20, 350.30, 'Servicio de electricidad', '2026-08-18', '2026-08-20 17:24:19', '2026-08-20 17:24:19', NULL),
-  (1350, 20, 3, 26, 38.86, 'Café con compañeros', '2026-08-22', '2026-08-25 15:02:14', '2026-08-25 15:02:14', NULL),
-  (1351, 20, 3, 27, 38.97, 'Compra semanal del supermercado', '2026-08-19', '2026-08-19 16:48:22', '2026-08-19 16:48:22', NULL),
-  (1352, 20, 7, 52, 7.79, 'Examen de certificación profesional', '2026-08-28', '2026-08-29 08:21:46', '2026-08-29 08:21:46', NULL),
-  (1353, 21, 1, 12, 1554.32, 'Reembolso de gastos', '2026-04-02', '2026-04-05 18:18:54', '2026-04-05 18:18:54', NULL),
-  (1354, 21, 1, 1, 1358.90, 'Comisión por ventas', '2026-04-10', '2026-04-12 10:24:29', '2026-04-12 10:24:29', NULL),
-  (1355, 21, 1, 4, 437.37, 'Pago por horas extraordinarias', '2026-04-01', '2026-04-03 18:17:05', '2026-04-03 18:17:05', NULL),
-  (1356, 21, 1, 5, 807.56, 'Trabajo independiente', '2026-04-07', '2026-04-07 17:17:23', '2026-04-07 17:17:23', NULL),
-  (1357, 21, 2, 17, 636.82, 'Plan de telefonía móvil', '2026-04-29', '2026-04-29 09:19:36', '2026-04-29 09:19:36', NULL),
-  (1358, 21, 3, 25, 428.37, 'Cena especial', '2026-04-24', '2026-04-27 08:28:00', '2026-04-27 08:28:00', NULL),
-  (1359, 21, 3, 26, 329.74, 'Cena en restaurante', '2026-04-27', '2026-04-28 14:03:37', '2026-04-28 14:03:37', NULL),
-  (1360, 21, 3, 23, 177.40, 'Almuerzo rápido', '2026-04-18', '2026-04-20 15:08:14', '2026-04-20 15:08:14', NULL),
-  (1361, 21, 2, 16, 135.83, 'Pago de impuestos anuales', '2026-04-11', '2026-04-12 18:32:55', '2026-04-12 18:32:55', NULL),
-  (1362, 21, 2, 21, 588.02, 'Plan de telefonía móvil', '2026-04-11', '2026-04-13 12:01:43', '2026-04-13 12:01:43', NULL),
-  (1363, 21, 2, 22, 226.02, 'Suscripción a streaming', '2026-04-13', '2026-04-13 16:28:07', '2026-04-13 16:28:07', NULL),
-  (1364, 21, 2, 18, 477.77, 'Servicio de internet', '2026-04-23', '2026-04-23 18:27:56', '2026-04-23 18:27:56', NULL),
-  (1365, 21, 3, 27, 400.44, 'Pedido a domicilio', '2026-04-20', '2026-04-23 18:23:30', '2026-04-23 18:23:30', NULL),
-  (1366, 21, 1, 1, 566.92, 'Ingreso por alquiler de propiedad', '2026-05-03', '2026-05-03 09:38:13', '2026-05-03 09:38:13', NULL),
-  (1367, 21, 2, 21, 408.18, 'Cuota de comunidad', '2026-05-26', '2026-05-28 11:24:53', '2026-05-28 11:24:53', NULL),
-  (1368, 21, 3, 23, 81.64, 'Compra de frutas y verduras', '2026-05-30', '2026-05-30 09:59:14', '2026-05-30 09:59:14', NULL),
-  (1369, 21, 3, 27, 16.33, 'Cena especial', '2026-05-29', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (1370, 21, 1, 1, 1698.51, 'Ingreso por servicios profesionales', '2026-06-06', '2026-06-07 15:20:47', '2026-06-07 15:20:47', NULL),
-  (1371, 21, 1, 8, 1519.04, 'Reembolso de gastos', '2026-06-07', '2026-06-09 09:22:35', '2026-06-09 09:22:35', NULL),
-  (1372, 21, 2, 14, 735.98, 'Cuota de seguro del hogar', '2026-06-30', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1373, 21, 3, 24, 297.59, 'Almuerzo rápido', '2026-06-14', '2026-06-15 14:43:37', '2026-06-15 14:43:37', NULL),
-  (1374, 21, 6, 45, 97.58, 'Sesión de terapia', '2026-06-12', '2026-06-15 14:32:09', '2026-06-15 14:32:09', NULL),
-  (1375, 21, 5, 38, 263.54, 'Servicio de jardinería', '2026-06-10', '2026-06-11 09:26:16', '2026-06-11 09:26:16', NULL),
-  (1376, 21, 9, 66, 34.79, 'Entradas al cine', '2026-06-11', '2026-06-14 08:44:10', '2026-06-14 08:44:10', NULL),
-  (1377, 21, 3, 26, 196.55, 'Snacks y bebidas varias', '2026-06-22', '2026-06-23 12:07:21', '2026-06-23 12:07:21', NULL),
-  (1378, 21, 11, 75, 298.27, 'Pago tarjeta de crédito', '2026-06-11', '2026-06-11 13:28:58', '2026-06-11 13:28:58', NULL),
-  (1379, 21, 13, 87, 90.34, 'Gasto de emergencia', '2026-06-25', '2026-06-26 10:46:49', '2026-06-26 10:46:49', NULL),
-  (1380, 21, 2, 22, 494.79, 'Cuenta de agua', '2026-06-30', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1381, 21, 11, 77, 283.71, 'Transferencia a cuenta de ahorro', '2026-06-13', '2026-06-14 12:31:21', '2026-06-14 12:31:21', NULL),
-  (1382, 21, 1, 10, 1114.81, 'Bonificación por desempeño', '2026-07-07', '2026-07-09 13:24:20', '2026-07-09 13:24:20', NULL),
-  (1383, 21, 1, 1, 1665.18, 'Pensión mensual', '2026-07-04', '2026-07-07 16:17:36', '2026-07-07 16:17:36', NULL),
-  (1384, 21, 1, 1, 1021.02, 'Venta de artículos personales', '2026-07-03', '2026-07-03 12:17:31', '2026-07-03 12:17:31', NULL),
-  (1385, 21, 1, 1, 753.98, 'Bonificación por desempeño', '2026-07-05', '2026-07-05 11:42:17', '2026-07-05 11:42:17', NULL),
-  (1386, 21, 1, 1, 1328.25, 'Cobro mensual del salario', '2026-07-09', '2026-07-10 08:38:57', '2026-07-10 08:38:57', NULL),
-  (1387, 21, 2, 21, 453.44, 'Pago de alquiler mensual', '2026-07-16', '2026-07-16 15:53:52', '2026-07-16 15:53:52', NULL),
-  (1388, 21, 3, 25, 125.48, 'Cena especial', '2026-07-28', '2026-07-31 15:33:08', '2026-07-31 15:33:08', NULL),
-  (1389, 21, 2, 14, 383.30, 'Cuenta de agua', '2026-07-23', '2026-07-26 12:05:55', '2026-07-26 12:05:55', NULL),
-  (1390, 21, 13, 84, 290.69, 'Gasto reembolsable pendiente', '2026-07-12', '2026-07-13 09:20:10', '2026-07-13 09:20:10', NULL),
-  (1391, 21, 2, 18, 719.20, 'Suscripción a streaming', '2026-07-11', '2026-07-14 09:59:45', '2026-07-14 09:59:45', NULL),
-  (1392, 21, 2, 13, 693.17, 'Pago de impuestos anuales', '2026-07-17', '2026-07-18 12:30:09', '2026-07-18 12:30:09', NULL),
-  (1393, 21, 13, 87, 88.37, 'Gasto relacionado con trabajo', '2026-07-16', '2026-07-16 16:54:46', '2026-07-16 16:54:46', NULL),
-  (1394, 21, 2, 20, 468.30, 'Servicio de internet', '2026-07-16', '2026-07-17 08:26:44', '2026-07-17 08:26:44', NULL),
-  (1395, 21, 12, 83, 74.24, 'Regalo para amigo', '2026-07-21', '2026-07-24 16:42:11', '2026-07-24 16:42:11', NULL),
-  (1396, 21, 1, 8, 1634.14, 'Ingreso por servicios profesionales', '2026-08-07', '2026-08-09 16:30:18', '2026-08-09 16:30:18', NULL),
-  (1397, 21, 1, 1, 1944.38, 'Regalo en efectivo', '2026-08-05', '2026-08-08 15:20:15', '2026-08-08 15:20:15', NULL),
-  (1398, 21, 1, 1, 764.29, 'Comisión por ventas', '2026-08-06', '2026-08-06 13:44:25', '2026-08-06 13:44:25', NULL),
-  (1399, 21, 2, 15, 630.26, 'Factura de gas', '2026-08-25', '2026-08-28 17:26:43', '2026-08-28 17:26:43', NULL),
-  (1400, 21, 3, 23, 252.25, 'Pedido a domicilio', '2026-08-23', '2026-08-23 16:49:20', '2026-08-23 16:49:20', NULL),
-  (1401, 21, 8, 58, 243.66, 'Accesorio personal', '2026-08-23', '2026-08-26 12:58:03', '2026-08-26 12:58:03', NULL),
-  (1402, 21, 5, 39, 192.70, 'Servicio de jardinería', '2026-08-11', '2026-08-13 15:26:14', '2026-08-13 15:26:14', NULL),
-  (1403, 21, 10, 69, 234.97, 'Gasto para los hijos', '2026-08-13', '2026-08-15 10:38:34', '2026-08-15 10:38:34', NULL),
-  (1404, 21, 2, 19, 117.69, 'Pago de alquiler mensual', '2026-08-20', '2026-08-22 16:04:41', '2026-08-22 16:04:41', NULL),
-  (1405, 21, 7, 54, 63.54, 'Curso online especializado', '2026-08-15', '2026-08-18 11:18:51', '2026-08-18 11:18:51', NULL),
-  (1406, 21, 7, 53, 68.61, 'Examen de certificación profesional', '2026-08-17', '2026-08-17 08:54:01', '2026-08-17 08:54:01', NULL),
-  (1407, 22, 1, 1, 1227.35, 'Regalo en efectivo', '2026-05-03', '2026-05-05 12:01:14', '2026-05-05 12:01:14', NULL),
-  (1408, 22, 1, 4, 260.80, 'Comisión por ventas', '2026-05-02', '2026-05-05 18:25:08', '2026-05-05 18:25:08', NULL),
-  (1409, 22, 1, 2, 337.75, 'Reembolso de gastos', '2026-05-09', '2026-05-12 08:00:47', '2026-05-12 08:00:47', NULL),
-  (1410, 22, 1, 3, 372.00, 'Trabajo independiente', '2026-05-10', '2026-05-13 11:53:38', '2026-05-13 11:53:38', NULL),
-  (1411, 22, 1, 7, 1122.24, 'Ingreso por servicios profesionales', '2026-05-01', '2026-05-03 12:29:12', '2026-05-03 12:29:12', NULL),
-  (1412, 22, 2, 17, 776.95, 'Servicio de electricidad', '2026-05-28', '2026-05-31 14:18:27', '2026-05-31 14:18:27', NULL),
-  (1413, 22, 3, 24, 484.44, 'Café con compañeros', '2026-05-27', '2026-05-29 15:18:58', '2026-05-29 15:18:58', NULL),
-  (1414, 22, 3, 28, 215.01, 'Compra semanal del supermercado', '2026-05-21', '2026-05-21 15:14:36', '2026-05-21 15:14:36', NULL),
-  (1415, 22, 2, 20, 327.37, 'Cuenta de agua', '2026-05-28', '2026-05-28 18:19:21', '2026-05-28 18:19:21', NULL),
-  (1416, 22, 3, 23, 162.30, 'Cena especial', '2026-05-25', '2026-05-26 09:09:25', '2026-05-26 09:09:25', NULL),
-  (1417, 22, 1, 1, 1581.34, 'Bonificación por desempeño', '2026-06-05', '2026-06-08 12:47:21', '2026-06-08 12:47:21', NULL),
-  (1418, 22, 1, 1, 1533.50, 'Pago por horas extraordinarias', '2026-06-10', '2026-06-13 08:17:44', '2026-06-13 08:17:44', NULL),
-  (1419, 22, 1, 8, 1182.06, 'Venta de artículos personales', '2026-06-06', '2026-06-07 13:29:45', '2026-06-07 13:29:45', NULL),
-  (1420, 22, 1, 12, 1986.96, 'Rendimiento de inversiones', '2026-06-02', '2026-06-02 14:44:04', '2026-06-02 14:44:04', NULL),
-  (1421, 22, 1, 1, 520.44, 'Ingreso por servicios profesionales', '2026-06-09', '2026-06-09 10:12:28', '2026-06-09 10:12:28', NULL),
-  (1422, 22, 2, 13, 647.59, 'Suscripción a streaming', '2026-06-30', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1423, 22, 3, 26, 217.72, 'Pedido a domicilio', '2026-06-19', '2026-06-19 14:18:46', '2026-06-19 14:18:46', NULL),
-  (1424, 22, 11, 77, 171.32, 'Inversión en fondo', '2026-06-15', '2026-06-16 12:33:43', '2026-06-16 12:33:43', NULL),
-  (1425, 22, 13, 86, 158.22, 'Gasto reembolsable pendiente', '2026-06-18', '2026-06-21 15:13:59', '2026-06-21 15:13:59', NULL),
-  (1426, 22, 13, 85, 53.45, 'Gasto relacionado con trabajo', '2026-06-25', '2026-06-25 13:26:11', '2026-06-25 13:26:11', NULL),
-  (1427, 22, 2, 17, 576.10, 'Servicio de electricidad', '2026-06-16', '2026-06-16 16:29:21', '2026-06-16 16:29:21', NULL),
-  (1428, 22, 3, 27, 103.53, 'Café con compañeros', '2026-06-21', '2026-06-22 13:40:00', '2026-06-22 13:40:00', NULL),
-  (1429, 22, 3, 27, 372.78, 'Café con compañeros', '2026-06-21', '2026-06-24 12:35:34', '2026-06-24 12:35:34', NULL),
-  (1430, 22, 2, 14, 597.99, 'Cuenta de agua', '2026-06-18', '2026-06-19 12:36:06', '2026-06-19 12:36:06', NULL),
-  (1431, 22, 1, 7, 794.29, 'Venta de artículos personales', '2026-07-10', '2026-07-12 17:42:58', '2026-07-12 17:42:58', NULL),
-  (1432, 22, 1, 1, 504.01, 'Pensión mensual', '2026-07-04', '2026-07-05 09:59:51', '2026-07-05 09:59:51', NULL),
-  (1433, 22, 1, 1, 747.23, 'Bonificación por desempeño', '2026-07-01', '2026-07-03 09:57:03', '2026-07-03 09:57:03', NULL),
-  (1434, 22, 1, 8, 965.73, 'Ingreso por servicios profesionales', '2026-07-08', '2026-07-10 12:32:48', '2026-07-10 12:32:48', NULL),
-  (1435, 22, 1, 1, 1089.87, 'Reembolso de gastos', '2026-07-07', '2026-07-10 13:19:53', '2026-07-10 13:19:53', NULL),
-  (1436, 22, 2, 18, 448.01, 'Servicio de internet', '2026-07-29', '2026-07-30 10:40:53', '2026-07-30 10:40:53', NULL),
-  (1437, 22, 3, 28, 97.16, 'Pedido a domicilio', '2026-07-23', '2026-07-26 15:44:50', '2026-07-26 15:44:50', NULL),
-  (1438, 22, 10, 71, 197.37, 'Consulta veterinaria', '2026-07-15', '2026-07-15 13:54:29', '2026-07-15 13:54:29', NULL),
-  (1439, 22, 13, 87, 68.07, 'Gasto de emergencia', '2026-07-27', '2026-07-28 14:23:11', '2026-07-28 14:23:11', NULL),
-  (1440, 22, 3, 27, 121.60, 'Snacks y bebidas varias', '2026-07-28', '2026-07-30 13:06:58', '2026-07-30 13:06:58', NULL),
-  (1441, 22, 10, 68, 184.00, 'Gasto para los hijos', '2026-07-11', '2026-07-13 18:30:25', '2026-07-13 18:30:25', NULL),
-  (1442, 22, 13, 86, 85.88, 'Gasto imprevisto del mes', '2026-07-11', '2026-07-11 15:38:40', '2026-07-11 15:38:40', NULL),
-  (1443, 22, 9, 66, 263.11, 'Disco de música', '2026-07-27', '2026-07-27 08:23:01', '2026-07-27 08:23:01', NULL),
-  (1444, 22, 4, 31, 261.92, 'Carga de combustible', '2026-07-14', '2026-07-14 14:53:54', '2026-07-14 14:53:54', NULL),
-  (1445, 22, 1, 1, 765.63, 'Comisión por ventas', '2026-08-09', '2026-08-11 11:41:39', '2026-08-11 11:41:39', NULL),
-  (1446, 22, 1, 1, 1755.91, 'Reembolso de gastos', '2026-08-06', '2026-08-07 17:46:23', '2026-08-07 17:46:23', NULL),
-  (1447, 22, 1, 1, 1496.74, 'Reembolso de gastos', '2026-08-07', '2026-08-07 09:12:52', '2026-08-07 09:12:52', NULL),
-  (1448, 22, 1, 1, 899.95, 'Pago por horas extraordinarias', '2026-08-03', '2026-08-06 08:17:38', '2026-08-06 08:17:38', NULL),
-  (1449, 22, 2, 21, 356.94, 'Plan de telefonía móvil', '2026-08-30', '2026-08-30 12:17:35', '2026-08-30 12:17:35', NULL),
-  (1450, 22, 3, 23, 270.45, 'Cena en restaurante', '2026-08-12', '2026-08-15 09:07:58', '2026-08-15 09:07:58', NULL),
-  (1451, 22, 2, 15, 288.13, 'Factura de gas', '2026-08-30', '2026-08-30 10:50:00', '2026-08-30 10:50:00', NULL),
-  (1452, 22, 9, 61, 263.77, 'Viaje de fin de semana', '2026-08-17', '2026-08-19 18:41:57', '2026-08-19 18:41:57', NULL),
-  (1453, 22, 2, 17, 90.00, 'Plan de telefonía móvil', '2026-08-19', '2026-08-20 12:08:36', '2026-08-20 12:08:36', NULL),
-  (1454, 22, 5, 39, 265.65, 'Artículo de decoración', '2026-08-15', '2026-08-17 12:44:28', '2026-08-17 12:44:28', NULL),
-  (1455, 23, 1, 1, 1045.42, 'Bonificación por desempeño', '2026-05-09', '2026-05-12 18:43:53', '2026-05-12 18:43:53', NULL),
-  (1456, 23, 1, 1, 1752.09, 'Comisión por ventas', '2026-05-07', '2026-05-08 16:36:13', '2026-05-08 16:36:13', NULL),
-  (1457, 23, 1, 1, 1469.01, 'Reembolso de gastos', '2026-05-05', '2026-05-06 13:44:32', '2026-05-06 13:44:32', NULL),
-  (1458, 23, 1, 5, 363.36, 'Cobro mensual del salario', '2026-05-04', '2026-05-06 11:29:16', '2026-05-06 11:29:16', NULL),
-  (1459, 23, 2, 14, 437.77, 'Cuota de comunidad', '2026-05-30', '2026-05-31 15:08:29', '2026-05-31 15:08:29', NULL),
-  (1460, 23, 3, 25, 204.97, 'Snacks y bebidas varias', '2026-05-22', '2026-05-22 13:44:06', '2026-05-22 13:44:06', NULL),
-  (1461, 23, 2, 15, 366.06, 'Cuenta de agua', '2026-05-20', '2026-05-22 18:57:06', '2026-05-22 18:57:06', NULL),
-  (1462, 23, 6, 44, 142.72, 'Pago de seguro médico', '2026-05-15', '2026-05-15 15:51:39', '2026-05-15 15:51:39', NULL),
-  (1463, 23, 13, 87, 220.63, 'Gasto reembolsable pendiente', '2026-05-25', '2026-05-26 12:46:23', '2026-05-26 12:46:23', NULL),
-  (1464, 23, 8, 57, 16.84, 'Accesorio personal', '2026-05-17', '2026-05-17 14:27:49', '2026-05-17 14:27:49', NULL),
-  (1465, 23, 1, 3, 1121.97, 'Bonificación por desempeño', '2026-06-05', '2026-06-06 17:48:08', '2026-06-06 17:48:08', NULL),
-  (1466, 23, 1, 1, 1946.59, 'Bonificación por desempeño', '2026-06-05', '2026-06-06 13:29:25', '2026-06-06 13:29:25', NULL),
-  (1467, 23, 1, 1, 1487.91, 'Bonificación por desempeño', '2026-06-04', '2026-06-05 12:19:05', '2026-06-05 12:19:05', NULL),
-  (1468, 23, 1, 1, 804.98, 'Ingreso por alquiler de propiedad', '2026-06-02', '2026-06-03 10:43:35', '2026-06-03 10:43:35', NULL),
-  (1469, 23, 2, 13, 572.36, 'Cuota de seguro del hogar', '2026-06-25', '2026-06-28 11:58:30', '2026-06-28 11:58:30', NULL),
-  (1470, 23, 3, 26, 361.93, 'Almuerzo rápido', '2026-06-13', '2026-06-16 10:20:48', '2026-06-16 10:20:48', NULL),
-  (1471, 23, 3, 25, 415.30, 'Cena especial', '2026-06-23', '2026-06-26 16:04:22', '2026-06-26 16:04:22', NULL),
-  (1472, 23, 11, 75, 70.40, 'Pago cuota préstamo', '2026-06-29', '2026-06-30 11:23:23', '2026-06-30 11:23:23', NULL),
-  (1473, 23, 2, 22, 499.38, 'Pago de impuestos anuales', '2026-06-22', '2026-06-22 18:14:08', '2026-06-22 18:14:08', NULL),
-  (1474, 23, 2, 17, 376.55, 'Cuenta de agua', '2026-06-20', '2026-06-23 18:11:27', '2026-06-23 18:11:27', NULL),
-  (1475, 23, 3, 28, 416.00, 'Compra de frutas y verduras', '2026-06-11', '2026-06-13 14:11:10', '2026-06-13 14:11:10', NULL),
-  (1476, 23, 3, 26, 408.93, 'Compra semanal del supermercado', '2026-06-21', '2026-06-21 18:55:25', '2026-06-21 18:55:25', NULL),
-  (1477, 23, 2, 22, 430.23, 'Cuota de seguro del hogar', '2026-06-24', '2026-06-24 15:41:42', '2026-06-24 15:41:42', NULL),
-  (1478, 23, 2, 17, 368.74, 'Pago de impuestos anuales', '2026-06-30', '2026-06-30 17:51:51', '2026-06-30 17:51:51', NULL),
-  (1479, 23, 1, 12, 803.11, 'Rendimiento de inversiones', '2026-07-09', '2026-07-11 09:50:11', '2026-07-11 09:50:11', NULL),
-  (1480, 23, 1, 7, 1766.57, 'Comisión por ventas', '2026-07-02', '2026-07-03 08:21:59', '2026-07-03 08:21:59', NULL),
-  (1481, 23, 1, 4, 1126.81, 'Trabajo independiente', '2026-07-10', '2026-07-13 14:03:29', '2026-07-13 14:03:29', NULL),
-  (1482, 23, 2, 13, 644.81, 'Servicio de internet', '2026-07-21', '2026-07-21 17:43:23', '2026-07-21 17:43:23', NULL),
-  (1483, 23, 3, 26, 188.61, 'Pedido a domicilio', '2026-07-19', '2026-07-19 16:17:11', '2026-07-19 16:17:11', NULL),
-  (1484, 23, 2, 20, 293.47, 'Pago de alquiler mensual', '2026-07-30', '2026-07-30 17:07:22', '2026-07-30 17:07:22', NULL),
-  (1485, 23, 8, 56, 56.69, 'Artículo electrónico', '2026-07-27', '2026-07-27 10:46:09', '2026-07-27 10:46:09', NULL),
-  (1486, 23, 6, 45, 291.70, 'Consulta médica general', '2026-07-29', '2026-07-30 16:36:29', '2026-07-30 16:36:29', NULL),
-  (1487, 23, 3, 23, 393.05, 'Cena en restaurante', '2026-07-30', '2026-07-30 14:32:46', '2026-07-30 14:32:46', NULL),
-  (1488, 23, 3, 26, 218.35, 'Cena en restaurante', '2026-07-15', '2026-07-17 18:47:56', '2026-07-17 18:47:56', NULL),
-  (1489, 23, 8, 55, 239.13, 'Dispositivo tecnológico', '2026-07-28', '2026-07-30 12:39:32', '2026-07-30 12:39:32', NULL),
-  (1490, 23, 5, 42, 240.69, 'Reparación de grifería', '2026-07-21', '2026-07-24 11:48:59', '2026-07-24 11:48:59', NULL),
-  (1491, 23, 2, 17, 426.17, 'Servicio de internet', '2026-07-11', '2026-07-14 10:43:18', '2026-07-14 10:43:18', NULL),
-  (1492, 23, 2, 13, 267.34, 'Plan de telefonía móvil', '2026-07-18', '2026-07-20 15:38:50', '2026-07-20 15:38:50', NULL),
-  (1493, 23, 1, 1, 1563.51, 'Comisión por ventas', '2026-08-04', '2026-08-04 17:18:46', '2026-08-04 17:18:46', NULL),
-  (1494, 23, 1, 8, 1258.25, 'Reembolso de gastos', '2026-08-10', '2026-08-12 16:24:30', '2026-08-12 16:24:30', NULL),
-  (1495, 23, 2, 13, 559.82, 'Pago de impuestos anuales', '2026-08-24', '2026-08-25 15:54:47', '2026-08-25 15:54:47', NULL),
-  (1496, 23, 3, 24, 280.15, 'Cena en restaurante', '2026-08-15', '2026-08-18 12:25:02', '2026-08-18 12:25:02', NULL),
-  (1497, 23, 10, 70, 29.51, 'Pago de colegio', '2026-08-26', '2026-08-28 12:18:48', '2026-08-28 12:18:48', NULL),
-  (1498, 23, 9, 61, 50.99, 'Entrada a evento deportivo', '2026-08-28', '2026-08-29 17:22:36', '2026-08-29 17:22:36', NULL),
-  (1499, 23, 2, 17, 467.33, 'Cuenta de agua', '2026-08-25', '2026-08-26 14:58:34', '2026-08-26 14:58:34', NULL),
-  (1500, 23, 2, 14, 346.81, 'Cuenta de agua', '2026-08-16', '2026-08-16 17:18:11', '2026-08-16 17:18:11', NULL),
-  (1501, 23, 13, 87, 167.27, 'Gasto reembolsable pendiente', '2026-08-21', '2026-08-22 14:57:38', '2026-08-22 14:57:38', NULL),
-  (1502, 23, 3, 28, 79.65, 'Compra de frutas y verduras', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1503, 24, 1, 1, 1195.87, 'Cobro mensual del salario', '2026-05-08', '2026-05-09 10:25:18', '2026-05-09 10:25:18', NULL),
-  (1504, 24, 1, 6, 1573.28, 'Rendimiento de inversiones', '2026-05-03', '2026-05-03 14:37:41', '2026-05-03 14:37:41', NULL),
-  (1505, 24, 1, 7, 539.97, 'Reembolso de gastos', '2026-05-01', '2026-05-02 10:39:39', '2026-05-02 10:39:39', NULL),
-  (1506, 24, 1, 10, 1227.05, 'Bonificación por desempeño', '2026-05-07', '2026-05-07 13:39:15', '2026-05-07 13:39:15', NULL),
-  (1507, 24, 2, 22, 519.12, 'Cuota de comunidad', '2026-05-31', '2026-05-31 13:01:47', '2026-05-31 13:01:47', NULL),
-  (1508, 24, 3, 28, 212.99, 'Café con compañeros', '2026-05-26', '2026-05-27 10:29:23', '2026-05-27 10:29:23', NULL),
-  (1509, 24, 2, 18, 149.49, 'Pago de impuestos anuales', '2026-05-12', '2026-05-12 11:36:29', '2026-05-12 11:36:29', NULL),
-  (1510, 24, 3, 24, 404.47, 'Almuerzo rápido', '2026-05-24', '2026-05-24 17:53:21', '2026-05-24 17:53:21', NULL),
-  (1511, 24, 2, 13, 741.01, 'Cuota de seguro del hogar', '2026-05-23', '2026-05-26 14:04:50', '2026-05-26 14:04:50', NULL),
-  (1512, 24, 13, 84, 216.16, 'Gasto de emergencia', '2026-05-29', '2026-05-29 15:30:52', '2026-05-29 15:30:52', NULL),
-  (1513, 24, 3, 28, 391.32, 'Cena especial', '2026-05-21', '2026-05-24 16:40:41', '2026-05-24 16:40:41', NULL),
-  (1514, 24, 1, 1, 1770.61, 'Regalo en efectivo', '2026-06-10', '2026-06-10 10:23:26', '2026-06-10 10:23:26', NULL),
-  (1515, 24, 2, 18, 156.46, 'Plan de telefonía móvil', '2026-06-17', '2026-06-20 11:16:06', '2026-06-20 11:16:06', NULL),
-  (1516, 24, 3, 28, 356.05, 'Snacks y bebidas varias', '2026-06-24', '2026-06-27 11:48:16', '2026-06-27 11:48:16', NULL),
-  (1517, 24, 3, 25, 400.07, 'Almuerzo rápido', '2026-06-18', '2026-06-20 17:02:48', '2026-06-20 17:02:48', NULL),
-  (1518, 24, 3, 23, 211.26, 'Pedido a domicilio', '2026-06-21', '2026-06-23 12:45:10', '2026-06-23 12:45:10', NULL),
-  (1519, 24, 9, 66, 91.99, 'Entrada a evento deportivo', '2026-06-14', '2026-06-15 17:18:54', '2026-06-15 17:18:54', NULL),
-  (1520, 24, 2, 13, 302.18, 'Suscripción a streaming', '2026-06-14', '2026-06-14 12:23:46', '2026-06-14 12:23:46', NULL),
-  (1521, 24, 10, 71, 60.43, 'Consulta veterinaria', '2026-06-15', '2026-06-17 18:09:37', '2026-06-17 18:09:37', NULL),
-  (1522, 24, 10, 70, 12.09, 'Ayuda a familiar', '2026-06-25', '2026-06-26 16:30:11', '2026-06-26 16:30:11', NULL),
-  (1523, 24, 1, 1, 836.46, 'Venta de artículos personales', '2026-07-05', '2026-07-05 18:12:22', '2026-07-05 18:12:22', NULL),
-  (1524, 24, 1, 1, 1869.05, 'Cobro mensual del salario', '2026-07-01', '2026-07-02 11:23:42', '2026-07-02 11:23:42', NULL),
-  (1525, 24, 2, 19, 519.80, 'Suscripción a streaming', '2026-07-20', '2026-07-20 12:35:34', '2026-07-20 12:35:34', NULL),
-  (1526, 24, 3, 23, 116.79, 'Almuerzo rápido', '2026-07-28', '2026-07-29 11:16:51', '2026-07-29 11:16:51', NULL),
-  (1527, 24, 12, 81, 72.36, 'Ayuda familiar directa', '2026-07-24', '2026-07-25 08:38:17', '2026-07-25 08:38:17', NULL),
-  (1528, 24, 2, 14, 729.61, 'Factura de gas', '2026-07-14', '2026-07-16 08:13:14', '2026-07-16 08:13:14', NULL),
-  (1529, 24, 11, 78, 141.96, 'Transferencia a cuenta de ahorro', '2026-07-27', '2026-07-27 13:50:40', '2026-07-27 13:50:40', NULL),
-  (1530, 24, 2, 20, 112.54, 'Cuota de comunidad', '2026-07-16', '2026-07-16 16:37:13', '2026-07-16 16:37:13', NULL),
-  (1531, 24, 11, 75, 176.61, 'Transferencia a tercero', '2026-07-13', '2026-07-16 18:12:37', '2026-07-16 18:12:37', NULL),
-  (1532, 24, 9, 61, 79.27, 'Videojuego nuevo', '2026-07-23', '2026-07-25 15:40:11', '2026-07-25 15:40:11', NULL),
-  (1533, 24, 10, 70, 285.67, 'Pago de colegio', '2026-07-19', '2026-07-21 16:15:21', '2026-07-21 16:15:21', NULL),
-  (1534, 24, 10, 70, 189.65, 'Compra para mascota', '2026-07-13', '2026-07-14 15:00:20', '2026-07-14 15:00:20', NULL),
-  (1535, 24, 1, 1, 598.34, 'Venta de artículos personales', '2026-08-07', '2026-08-09 09:59:55', '2026-08-09 09:59:55', NULL),
-  (1536, 24, 1, 1, 1530.44, 'Pago por horas extraordinarias', '2026-08-03', '2026-08-04 09:48:14', '2026-08-04 09:48:14', NULL),
-  (1537, 24, 1, 1, 958.08, 'Pensión mensual', '2026-08-09', '2026-08-12 09:43:19', '2026-08-12 09:43:19', NULL),
-  (1538, 24, 1, 1, 1507.83, 'Bonificación por desempeño', '2026-08-06', '2026-08-07 11:49:25', '2026-08-07 11:49:25', NULL),
-  (1539, 24, 2, 15, 507.59, 'Cuota de comunidad', '2026-08-15', '2026-08-17 16:30:41', '2026-08-17 16:30:41', NULL),
-  (1540, 24, 3, 26, 396.48, 'Pedido a domicilio', '2026-08-18', '2026-08-19 12:30:59', '2026-08-19 12:30:59', NULL),
-  (1541, 24, 3, 25, 371.55, 'Compra de frutas y verduras', '2026-08-20', '2026-08-23 12:27:36', '2026-08-23 12:27:36', NULL),
-  (1542, 24, 2, 19, 91.48, 'Pago de impuestos anuales', '2026-08-23', '2026-08-25 18:51:08', '2026-08-25 18:51:08', NULL),
-  (1543, 24, 2, 16, 206.46, 'Cuota de seguro del hogar', '2026-08-18', '2026-08-20 13:01:20', '2026-08-20 13:01:20', NULL),
-  (1544, 24, 7, 54, 170.19, 'Compra de libros de texto', '2026-08-16', '2026-08-17 17:32:28', '2026-08-17 17:32:28', NULL),
-  (1545, 24, 2, 15, 294.11, 'Cuota de seguro del hogar', '2026-08-25', '2026-08-28 08:49:42', '2026-08-28 08:49:42', NULL),
-  (1546, 24, 13, 87, 78.70, 'Gasto reembolsable pendiente', '2026-08-29', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1547, 24, 3, 26, 464.09, 'Cena en restaurante', '2026-08-13', '2026-08-16 10:56:47', '2026-08-16 10:56:47', NULL),
-  (1548, 25, 1, 3, 1261.65, 'Pago por horas extraordinarias', '2026-05-10', '2026-05-11 16:05:28', '2026-05-11 16:05:28', NULL),
-  (1549, 25, 1, 1, 1319.88, 'Ingreso por servicios profesionales', '2026-05-05', '2026-05-07 08:08:49', '2026-05-07 08:08:49', NULL),
-  (1550, 25, 1, 12, 1480.52, 'Pago por horas extraordinarias', '2026-05-06', '2026-05-08 15:47:56', '2026-05-08 15:47:56', NULL),
-  (1551, 25, 1, 1, 1202.49, 'Comisión por ventas', '2026-05-08', '2026-05-10 13:12:43', '2026-05-10 13:12:43', NULL),
-  (1552, 25, 2, 17, 241.52, 'Cuota de seguro del hogar', '2026-05-10', '2026-05-11 09:41:26', '2026-05-11 09:41:26', NULL),
-  (1553, 25, 3, 26, 408.85, 'Compra de frutas y verduras', '2026-05-11', '2026-05-11 16:23:01', '2026-05-11 16:23:01', NULL),
-  (1554, 25, 10, 74, 240.49, 'Alimentación de mascota', '2026-05-27', '2026-05-30 12:36:21', '2026-05-30 12:36:21', NULL),
-  (1555, 25, 2, 22, 119.11, 'Suscripción a streaming', '2026-05-27', '2026-05-27 16:10:51', '2026-05-27 16:10:51', NULL),
-  (1556, 25, 3, 27, 463.57, 'Compra de frutas y verduras', '2026-05-29', '2026-05-30 09:49:43', '2026-05-30 09:49:43', NULL),
-  (1557, 25, 9, 64, 267.36, 'Disco de música', '2026-05-14', '2026-05-16 09:11:41', '2026-05-16 09:11:41', NULL),
-  (1558, 25, 3, 23, 188.14, 'Snacks y bebidas varias', '2026-05-29', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (1559, 25, 6, 49, 70.75, 'Cuota mensual del gimnasio', '2026-05-31', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (1560, 25, 1, 12, 1761.04, 'Bonificación por desempeño', '2026-06-03', '2026-06-04 10:13:19', '2026-06-04 10:13:19', NULL),
-  (1561, 25, 1, 1, 1300.13, 'Ingreso por alquiler de propiedad', '2026-06-01', '2026-06-02 16:22:04', '2026-06-02 16:22:04', NULL),
-  (1562, 25, 1, 4, 1384.70, 'Pago por horas extraordinarias', '2026-06-04', '2026-06-06 10:27:17', '2026-06-06 10:27:17', NULL),
-  (1563, 25, 1, 4, 1590.22, 'Rendimiento de inversiones', '2026-06-01', '2026-06-02 15:07:53', '2026-06-02 15:07:53', NULL),
-  (1564, 25, 1, 1, 1801.30, 'Rendimiento de inversiones', '2026-06-04', '2026-06-07 08:28:28', '2026-06-07 08:28:28', NULL),
-  (1565, 25, 2, 16, 204.22, 'Cuota de comunidad', '2026-06-22', '2026-06-22 09:11:32', '2026-06-22 09:11:32', NULL),
-  (1566, 25, 3, 28, 272.75, 'Snacks y bebidas varias', '2026-06-15', '2026-06-16 09:31:47', '2026-06-16 09:31:47', NULL),
-  (1567, 25, 7, 53, 61.34, 'Pago de matrícula', '2026-06-12', '2026-06-14 15:16:32', '2026-06-14 15:16:32', NULL),
-  (1568, 25, 2, 13, 610.01, 'Servicio de electricidad', '2026-06-13', '2026-06-15 13:19:53', '2026-06-15 13:19:53', NULL),
-  (1569, 25, 12, 82, 72.66, 'Ayuda familiar directa', '2026-06-12', '2026-06-15 15:01:17', '2026-06-15 15:01:17', NULL),
-  (1570, 25, 7, 50, 46.52, 'Examen de certificación profesional', '2026-06-17', '2026-06-18 17:00:08', '2026-06-18 17:00:08', NULL),
-  (1571, 25, 1, 1, 310.13, 'Bonificación por desempeño', '2026-07-04', '2026-07-06 13:39:26', '2026-07-06 13:39:26', NULL),
-  (1572, 25, 1, 1, 761.96, 'Ingreso por servicios profesionales', '2026-07-09', '2026-07-10 18:11:23', '2026-07-10 18:11:23', NULL),
-  (1573, 25, 2, 15, 72.49, 'Servicio de internet', '2026-07-16', '2026-07-18 14:40:23', '2026-07-18 14:40:23', NULL),
-  (1574, 25, 3, 27, 180.90, 'Compra semanal del supermercado', '2026-07-10', '2026-07-12 08:56:30', '2026-07-12 08:56:30', NULL),
-  (1575, 25, 4, 35, 18.72, 'Traslado en taxi', '2026-07-22', '2026-07-23 10:06:00', '2026-07-23 10:06:00', NULL),
-  (1576, 25, 3, 26, 494.45, 'Cena especial', '2026-07-13', '2026-07-16 15:26:54', '2026-07-16 15:26:54', NULL),
-  (1577, 25, 2, 17, 158.66, 'Plan de telefonía móvil', '2026-07-18', '2026-07-19 13:42:34', '2026-07-19 13:42:34', NULL),
-  (1578, 25, 12, 83, 33.44, 'Donación a organización benéfica', '2026-07-25', '2026-07-26 10:14:32', '2026-07-26 10:14:32', NULL),
-  (1579, 25, 4, 32, 5.00, 'Carga de combustible', '2026-07-13', '2026-07-16 12:56:39', '2026-07-16 12:56:39', NULL),
-  (1580, 25, 1, 1, 1960.94, 'Ingreso por alquiler de propiedad', '2026-08-10', '2026-08-12 10:20:27', '2026-08-12 10:20:27', NULL),
-  (1581, 25, 1, 10, 1525.54, 'Pago por horas extraordinarias', '2026-08-01', '2026-08-04 18:03:50', '2026-08-04 18:03:50', NULL),
-  (1582, 25, 1, 1, 457.32, 'Cobro mensual del salario', '2026-08-01', '2026-08-02 10:25:20', '2026-08-02 10:25:20', NULL),
-  (1583, 25, 2, 22, 410.58, 'Cuota de comunidad', '2026-08-21', '2026-08-22 18:55:52', '2026-08-22 18:55:52', NULL),
-  (1584, 25, 3, 26, 242.49, 'Cena especial', '2026-08-16', '2026-08-19 17:16:34', '2026-08-19 17:16:34', NULL),
-  (1585, 25, 3, 28, 391.20, 'Cena especial', '2026-08-20', '2026-08-22 10:16:21', '2026-08-22 10:16:21', NULL),
-  (1586, 25, 9, 66, 33.47, 'Entrada a evento deportivo', '2026-08-20', '2026-08-22 09:50:23', '2026-08-22 09:50:23', NULL),
-  (1587, 25, 10, 69, 32.90, 'Pago de colegio', '2026-08-24', '2026-08-24 09:35:45', '2026-08-24 09:35:45', NULL),
-  (1588, 25, 3, 25, 242.71, 'Café con compañeros', '2026-08-27', '2026-08-27 16:11:25', '2026-08-27 16:11:25', NULL),
-  (1589, 25, 2, 13, 772.30, 'Suscripción a streaming', '2026-08-26', '2026-08-27 17:55:33', '2026-08-27 17:55:33', NULL),
-  (1590, 25, 3, 27, 138.30, 'Almuerzo rápido', '2026-08-26', '2026-08-27 13:10:06', '2026-08-27 13:10:06', NULL),
-  (1591, 25, 11, 76, 253.76, 'Pago tarjeta de crédito', '2026-08-14', '2026-08-17 11:17:03', '2026-08-17 11:17:03', NULL),
-  (1592, 25, 3, 26, 249.96, 'Pedido a domicilio', '2026-08-14', '2026-08-16 08:04:16', '2026-08-16 08:04:16', NULL),
-  (1593, 25, 2, 13, 470.15, 'Cuenta de agua', '2026-08-25', '2026-08-26 11:25:50', '2026-08-26 11:25:50', NULL),
-  (1594, 25, 8, 59, 62.04, 'Producto de cosmética', '2026-08-21', '2026-08-21 11:17:08', '2026-08-21 11:17:08', NULL),
-  (1595, 26, 1, 3, 570.50, 'Ingreso por servicios profesionales', '2026-05-03', '2026-05-05 13:00:40', '2026-05-05 13:00:40', NULL),
-  (1596, 26, 1, 9, 384.70, 'Trabajo independiente', '2026-05-10', '2026-05-13 11:42:28', '2026-05-13 11:42:28', NULL),
-  (1597, 26, 1, 9, 1537.24, 'Comisión por ventas', '2026-05-08', '2026-05-09 09:56:48', '2026-05-09 09:56:48', NULL),
-  (1598, 26, 1, 1, 908.15, 'Venta de artículos personales', '2026-05-01', '2026-05-04 12:07:40', '2026-05-04 12:07:40', NULL),
-  (1599, 26, 1, 1, 752.68, 'Ingreso por servicios profesionales', '2026-05-08', '2026-05-10 11:33:06', '2026-05-10 11:33:06', NULL),
-  (1600, 26, 2, 22, 769.80, 'Cuota de seguro del hogar', '2026-05-21', '2026-05-22 18:31:53', '2026-05-22 18:31:53', NULL),
-  (1601, 26, 3, 26, 56.63, 'Snacks y bebidas varias', '2026-05-13', '2026-05-15 12:57:16', '2026-05-15 12:57:16', NULL),
-  (1602, 26, 6, 45, 29.51, 'Control odontológico', '2026-05-13', '2026-05-16 11:37:31', '2026-05-16 11:37:31', NULL),
-  (1603, 26, 12, 82, 35.67, 'Ayuda familiar directa', '2026-05-25', '2026-05-28 17:33:55', '2026-05-28 17:33:55', NULL),
-  (1604, 26, 2, 22, 678.65, 'Factura de gas', '2026-05-30', '2026-05-30 17:06:07', '2026-05-30 17:06:07', NULL),
-  (1605, 26, 1, 10, 959.29, 'Venta de artículos personales', '2026-06-07', '2026-06-07 13:41:50', '2026-06-07 13:41:50', NULL),
-  (1606, 26, 1, 10, 1754.14, 'Rendimiento de inversiones', '2026-06-01', '2026-06-04 18:47:49', '2026-06-04 18:47:49', NULL),
-  (1607, 26, 1, 1, 588.87, 'Trabajo independiente', '2026-06-03', '2026-06-03 18:21:06', '2026-06-03 18:21:06', NULL),
-  (1608, 26, 1, 1, 1512.30, 'Pago por horas extraordinarias', '2026-06-05', '2026-06-07 18:22:22', '2026-06-07 18:22:22', NULL),
-  (1609, 26, 1, 1, 1675.56, 'Bonificación por desempeño', '2026-06-06', '2026-06-09 18:16:49', '2026-06-09 18:16:49', NULL),
-  (1610, 26, 2, 16, 468.86, 'Cuenta de agua', '2026-06-27', '2026-06-29 14:48:22', '2026-06-29 14:48:22', NULL),
-  (1611, 26, 3, 26, 432.62, 'Café con compañeros', '2026-06-20', '2026-06-22 17:34:47', '2026-06-22 17:34:47', NULL),
-  (1612, 26, 3, 23, 127.13, 'Almuerzo rápido', '2026-06-22', '2026-06-24 17:31:40', '2026-06-24 17:31:40', NULL),
-  (1613, 26, 5, 39, 257.51, 'Artículo de decoración', '2026-06-25', '2026-06-27 13:51:28', '2026-06-27 13:51:28', NULL),
-  (1614, 26, 4, 34, 9.70, 'Pago de peaje', '2026-06-16', '2026-06-18 16:44:41', '2026-06-18 16:44:41', NULL),
-  (1615, 26, 2, 19, 513.85, 'Cuota de comunidad', '2026-06-12', '2026-06-13 09:05:45', '2026-06-13 09:05:45', NULL),
-  (1616, 26, 12, 82, 256.40, 'Donación a organización benéfica', '2026-06-14', '2026-06-16 16:22:25', '2026-06-16 16:22:25', NULL),
-  (1617, 26, 1, 12, 1666.23, 'Cobro mensual del salario', '2026-07-05', '2026-07-05 13:14:28', '2026-07-05 13:14:28', NULL),
-  (1618, 26, 2, 16, 460.99, 'Factura de gas', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (1619, 26, 3, 24, 441.31, 'Café con compañeros', '2026-07-24', '2026-07-25 10:00:18', '2026-07-25 10:00:18', NULL),
-  (1620, 26, 11, 78, 252.19, 'Comisión bancaria', '2026-07-23', '2026-07-24 14:11:54', '2026-07-24 14:11:54', NULL),
-  (1621, 26, 12, 83, 267.14, 'Regalo para amigo', '2026-07-22', '2026-07-24 13:51:51', '2026-07-24 13:51:51', NULL),
-  (1622, 26, 7, 51, 62.38, 'Curso online especializado', '2026-07-21', '2026-07-21 10:20:55', '2026-07-21 10:20:55', NULL),
-  (1623, 26, 11, 76, 12.48, 'Comisión bancaria', '2026-07-26', '2026-07-29 16:20:06', '2026-07-29 16:20:06', NULL),
-  (1624, 26, 1, 4, 1037.52, 'Venta de artículos personales', '2026-08-10', '2026-08-10 15:39:28', '2026-08-10 15:39:28', NULL),
-  (1625, 26, 1, 2, 1915.70, 'Regalo en efectivo', '2026-08-03', '2026-08-03 16:28:35', '2026-08-03 16:28:35', NULL),
-  (1626, 26, 1, 1, 1021.40, 'Comisión por ventas', '2026-08-03', '2026-08-03 18:22:04', '2026-08-03 18:22:04', NULL),
-  (1627, 26, 1, 1, 878.02, 'Bonificación por desempeño', '2026-08-01', '2026-08-04 14:45:48', '2026-08-04 14:45:48', NULL),
-  (1628, 26, 1, 4, 1391.24, 'Reembolso de gastos', '2026-08-05', '2026-08-07 13:14:36', '2026-08-07 13:14:36', NULL),
-  (1629, 26, 2, 19, 158.17, 'Plan de telefonía móvil', '2026-08-27', '2026-08-29 08:39:03', '2026-08-29 08:39:03', NULL),
-  (1630, 26, 3, 27, 86.25, 'Almuerzo rápido', '2026-08-12', '2026-08-12 16:26:46', '2026-08-12 16:26:46', NULL),
-  (1631, 26, 5, 41, 233.25, 'Reparación de grifería', '2026-08-15', '2026-08-16 08:41:59', '2026-08-16 08:41:59', NULL),
-  (1632, 26, 7, 50, 32.78, 'Material escolar', '2026-08-22', '2026-08-25 14:24:44', '2026-08-25 14:24:44', NULL),
-  (1633, 26, 3, 24, 75.06, 'Cena especial', '2026-08-21', '2026-08-22 14:56:16', '2026-08-22 14:56:16', NULL),
-  (1634, 26, 3, 26, 124.29, 'Cena en restaurante', '2026-08-21', '2026-08-21 13:28:48', '2026-08-21 13:28:48', NULL),
-  (1635, 26, 2, 22, 95.68, 'Cuenta de agua', '2026-08-27', '2026-08-27 18:23:06', '2026-08-27 18:23:06', NULL),
-  (1636, 26, 2, 13, 553.13, 'Cuota de comunidad', '2026-08-28', '2026-08-30 09:11:12', '2026-08-30 09:11:12', NULL),
-  (1637, 26, 10, 69, 292.85, 'Cuota de guardería', '2026-08-13', '2026-08-14 17:23:36', '2026-08-14 17:23:36', NULL),
-  (1638, 26, 13, 85, 154.66, 'Gasto de emergencia', '2026-08-24', '2026-08-24 17:02:59', '2026-08-24 17:02:59', NULL),
-  (1639, 27, 1, 1, 1524.55, 'Pensión mensual', '2026-05-10', '2026-05-11 09:31:12', '2026-05-11 09:31:12', NULL),
-  (1640, 27, 1, 1, 1419.79, 'Rendimiento de inversiones', '2026-05-06', '2026-05-09 18:35:53', '2026-05-09 18:35:53', NULL),
-  (1641, 27, 1, 2, 1403.67, 'Pago por horas extraordinarias', '2026-05-02', '2026-05-04 11:23:09', '2026-05-04 11:23:09', NULL),
-  (1642, 27, 2, 20, 191.26, 'Pago de impuestos anuales', '2026-05-22', '2026-05-22 13:03:58', '2026-05-22 13:03:58', NULL),
-  (1643, 27, 3, 28, 362.59, 'Snacks y bebidas varias', '2026-05-28', '2026-05-28 16:05:42', '2026-05-28 16:05:42', NULL),
-  (1644, 27, 11, 79, 212.15, 'Pago cuota préstamo', '2026-05-26', '2026-05-29 16:41:12', '2026-05-29 16:41:12', NULL),
-  (1645, 27, 3, 24, 167.69, 'Cena en restaurante', '2026-05-30', '2026-06-30 23:59:59', '2026-06-30 23:59:59', NULL),
-  (1646, 27, 9, 61, 99.85, 'Viaje de fin de semana', '2026-05-25', '2026-05-28 12:31:50', '2026-05-28 12:31:50', NULL),
-  (1647, 27, 2, 21, 673.44, 'Cuota de comunidad', '2026-05-16', '2026-05-16 12:57:37', '2026-05-16 12:57:37', NULL),
-  (1648, 27, 12, 82, 223.08, 'Donación a organización benéfica', '2026-05-27', '2026-05-27 08:19:24', '2026-05-27 08:19:24', NULL),
-  (1649, 27, 2, 19, 603.91, 'Pago de alquiler mensual', '2026-05-26', '2026-05-27 16:23:43', '2026-05-27 16:23:43', NULL),
-  (1650, 27, 3, 26, 476.48, 'Cena especial', '2026-05-17', '2026-05-19 09:45:13', '2026-05-19 09:45:13', NULL),
-  (1651, 27, 1, 1, 281.42, 'Cobro mensual del salario', '2026-06-07', '2026-06-08 09:59:18', '2026-06-08 09:59:18', NULL),
-  (1652, 27, 1, 11, 1664.55, 'Ingreso por alquiler de propiedad', '2026-06-06', '2026-06-07 14:52:14', '2026-06-07 14:52:14', NULL),
-  (1653, 27, 1, 7, 280.56, 'Rendimiento de inversiones', '2026-06-03', '2026-06-04 17:42:16', '2026-06-04 17:42:16', NULL),
-  (1654, 27, 1, 12, 1754.74, 'Trabajo independiente', '2026-06-05', '2026-06-06 18:47:58', '2026-06-06 18:47:58', NULL),
-  (1655, 27, 1, 1, 515.34, 'Pago por horas extraordinarias', '2026-06-07', '2026-06-10 12:53:57', '2026-06-10 12:53:57', NULL),
-  (1656, 27, 2, 20, 240.07, 'Pago de impuestos anuales', '2026-06-10', '2026-06-13 08:44:49', '2026-06-13 08:44:49', NULL),
-  (1657, 27, 3, 24, 341.59, 'Almuerzo rápido', '2026-06-17', '2026-06-17 18:07:07', '2026-06-17 18:07:07', NULL),
-  (1658, 27, 9, 61, 59.09, 'Material para hobby', '2026-06-20', '2026-06-21 12:43:45', '2026-06-21 12:43:45', NULL),
-  (1659, 27, 3, 25, 432.09, 'Café con compañeros', '2026-06-18', '2026-06-18 09:25:52', '2026-06-18 09:25:52', NULL),
-  (1660, 27, 10, 74, 151.90, 'Gasto para los hijos', '2026-06-14', '2026-06-14 15:30:06', '2026-06-14 15:30:06', NULL),
-  (1661, 27, 3, 24, 69.30, 'Cena especial', '2026-06-12', '2026-06-13 14:39:23', '2026-06-13 14:39:23', NULL),
-  (1662, 27, 1, 1, 1653.69, 'Cobro mensual del salario', '2026-07-09', '2026-07-10 11:46:20', '2026-07-10 11:46:20', NULL),
-  (1663, 27, 1, 3, 814.43, 'Regalo en efectivo', '2026-07-05', '2026-07-06 13:29:12', '2026-07-06 13:29:12', NULL),
-  (1664, 27, 2, 13, 476.55, 'Factura de gas', '2026-07-19', '2026-07-19 11:11:40', '2026-07-19 11:11:40', NULL),
-  (1665, 27, 3, 25, 339.27, 'Café con compañeros', '2026-07-24', '2026-07-24 15:04:53', '2026-07-24 15:04:53', NULL),
-  (1666, 27, 6, 47, 52.52, 'Consulta médica general', '2026-07-27', '2026-07-29 08:07:43', '2026-07-29 08:07:43', NULL),
-  (1667, 27, 10, 68, 187.48, 'Gasto para los hijos', '2026-07-15', '2026-07-17 13:02:09', '2026-07-17 13:02:09', NULL),
-  (1668, 27, 2, 19, 52.57, 'Factura de gas', '2026-07-11', '2026-07-14 17:07:54', '2026-07-14 17:07:54', NULL),
-  (1669, 27, 2, 22, 459.19, 'Servicio de internet', '2026-07-10', '2026-07-13 17:41:24', '2026-07-13 17:41:24', NULL),
-  (1670, 27, 8, 58, 273.52, 'Artículo electrónico', '2026-07-17', '2026-07-20 17:16:22', '2026-07-20 17:16:22', NULL),
-  (1671, 27, 4, 36, 163.25, 'Mantenimiento preventivo del auto', '2026-07-21', '2026-07-22 10:18:40', '2026-07-22 10:18:40', NULL),
-  (1672, 27, 3, 25, 173.57, 'Almuerzo rápido', '2026-07-21', '2026-07-21 14:51:19', '2026-07-21 14:51:19', NULL),
-  (1673, 27, 3, 28, 34.71, 'Snacks y bebidas varias', '2026-07-17', '2026-07-20 10:53:40', '2026-07-20 10:53:40', NULL),
-  (1674, 27, 3, 26, 6.94, 'Snacks y bebidas varias', '2026-07-24', '2026-07-27 15:24:29', '2026-07-27 15:24:29', NULL),
-  (1675, 27, 1, 1, 825.44, 'Ingreso por alquiler de propiedad', '2026-08-04', '2026-08-05 18:50:39', '2026-08-05 18:50:39', NULL),
-  (1676, 27, 1, 9, 1752.39, 'Rendimiento de inversiones', '2026-08-07', '2026-08-09 18:19:13', '2026-08-09 18:19:13', NULL),
-  (1677, 27, 1, 1, 662.98, 'Pago por horas extraordinarias', '2026-08-08', '2026-08-10 17:26:03', '2026-08-10 17:26:03', NULL),
-  (1678, 27, 1, 1, 1327.54, 'Venta de artículos personales', '2026-08-03', '2026-08-06 16:27:11', '2026-08-06 16:27:11', NULL),
-  (1679, 27, 1, 1, 809.68, 'Pensión mensual', '2026-08-10', '2026-08-11 12:47:43', '2026-08-11 12:47:43', NULL),
-  (1680, 27, 2, 15, 530.93, 'Pago de impuestos anuales', '2026-08-28', '2026-08-29 10:26:20', '2026-08-29 10:26:20', NULL),
-  (1681, 27, 3, 24, 437.97, 'Compra semanal del supermercado', '2026-08-14', '2026-08-17 13:39:59', '2026-08-17 13:39:59', NULL),
-  (1682, 27, 3, 23, 376.05, 'Snacks y bebidas varias', '2026-08-11', '2026-08-13 09:20:59', '2026-08-13 09:20:59', NULL),
-  (1683, 27, 2, 16, 280.67, 'Cuota de comunidad', '2026-08-12', '2026-08-14 17:58:20', '2026-08-14 17:58:20', NULL),
-  (1684, 27, 9, 64, 104.89, 'Disco de música', '2026-08-15', '2026-08-17 12:06:51', '2026-08-17 12:06:51', NULL),
-  (1685, 27, 2, 15, 361.39, 'Pago de impuestos anuales', '2026-08-27', '2026-08-30 10:35:35', '2026-08-30 10:35:35', NULL),
-  (1686, 27, 6, 48, 255.16, 'Pago de seguro médico', '2026-08-17', '2026-08-17 18:09:58', '2026-08-17 18:09:58', NULL),
-  (1687, 27, 2, 15, 710.17, 'Pago de alquiler mensual', '2026-08-25', '2026-08-28 15:10:49', '2026-08-28 15:10:49', NULL),
-  (1688, 27, 7, 53, 177.54, 'Examen de certificación profesional', '2026-08-15', '2026-08-18 08:31:42', '2026-08-18 08:31:42', NULL),
-  (1689, 27, 3, 23, 120.67, 'Almuerzo rápido', '2026-08-14', '2026-08-16 18:25:58', '2026-08-16 18:25:58', NULL),
-  (1690, 28, 1, 6, 726.23, 'Cobro mensual del salario', '2026-06-02', '2026-06-04 17:51:31', '2026-06-04 17:51:31', NULL),
-  (1691, 28, 1, 10, 951.93, 'Trabajo independiente', '2026-06-03', '2026-06-05 12:12:32', '2026-06-05 12:12:32', NULL),
-  (1692, 28, 2, 21, 728.21, 'Pago de alquiler mensual', '2026-06-10', '2026-06-13 13:57:10', '2026-06-13 13:57:10', NULL),
-  (1693, 28, 3, 28, 142.24, 'Compra semanal del supermercado', '2026-06-19', '2026-06-21 15:27:21', '2026-06-21 15:27:21', NULL),
-  (1694, 28, 3, 28, 67.71, 'Compra semanal del supermercado', '2026-06-27', '2026-06-27 10:55:59', '2026-06-27 10:55:59', NULL),
-  (1695, 28, 2, 17, 335.50, 'Servicio de internet', '2026-06-25', '2026-06-28 14:02:44', '2026-06-28 14:02:44', NULL),
-  (1696, 28, 7, 52, 189.35, 'Compra de libros de texto', '2026-06-23', '2026-06-26 13:08:22', '2026-06-26 13:08:22', NULL),
-  (1697, 28, 9, 63, 37.87, 'Viaje de fin de semana', '2026-06-24', '2026-06-24 18:58:20', '2026-06-24 18:58:20', NULL),
-  (1698, 28, 3, 23, 7.57, 'Cena en restaurante', '2026-06-13', '2026-06-14 09:11:23', '2026-06-14 09:11:23', NULL),
-  (1699, 28, 1, 12, 1652.58, 'Venta de artículos personales', '2026-07-10', '2026-07-10 10:37:40', '2026-07-10 10:37:40', NULL),
-  (1700, 28, 2, 18, 639.60, 'Factura de gas', '2026-07-13', '2026-07-13 08:45:08', '2026-07-13 08:45:08', NULL),
-  (1701, 28, 3, 28, 465.48, 'Café con compañeros', '2026-07-15', '2026-07-15 09:00:27', '2026-07-15 09:00:27', NULL),
-  (1702, 28, 2, 19, 290.30, 'Pago de impuestos anuales', '2026-07-26', '2026-07-27 15:52:12', '2026-07-27 15:52:12', NULL),
-  (1703, 28, 4, 36, 89.98, 'Carga de combustible', '2026-07-31', '2026-07-31 15:11:32', '2026-07-31 15:11:32', NULL),
-  (1704, 28, 1, 4, 1459.94, 'Pago por horas extraordinarias', '2026-08-02', '2026-08-03 10:54:20', '2026-08-03 10:54:20', NULL),
-  (1705, 28, 1, 1, 1452.95, 'Regalo en efectivo', '2026-08-10', '2026-08-12 17:26:32', '2026-08-12 17:26:32', NULL),
-  (1706, 28, 1, 1, 1139.78, 'Regalo en efectivo', '2026-08-06', '2026-08-07 16:00:41', '2026-08-07 16:00:41', NULL),
-  (1707, 28, 1, 1, 1631.45, 'Comisión por ventas', '2026-08-02', '2026-08-02 09:31:22', '2026-08-02 09:31:22', NULL),
-  (1708, 28, 1, 1, 1633.48, 'Comisión por ventas', '2026-08-07', '2026-08-07 18:48:57', '2026-08-07 18:48:57', NULL),
-  (1709, 28, 2, 20, 59.00, 'Plan de telefonía móvil', '2026-08-31', '2026-08-31 13:37:49', '2026-08-31 13:37:49', NULL),
-  (1710, 28, 3, 28, 350.11, 'Snacks y bebidas varias', '2026-08-31', '2026-08-31 17:16:46', '2026-08-31 17:16:46', NULL),
-  (1711, 28, 13, 87, 114.28, 'Gasto relacionado con trabajo', '2026-08-19', '2026-08-22 13:34:47', '2026-08-22 13:34:47', NULL),
-  (1712, 28, 2, 13, 604.87, 'Pago de impuestos anuales', '2026-08-24', '2026-08-26 14:29:55', '2026-08-26 14:29:55', NULL),
-  (1713, 28, 4, 35, 128.78, 'Mantenimiento preventivo del auto', '2026-08-10', '2026-08-11 13:24:55', '2026-08-11 13:24:55', NULL),
-  (1714, 28, 3, 23, 345.22, 'Cena en restaurante', '2026-08-15', '2026-08-16 17:11:13', '2026-08-16 17:11:13', NULL),
-  (1715, 29, 1, 1, 906.34, 'Trabajo independiente', '2026-06-04', '2026-06-04 15:25:10', '2026-06-04 15:25:10', NULL),
-  (1716, 29, 1, 9, 699.81, 'Rendimiento de inversiones', '2026-06-04', '2026-06-07 17:46:31', '2026-06-07 17:46:31', NULL),
-  (1717, 29, 1, 1, 1777.40, 'Ingreso por alquiler de propiedad', '2026-06-08', '2026-06-08 13:06:04', '2026-06-08 13:06:04', NULL),
-  (1718, 29, 1, 10, 720.78, 'Cobro mensual del salario', '2026-06-04', '2026-06-07 11:26:31', '2026-06-07 11:26:31', NULL),
-  (1719, 29, 2, 17, 523.63, 'Cuota de comunidad', '2026-06-20', '2026-06-22 18:39:27', '2026-06-22 18:39:27', NULL),
-  (1720, 29, 3, 23, 258.89, 'Cena especial', '2026-06-20', '2026-06-22 10:23:36', '2026-06-22 10:23:36', NULL),
-  (1721, 29, 3, 25, 225.99, 'Snacks y bebidas varias', '2026-06-16', '2026-06-18 11:58:55', '2026-06-18 11:58:55', NULL),
-  (1722, 29, 9, 67, 87.76, 'Videojuego nuevo', '2026-06-20', '2026-06-22 11:57:08', '2026-06-22 11:57:08', NULL),
-  (1723, 29, 11, 76, 213.89, 'Pago tarjeta de crédito', '2026-06-29', '2026-06-30 11:31:36', '2026-06-30 11:31:36', NULL),
-  (1724, 29, 7, 54, 264.81, 'Examen de certificación profesional', '2026-06-22', '2026-06-23 17:20:05', '2026-06-23 17:20:05', NULL),
-  (1725, 29, 1, 12, 678.81, 'Trabajo independiente', '2026-07-08', '2026-07-11 11:50:49', '2026-07-11 11:50:49', NULL),
-  (1726, 29, 1, 6, 1725.99, 'Cobro mensual del salario', '2026-07-01', '2026-07-04 11:14:40', '2026-07-04 11:14:40', NULL),
-  (1727, 29, 1, 1, 1737.26, 'Ingreso por alquiler de propiedad', '2026-07-08', '2026-07-09 12:20:31', '2026-07-09 12:20:31', NULL),
-  (1728, 29, 1, 9, 560.11, 'Comisión por ventas', '2026-07-04', '2026-07-04 12:46:03', '2026-07-04 12:46:03', NULL),
-  (1729, 29, 2, 16, 442.63, 'Cuota de seguro del hogar', '2026-07-26', '2026-07-28 11:50:24', '2026-07-28 11:50:24', NULL),
-  (1730, 29, 3, 28, 414.74, 'Pedido a domicilio', '2026-07-10', '2026-07-12 12:13:09', '2026-07-12 12:13:09', NULL),
-  (1731, 29, 3, 23, 332.74, 'Almuerzo rápido', '2026-07-14', '2026-07-17 18:24:35', '2026-07-17 18:24:35', NULL),
-  (1732, 29, 7, 50, 281.39, 'Material escolar', '2026-07-24', '2026-07-26 11:45:38', '2026-07-26 11:45:38', NULL),
-  (1733, 29, 2, 18, 767.08, 'Plan de telefonía móvil', '2026-07-13', '2026-07-13 13:35:30', '2026-07-13 13:35:30', NULL),
-  (1734, 29, 3, 27, 41.97, 'Compra semanal del supermercado', '2026-07-23', '2026-07-25 14:11:20', '2026-07-25 14:11:20', NULL),
-  (1735, 29, 7, 54, 228.16, 'Pago de matrícula', '2026-07-11', '2026-07-11 10:31:04', '2026-07-11 10:31:04', NULL),
-  (1736, 29, 2, 21, 172.54, 'Servicio de electricidad', '2026-07-17', '2026-07-17 13:22:21', '2026-07-17 13:22:21', NULL),
-  (1737, 29, 3, 26, 218.26, 'Almuerzo rápido', '2026-07-11', '2026-07-14 18:50:25', '2026-07-14 18:50:25', NULL),
-  (1738, 29, 1, 8, 486.31, 'Regalo en efectivo', '2026-08-05', '2026-08-06 11:03:41', '2026-08-06 11:03:41', NULL),
-  (1739, 29, 2, 21, 68.17, 'Factura de gas', '2026-08-30', '2026-08-31 15:02:02', '2026-08-31 15:02:02', NULL),
-  (1740, 29, 3, 24, 295.61, 'Compra de frutas y verduras', '2026-08-14', '2026-08-16 13:24:48', '2026-08-16 13:24:48', NULL),
-  (1741, 29, 3, 26, 41.05, 'Compra semanal del supermercado', '2026-08-23', '2026-08-23 08:12:37', '2026-08-23 08:12:37', NULL),
-  (1742, 29, 3, 23, 26.28, 'Compra semanal del supermercado', '2026-08-21', '2026-08-22 14:13:09', '2026-08-22 14:13:09', NULL),
-  (1743, 29, 13, 86, 5.26, 'Gasto reembolsable pendiente', '2026-08-21', '2026-08-24 10:53:12', '2026-08-24 10:53:12', NULL),
-  (1744, 30, 1, 8, 251.87, 'Cobro mensual del salario', '2026-06-10', '2026-06-13 11:11:07', '2026-06-13 11:11:07', NULL),
-  (1745, 30, 2, 19, 181.35, 'Servicio de internet', '2026-06-16', '2026-06-17 17:47:47', '2026-06-17 17:47:47', NULL),
-  (1746, 30, 3, 28, 36.27, 'Café con compañeros', '2026-06-28', '2026-06-30 13:29:03', '2026-06-30 13:29:03', NULL),
-  (1747, 30, 6, 44, 7.25, 'Producto de bienestar personal', '2026-06-19', '2026-06-19 11:53:11', '2026-06-19 11:53:11', NULL),
-  (1748, 30, 1, 1, 1086.13, 'Trabajo independiente', '2026-07-03', '2026-07-06 15:35:38', '2026-07-06 15:35:38', NULL),
-  (1749, 30, 1, 11, 1743.25, 'Cobro mensual del salario', '2026-07-04', '2026-07-04 17:06:56', '2026-07-04 17:06:56', NULL),
-  (1750, 30, 1, 10, 290.05, 'Rendimiento de inversiones', '2026-07-01', '2026-07-03 08:19:28', '2026-07-03 08:19:28', NULL),
-  (1751, 30, 2, 22, 770.91, 'Factura de gas', '2026-07-13', '2026-07-13 13:13:41', '2026-07-13 13:13:41', NULL),
-  (1752, 30, 3, 26, 378.67, 'Compra semanal del supermercado', '2026-07-21', '2026-07-21 12:26:41', '2026-07-21 12:26:41', NULL),
-  (1753, 30, 2, 14, 276.54, 'Pago de alquiler mensual', '2026-07-18', '2026-07-21 11:07:58', '2026-07-21 11:07:58', NULL),
-  (1754, 30, 9, 62, 9.23, 'Disco de música', '2026-07-12', '2026-07-13 15:55:56', '2026-07-13 15:55:56', NULL),
-  (1755, 30, 6, 45, 11.65, 'Control odontológico', '2026-07-28', '2026-07-31 09:46:44', '2026-07-31 09:46:44', NULL),
-  (1756, 30, 3, 28, 207.39, 'Compra de frutas y verduras', '2026-07-11', '2026-07-14 14:53:29', '2026-07-14 14:53:29', NULL),
-  (1757, 30, 2, 22, 723.06, 'Pago de impuestos anuales', '2026-07-31', '2026-07-31 12:45:18', '2026-07-31 12:45:18', NULL),
-  (1758, 30, 3, 23, 388.96, 'Compra semanal del supermercado', '2026-07-16', '2026-07-17 15:51:00', '2026-07-17 15:51:00', NULL),
-  (1759, 30, 8, 59, 32.86, 'Compra de ropa nueva', '2026-07-25', '2026-07-26 08:18:23', '2026-07-26 08:18:23', NULL),
-  (1760, 30, 9, 67, 6.57, 'Material para hobby', '2026-07-15', '2026-07-17 18:57:23', '2026-07-17 18:57:23', NULL),
-  (1761, 30, 1, 1, 1602.79, 'Ingreso por alquiler de propiedad', '2026-08-06', '2026-08-09 10:37:25', '2026-08-09 10:37:25', NULL),
-  (1762, 30, 1, 1, 1021.16, 'Venta de artículos personales', '2026-08-05', '2026-08-06 18:48:56', '2026-08-06 18:48:56', NULL),
-  (1763, 30, 1, 7, 848.59, 'Bonificación por desempeño', '2026-08-07', '2026-08-07 17:16:56', '2026-08-07 17:16:56', NULL),
-  (1764, 30, 1, 1, 1038.00, 'Bonificación por desempeño', '2026-08-08', '2026-08-11 16:55:43', '2026-08-11 16:55:43', NULL),
-  (1765, 30, 1, 6, 1111.44, 'Comisión por ventas', '2026-08-03', '2026-08-05 16:40:53', '2026-08-05 16:40:53', NULL),
-  (1766, 30, 2, 15, 688.32, 'Cuota de seguro del hogar', '2026-08-28', '2026-08-29 11:52:44', '2026-08-29 11:52:44', NULL),
-  (1767, 30, 3, 23, 364.22, 'Compra semanal del supermercado', '2026-08-26', '2026-08-26 16:06:36', '2026-08-26 16:06:36', NULL),
-  (1768, 30, 2, 16, 563.01, 'Plan de telefonía móvil', '2026-08-20', '2026-08-23 09:20:46', '2026-08-23 09:20:46', NULL),
-  (1769, 30, 8, 59, 198.78, 'Producto de cosmética', '2026-08-22', '2026-08-23 17:22:47', '2026-08-23 17:22:47', NULL),
-  (1770, 30, 3, 24, 331.02, 'Cena en restaurante', '2026-08-24', '2026-08-25 11:45:00', '2026-08-25 11:45:00', NULL),
-  (1771, 30, 3, 28, 476.55, 'Cena en restaurante', '2026-08-17', '2026-08-20 12:52:13', '2026-08-20 12:52:13', NULL),
-  (1772, 30, 5, 37, 9.78, 'Compra de productos de limpieza', '2026-08-19', '2026-08-19 11:11:52', '2026-08-19 11:11:52', NULL),
-  (1773, 30, 3, 26, 476.98, 'Pedido a domicilio', '2026-08-23', '2026-08-25 18:25:00', '2026-08-25 18:25:00', NULL),
-  (1774, 30, 3, 24, 172.78, 'Compra semanal del supermercado', '2026-08-29', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1775, 31, 1, 8, 775.34, 'Rendimiento de inversiones', '2026-06-01', '2026-06-03 15:55:51', '2026-06-03 15:55:51', NULL),
-  (1776, 31, 1, 2, 960.86, 'Rendimiento de inversiones', '2026-06-10', '2026-06-12 18:31:01', '2026-06-12 18:31:01', NULL),
-  (1777, 31, 1, 1, 1231.17, 'Ingreso por servicios profesionales', '2026-06-02', '2026-06-05 12:34:05', '2026-06-05 12:34:05', NULL),
-  (1778, 31, 1, 1, 1745.95, 'Pago por horas extraordinarias', '2026-06-02', '2026-06-05 14:47:21', '2026-06-05 14:47:21', NULL),
-  (1779, 31, 2, 22, 788.00, 'Pago de impuestos anuales', '2026-06-11', '2026-06-13 12:35:49', '2026-06-13 12:35:49', NULL),
-  (1780, 31, 3, 24, 318.45, 'Compra semanal del supermercado', '2026-06-13', '2026-06-13 18:08:37', '2026-06-13 18:08:37', NULL),
-  (1781, 31, 9, 61, 153.11, 'Disco de música', '2026-06-24', '2026-06-26 17:24:51', '2026-06-26 17:24:51', NULL),
-  (1782, 31, 2, 17, 489.25, 'Servicio de internet', '2026-06-26', '2026-06-29 10:57:28', '2026-06-29 10:57:28', NULL),
-  (1783, 31, 2, 17, 500.84, 'Servicio de electricidad', '2026-06-23', '2026-06-23 18:09:53', '2026-06-23 18:09:53', NULL),
-  (1784, 31, 3, 24, 32.68, 'Almuerzo rápido', '2026-06-30', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1785, 31, 3, 24, 365.50, 'Compra semanal del supermercado', '2026-06-13', '2026-06-13 10:08:08', '2026-06-13 10:08:08', NULL),
-  (1786, 31, 7, 53, 11.06, 'Material escolar', '2026-06-26', '2026-06-28 18:34:06', '2026-06-28 18:34:06', NULL),
-  (1787, 31, 6, 46, 169.40, 'Cuota mensual del gimnasio', '2026-06-23', '2026-06-23 09:05:16', '2026-06-23 09:05:16', NULL),
-  (1788, 31, 3, 27, 462.06, 'Almuerzo rápido', '2026-06-14', '2026-06-14 08:10:05', '2026-06-14 08:10:05', NULL),
-  (1789, 31, 9, 66, 298.97, 'Material para hobby', '2026-06-21', '2026-06-23 15:04:50', '2026-06-23 15:04:50', NULL),
-  (1790, 31, 1, 1, 1339.50, 'Comisión por ventas', '2026-07-04', '2026-07-05 10:19:08', '2026-07-05 10:19:08', NULL),
-  (1791, 31, 1, 1, 869.35, 'Trabajo independiente', '2026-07-09', '2026-07-09 09:33:42', '2026-07-09 09:33:42', NULL),
-  (1792, 31, 1, 1, 746.02, 'Pago por horas extraordinarias', '2026-07-03', '2026-07-05 11:55:30', '2026-07-05 11:55:30', NULL),
-  (1793, 31, 1, 1, 1212.14, 'Reembolso de gastos', '2026-07-08', '2026-07-09 09:11:24', '2026-07-09 09:11:24', NULL),
-  (1794, 31, 1, 9, 1745.65, 'Reembolso de gastos', '2026-07-02', '2026-07-03 18:08:54', '2026-07-03 18:08:54', NULL),
-  (1795, 31, 2, 15, 695.89, 'Cuenta de agua', '2026-07-12', '2026-07-15 16:04:36', '2026-07-15 16:04:36', NULL),
-  (1796, 31, 3, 24, 324.66, 'Compra de frutas y verduras', '2026-07-23', '2026-07-25 11:52:16', '2026-07-25 11:52:16', NULL),
-  (1797, 31, 3, 23, 334.19, 'Snacks y bebidas varias', '2026-07-10', '2026-07-11 18:46:59', '2026-07-11 18:46:59', NULL),
-  (1798, 31, 2, 15, 409.52, 'Cuenta de agua', '2026-07-26', '2026-07-29 18:55:48', '2026-07-29 18:55:48', NULL),
-  (1799, 31, 3, 26, 393.36, 'Cena en restaurante', '2026-07-23', '2026-07-23 14:04:35', '2026-07-23 14:04:35', NULL),
-  (1800, 31, 4, 29, 114.01, 'Traslado en taxi', '2026-07-22', '2026-07-24 15:41:51', '2026-07-24 15:41:51', NULL),
-  (1801, 31, 1, 5, 1739.68, 'Comisión por ventas', '2026-08-08', '2026-08-11 14:48:55', '2026-08-11 14:48:55', NULL),
-  (1802, 31, 1, 9, 1862.22, 'Comisión por ventas', '2026-08-10', '2026-08-11 15:21:05', '2026-08-11 15:21:05', NULL),
-  (1803, 31, 1, 1, 1013.62, 'Trabajo independiente', '2026-08-09', '2026-08-09 12:40:17', '2026-08-09 12:40:17', NULL),
-  (1804, 31, 1, 10, 1124.33, 'Ingreso por alquiler de propiedad', '2026-08-06', '2026-08-08 11:36:12', '2026-08-08 11:36:12', NULL),
-  (1805, 31, 1, 4, 1686.32, 'Rendimiento de inversiones', '2026-08-09', '2026-08-12 12:16:38', '2026-08-12 12:16:38', NULL),
-  (1806, 31, 2, 16, 626.24, 'Plan de telefonía móvil', '2026-08-14', '2026-08-16 11:43:43', '2026-08-16 11:43:43', NULL),
-  (1807, 31, 3, 28, 285.10, 'Almuerzo rápido', '2026-08-20', '2026-08-21 15:37:33', '2026-08-21 15:37:33', NULL),
-  (1808, 31, 3, 28, 146.10, 'Cena especial', '2026-08-29', '2026-08-31 10:56:41', '2026-08-31 10:56:41', NULL),
-  (1809, 31, 3, 26, 367.01, 'Pedido a domicilio', '2026-08-28', '2026-08-31 16:21:09', '2026-08-31 16:21:09', NULL),
-  (1810, 31, 6, 43, 290.12, 'Producto de bienestar personal', '2026-08-27', '2026-08-30 08:04:12', '2026-08-30 08:04:12', NULL),
-  (1811, 31, 9, 64, 280.75, 'Suscripción mensual streaming', '2026-08-27', '2026-08-29 16:36:26', '2026-08-29 16:36:26', NULL),
-  (1812, 31, 3, 28, 491.40, 'Snacks y bebidas varias', '2026-08-29', '2026-08-29 15:27:24', '2026-08-29 15:27:24', NULL),
-  (1813, 32, 1, 1, 1042.00, 'Reembolso de gastos', '2026-06-01', '2026-06-01 09:17:06', '2026-06-01 09:17:06', NULL),
-  (1814, 32, 1, 3, 1610.97, 'Pensión mensual', '2026-06-07', '2026-06-08 08:57:42', '2026-06-08 08:57:42', NULL),
-  (1815, 32, 2, 13, 568.80, 'Factura de gas', '2026-06-29', '2026-07-31 23:59:59', '2026-07-31 23:59:59', NULL),
-  (1816, 32, 3, 24, 320.61, 'Café con compañeros', '2026-06-28', '2026-06-30 16:22:53', '2026-06-30 16:22:53', NULL),
-  (1817, 32, 3, 24, 110.77, 'Almuerzo rápido', '2026-06-22', '2026-06-23 16:39:01', '2026-06-23 16:39:01', NULL),
-  (1818, 32, 3, 26, 88.54, 'Almuerzo rápido', '2026-06-17', '2026-06-20 11:15:29', '2026-06-20 11:15:29', NULL),
-  (1819, 32, 5, 39, 36.68, 'Servicio de jardinería', '2026-06-17', '2026-06-19 14:37:55', '2026-06-19 14:37:55', NULL),
-  (1820, 32, 9, 62, 73.49, 'Material para hobby', '2026-06-12', '2026-06-15 15:28:09', '2026-06-15 15:28:09', NULL),
-  (1821, 32, 11, 78, 11.79, 'Comisión bancaria', '2026-06-18', '2026-06-19 18:31:27', '2026-06-19 18:31:27', NULL),
-  (1822, 32, 2, 20, 430.67, 'Cuenta de agua', '2026-06-22', '2026-06-25 17:13:23', '2026-06-25 17:13:23', NULL),
-  (1823, 32, 1, 12, 1429.90, 'Ingreso por alquiler de propiedad', '2026-07-03', '2026-07-06 11:13:20', '2026-07-06 11:13:20', NULL),
-  (1824, 32, 2, 19, 255.61, 'Pago de impuestos anuales', '2026-07-19', '2026-07-20 14:38:56', '2026-07-20 14:38:56', NULL),
-  (1825, 32, 3, 23, 268.99, 'Compra semanal del supermercado', '2026-07-30', '2026-07-30 15:45:51', '2026-07-30 15:45:51', NULL),
-  (1826, 32, 3, 25, 209.06, 'Cena en restaurante', '2026-07-25', '2026-07-28 15:58:27', '2026-07-28 15:58:27', NULL),
-  (1827, 32, 7, 51, 84.39, 'Examen de certificación profesional', '2026-07-18', '2026-07-21 10:10:14', '2026-07-21 10:10:14', NULL),
-  (1828, 32, 11, 79, 243.99, 'Inversión en fondo', '2026-07-11', '2026-07-14 13:03:48', '2026-07-14 13:03:48', NULL),
-  (1829, 32, 2, 14, 179.90, 'Servicio de internet', '2026-07-27', '2026-07-27 12:05:33', '2026-07-27 12:05:33', NULL),
-  (1830, 32, 6, 44, 35.98, 'Control odontológico', '2026-07-18', '2026-07-19 11:26:19', '2026-07-19 11:26:19', NULL),
-  (1831, 32, 5, 37, 7.19, 'Reparación de grifería', '2026-07-28', '2026-07-29 12:35:30', '2026-07-29 12:35:30', NULL),
-  (1832, 32, 1, 2, 1591.11, 'Venta de artículos personales', '2026-08-05', '2026-08-06 16:07:49', '2026-08-06 16:07:49', NULL),
-  (1833, 32, 1, 6, 1501.78, 'Ingreso por alquiler de propiedad', '2026-08-03', '2026-08-04 11:50:00', '2026-08-04 11:50:00', NULL),
-  (1834, 32, 1, 5, 1123.84, 'Cobro mensual del salario', '2026-08-01', '2026-08-01 14:08:10', '2026-08-01 14:08:10', NULL),
-  (1835, 32, 1, 1, 1769.81, 'Venta de artículos personales', '2026-08-04', '2026-08-06 17:50:17', '2026-08-06 17:50:17', NULL),
-  (1836, 32, 1, 1, 762.72, 'Cobro mensual del salario', '2026-08-02', '2026-08-03 10:40:38', '2026-08-03 10:40:38', NULL),
-  (1837, 32, 2, 14, 787.14, 'Pago de impuestos anuales', '2026-08-14', '2026-08-14 12:29:33', '2026-08-14 12:29:33', NULL),
-  (1838, 32, 3, 28, 384.50, 'Snacks y bebidas varias', '2026-08-27', '2026-08-30 16:29:41', '2026-08-30 16:29:41', NULL),
-  (1839, 32, 11, 80, 252.10, 'Inversión en fondo', '2026-08-22', '2026-08-24 16:59:26', '2026-08-24 16:59:26', NULL),
-  (1840, 32, 9, 62, 242.43, 'Videojuego nuevo', '2026-08-16', '2026-08-16 17:23:53', '2026-08-16 17:23:53', NULL),
-  (1841, 32, 3, 26, 206.69, 'Compra semanal del supermercado', '2026-08-21', '2026-08-21 13:31:12', '2026-08-21 13:31:12', NULL),
-  (1842, 32, 2, 20, 698.90, 'Pago de alquiler mensual', '2026-08-14', '2026-08-16 14:15:09', '2026-08-16 14:15:09', NULL),
-  (1843, 33, 1, 1, 1098.86, 'Rendimiento de inversiones', '2026-06-08', '2026-06-10 11:29:08', '2026-06-10 11:29:08', NULL),
-  (1844, 33, 1, 4, 1905.91, 'Venta de artículos personales', '2026-06-02', '2026-06-04 13:03:22', '2026-06-04 13:03:22', NULL),
-  (1845, 33, 1, 11, 1769.80, 'Reembolso de gastos', '2026-06-02', '2026-06-04 13:52:32', '2026-06-04 13:52:32', NULL),
-  (1846, 33, 1, 1, 1900.97, 'Trabajo independiente', '2026-06-08', '2026-06-08 13:21:12', '2026-06-08 13:21:12', NULL),
-  (1847, 33, 2, 21, 174.46, 'Pago de alquiler mensual', '2026-06-13', '2026-06-14 16:17:03', '2026-06-14 16:17:03', NULL),
-  (1848, 33, 3, 27, 132.79, 'Snacks y bebidas varias', '2026-06-26', '2026-06-28 08:28:25', '2026-06-28 08:28:25', NULL),
-  (1849, 33, 9, 63, 188.42, 'Disco de música', '2026-06-19', '2026-06-21 08:51:33', '2026-06-21 08:51:33', NULL),
-  (1850, 33, 3, 26, 233.70, 'Cena en restaurante', '2026-06-26', '2026-06-26 18:49:35', '2026-06-26 18:49:35', NULL),
-  (1851, 33, 4, 35, 102.39, 'Boleto de transporte público', '2026-06-24', '2026-06-26 10:09:48', '2026-06-26 10:09:48', NULL),
-  (1852, 33, 3, 25, 215.37, 'Café con compañeros', '2026-06-11', '2026-06-11 12:00:08', '2026-06-11 12:00:08', NULL),
-  (1853, 33, 5, 40, 240.84, 'Electrodoméstico para el hogar', '2026-06-14', '2026-06-17 16:36:16', '2026-06-17 16:36:16', NULL),
-  (1854, 33, 1, 1, 556.19, 'Bonificación por desempeño', '2026-07-08', '2026-07-08 11:29:58', '2026-07-08 11:29:58', NULL),
-  (1855, 33, 2, 20, 135.68, 'Plan de telefonía móvil', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (1856, 33, 3, 26, 291.91, 'Almuerzo rápido', '2026-07-18', '2026-07-20 18:42:20', '2026-07-20 18:42:20', NULL),
-  (1857, 33, 13, 86, 58.38, 'Gasto reembolsable pendiente', '2026-07-17', '2026-07-18 08:27:30', '2026-07-18 08:27:30', NULL),
-  (1858, 33, 3, 26, 11.68, 'Pedido a domicilio', '2026-07-22', '2026-07-22 17:19:51', '2026-07-22 17:19:51', NULL),
-  (1859, 33, 1, 4, 1035.83, 'Rendimiento de inversiones', '2026-08-03', '2026-08-03 16:32:23', '2026-08-03 16:32:23', NULL),
-  (1860, 33, 1, 7, 1219.83, 'Venta de artículos personales', '2026-08-05', '2026-08-05 11:10:39', '2026-08-05 11:10:39', NULL),
-  (1861, 33, 2, 14, 631.22, 'Cuenta de agua', '2026-08-11', '2026-08-14 14:52:27', '2026-08-14 14:52:27', NULL),
-  (1862, 33, 3, 26, 252.39, 'Café con compañeros', '2026-08-10', '2026-08-12 13:07:19', '2026-08-12 13:07:19', NULL),
-  (1863, 33, 9, 64, 178.58, 'Disco de música', '2026-08-22', '2026-08-25 11:18:15', '2026-08-25 11:18:15', NULL),
-  (1864, 33, 7, 51, 181.40, 'Pago de matrícula', '2026-08-28', '2026-08-31 09:06:05', '2026-08-31 09:06:05', NULL),
-  (1865, 33, 2, 15, 455.28, 'Pago de alquiler mensual', '2026-08-25', '2026-08-25 18:09:03', '2026-08-25 18:09:03', NULL),
-  (1866, 33, 2, 15, 268.57, 'Pago de alquiler mensual', '2026-08-21', '2026-08-23 18:36:05', '2026-08-23 18:36:05', NULL),
-  (1867, 33, 3, 25, 50.12, 'Café con compañeros', '2026-08-28', '2026-08-28 08:39:00', '2026-08-28 08:39:00', NULL),
-  (1868, 33, 8, 58, 10.03, 'Compra de ropa nueva', '2026-08-28', '2026-08-30 17:53:33', '2026-08-30 17:53:33', NULL),
-  (1869, 34, 1, 5, 483.31, 'Comisión por ventas', '2026-07-09', '2026-07-09 15:38:14', '2026-07-09 15:38:14', NULL),
-  (1870, 34, 1, 1, 1090.09, 'Ingreso por alquiler de propiedad', '2026-07-06', '2026-07-07 15:51:28', '2026-07-07 15:51:28', NULL),
-  (1871, 34, 1, 5, 728.58, 'Trabajo independiente', '2026-07-07', '2026-07-10 11:50:54', '2026-07-10 11:50:54', NULL),
-  (1872, 34, 1, 4, 633.23, 'Pensión mensual', '2026-07-03', '2026-07-04 08:05:03', '2026-07-04 08:05:03', NULL),
-  (1873, 34, 2, 14, 160.76, 'Servicio de internet', '2026-07-24', '2026-07-25 10:46:04', '2026-07-25 10:46:04', NULL),
-  (1874, 34, 3, 25, 353.23, 'Cena en restaurante', '2026-07-28', '2026-07-29 15:27:26', '2026-07-29 15:27:26', NULL),
-  (1875, 34, 12, 83, 167.88, 'Ayuda familiar directa', '2026-07-28', '2026-07-30 11:57:30', '2026-07-30 11:57:30', NULL),
-  (1876, 34, 2, 19, 193.62, 'Servicio de internet', '2026-07-12', '2026-07-12 08:53:54', '2026-07-12 08:53:54', NULL),
-  (1877, 34, 3, 26, 339.41, 'Snacks y bebidas varias', '2026-07-22', '2026-07-24 15:08:52', '2026-07-24 15:08:52', NULL),
-  (1878, 34, 13, 87, 199.23, 'Gasto relacionado con trabajo', '2026-07-28', '2026-07-29 08:55:50', '2026-07-29 08:55:50', NULL),
-  (1879, 34, 1, 1, 1813.28, 'Pago por horas extraordinarias', '2026-08-06', '2026-08-07 08:56:08', '2026-08-07 08:56:08', NULL),
-  (1880, 34, 1, 8, 1922.71, 'Cobro mensual del salario', '2026-08-04', '2026-08-05 14:02:49', '2026-08-05 14:02:49', NULL),
-  (1881, 34, 1, 12, 817.33, 'Venta de artículos personales', '2026-08-10', '2026-08-12 13:00:06', '2026-08-12 13:00:06', NULL),
-  (1882, 34, 1, 9, 563.08, 'Comisión por ventas', '2026-08-03', '2026-08-05 18:42:54', '2026-08-05 18:42:54', NULL),
-  (1883, 34, 2, 21, 255.08, 'Pago de alquiler mensual', '2026-08-22', '2026-08-23 14:49:46', '2026-08-23 14:49:46', NULL),
-  (1884, 34, 3, 26, 483.15, 'Compra semanal del supermercado', '2026-08-28', '2026-08-30 16:48:29', '2026-08-30 16:48:29', NULL),
-  (1885, 34, 2, 19, 491.99, 'Cuota de comunidad', '2026-08-12', '2026-08-15 14:59:29', '2026-08-15 14:59:29', NULL),
-  (1886, 34, 7, 54, 70.76, 'Curso online especializado', '2026-08-18', '2026-08-20 18:54:02', '2026-08-20 18:54:02', NULL),
-  (1887, 34, 11, 77, 121.47, 'Pago tarjeta de crédito', '2026-08-10', '2026-08-11 08:14:52', '2026-08-11 08:14:52', NULL),
-  (1888, 34, 2, 19, 85.82, 'Suscripción a streaming', '2026-08-12', '2026-08-14 16:52:57', '2026-08-14 16:52:57', NULL),
-  (1889, 34, 2, 21, 701.41, 'Pago de impuestos anuales', '2026-08-30', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1890, 34, 5, 41, 200.08, 'Servicio de jardinería', '2026-08-19', '2026-08-19 11:59:24', '2026-08-19 11:59:24', NULL),
-  (1891, 35, 1, 1, 1484.15, 'Pago por horas extraordinarias', '2026-07-01', '2026-07-04 09:21:41', '2026-07-04 09:21:41', NULL),
-  (1892, 35, 1, 1, 379.03, 'Trabajo independiente', '2026-07-05', '2026-07-06 18:18:42', '2026-07-06 18:18:42', NULL),
-  (1893, 35, 1, 1, 1858.93, 'Trabajo independiente', '2026-07-04', '2026-07-05 13:06:48', '2026-07-05 13:06:48', NULL),
-  (1894, 35, 2, 17, 798.41, 'Servicio de electricidad', '2026-07-27', '2026-07-27 09:09:55', '2026-07-27 09:09:55', NULL),
-  (1895, 35, 3, 23, 119.79, 'Snacks y bebidas varias', '2026-07-18', '2026-07-19 09:48:28', '2026-07-19 09:48:28', NULL),
-  (1896, 35, 3, 27, 87.39, 'Cena en restaurante', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (1897, 35, 3, 24, 286.29, 'Cena en restaurante', '2026-07-18', '2026-07-18 17:51:50', '2026-07-18 17:51:50', NULL),
-  (1898, 35, 4, 31, 105.92, 'Mantenimiento preventivo del auto', '2026-07-26', '2026-07-27 15:59:48', '2026-07-27 15:59:48', NULL),
-  (1899, 35, 3, 26, 402.55, 'Compra de frutas y verduras', '2026-07-23', '2026-07-23 16:49:51', '2026-07-23 16:49:51', NULL),
-  (1900, 35, 2, 22, 528.12, 'Pago de impuestos anuales', '2026-07-28', '2026-07-28 11:53:42', '2026-07-28 11:53:42', NULL),
-  (1901, 35, 9, 64, 100.05, 'Suscripción mensual streaming', '2026-07-21', '2026-07-22 08:02:28', '2026-07-22 08:02:28', NULL),
-  (1902, 35, 3, 23, 380.18, 'Compra semanal del supermercado', '2026-07-30', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (1903, 35, 9, 61, 44.55, 'Entrada a evento deportivo', '2026-07-13', '2026-07-13 17:08:30', '2026-07-13 17:08:30', NULL),
-  (1904, 35, 10, 73, 229.67, 'Pago de colegio', '2026-07-13', '2026-07-13 18:20:15', '2026-07-13 18:20:15', NULL),
-  (1905, 35, 8, 57, 16.49, 'Artículo electrónico', '2026-07-13', '2026-07-13 12:42:08', '2026-07-13 12:42:08', NULL),
-  (1906, 35, 1, 5, 811.89, 'Venta de artículos personales', '2026-08-07', '2026-08-07 16:23:04', '2026-08-07 16:23:04', NULL),
-  (1907, 35, 1, 1, 949.73, 'Comisión por ventas', '2026-08-01', '2026-08-01 12:20:11', '2026-08-01 12:20:11', NULL),
-  (1908, 35, 1, 1, 706.14, 'Trabajo independiente', '2026-08-09', '2026-08-09 13:07:06', '2026-08-09 13:07:06', NULL),
-  (1909, 35, 1, 6, 1799.14, 'Pago por horas extraordinarias', '2026-08-03', '2026-08-04 17:51:05', '2026-08-04 17:51:05', NULL),
-  (1910, 35, 2, 13, 820.73, 'Suscripción a streaming', '2026-08-27', '2026-08-27 16:59:36', '2026-08-27 16:59:36', NULL),
-  (1911, 35, 3, 25, 455.97, 'Compra semanal del supermercado', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1912, 35, 3, 23, 180.71, 'Compra semanal del supermercado', '2026-08-11', '2026-08-12 09:06:37', '2026-08-12 09:06:37', NULL),
-  (1913, 35, 3, 23, 208.34, 'Café con compañeros', '2026-08-27', '2026-08-27 12:10:37', '2026-08-27 12:10:37', NULL),
-  (1914, 35, 2, 15, 536.36, 'Pago de impuestos anuales', '2026-08-28', '2026-08-28 18:51:01', '2026-08-28 18:51:01', NULL),
-  (1915, 35, 2, 15, 603.40, 'Suscripción a streaming', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1916, 35, 11, 80, 234.00, 'Pago tarjeta de crédito', '2026-08-16', '2026-08-19 16:15:03', '2026-08-19 16:15:03', NULL),
-  (1917, 35, 3, 24, 417.76, 'Compra de frutas y verduras', '2026-08-19', '2026-08-21 10:25:37', '2026-08-21 10:25:37', NULL),
-  (1918, 36, 1, 1, 1424.58, 'Venta de artículos personales', '2026-07-02', '2026-07-05 12:41:38', '2026-07-05 12:41:38', NULL),
-  (1919, 36, 1, 1, 671.92, 'Pensión mensual', '2026-07-10', '2026-07-11 12:44:08', '2026-07-11 12:44:08', NULL),
-  (1920, 36, 1, 1, 1461.23, 'Pago por horas extraordinarias', '2026-07-02', '2026-07-03 10:45:02', '2026-07-03 10:45:02', NULL),
-  (1921, 36, 2, 16, 608.66, 'Servicio de electricidad', '2026-07-12', '2026-07-15 10:13:17', '2026-07-15 10:13:17', NULL),
-  (1922, 36, 3, 27, 31.32, 'Snacks y bebidas varias', '2026-07-16', '2026-07-16 08:26:06', '2026-07-16 08:26:06', NULL),
-  (1923, 36, 2, 15, 593.24, 'Suscripción a streaming', '2026-07-13', '2026-07-15 13:26:24', '2026-07-15 13:26:24', NULL),
-  (1924, 36, 9, 66, 64.46, 'Suscripción mensual streaming', '2026-07-30', '2026-07-31 11:24:22', '2026-07-31 11:24:22', NULL),
-  (1925, 36, 12, 81, 149.52, 'Regalo para amigo', '2026-07-18', '2026-07-21 08:16:00', '2026-07-21 08:16:00', NULL),
-  (1926, 36, 2, 13, 662.14, 'Cuenta de agua', '2026-07-16', '2026-07-19 09:56:18', '2026-07-19 09:56:18', NULL),
-  (1927, 36, 2, 19, 626.79, 'Servicio de internet', '2026-07-25', '2026-07-25 17:29:22', '2026-07-25 17:29:22', NULL),
-  (1928, 36, 9, 62, 208.09, 'Entrada a evento deportivo', '2026-07-18', '2026-07-21 14:17:10', '2026-07-21 14:17:10', NULL),
-  (1929, 36, 2, 13, 206.19, 'Cuenta de agua', '2026-07-22', '2026-07-23 16:32:41', '2026-07-23 16:32:41', NULL),
-  (1930, 36, 3, 27, 41.24, 'Pedido a domicilio', '2026-07-13', '2026-07-15 18:33:51', '2026-07-15 18:33:51', NULL),
-  (1931, 36, 2, 14, 8.25, 'Factura de gas', '2026-07-13', '2026-07-14 12:16:51', '2026-07-14 12:16:51', NULL),
-  (1932, 36, 1, 10, 1638.19, 'Cobro mensual del salario', '2026-08-09', '2026-08-10 18:31:33', '2026-08-10 18:31:33', NULL),
-  (1933, 36, 1, 1, 529.36, 'Venta de artículos personales', '2026-08-09', '2026-08-12 17:21:00', '2026-08-12 17:21:00', NULL),
-  (1934, 36, 1, 1, 662.70, 'Trabajo independiente', '2026-08-05', '2026-08-08 12:44:51', '2026-08-08 12:44:51', NULL),
-  (1935, 36, 1, 11, 923.52, 'Pensión mensual', '2026-08-10', '2026-08-12 09:24:30', '2026-08-12 09:24:30', NULL),
-  (1936, 36, 1, 1, 867.33, 'Pago por horas extraordinarias', '2026-08-01', '2026-08-03 13:30:48', '2026-08-03 13:30:48', NULL),
-  (1937, 36, 2, 21, 300.07, 'Servicio de electricidad', '2026-08-17', '2026-08-20 16:01:44', '2026-08-20 16:01:44', NULL),
-  (1938, 36, 3, 23, 141.10, 'Cena en restaurante', '2026-08-23', '2026-08-23 11:29:26', '2026-08-23 11:29:26', NULL),
-  (1939, 36, 3, 28, 93.79, 'Pedido a domicilio', '2026-08-16', '2026-08-17 13:06:02', '2026-08-17 13:06:02', NULL),
-  (1940, 36, 3, 23, 292.91, 'Café con compañeros', '2026-08-24', '2026-08-25 09:21:59', '2026-08-25 09:21:59', NULL),
-  (1941, 36, 3, 25, 401.82, 'Pedido a domicilio', '2026-08-27', '2026-08-28 08:30:44', '2026-08-28 08:30:44', NULL),
-  (1942, 36, 12, 83, 219.96, 'Donación a organización benéfica', '2026-08-25', '2026-08-26 14:56:21', '2026-08-26 14:56:21', NULL),
-  (1943, 36, 2, 22, 258.25, 'Suscripción a streaming', '2026-08-23', '2026-08-25 13:48:28', '2026-08-25 13:48:28', NULL),
-  (1944, 36, 2, 14, 785.53, 'Cuenta de agua', '2026-08-28', '2026-08-28 18:17:12', '2026-08-28 18:17:12', NULL),
-  (1945, 36, 5, 42, 18.34, 'Artículo de decoración', '2026-08-15', '2026-08-16 11:12:08', '2026-08-16 11:12:08', NULL),
-  (1946, 36, 12, 82, 71.56, 'Ayuda familiar directa', '2026-08-14', '2026-08-14 09:46:58', '2026-08-14 09:46:58', NULL),
-  (1947, 37, 1, 5, 1702.54, 'Bonificación por desempeño', '2026-07-07', '2026-07-08 09:53:57', '2026-07-08 09:53:57', NULL),
-  (1948, 37, 1, 1, 511.43, 'Rendimiento de inversiones', '2026-07-06', '2026-07-06 16:11:43', '2026-07-06 16:11:43', NULL),
-  (1949, 37, 1, 1, 1646.63, 'Rendimiento de inversiones', '2026-07-04', '2026-07-04 10:26:06', '2026-07-04 10:26:06', NULL),
-  (1950, 37, 2, 16, 574.77, 'Suscripción a streaming', '2026-07-15', '2026-07-17 16:45:35', '2026-07-17 16:45:35', NULL),
-  (1951, 37, 3, 27, 452.52, 'Café con compañeros', '2026-07-28', '2026-07-30 15:10:53', '2026-07-30 15:10:53', NULL),
-  (1952, 37, 8, 56, 185.23, 'Par de zapatos', '2026-07-24', '2026-07-26 13:16:38', '2026-07-26 13:16:38', NULL),
-  (1953, 37, 2, 16, 354.36, 'Servicio de electricidad', '2026-07-22', '2026-07-25 09:55:37', '2026-07-25 09:55:37', NULL),
-  (1954, 37, 4, 29, 72.77, 'Mantenimiento preventivo del auto', '2026-07-27', '2026-07-27 16:30:25', '2026-07-27 16:30:25', NULL),
-  (1955, 37, 13, 85, 20.59, 'Gasto de emergencia', '2026-07-15', '2026-07-16 10:15:58', '2026-07-16 10:15:58', NULL),
-  (1956, 37, 11, 79, 265.90, 'Transferencia a cuenta de ahorro', '2026-07-17', '2026-07-17 13:33:34', '2026-07-17 13:33:34', NULL),
-  (1957, 37, 3, 27, 94.00, 'Café con compañeros', '2026-07-15', '2026-07-15 14:31:54', '2026-07-15 14:31:54', NULL),
-  (1958, 37, 1, 2, 1132.32, 'Regalo en efectivo', '2026-08-10', '2026-08-13 09:27:46', '2026-08-13 09:27:46', NULL),
-  (1959, 37, 1, 12, 1568.25, 'Ingreso por alquiler de propiedad', '2026-08-08', '2026-08-09 18:17:54', '2026-08-09 18:17:54', NULL),
-  (1960, 37, 2, 13, 405.76, 'Cuenta de agua', '2026-08-10', '2026-08-10 08:05:20', '2026-08-10 08:05:20', NULL),
-  (1961, 37, 3, 28, 409.75, 'Cena especial', '2026-08-28', '2026-08-28 09:44:12', '2026-08-28 09:44:12', NULL),
-  (1962, 37, 3, 26, 398.32, 'Compra semanal del supermercado', '2026-08-27', '2026-08-29 08:50:40', '2026-08-29 08:50:40', NULL),
-  (1963, 37, 7, 52, 116.82, 'Pago de matrícula', '2026-08-13', '2026-08-15 12:16:10', '2026-08-15 12:16:10', NULL),
-  (1964, 37, 4, 36, 89.72, 'Pago de seguro vehicular', '2026-08-26', '2026-08-26 10:11:52', '2026-08-26 10:11:52', NULL),
-  (1965, 37, 2, 18, 334.58, 'Cuota de comunidad', '2026-08-11', '2026-08-14 15:01:02', '2026-08-14 15:01:02', NULL),
-  (1966, 37, 3, 24, 207.61, 'Pedido a domicilio', '2026-08-30', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1967, 37, 8, 58, 171.09, 'Dispositivo tecnológico', '2026-08-17', '2026-08-20 10:51:17', '2026-08-20 10:51:17', NULL),
-  (1968, 37, 3, 25, 237.49, 'Compra de frutas y verduras', '2026-08-21', '2026-08-23 10:50:36', '2026-08-23 10:50:36', NULL),
-  (1969, 38, 1, 1, 1325.03, 'Pensión mensual', '2026-07-01', '2026-07-04 11:15:26', '2026-07-04 11:15:26', NULL),
-  (1970, 38, 2, 22, 468.70, 'Suscripción a streaming', '2026-07-29', '2026-07-31 08:49:39', '2026-07-31 08:49:39', NULL),
-  (1971, 38, 3, 24, 89.11, 'Compra de frutas y verduras', '2026-07-11', '2026-07-13 08:59:07', '2026-07-13 08:59:07', NULL),
-  (1972, 38, 2, 21, 507.77, 'Cuenta de agua', '2026-07-10', '2026-07-12 18:46:16', '2026-07-12 18:46:16', NULL),
-  (1973, 38, 9, 64, 101.56, 'Suscripción mensual streaming', '2026-07-17', '2026-07-18 14:45:48', '2026-07-18 14:45:48', NULL),
-  (1974, 38, 3, 26, 20.31, 'Pedido a domicilio', '2026-07-14', '2026-07-14 10:44:25', '2026-07-14 10:44:25', NULL),
-  (1975, 38, 10, 72, 5.00, 'Gasto para los hijos', '2026-07-31', '2026-08-31 23:59:59', '2026-08-31 23:59:59', NULL),
-  (1976, 38, 1, 9, 975.60, 'Cobro mensual del salario', '2026-08-02', '2026-08-04 12:05:29', '2026-08-04 12:05:29', NULL),
-  (1977, 38, 1, 5, 1901.82, 'Trabajo independiente', '2026-08-07', '2026-08-08 13:48:23', '2026-08-08 13:48:23', NULL),
-  (1978, 38, 1, 1, 535.86, 'Bonificación por desempeño', '2026-08-04', '2026-08-06 13:34:43', '2026-08-06 13:34:43', NULL),
-  (1979, 38, 2, 17, 193.75, 'Cuota de seguro del hogar', '2026-08-10', '2026-08-10 15:24:19', '2026-08-10 15:24:19', NULL),
-  (1980, 38, 3, 25, 435.65, 'Snacks y bebidas varias', '2026-08-26', '2026-08-26 11:46:06', '2026-08-26 11:46:06', NULL),
-  (1981, 38, 2, 17, 298.66, 'Pago de alquiler mensual', '2026-08-14', '2026-08-17 17:53:44', '2026-08-17 17:53:44', NULL),
-  (1982, 38, 7, 50, 90.46, 'Curso online especializado', '2026-08-30', '2026-08-30 12:15:13', '2026-08-30 12:15:13', NULL),
-  (1983, 38, 3, 24, 419.41, 'Café con compañeros', '2026-08-18', '2026-08-20 09:25:46', '2026-08-20 09:25:46', NULL),
-  (1984, 38, 3, 23, 279.96, 'Café con compañeros', '2026-08-26', '2026-08-29 09:34:03', '2026-08-29 09:34:03', NULL),
-  (1985, 38, 2, 16, 419.44, 'Pago de alquiler mensual', '2026-08-14', '2026-08-17 18:20:14', '2026-08-17 18:20:14', NULL),
-  (1986, 38, 2, 14, 767.16, 'Pago de impuestos anuales', '2026-08-29', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (1987, 39, 1, 12, 1755.23, 'Cobro mensual del salario', '2026-07-01', '2026-07-01 10:13:52', '2026-07-01 10:13:52', NULL),
-  (1988, 39, 1, 1, 1254.96, 'Pensión mensual', '2026-07-06', '2026-07-09 09:35:08', '2026-07-09 09:35:08', NULL),
-  (1989, 39, 1, 1, 639.89, 'Venta de artículos personales', '2026-07-07', '2026-07-09 15:40:44', '2026-07-09 15:40:44', NULL),
-  (1990, 39, 1, 1, 925.47, 'Pensión mensual', '2026-07-10', '2026-07-10 14:58:00', '2026-07-10 14:58:00', NULL),
-  (1991, 39, 2, 16, 343.82, 'Servicio de electricidad', '2026-07-29', '2026-07-31 10:56:03', '2026-07-31 10:56:03', NULL),
-  (1992, 39, 3, 25, 313.73, 'Café con compañeros', '2026-07-13', '2026-07-15 09:34:18', '2026-07-15 09:34:18', NULL),
-  (1993, 39, 3, 25, 423.89, 'Almuerzo rápido', '2026-07-28', '2026-07-29 14:12:10', '2026-07-29 14:12:10', NULL),
-  (1994, 39, 11, 79, 154.23, 'Pago cuota préstamo', '2026-07-12', '2026-07-13 15:17:21', '2026-07-13 15:17:21', NULL),
-  (1995, 39, 3, 25, 468.88, 'Compra semanal del supermercado', '2026-07-19', '2026-07-20 16:34:26', '2026-07-20 16:34:26', NULL),
-  (1996, 39, 12, 81, 234.52, 'Regalo para amigo', '2026-07-20', '2026-07-21 15:59:25', '2026-07-21 15:59:25', NULL),
-  (1997, 39, 13, 84, 158.21, 'Gasto de emergencia', '2026-07-13', '2026-07-13 10:27:49', '2026-07-13 10:27:49', NULL),
-  (1998, 39, 5, 37, 158.48, 'Servicio de jardinería', '2026-07-16', '2026-07-18 14:25:56', '2026-07-18 14:25:56', NULL),
-  (1999, 39, 2, 19, 165.49, 'Servicio de electricidad', '2026-07-24', '2026-07-24 13:47:13', '2026-07-24 13:47:13', NULL),
-  (2000, 39, 5, 39, 269.76, 'Electrodoméstico para el hogar', '2026-07-21', '2026-07-21 14:32:35', '2026-07-21 14:32:35', NULL),
-  (2001, 39, 1, 1, 1439.57, 'Bonificación por desempeño', '2026-08-08', '2026-08-11 16:41:57', '2026-08-11 16:41:57', NULL),
-  (2002, 39, 1, 9, 1696.50, 'Reembolso de gastos', '2026-08-05', '2026-08-05 09:15:19', '2026-08-05 09:15:19', NULL),
-  (2003, 39, 1, 1, 1291.71, 'Venta de artículos personales', '2026-08-08', '2026-08-09 13:19:15', '2026-08-09 13:19:15', NULL),
-  (2004, 39, 1, 9, 1525.98, 'Pago por horas extraordinarias', '2026-08-09', '2026-08-10 14:02:13', '2026-08-10 14:02:13', NULL),
-  (2005, 39, 1, 10, 1502.94, 'Comisión por ventas', '2026-08-01', '2026-08-01 18:23:28', '2026-08-01 18:23:28', NULL),
-  (2006, 39, 2, 13, 423.75, 'Cuenta de agua', '2026-08-21', '2026-08-21 12:18:36', '2026-08-21 12:18:36', NULL),
-  (2007, 39, 3, 23, 235.93, 'Compra de frutas y verduras', '2026-08-18', '2026-08-19 14:48:38', '2026-08-19 14:48:38', NULL),
-  (2008, 39, 11, 78, 261.53, 'Comisión bancaria', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (2009, 39, 12, 83, 229.52, 'Ayuda familiar directa', '2026-08-24', '2026-08-24 16:18:09', '2026-08-24 16:18:09', NULL),
-  (2010, 39, 11, 78, 192.85, 'Transferencia a cuenta de ahorro', '2026-08-28', '2026-08-29 10:21:36', '2026-08-29 10:21:36', NULL),
-  (2011, 39, 3, 27, 320.83, 'Café con compañeros', '2026-08-16', '2026-08-17 11:06:11', '2026-08-17 11:06:11', NULL),
-  (2012, 39, 2, 19, 353.16, 'Pago de alquiler mensual', '2026-08-27', '2026-08-27 14:39:44', '2026-08-27 14:39:44', NULL),
-  (2013, 39, 9, 62, 122.41, 'Material para hobby', '2026-08-13', '2026-08-16 14:57:01', '2026-08-16 14:57:01', NULL),
-  (2014, 40, 1, 5, 1210.99, 'Pensión mensual', '2026-08-04', '2026-08-05 13:42:42', '2026-08-05 13:42:42', NULL),
-  (2015, 40, 1, 11, 639.13, 'Cobro mensual del salario', '2026-08-09', '2026-08-10 18:57:35', '2026-08-10 18:57:35', NULL),
-  (2016, 40, 2, 17, 671.01, 'Cuota de comunidad', '2026-08-21', '2026-08-24 18:07:09', '2026-08-24 18:07:09', NULL),
-  (2017, 40, 3, 27, 234.05, 'Snacks y bebidas varias', '2026-08-10', '2026-08-11 14:37:48', '2026-08-11 14:37:48', NULL),
-  (2018, 40, 4, 35, 199.97, 'Estacionamiento en centro comercial', '2026-08-12', '2026-08-15 17:24:22', '2026-08-15 17:24:22', NULL),
-  (2019, 40, 5, 37, 170.73, 'Electrodoméstico para el hogar', '2026-08-23', '2026-08-23 18:53:43', '2026-08-23 18:53:43', NULL),
-  (2020, 40, 10, 70, 173.59, 'Ayuda a familiar', '2026-08-13', '2026-08-15 11:49:17', '2026-08-15 11:49:17', NULL),
-  (2021, 40, 5, 41, 172.61, 'Compra de mueble nuevo', '2026-08-19', '2026-08-21 18:57:02', '2026-08-21 18:57:02', NULL),
-  (2022, 40, 4, 36, 34.52, 'Estacionamiento en centro comercial', '2026-08-10', '2026-08-10 18:54:32', '2026-08-10 18:54:32', NULL),
-  (2023, 40, 8, 55, 6.90, 'Compra de ropa nueva', '2026-08-13', '2026-08-16 16:12:04', '2026-08-16 16:12:04', NULL),
-  (2024, 41, 1, 7, 1150.06, 'Pensión mensual', '2026-08-10', '2026-08-12 09:18:40', '2026-08-12 09:18:40', NULL),
-  (2025, 41, 2, 14, 693.38, 'Cuenta de agua', '2026-08-20', '2026-08-20 15:26:49', '2026-08-20 15:26:49', NULL),
-  (2026, 41, 3, 28, 275.25, 'Almuerzo rápido', '2026-08-28', '2026-08-31 18:26:40', '2026-08-31 18:26:40', NULL),
-  (2027, 41, 3, 24, 53.14, 'Pedido a domicilio', '2026-08-18', '2026-08-18 15:28:28', '2026-08-18 15:28:28', NULL),
-  (2028, 41, 2, 20, 10.63, 'Cuenta de agua', '2026-08-22', '2026-08-25 18:08:38', '2026-08-25 18:08:38', NULL),
-  (2029, 42, 1, 1, 1967.57, 'Reembolso de gastos', '2026-08-10', '2026-08-10 12:01:25', '2026-08-10 12:01:25', NULL),
-  (2030, 42, 1, 5, 320.88, 'Ingreso por servicios profesionales', '2026-08-04', '2026-08-05 11:29:14', '2026-08-05 11:29:14', NULL),
-  (2031, 42, 1, 6, 844.18, 'Ingreso por servicios profesionales', '2026-08-03', '2026-08-04 13:58:25', '2026-08-04 13:58:25', NULL),
-  (2032, 42, 1, 1, 1890.75, 'Bonificación por desempeño', '2026-08-08', '2026-08-08 11:54:57', '2026-08-08 11:54:57', NULL),
-  (2033, 42, 2, 14, 108.95, 'Cuota de seguro del hogar', '2026-08-15', '2026-08-15 14:07:14', '2026-08-15 14:07:14', NULL),
-  (2034, 42, 3, 24, 417.83, 'Snacks y bebidas varias', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (2035, 42, 2, 16, 385.62, 'Pago de alquiler mensual', '2026-08-31', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (2036, 42, 4, 34, 19.10, 'Carga de combustible', '2026-08-22', '2026-08-24 16:02:52', '2026-08-24 16:02:52', NULL),
-  (2037, 42, 6, 43, 74.77, 'Sesión de terapia', '2026-08-16', '2026-08-18 09:25:30', '2026-08-18 09:25:30', NULL),
-  (2038, 42, 2, 20, 605.69, 'Cuenta de agua', '2026-08-25', '2026-08-26 10:04:00', '2026-08-26 10:04:00', NULL),
-  (2039, 42, 9, 67, 178.75, 'Disco de música', '2026-08-15', '2026-08-15 18:12:16', '2026-08-15 18:12:16', NULL),
-  (2040, 42, 8, 56, 173.89, 'Par de zapatos', '2026-08-20', '2026-08-23 18:38:28', '2026-08-23 18:38:28', NULL),
-  (2041, 42, 5, 41, 76.69, 'Reparación de grifería', '2026-08-13', '2026-08-14 16:43:20', '2026-08-14 16:43:20', NULL),
-  (2042, 42, 2, 22, 612.70, 'Cuota de seguro del hogar', '2026-08-10', '2026-08-13 17:34:46', '2026-08-13 17:34:46', NULL),
-  (2043, 42, 3, 26, 254.81, 'Compra de frutas y verduras', '2026-08-11', '2026-08-14 15:15:57', '2026-08-14 15:15:57', NULL),
-  (2044, 43, 1, 1, 857.16, 'Regalo en efectivo', '2026-08-01', '2026-08-04 16:09:05', '2026-08-04 16:09:05', NULL),
-  (2045, 43, 1, 3, 603.03, 'Rendimiento de inversiones', '2026-08-06', '2026-08-08 18:10:05', '2026-08-08 18:10:05', NULL),
-  (2046, 43, 2, 18, 61.12, 'Cuota de seguro del hogar', '2026-08-20', '2026-08-23 09:43:16', '2026-08-23 09:43:16', NULL),
-  (2047, 43, 3, 27, 100.66, 'Snacks y bebidas varias', '2026-08-12', '2026-08-13 09:36:08', '2026-08-13 09:36:08', NULL),
-  (2048, 43, 9, 67, 180.28, 'Disco de música', '2026-08-11', '2026-08-13 11:27:39', '2026-08-13 11:27:39', NULL),
-  (2049, 43, 10, 74, 9.77, 'Consulta veterinaria', '2026-08-15', '2026-08-16 08:54:21', '2026-08-16 08:54:21', NULL),
-  (2050, 43, 2, 21, 374.86, 'Cuenta de agua', '2026-08-29', '2026-08-31 16:18:41', '2026-08-31 16:18:41', NULL),
-  (2051, 43, 3, 28, 316.57, 'Snacks y bebidas varias', '2026-08-27', '2026-08-27 18:05:18', '2026-08-27 18:05:18', NULL),
-  (2052, 43, 10, 72, 140.08, 'Cuota de guardería', '2026-08-11', '2026-08-14 09:22:59', '2026-08-14 09:22:59', NULL),
-  (2053, 43, 3, 26, 104.66, 'Cena especial', '2026-08-16', '2026-08-17 08:59:39', '2026-08-17 08:59:39', NULL),
-  (2054, 43, 2, 22, 20.94, 'Pago de impuestos anuales', '2026-08-30', '2026-09-30 23:59:59', '2026-09-30 23:59:59', NULL),
-  (2055, 43, 2, 22, 5.00, 'Cuenta de agua', '2026-08-23', '2026-08-26 10:53:53', '2026-08-26 10:53:53', NULL),
-  (2056, 44, 1, 9, 772.86, 'Regalo en efectivo', '2026-08-09', '2026-08-09 14:41:11', '2026-08-09 14:41:11', NULL),
-  (2057, 44, 2, 16, 326.51, 'Plan de telefonía móvil', '2026-08-18', '2026-08-18 18:57:55', '2026-08-18 18:57:55', NULL),
-  (2058, 44, 3, 26, 209.04, 'Compra semanal del supermercado', '2026-08-29', '2026-08-31 18:29:36', '2026-08-31 18:29:36', NULL),
-  (2059, 44, 2, 15, 128.02, 'Servicio de internet', '2026-08-27', '2026-08-28 13:54:23', '2026-08-28 13:54:23', NULL),
-  (2060, 44, 3, 26, 25.60, 'Pedido a domicilio', '2026-08-16', '2026-08-17 13:52:52', '2026-08-17 13:52:52', NULL),
-  (2061, 44, 2, 15, 5.12, 'Factura de gas', '2026-08-28', '2026-08-30 14:53:55', '2026-08-30 14:53:55', NULL);
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('1', '1895.73', '2026-08-29 05:06:03.618639', NULL, 'Cobro mensual del piso Bellvitge', '2026-01-09', '2026-08-29 05:06:03.618663', '1', '7', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('2', '1535.64', '2026-08-29 05:06:03.646859', NULL, 'Bonificación por desempeño', '2026-02-01', '2026-08-29 05:06:03.646882', '1', '1', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('3', '1895.95', '2026-08-29 05:06:03.656557', NULL, 'Bonificación por desempeño', '2026-03-09', '2026-08-29 05:06:03.656596', '1', '1', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('4', '1047.74', '2026-08-29 05:06:03.666472', NULL, 'Comisión por ventas', '2026-04-04', '2026-08-29 05:06:03.666499', '1', '1', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('5', '485.02', '2026-08-29 05:06:03.675489', NULL, 'Pago impuestos de alquiler mensual', '2026-01-11', '2026-08-29 05:06:03.675508', '2', '21', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('6', '103.32', '2026-08-29 05:06:03.690999', NULL, 'Compras para reunión con la familia', '2026-01-12', '2026-08-29 05:06:03.691014', '3', '23', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('7', '180.79', '2026-08-29 05:06:03.699841', NULL, 'Gasto varios', '2026-02-13', '2026-08-29 05:06:03.699859', '8', '57', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('8', '210.31', '2026-08-29 05:06:03.709625', NULL, 'Gasto varios', '2026-02-28', '2026-08-29 05:06:03.709647', '9', '66', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('9', '780.63', '2026-08-29 05:06:03.718526', NULL, 'Pago alquiler de coche', '2026-03-18', '2026-08-29 05:06:03.718544', '2', '13', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('10', '7.40', '2026-08-29 05:06:03.733362', NULL, 'Gasto varios', '2026-03-17', '2026-08-29 05:06:03.733396', '8', '55', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('11', '102.30', '2026-08-29 05:06:03.748289', NULL, 'Snacks y bebidas varias', '2026-04-26', '2026-08-29 05:06:03.748314', '3', '24', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('12', '151.28', '2026-08-29 05:06:03.759249', NULL, 'Almuerzo rápido en super', '2026-04-25', '2026-08-29 05:06:03.759264', '3', '23', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('13', '427.26', '2026-08-29 05:06:03.776941', NULL, 'Comisión por ventas', '2026-01-04', '2026-08-29 05:06:03.776960', '1', '3', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('14', '1482.58', '2026-08-29 05:06:03.796309', NULL, 'Salario del mes', '2026-02-01', '2026-08-29 05:06:03.796340', '1', '1', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('15', '1463.68', '2026-08-29 05:06:03.813228', NULL, 'Bonificación por desempeño', '2026-03-07', '2026-08-29 05:06:03.813253', '1', '3', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('16', '631.34', '2026-08-29 05:06:03.828704', NULL, 'Susucripciones anuales', '2026-02-12', '2026-08-29 05:06:03.828738', '2', '22', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('17', '160.42', '2026-08-29 05:06:03.854277', NULL, 'Cena familiar', '2026-03-22', '2026-08-29 05:06:03.854317', '3', '25', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('18', '734.49', '2026-08-29 05:06:03.869869', NULL, 'Pagos linea de telefono con instalacion de la empresa', '2026-02-13', '2026-08-29 05:06:03.869895', '2', '19', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('19', '124.47', '2026-08-29 05:06:03.884949', NULL, 'Medicinas', '2026-03-22', '2026-08-29 05:06:03.884974', '6', '45', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('20', '190.93', '2026-08-29 05:06:03.897022', NULL, 'Pedido a domicilio', '2026-03-25', '2026-08-29 05:06:03.897041', '3', '23', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('21', '27.47', '2026-08-29 05:06:03.911007', NULL, 'Gasto varios', '2026-03-21', '2026-08-29 05:06:03.911031', '9', '62', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('22', '55.70', '2026-08-29 05:06:03.919385', NULL, 'Tasas para renovación de documentos', '2026-03-24', '2026-08-29 05:06:03.919407', '2', '21', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('23', '43.09', '2026-08-29 05:06:03.928719', NULL, 'Regalo de cumpleaños', '2026-03-13', '2026-08-29 05:06:03.928737', '9', '64', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('24', '153.99', '2026-08-29 05:06:03.939104', NULL, 'Nuevos audífonos', '2026-03-24', '2026-08-29 05:06:03.939123', '8', '57', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('25', '42.96', '2026-08-29 05:06:03.948020', NULL, 'Medicinas', '2026-03-21', '2026-08-29 05:06:03.948036', '6', '46', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('26', '531.93', '2026-08-29 05:06:03.956472', NULL, 'Reconexión de electricidad', '2026-03-10', '2026-08-29 05:06:03.956497', '2', '15', '3');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('27', '1396.45', '2026-08-29 05:06:03.971193', NULL, 'Cobro mensual del salario', '2026-01-04', '2026-08-29 05:06:03.971226', '1', '1', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('28', '227.44', '2026-08-29 05:06:03.981950', NULL, 'Bono horas extras', '2026-02-06', '2026-08-29 05:06:03.981971', '1', '2', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('29', '1434.38', '2026-08-29 05:06:04.006302', NULL, 'Herencia', '2026-03-06', '2026-08-29 05:06:04.006329', '1', '10', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('30', '502.17', '2026-08-29 05:06:04.023343', NULL, 'Cuota de seguro del hogar anual', '2026-01-26', '2026-08-29 05:06:04.023377', '2', '20', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('31', '282.07', '2026-08-29 05:06:04.061447', NULL, 'Celebración con amigos', '2026-01-12', '2026-08-29 05:06:04.061483', '3', '28', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('32', '237.01', '2026-08-29 05:06:04.087840', NULL, 'suscripciones', '2026-01-19', '2026-08-29 05:06:04.087866', '2', '22', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('33', '147.63', '2026-08-29 05:06:04.111130', NULL, 'Compra TV', '2026-02-20', '2026-08-29 05:06:04.111149', '8', '60', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('34', '871.31', '2026-08-29 05:06:04.127936', NULL, 'Pago alquileres', '2026-03-24', '2026-08-29 05:06:04.127954', '2', '13', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('35', '285.53', '2026-08-29 05:06:04.138419', NULL, 'Pedido a domicilio', '2026-03-21', '2026-08-29 05:06:04.138439', '3', '25', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('36', '185.35', '2026-08-29 05:06:04.148056', NULL, 'Gasto varios', '2026-03-18', '2026-08-29 05:06:04.148092', '4', '31', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('37', '193.10', '2026-08-29 05:06:04.157556', NULL, 'Combustible para 2 semanas', '2026-03-15', '2026-08-29 05:06:04.157572', '4', '29', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('38', '38.62', '2026-08-29 05:06:04.166708', NULL, 'Gaseosas y cervezas', '2026-03-19', '2026-08-29 05:06:04.166730', '3', '28', '4');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('39', '1175.93', '2026-08-29 05:06:04.176973', NULL, 'Sueldo mensual', '2026-01-10', '2026-08-29 05:06:04.176991', '1', '1', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('40', '1444.00', '2026-08-29 05:06:04.185908', NULL, 'Sueldo mensual', '2026-02-09', '2026-08-29 05:06:04.185932', '1', '1', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('41', '682.37', '2026-08-29 05:06:04.201551', NULL, 'Pago por horas extraordinarias', '2026-03-05', '2026-08-29 05:06:04.201580', '1', '3', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('42', '890.96', '2026-08-29 05:06:04.230105', NULL, 'Ingreso por servicios profesionales', '2026-04-04', '2026-08-29 05:06:04.230143', '1', '1', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('43', '1483.48', '2026-08-29 05:06:04.251234', NULL, 'Bonificación por desempeño', '2026-05-01', '2026-08-29 05:06:04.251258', '1', '1', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('44', '124.06', '2026-08-29 05:06:04.283667', NULL, 'Cuota mensual', '2026-01-15', '2026-08-29 05:06:04.283705', '2', '18', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('45', '380.40', '2026-08-29 05:06:04.305451', NULL, 'Jamón, para la celebración', '2026-02-27', '2026-08-29 05:06:04.305485', '3', '27', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('46', '218.96', '2026-08-29 05:06:04.320196', NULL, 'Niños huerfanos', '2026-03-22', '2026-08-29 05:06:04.320218', '12', '81', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('47', '639.88', '2026-08-29 05:06:04.330266', NULL, 'Alcabala', '2026-04-10', '2026-08-29 05:06:04.330330', '2', '21', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('48', '249.50', '2026-08-29 05:06:04.339554', NULL, 'Pasaje aéreo', '2026-04-30', '2026-08-29 05:06:04.339595', '9', '67', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('49', '182.26', '2026-08-29 05:06:04.348439', NULL, 'Regalo para el sobrino', '2026-05-17', '2026-08-29 05:06:04.348456', '12', '82', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('50', '117.61', '2026-08-29 05:06:04.357302', NULL, 'Compras para la semana', '2026-05-22', '2026-08-29 05:06:04.357324', '3', '23', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('51', '171.08', '2026-08-29 05:06:04.366302', NULL, 'Colonias', '2026-05-10', '2026-08-29 05:06:04.366316', '8', '58', '5');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('52', '1416.25', '2026-08-29 05:06:04.378862', NULL, 'Salario del mes', '2026-02-04', '2026-08-29 05:06:04.378878', '1', '1', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('53', '638.40', '2026-08-29 05:06:04.386577', NULL, 'Saldo pdte por cobrar mes anterior', '2026-03-04', '2026-08-29 05:06:04.386593', '1', '1', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('54', '1662.60', '2026-08-29 05:06:04.433545', NULL, 'Herencia', '2026-04-07', '2026-08-29 05:06:04.433569', '1', '10', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('55', '1800.56', '2026-08-29 05:06:04.455833', NULL, 'Bono del año anterior', '2026-05-10', '2026-08-29 05:06:04.455855', '1', '3', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('56', '1441.37', '2026-08-29 05:06:04.473121', NULL, 'Ventas personales', '2026-06-03', '2026-08-29 05:06:04.473137', '1', '12', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('57', '497.57', '2026-08-29 05:06:04.490115', NULL, 'Seguro salud padres', '2026-02-28', '2026-08-29 05:06:04.490147', '2', '20', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('58', '156.22', '2026-08-29 05:06:04.510872', NULL, 'Abastecimiento licores', '2026-02-12', '2026-08-29 05:06:04.510892', '3', '28', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('59', '139.85', '2026-08-29 05:06:04.523806', NULL, 'Devolución préstamos familiares', '2026-03-28', '2026-08-29 05:06:04.523822', '11', '80', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('60', '173.90', '2026-08-29 05:06:04.534794', NULL, 'Ayuda a tíos', '2026-03-20', '2026-08-29 05:06:04.534810', '12', '83', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('61', '78.29', '2026-08-29 05:06:04.549012', NULL, 'Película con los niños', '2026-04-10', '2026-08-29 05:06:04.549029', '9', '61', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('62', '489.13', '2026-08-29 05:06:04.570844', NULL, 'Licores para la celebración', '2026-05-30', '2026-08-29 05:06:04.570862', '3', '28', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('63', '516.38', '2026-08-29 05:06:04.580498', NULL, 'Alquiler cochera', '2026-05-19', '2026-08-29 05:06:04.580514', '2', '13', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('64', '335.53', '2026-08-29 05:06:04.588654', NULL, 'Gastos en cafeterías de todo el año', '2026-06-17', '2026-08-29 05:06:04.588671', '3', '26', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('65', '63.07', '2026-08-29 05:06:04.604536', NULL, 'Alquiler del mes', '2026-06-27', '2026-08-29 05:06:04.604560', '4', '36', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('66', '472.30', '2026-08-29 05:06:04.631887', NULL, 'Alquiler cochera', '2026-06-20', '2026-08-29 05:06:04.631906', '2', '13', '6');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('67', '1842.73', '2026-08-29 05:06:04.659422', NULL, 'Salario', '2026-02-09', '2026-08-29 05:06:04.659450', '1', '1', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('68', '273.19', '2026-08-29 05:06:04.699308', NULL, 'Cuenta de agua atrasada', '2026-03-25', '2026-08-29 05:06:04.699339', '2', '14', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('69', '50.96', '2026-08-29 05:06:04.713574', NULL, 'Comida', '2026-04-22', '2026-08-29 05:06:04.713591', '3', '24', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('70', '257.06', '2026-08-29 05:06:04.721843', NULL, 'Tasas pdtes de la propiedad', '2026-05-11', '2026-08-29 05:06:04.721858', '2', '21', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('71', '430.83', '2026-08-29 05:06:04.735302', NULL, 'Suscripciones anuales', '2026-05-24', '2026-08-29 05:06:04.735318', '2', '22', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('72', '475.96', '2026-08-29 05:06:04.743359', NULL, 'Cuenta de agua atrasado', '2026-06-13', '2026-08-29 05:06:04.743380', '2', '16', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('73', '136.37', '2026-08-29 05:06:04.752319', NULL, 'Comisiones del banco', '2026-07-30', '2026-08-29 05:06:04.752334', '11', '79', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('74', '27.27', '2026-08-29 05:06:04.760816', NULL, 'Mantenimiento de la finca', '2026-08-27', '2026-08-29 05:06:04.760835', '2', '14', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('75', '5.45', '2026-08-29 05:06:04.769424', NULL, 'Pomadas estéticas', '2026-08-19', '2026-08-29 05:06:04.769438', '8', '58', '7');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('76', '1445.74', '2026-08-29 05:06:04.778084', NULL, 'Ventas de la tienda', '2026-02-06', '2026-08-29 05:06:04.778101', '1', '5', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('77', '1416.53', '2026-08-29 05:06:04.786995', NULL, 'Salario mensual', '2026-03-01', '2026-08-29 05:06:04.787011', '1', '1', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('78', '977.24', '2026-08-29 05:06:04.811666', NULL, 'Pensión mensual', '2026-04-08', '2026-08-29 05:06:04.811691', '1', '9', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('79', '305.20', '2026-08-29 05:06:04.834902', NULL, 'Pago atrasado 6 meses', '2026-02-28', '2026-08-29 05:06:04.834971', '2', '19', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('80', '174.77', '2026-08-29 05:06:04.862676', NULL, 'Compras delivery del mes', '2026-02-28', '2026-08-29 05:06:04.862694', '3', '27', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('81', '480.34', '2026-08-29 05:06:04.891042', NULL, 'Recibo. Incluye cuota del móvil', '2026-03-29', '2026-08-29 05:06:04.891064', '2', '19', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('82', '189.53', '2026-08-29 05:06:04.912309', NULL, 'Cena especial', '2026-03-21', '2026-08-29 05:06:04.912336', '3', '25', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('83', '794.81', '2026-08-29 05:06:04.921925', NULL, 'Alquiler cochera', '2026-04-30', '2026-08-29 05:06:04.921941', '2', '13', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('84', '423.17', '2026-08-29 05:06:04.934079', NULL, 'Pago de 6 meses en cafeterías', '2026-04-26', '2026-08-29 05:06:04.934094', '3', '26', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('85', '34.03', '2026-08-29 05:06:04.945018', NULL, 'Concierto', '2026-05-16', '2026-08-29 05:06:04.945037', '9', '65', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('86', '79.09', '2026-08-29 05:06:04.953633', NULL, 'Salida con amigos', '2026-06-23', '2026-08-29 05:06:04.953650', '3', '26', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('87', '218.31', '2026-08-29 05:06:04.961824', NULL, 'Nuevo monitor', '2026-06-15', '2026-08-29 05:06:04.961839', '8', '59', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('88', '85.90', '2026-08-29 05:06:04.969623', NULL, 'Accesorios para el coche', '2026-07-31', '2026-08-29 05:06:04.969642', '8', '57', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('89', '154.82', '2026-08-29 05:06:04.978555', NULL, 'Accesorios para el piso', '2026-08-30', '2026-08-29 05:06:04.978570', '8', '57', '8');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('90', '1672.12', '2026-08-29 05:06:04.986543', NULL, 'Salario mensual', '2026-02-03', '2026-08-29 05:06:04.986558', '1', '1', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('91', '831.03', '2026-08-29 05:06:04.995014', NULL, 'Cobro mensual del salario', '2026-03-08', '2026-08-29 05:06:04.995034', '1', '1', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('92', '776.74', '2026-08-29 05:06:05.009060', NULL, 'Reembolso del mes anterior', '2026-04-01', '2026-08-29 05:06:05.009077', '1', '1', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('93', '713.36', '2026-08-29 05:06:05.018657', NULL, 'Ingreso por servicios profesionales', '2026-05-06', '2026-08-29 05:06:05.018678', '1', '1', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('94', '667.34', '2026-08-29 05:06:05.029440', NULL, 'Factura de gas atrasada', '2026-03-30', '2026-08-29 05:06:05.029486', '2', '17', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('95', '352.90', '2026-08-29 05:06:05.046334', NULL, 'Snacks y bebidas varias. Gasto de 6 meses', '2026-03-24', '2026-08-29 05:06:05.046375', '3', '26', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('96', '150.00', '2026-08-29 05:06:05.065340', NULL, 'Alquiler de furgoneta', '2026-04-15', '2026-08-29 05:06:05.065386', '4', '36', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('97', '225.81', '2026-08-29 05:06:05.097126', NULL, 'Reposición de equipo dañado', '2026-04-12', '2026-08-29 05:06:05.097142', '13', '85', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('98', '94.03', '2026-08-29 05:06:05.111803', NULL, 'Alquiler de bicicletas montañistas', '2026-05-25', '2026-08-29 05:06:05.111831', '4', '36', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('99', '277.20', '2026-08-29 05:06:05.126430', NULL, 'Comida con los amigos de los niños', '2026-05-15', '2026-08-29 05:06:05.126492', '3', '25', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('100', '253.14', '2026-08-29 05:06:05.149347', NULL, 'Abarrotes del mes', '2026-06-14', '2026-08-29 05:06:05.149364', '3', '23', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('101', '47.53', '2026-08-29 05:06:05.157167', NULL, 'Juego para la consola', '2026-07-14', '2026-08-29 05:06:05.157184', '9', '63', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('102', '11.41', '2026-08-29 05:06:05.171063', NULL, 'Auriculares', '2026-08-12', '2026-08-29 05:06:05.171078', '8', '59', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('103', '160.52', '2026-08-29 05:06:05.185543', NULL, 'Cuota para mejorar oficina', '2026-08-15', '2026-08-29 05:06:05.185561', '13', '85', '9');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('104', '1732.05', '2026-08-29 05:06:05.194448', NULL, 'Bonos pendientes', '2026-03-02', '2026-08-29 05:06:05.194464', '1', '3', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('105', '1161.26', '2026-08-29 05:06:05.202513', NULL, 'Propinas', '2026-04-06', '2026-08-29 05:06:05.202534', '1', '10', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('106', '908.10', '2026-08-29 05:06:05.211360', NULL, 'Cuota alquiler piso Badalona', '2026-05-02', '2026-08-29 05:06:05.211376', '1', '7', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('107', '1268.00', '2026-08-29 05:06:05.220004', NULL, 'Sueldo', '2026-06-07', '2026-08-29 05:06:05.220021', '1', '1', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('108', '1005.81', '2026-08-29 05:06:05.231208', NULL, 'Sueldo', '2026-07-10', '2026-08-29 05:06:05.231243', '1', '1', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('109', '304.07', '2026-08-29 05:06:05.258355', NULL, 'Suscripciones anuales', '2026-03-21', '2026-08-29 05:06:05.258379', '2', '22', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('110', '426.78', '2026-08-29 05:06:05.271963', NULL, 'Cena especial', '2026-04-16', '2026-08-29 05:06:05.271984', '3', '25', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('111', '210.85', '2026-08-29 05:06:05.293151', NULL, 'Gasto varios', '2026-04-24', '2026-08-29 05:06:05.293177', '13', '87', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('112', '517.04', '2026-08-29 05:06:05.317134', NULL, 'Hipoteca', '2026-05-30', '2026-08-29 05:06:05.317189', '2', '13', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('113', '249.06', '2026-08-29 05:06:05.345982', NULL, 'Medicinas', '2026-05-14', '2026-08-29 05:06:05.346056', '6', '45', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('114', '389.40', '2026-08-29 05:06:05.360601', NULL, 'Comida con familiares', '2026-06-26', '2026-08-29 05:06:05.360617', '3', '24', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('115', '98.37', '2026-08-29 05:06:05.375987', NULL, 'Multas', '2026-06-11', '2026-08-29 05:06:05.375998', '4', '32', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('116', '107.19', '2026-08-29 05:06:05.384371', NULL, 'Vitaminas', '2026-07-14', '2026-08-29 05:06:05.384386', '6', '49', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('117', '156.10', '2026-08-29 05:06:05.393740', NULL, 'Préstamo temporal', '2026-08-16', '2026-08-29 05:06:05.393754', '13', '86', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('118', '718.46', '2026-08-29 05:06:05.402252', NULL, 'Pago de alquiler mensual', '2026-08-31', '2026-08-29 05:06:05.402264', '2', '13', '10');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('119', '1337.57', '2026-08-29 05:06:05.410008', NULL, 'Salario', '2026-03-08', '2026-08-29 05:06:05.410020', '1', '1', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('120', '55.27', '2026-08-29 05:06:05.418185', NULL, 'Pago gas', '2026-03-21', '2026-08-29 05:06:05.418198', '2', '17', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('121', '149.30', '2026-08-29 05:06:05.431511', NULL, 'Delivery comida', '2026-04-28', '2026-08-29 05:06:05.431523', '3', '27', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('122', '286.83', '2026-08-29 05:06:05.476816', NULL, 'Visita médico', '2026-05-15', '2026-08-29 05:06:05.476836', '6', '43', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('123', '83.75', '2026-08-29 05:06:05.518492', NULL, 'Regalo cuota matrimonio', '2026-05-23', '2026-08-29 05:06:05.518509', '12', '82', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('124', '67.25', '2026-08-29 05:06:05.549837', NULL, 'Evento online', '2026-06-17', '2026-08-29 05:06:05.549872', '9', '62', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('125', '449.13', '2026-08-29 05:06:05.560860', NULL, 'Pagos por reposición', '2026-07-27', '2026-08-29 05:06:05.560872', '2', '15', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('126', '89.83', '2026-08-29 05:06:05.571070', NULL, 'Cuota para inversión', '2026-08-14', '2026-08-29 05:06:05.571084', '11', '76', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('127', '17.96', '2026-08-29 05:06:05.582144', NULL, 'Regalo', '2026-08-28', '2026-08-29 05:06:05.582156', '12', '82', '11');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('128', '1909.82', '2026-08-29 05:06:05.590070', NULL, 'Salario', '2026-03-07', '2026-08-29 05:06:05.590084', '1', '1', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('129', '106.49', '2026-08-29 05:06:05.600218', NULL, 'Impuesto mensual', '2026-03-17', '2026-08-29 05:06:05.600230', '2', '21', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('130', '310.17', '2026-08-29 05:06:05.610311', NULL, 'Pago pendiente en cafetería de la oficina', '2026-04-24', '2026-08-29 05:06:05.610323', '3', '26', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('131', '262.05', '2026-08-29 05:06:05.618287', NULL, 'Zapatillas', '2026-05-15', '2026-08-29 05:06:05.618299', '8', '56', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('132', '125.64', '2026-08-29 05:06:05.632467', NULL, 'Factura de electricidad', '2026-06-17', '2026-08-29 05:06:05.632478', '2', '15', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('133', '363.69', '2026-08-29 05:06:05.665118', NULL, 'Noche de tragos con los amigos', '2026-07-20', '2026-08-29 05:06:05.665139', '3', '28', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('134', '518.75', '2026-08-29 05:06:05.695965', NULL, 'Cuota hipoteca', '2026-08-12', '2026-08-29 05:06:05.695984', '2', '13', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('135', '25.64', '2026-08-29 05:06:05.711043', NULL, 'Regalo sobrina', '2026-08-17', '2026-08-29 05:06:05.711058', '12', '82', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('136', '5.13', '2026-08-29 05:06:05.736682', NULL, 'Pago línea móvil', '2026-08-12', '2026-08-29 05:06:05.736786', '2', '19', '12');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('137', '1549.11', '2026-08-29 05:06:05.756326', NULL, 'Comisión', '2026-03-05', '2026-08-29 05:06:05.756361', '1', '3', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('138', '1314.50', '2026-08-29 05:06:05.769467', NULL, 'Venta de artefactos', '2026-04-07', '2026-08-29 05:06:05.769479', '1', '12', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('139', '775.86', '2026-08-29 05:06:05.777706', NULL, 'Sueldo', '2026-05-04', '2026-08-29 05:06:05.777721', '1', '1', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('140', '1710.12', '2026-08-29 05:06:05.786180', NULL, 'Salario', '2026-06-02', '2026-08-29 05:06:05.786191', '1', '1', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('141', '603.70', '2026-08-29 05:06:05.794103', NULL, 'Ingresos propios', '2026-07-04', '2026-08-29 05:06:05.794121', '1', '4', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('142', '739.11', '2026-08-29 05:06:05.807571', NULL, 'Pago de todo el año', '2026-04-14', '2026-08-29 05:06:05.807583', '2', '18', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('143', '178.37', '2026-08-29 05:06:05.815785', NULL, 'Abarrotes en gnral', '2026-05-30', '2026-08-29 05:06:05.815797', '3', '23', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('144', '159.11', '2026-08-29 05:06:05.823497', NULL, 'Gastos cafetería del mes', '2026-06-22', '2026-08-29 05:06:05.823509', '3', '26', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('145', '8.54', '2026-08-29 05:06:05.831519', NULL, 'Cera para el automóvil', '2026-06-24', '2026-08-29 05:06:05.831530', '4', '34', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('146', '197.02', '2026-08-29 05:06:05.841529', NULL, 'Compra traje de emergencia', '2026-07-13', '2026-08-29 05:06:05.841544', '13', '84', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('147', '615.55', '2026-08-29 05:06:05.863995', NULL, 'Pago de impuestos anuales', '2026-07-25', '2026-08-29 05:06:05.864011', '2', '21', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('148', '148.10', '2026-08-29 05:06:05.879823', NULL, 'Regalos para mamá', '2026-07-13', '2026-08-29 05:06:05.879837', '12', '82', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('149', '263.48', '2026-08-29 05:06:05.900097', NULL, 'Servicio de agua', '2026-08-15', '2026-08-29 05:06:05.900111', '2', '16', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('150', '47.10', '2026-08-29 05:06:05.926147', NULL, 'Medicinas', '2026-08-20', '2026-08-29 05:06:05.926177', '6', '45', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('151', '59.93', '2026-08-29 05:06:05.942118', NULL, 'Donación para niños', '2026-08-14', '2026-08-29 05:06:05.942131', '12', '81', '13');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('152', '1808.92', '2026-08-29 05:06:05.964105', NULL, 'Salario', '2026-03-05', '2026-08-29 05:06:05.964117', '1', '1', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('153', '1024.69', '2026-08-29 05:06:05.978710', NULL, 'Sueldo', '2026-04-06', '2026-08-29 05:06:05.978727', '1', '1', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('154', '696.88', '2026-08-29 05:06:05.987839', NULL, 'Cuota agua reposición', '2026-05-25', '2026-08-29 05:06:05.987852', '2', '16', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('155', '467.62', '2026-08-29 05:06:05.996939', NULL, 'Gastos cafetería acumulada año', '2026-05-30', '2026-08-29 05:06:05.996953', '3', '26', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('156', '37.55', '2026-08-29 05:06:06.005415', NULL, 'evento online', '2026-06-30', '2026-08-29 05:06:06.005429', '9', '62', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('157', '891.24', '2026-08-29 05:06:06.015904', NULL, 'Alquiler piso', '2026-06-20', '2026-08-29 05:06:06.015916', '2', '13', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('158', '70.54', '2026-08-29 05:06:06.023249', NULL, 'Donación para familiar', '2026-07-14', '2026-08-29 05:06:06.023261', '12', '83', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('159', '193.41', '2026-08-29 05:06:06.030824', NULL, 'Donación para niños', '2026-07-18', '2026-08-29 05:06:06.030838', '12', '81', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('160', '38.38', '2026-08-29 05:06:06.038567', NULL, 'Ahorro para nuevo móvil', '2026-08-23', '2026-08-29 05:06:06.038581', '11', '75', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('161', '123.70', '2026-08-29 05:06:06.047243', NULL, 'Cuota internet', '2026-08-25', '2026-08-29 05:06:06.047259', '2', '18', '14');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('162', '521.59', '2026-08-29 05:06:06.090031', NULL, 'Sueldo', '2026-04-05', '2026-08-29 05:06:06.090049', '1', '1', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('163', '995.01', '2026-08-29 05:06:06.126418', NULL, 'Sueldo', '2026-05-07', '2026-08-29 05:06:06.126439', '1', '1', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('164', '288.38', '2026-08-29 05:06:06.147897', NULL, 'Gastos electricidad', '2026-05-15', '2026-08-29 05:06:06.147909', '2', '15', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('165', '198.65', '2026-08-29 05:06:06.160847', NULL, 'Pedido a domicilio', '2026-06-11', '2026-08-29 05:06:06.160860', '3', '25', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('166', '379.58', '2026-08-29 05:06:06.175020', NULL, 'Suscripciones del año', '2026-07-21', '2026-08-29 05:06:06.175034', '2', '22', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('167', '282.09', '2026-08-29 05:06:06.185403', NULL, 'Seguros de salud', '2026-07-29', '2026-08-29 05:06:06.185417', '2', '20', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('168', '172.99', '2026-08-29 05:06:06.194938', NULL, 'Gasto varios', '2026-08-18', '2026-08-29 05:06:06.194950', '13', '87', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('169', '34.60', '2026-08-29 05:06:06.203540', NULL, 'Gasto varios', '2026-08-20', '2026-08-29 05:06:06.203552', '13', '85', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('170', '6.92', '2026-08-29 05:06:06.213349', NULL, 'Inscripción', '2026-08-16', '2026-08-29 05:06:06.213362', '6', '48', '15');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('171', '672.48', '2026-08-29 05:06:06.229694', NULL, 'Venta de artículos propios', '2026-04-04', '2026-08-29 05:06:06.229709', '1', '12', '16');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('172', '349.44', '2026-08-29 05:06:06.238799', NULL, 'Instalación, equipos y mensualidad', '2026-04-17', '2026-08-29 05:06:06.238811', '2', '18', '16');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('173', '204.63', '2026-08-29 05:06:06.247344', NULL, 'Compras del mes', '2026-05-12', '2026-08-29 05:06:06.247355', '3', '23', '16');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('174', '44.84', '2026-08-29 05:06:06.255808', NULL, 'Cuota seguro', '2026-06-15', '2026-08-29 05:06:06.255821', '6', '46', '16');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('175', '5.06', '2026-08-29 05:06:06.266914', NULL, 'Suscripción spotify', '2026-07-10', '2026-08-29 05:06:06.266926', '2', '22', '16');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('176', '1762.82', '2026-08-29 05:06:06.301233', NULL, 'Sueldo', '2026-04-08', '2026-08-29 05:06:06.301252', '1', '1', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('177', '1493.89', '2026-08-29 05:06:06.338038', NULL, 'Sueldo', '2026-05-03', '2026-08-29 05:06:06.338102', '1', '1', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('178', '447.25', '2026-08-29 05:06:06.366559', NULL, 'Trabajo independiente', '2026-06-06', '2026-08-29 05:06:06.366574', '1', '4', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('179', '1243.96', '2026-08-29 05:06:06.381132', NULL, 'Pensión invalidez', '2026-07-08', '2026-08-29 05:06:06.381157', '1', '8', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('180', '1332.65', '2026-08-29 05:06:06.389603', NULL, 'Sueldo', '2026-08-10', '2026-08-29 05:06:06.389615', '1', '1', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('181', '674.98', '2026-08-29 05:06:06.401633', NULL, 'Alquiler', '2026-04-10', '2026-08-29 05:06:06.401645', '2', '13', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('182', '279.70', '2026-08-29 05:06:06.409187', NULL, 'Almuerzo rápido con la familia', '2026-05-23', '2026-08-29 05:06:06.409200', '3', '25', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('183', '149.53', '2026-08-29 05:06:06.416329', NULL, 'Accesorios para el piso', '2026-06-24', '2026-08-29 05:06:06.416340', '8', '57', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('184', '499.77', '2026-08-29 05:06:06.424405', NULL, 'Abastecimiento de licores', '2026-07-10', '2026-08-29 05:06:06.424418', '3', '28', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('185', '591.84', '2026-08-29 05:06:06.434233', NULL, 'Reestablecimiento de servicio', '2026-07-22', '2026-08-29 05:06:06.434246', '2', '18', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('186', '670.94', '2026-08-29 05:06:06.443552', NULL, 'Mantenimiento de la finca', '2026-08-26', '2026-08-29 05:06:06.443572', '2', '14', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('187', '79.73', '2026-08-29 05:06:06.452795', NULL, 'Regalos', '2026-08-26', '2026-08-29 05:06:06.452806', '12', '82', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('188', '257.76', '2026-08-29 05:06:06.473796', NULL, 'Compras delivery', '2026-08-14', '2026-08-29 05:06:06.473814', '3', '27', '17');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('189', '266.91', '2026-08-29 05:06:06.488158', NULL, 'Venta de artículos personales', '2026-04-09', '2026-08-29 05:06:06.488175', '1', '12', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('190', '1406.15', '2026-08-29 05:06:06.510270', NULL, 'Alquiler piso', '2026-05-08', '2026-08-29 05:06:06.510286', '1', '7', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('191', '1153.68', '2026-08-29 05:06:06.536468', NULL, 'Sueldo', '2026-06-06', '2026-08-29 05:06:06.536498', '1', '1', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('192', '806.29', '2026-08-29 05:06:06.560915', NULL, 'Salario', '2026-07-09', '2026-08-29 05:06:06.560955', '1', '1', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('193', '999.48', '2026-08-29 05:06:06.592489', NULL, 'Sueldo', '2026-08-03', '2026-08-29 05:06:06.592528', '1', '1', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('194', '156.98', '2026-08-29 05:06:06.601385', NULL, 'Suscripción a streaming', '2026-04-17', '2026-08-29 05:06:06.601397', '2', '22', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('195', '70.03', '2026-08-29 05:06:06.609022', NULL, 'Pedido a domicilio', '2026-05-24', '2026-08-29 05:06:06.609035', '3', '27', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('196', '450.84', '2026-08-29 05:06:06.616448', NULL, 'Comidas de los fines de semana', '2026-07-16', '2026-08-29 05:06:06.616461', '3', '25', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('197', '116.00', '2026-08-29 05:06:06.624304', NULL, 'Bebidas con los amigos', '2026-07-12', '2026-08-29 05:06:06.624320', '3', '28', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('198', '269.88', '2026-08-29 05:06:06.635141', NULL, 'Terapia accidente', '2026-07-26', '2026-08-29 05:06:06.635153', '6', '47', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('199', '277.25', '2026-08-29 05:06:06.651192', NULL, 'Tablet nueva', '2026-08-28', '2026-08-29 05:06:06.651204', '8', '59', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('200', '499.60', '2026-08-29 05:06:06.668409', NULL, 'Cuota acumulada del mes', '2026-08-29', '2026-08-29 05:06:06.668419', '3', '26', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('201', '322.16', '2026-08-29 05:06:06.675702', NULL, 'Compras del mes', '2026-08-28', '2026-08-29 05:06:06.675717', '3', '23', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('202', '209.29', '2026-08-29 05:06:06.697928', NULL, 'Consola nueva', '2026-08-30', '2026-08-29 05:06:06.697998', '9', '63', '18');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('203', '757.86', '2026-08-29 05:06:06.713924', NULL, 'Sueldo', '2026-04-04', '2026-08-29 05:06:06.713940', '1', '1', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('204', '1364.81', '2026-08-29 05:06:06.726941', NULL, 'Propina', '2026-05-02', '2026-08-29 05:06:06.726957', '1', '10', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('205', '1014.80', '2026-08-29 05:06:06.745545', NULL, 'Comisión del mes', '2026-07-10', '2026-08-29 05:06:06.745558', '1', '3', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('206', '793.08', '2026-08-29 05:06:06.769378', NULL, 'Incluye cuota del móvil nuevo', '2026-04-26', '2026-08-29 05:06:06.769393', '2', '19', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('207', '272.95', '2026-08-29 05:06:06.785837', NULL, 'Café con compañeros', '2026-05-28', '2026-08-29 05:06:06.785853', '3', '28', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('208', '187.48', '2026-08-29 05:06:06.800865', NULL, 'Compra de acciones', '2026-06-30', '2026-08-29 05:06:06.800881', '11', '76', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('209', '471.38', '2026-08-29 05:06:06.811179', NULL, 'Café con compañeros', '2026-07-13', '2026-08-29 05:06:06.811193', '3', '28', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('210', '84.94', '2026-08-29 05:06:06.830393', NULL, 'Regalos varios', '2026-07-23', '2026-08-29 05:06:06.830405', '12', '82', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('211', '25.99', '2026-08-29 05:06:06.837966', NULL, 'Ayuda a familiar', '2026-07-29', '2026-08-29 05:06:06.837977', '12', '83', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('212', '137.69', '2026-08-29 05:06:06.846232', NULL, 'Pago de peajes', '2026-07-18', '2026-08-29 05:06:06.846243', '4', '33', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('213', '523.12', '2026-08-29 05:06:06.854693', NULL, 'Pago de alquiler mensual', '2026-08-30', '2026-08-29 05:06:06.854707', '2', '13', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('214', '268.89', '2026-08-29 05:06:06.862366', NULL, 'Cuenta de electricidad', '2026-08-31', '2026-08-29 05:06:06.862377', '2', '15', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('215', '46.56', '2026-08-29 05:06:06.869828', NULL, 'Comida', '2026-08-26', '2026-08-29 05:06:06.869841', '3', '24', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('216', '9.31', '2026-08-29 05:06:06.878658', NULL, 'Café', '2026-08-21', '2026-08-29 05:06:06.878671', '3', '26', '19');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('217', '1582.44', '2026-08-29 05:06:06.891012', NULL, 'Sueldo', '2026-05-08', '2026-08-29 05:06:06.891052', '1', '1', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('218', '1073.13', '2026-08-29 05:06:06.914592', NULL, 'Salario', '2026-06-01', '2026-08-29 05:06:06.914630', '1', '1', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('219', '1239.23', '2026-08-29 05:06:06.955794', NULL, 'Herencia', '2026-07-07', '2026-08-29 05:06:06.955809', '1', '10', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('220', '503.27', '2026-08-29 05:06:06.979535', NULL, 'Sueldo', '2026-07-07', '2026-08-29 05:06:06.979549', '1', '1', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('221', '400.99', '2026-08-29 05:06:07.009762', NULL, 'Bonos', '2026-08-10', '2026-08-29 05:06:07.009776', '1', '2', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('222', '569.65', '2026-08-29 05:06:07.018317', NULL, 'Plan de telefonía móvil, incluye móvil nuevo', '2026-05-21', '2026-08-29 05:06:07.018327', '2', '18', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('223', '139.94', '2026-08-29 05:06:07.026109', NULL, 'Comidas', '2026-06-22', '2026-08-29 05:06:07.026120', '3', '24', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('224', '37.87', '2026-08-29 05:06:07.033806', NULL, 'Pedido a domicilio', '2026-07-16', '2026-08-29 05:06:07.033819', '3', '25', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('225', '184.17', '2026-08-29 05:06:07.042738', NULL, 'Compra semanal del supermercado', '2026-07-29', '2026-08-29 05:06:07.042750', '3', '23', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('226', '277.26', '2026-08-29 05:06:07.051512', NULL, 'Pago de servicio', '2026-07-27', '2026-08-29 05:06:07.051523', '2', '15', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('227', '180.56', '2026-08-29 05:06:07.059949', NULL, 'Zapatos nuevos', '2026-08-11', '2026-08-29 05:06:07.059959', '8', '56', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('228', '273.71', '2026-08-29 05:06:07.067641', NULL, 'Pedido delivery para cena cumpleaños', '2026-08-25', '2026-08-29 05:06:07.067652', '3', '27', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('229', '406.56', '2026-08-29 05:06:07.075470', NULL, 'Licores', '2026-08-19', '2026-08-29 05:06:07.075480', '3', '28', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('230', '764.06', '2026-08-29 05:06:07.089712', NULL, 'Pago de suscripciones anuales', '2026-08-17', '2026-08-29 05:06:07.089722', '2', '22', '20');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('231', '495.25', '2026-08-29 05:06:07.109482', NULL, 'Comisión', '2026-05-03', '2026-08-29 05:06:07.109501', '1', '3', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('232', '1516.00', '2026-08-29 05:06:07.144136', NULL, 'Ventas', '2026-06-09', '2026-08-29 05:06:07.144150', '1', '5', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('233', '645.48', '2026-08-29 05:06:07.168517', NULL, 'Salario', '2026-07-05', '2026-08-29 05:06:07.168540', '1', '1', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('234', '1512.58', '2026-08-29 05:06:07.183504', NULL, 'Sueldo', '2026-07-02', '2026-08-29 05:06:07.183521', '1', '1', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('235', '1883.96', '2026-08-29 05:06:07.201267', NULL, 'Alquiler piso Tarragona', '2026-08-10', '2026-08-29 05:06:07.201282', '1', '7', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('236', '413.70', '2026-08-29 05:06:07.217579', NULL, 'Cuota de telefonía de todos', '2026-05-29', '2026-08-29 05:06:07.217589', '2', '19', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('237', '188.78', '2026-08-29 05:06:07.228364', NULL, 'Licores', '2026-06-19', '2026-08-29 05:06:07.228376', '3', '28', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('238', '465.96', '2026-08-29 05:06:07.237886', NULL, 'Pago cochera', '2026-06-28', '2026-08-29 05:06:07.237944', '2', '13', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('239', '64.01', '2026-08-29 05:06:07.246915', NULL, 'Pago internet', '2026-07-15', '2026-08-29 05:06:07.246928', '2', '18', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('240', '236.68', '2026-08-29 05:06:07.259768', NULL, 'Ayuda por salud', '2026-07-25', '2026-08-29 05:06:07.259781', '12', '83', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('241', '370.93', '2026-08-29 05:06:07.268679', NULL, 'Servicio de gas', '2026-07-26', '2026-08-29 05:06:07.268690', '2', '17', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('242', '211.32', '2026-08-29 05:06:07.285549', NULL, 'Compras de la semana', '2026-08-10', '2026-08-29 05:06:07.285560', '3', '23', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('243', '383.24', '2026-08-29 05:06:07.295580', NULL, 'Delivery acumulado', '2026-08-24', '2026-08-29 05:06:07.295593', '3', '27', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('244', '66.41', '2026-08-29 05:06:07.309182', NULL, 'Cena especial', '2026-08-16', '2026-08-29 05:06:07.309199', '3', '25', '21');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('245', '1434.36', '2026-08-29 05:06:07.330646', NULL, 'Salario', '2026-05-01', '2026-08-29 05:06:07.330663', '1', '1', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('246', '395.38', '2026-08-29 05:06:07.351417', NULL, 'Alquileres cochera', '2026-06-07', '2026-08-29 05:06:07.351433', '1', '7', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('247', '650.68', '2026-08-29 05:06:07.368363', NULL, 'Donación recibida', '2026-07-03', '2026-08-29 05:06:07.368376', '1', '10', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('248', '446.03', '2026-08-29 05:06:07.387078', NULL, 'Cuenta de agua', '2026-05-21', '2026-08-29 05:06:07.387152', '2', '16', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('249', '319.31', '2026-08-29 05:06:07.403988', NULL, 'Delivery alimentos', '2026-05-25', '2026-08-29 05:06:07.404132', '3', '27', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('250', '380.90', '2026-08-29 05:06:07.420344', NULL, 'Factura de gas', '2026-06-15', '2026-08-29 05:06:07.420360', '2', '17', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('251', '122.66', '2026-08-29 05:06:07.432643', NULL, 'Donaciones obligatorias', '2026-06-29', '2026-08-29 05:06:07.432658', '12', '81', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('252', '794.34', '2026-08-29 05:06:07.445405', NULL, 'Pago hipoteca', '2026-07-10', '2026-08-29 05:06:07.445418', '2', '13', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('253', '135.31', '2026-08-29 05:06:07.453084', NULL, 'Servicio de agua', '2026-07-29', '2026-08-29 05:06:07.453097', '2', '16', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('254', '27.06', '2026-08-29 05:06:07.461021', NULL, 'Seguro del piso', '2026-08-10', '2026-08-29 05:06:07.461033', '2', '20', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('255', '5.41', '2026-08-29 05:06:07.468584', NULL, 'Medicinas de emergencia', '2026-08-20', '2026-08-29 05:06:07.468596', '13', '84', '22');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('256', '1841.67', '2026-08-29 05:06:07.482898', NULL, 'Salario', '2026-05-06', '2026-08-29 05:06:07.482912', '1', '1', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('257', '1454.06', '2026-08-29 05:06:07.493396', NULL, 'Sueldo', '2026-06-04', '2026-08-29 05:06:07.493408', '1', '1', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('258', '1686.68', '2026-08-29 05:06:07.502402', NULL, 'Salario', '2026-07-02', '2026-08-29 05:06:07.502416', '1', '1', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('259', '279.20', '2026-08-29 05:06:07.513237', NULL, 'Instalación y servicio', '2026-05-19', '2026-08-29 05:06:07.513251', '2', '18', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('260', '213.16', '2026-08-29 05:06:07.531392', NULL, 'Licores', '2026-06-23', '2026-08-29 05:06:07.531412', '3', '28', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('261', '24.01', '2026-08-29 05:06:07.548430', NULL, 'Petróleo', '2026-06-26', '2026-08-29 05:06:07.548455', '4', '29', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('262', '22.62', '2026-08-29 05:06:07.580894', NULL, 'Regalo para cumpleaños', '2026-07-31', '2026-08-29 05:06:07.580933', '12', '82', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('263', '156.17', '2026-08-29 05:06:07.606419', NULL, 'Salida con la familia', '2026-07-15', '2026-08-29 05:06:07.606434', '3', '24', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('264', '671.60', '2026-08-29 05:06:07.623292', NULL, 'Pago adelantado', '2026-07-30', '2026-08-29 05:06:07.623304', '2', '18', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('265', '344.11', '2026-08-29 05:06:07.632086', NULL, 'Licores y sodas', '2026-08-21', '2026-08-29 05:06:07.632100', '3', '28', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('266', '186.09', '2026-08-29 05:06:07.639787', NULL, 'Gasto del mes', '2026-08-21', '2026-08-29 05:06:07.639799', '4', '34', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('267', '126.94', '2026-08-29 05:06:07.649938', NULL, 'Revisión anual', '2026-08-10', '2026-08-29 05:06:07.649950', '6', '44', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('268', '260.14', '2026-08-29 05:06:07.657882', NULL, 'Compras del mes', '2026-08-22', '2026-08-29 05:06:07.657893', '3', '23', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('269', '235.25', '2026-08-29 05:06:07.673035', NULL, 'Cafetería con amigos (acumulado)', '2026-08-20', '2026-08-29 05:06:07.673047', '3', '26', '23');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('270', '637.71', '2026-08-29 05:06:07.685095', NULL, 'Sueldo', '2026-05-10', '2026-08-29 05:06:07.685108', '1', '1', '24');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('271', '459.15', '2026-08-29 05:06:07.692961', NULL, 'Alquiler cochera', '2026-05-10', '2026-08-29 05:06:07.692975', '2', '13', '24');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('272', '91.83', '2026-08-29 05:06:07.700553', NULL, 'Licores', '2026-05-17', '2026-08-29 05:06:07.700564', '3', '28', '24');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('273', '18.37', '2026-08-29 05:06:07.712714', NULL, 'Regalo tía', '2026-06-14', '2026-08-29 05:06:07.712728', '12', '82', '24');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('274', '1846.90', '2026-08-29 05:06:07.729167', NULL, 'Sueldo', '2026-05-02', '2026-08-29 05:06:07.729188', '1', '1', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('275', '1201.96', '2026-08-29 05:06:07.753389', NULL, 'Alquiler piso', '2026-06-06', '2026-08-29 05:06:07.753409', '1', '7', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('276', '1466.98', '2026-08-29 05:06:07.777643', NULL, 'Salario', '2026-07-07', '2026-08-29 05:06:07.777664', '1', '1', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('277', '1951.38', '2026-08-29 05:06:07.796010', NULL, 'Resultado inversiones', '2026-08-01', '2026-08-29 05:06:07.796022', '1', '6', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('278', '753.13', '2026-08-29 05:06:07.819993', NULL, 'Bonos pendientes', '2026-08-09', '2026-08-29 05:06:07.820017', '1', '3', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('279', '527.60', '2026-08-29 05:06:07.833052', NULL, 'Recibo de gas de 3 meses', '2026-06-21', '2026-08-29 05:06:07.833064', '2', '17', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('280', '406.66', '2026-08-29 05:06:07.842670', NULL, 'Delivery en casa', '2026-07-26', '2026-08-29 05:06:07.842687', '3', '27', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('281', '242.28', '2026-08-29 05:06:07.854632', NULL, 'Cena en restaurante', '2026-08-13', '2026-08-29 05:06:07.854646', '3', '24', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('282', '153.16', '2026-08-29 05:06:07.862538', NULL, 'Móvil nuevo', '2026-08-15', '2026-08-29 05:06:07.862550', '8', '60', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('283', '339.10', '2026-08-29 05:06:07.869891', NULL, 'Gastos acumulados en cafetería', '2026-08-29', '2026-08-29 05:06:07.869903', '3', '26', '25');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('284', '1994.26', '2026-08-29 05:06:07.877044', NULL, 'Sueldo', '2026-06-08', '2026-08-29 05:06:07.877056', '1', '1', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('285', '520.13', '2026-08-29 05:06:07.884436', NULL, 'Salario', '2026-07-02', '2026-08-29 05:06:07.884450', '1', '1', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('286', '688.46', '2026-08-29 05:06:07.892921', NULL, 'Cuota del movil', '2026-06-26', '2026-08-29 05:06:07.892934', '2', '19', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('287', '451.03', '2026-08-29 05:06:07.902533', NULL, 'Cafés del mes', '2026-06-25', '2026-08-29 05:06:07.902554', '3', '26', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('288', '483.43', '2026-08-29 05:06:07.911248', NULL, 'Impuestos automóvil', '2026-07-20', '2026-08-29 05:06:07.911262', '2', '21', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('289', '66.84', '2026-08-29 05:06:07.920725', NULL, 'Almuerzo rápido', '2026-07-28', '2026-08-29 05:06:07.920741', '3', '25', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('290', '176.48', '2026-08-29 05:06:07.940730', NULL, 'Licores', '2026-07-14', '2026-08-29 05:06:07.940756', '3', '28', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('291', '81.97', '2026-08-29 05:06:07.971344', NULL, 'Cuota del servicio de móvil de toda la familia', '2026-08-28', '2026-08-29 05:06:07.971383', '2', '19', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('292', '251.79', '2026-08-29 05:06:07.997562', NULL, 'Delivery de comida', '2026-08-26', '2026-08-29 05:06:07.997585', '3', '27', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('293', '49.09', '2026-08-29 05:06:08.023576', NULL, 'Gasto del mes', '2026-08-25', '2026-08-29 05:06:08.023599', '4', '32', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('294', '11.09', '2026-08-29 05:06:08.041621', NULL, 'Ahorro impuesto', '2026-08-26', '2026-08-29 05:06:08.041637', '13', '86', '26');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('295', '1175.65', '2026-08-29 05:06:08.051476', NULL, 'Devolución préstamos', '2026-06-06', '2026-08-29 05:06:08.051488', '1', '11', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('296', '1199.28', '2026-08-29 05:06:08.059361', NULL, 'Salario', '2026-07-08', '2026-08-29 05:06:08.059372', '1', '1', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('297', '696.19', '2026-08-29 05:06:08.067032', NULL, 'Cuota de comunidad', '2026-06-14', '2026-08-29 05:06:08.067057', '2', '21', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('298', '427.27', '2026-08-29 05:06:08.074165', NULL, 'Compra semanal del supermercado', '2026-06-28', '2026-08-29 05:06:08.074207', '3', '27', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('299', '48.53', '2026-08-29 05:06:08.081614', NULL, 'Ayuda por la DANA', '2026-07-10', '2026-08-29 05:06:08.081627', '12', '83', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('300', '433.14', '2026-08-29 05:06:08.088967', NULL, 'Pedidos delivery', '2026-07-28', '2026-08-29 05:06:08.088986', '3', '27', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('301', '46.41', '2026-08-29 05:06:08.097354', NULL, 'Gasto del mes', '2026-07-11', '2026-08-29 05:06:08.097366', '13', '85', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('302', '78.92', '2026-08-29 05:06:08.109108', NULL, 'Mensualidad gas', '2026-08-27', '2026-08-29 05:06:08.109120', '2', '17', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('303', '172.15', '2026-08-29 05:06:08.116662', NULL, 'Repuestos para refacciones', '2026-08-17', '2026-08-29 05:06:08.116678', '13', '87', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('304', '187.86', '2026-08-29 05:06:08.128286', NULL, 'Factura de electricidad', '2026-08-29', '2026-08-29 05:06:08.128298', '2', '15', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('305', '37.57', '2026-08-29 05:06:08.147776', NULL, 'Pasajes', '2026-08-11', '2026-08-29 05:06:08.147792', '9', '67', '27');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('306', '201.60', '2026-08-29 05:06:08.178379', NULL, 'Ventas', '2026-06-02', '2026-08-29 05:06:08.178391', '1', '5', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('307', '1193.86', '2026-08-29 05:06:08.192633', NULL, 'Ingreso por servicios profesionales', '2026-07-07', '2026-08-29 05:06:08.192650', '1', '9', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('308', '702.91', '2026-08-29 05:06:08.208959', NULL, 'Sueldo', '2026-08-01', '2026-08-29 05:06:08.208974', '1', '1', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('309', '318.57', '2026-08-29 05:06:08.227580', NULL, 'Impuestos municipales', '2026-06-26', '2026-08-29 05:06:08.227605', '2', '21', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('310', '164.13', '2026-08-29 05:06:08.252148', NULL, 'Licores', '2026-07-21', '2026-08-29 05:06:08.252163', '3', '28', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('311', '170.95', '2026-08-29 05:06:08.264677', NULL, 'Compra videojuegos', '2026-07-18', '2026-08-29 05:06:08.264688', '9', '63', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('312', '222.20', '2026-08-29 05:06:08.277726', NULL, 'Tratamiento', '2026-07-29', '2026-08-29 05:06:08.277739', '6', '44', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('313', '187.25', '2026-08-29 05:06:08.285287', NULL, 'Compra del mes', '2026-07-26', '2026-08-29 05:06:08.285300', '8', '60', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('314', '139.14', '2026-08-29 05:06:08.292578', NULL, 'Servicio de agua', '2026-08-16', '2026-08-29 05:06:08.292590', '2', '16', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('315', '92.99', '2026-08-29 05:06:08.300097', NULL, 'Comida', '2026-08-20', '2026-08-29 05:06:08.300110', '3', '24', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('316', '201.03', '2026-08-29 05:06:08.307487', NULL, 'Ahorro para nuevo ordenador', '2026-08-18', '2026-08-29 05:06:08.307499', '13', '86', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('317', '285.41', '2026-08-29 05:06:08.314727', NULL, 'Regalo para papá', '2026-08-30', '2026-08-29 05:06:08.314751', '12', '82', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('318', '85.49', '2026-08-29 05:06:08.322283', NULL, 'Impuestos varios', '2026-08-23', '2026-08-29 05:06:08.322296', '2', '21', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('319', '17.10', '2026-08-29 05:06:08.335009', NULL, 'Accesorios para el coche', '2026-08-30', '2026-08-29 05:06:08.335027', '8', '57', '28');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('320', '786.31', '2026-08-29 05:06:08.344368', NULL, 'Sueldo', '2026-06-08', '2026-08-29 05:06:08.344379', '1', '1', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('321', '967.05', '2026-08-29 05:06:08.362322', NULL, 'Salario', '2026-07-03', '2026-08-29 05:06:08.362337', '1', '1', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('322', '1339.40', '2026-08-29 05:06:08.379450', NULL, 'Sueldo', '2026-07-08', '2026-08-29 05:06:08.379468', '1', '1', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('323', '1499.65', '2026-08-29 05:06:08.396431', NULL, 'Salario', '2026-08-07', '2026-08-29 05:06:08.396448', '1', '1', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('324', '665.24', '2026-08-29 05:06:08.414423', NULL, 'Gastos de últimos meses', '2026-06-11', '2026-08-29 05:06:08.414444', '2', '15', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('325', '110.48', '2026-08-29 05:06:08.431502', NULL, 'Licores', '2026-06-22', '2026-08-29 05:06:08.431524', '3', '28', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('326', '237.02', '2026-08-29 05:06:08.456393', NULL, 'Devolución de préstamos', '2026-07-21', '2026-08-29 05:06:08.456410', '11', '77', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('327', '283.20', '2026-08-29 05:06:08.472837', NULL, 'Gastos en la oficina', '2026-07-28', '2026-08-29 05:06:08.472850', '13', '85', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('328', '450.93', '2026-08-29 05:06:08.481007', NULL, 'Gastos delivery acumulados', '2026-07-27', '2026-08-29 05:06:08.481020', '3', '25', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('329', '13.69', '2026-08-29 05:06:08.493742', NULL, 'Gastos en la oficina', '2026-07-28', '2026-08-29 05:06:08.493755', '13', '85', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('330', '208.16', '2026-08-29 05:06:08.505725', NULL, 'Tratamiento dental ', '2026-08-17', '2026-08-29 05:06:08.505737', '6', '44', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('331', '299.68', '2026-08-29 05:06:08.513905', NULL, 'Cenas', '2026-08-19', '2026-08-29 05:06:08.513918', '3', '25', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('332', '38.76', '2026-08-29 05:06:08.527139', NULL, 'Emergencias', '2026-08-30', '2026-08-29 05:06:08.527150', '6', '43', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('333', '268.60', '2026-08-29 05:06:08.536271', NULL, 'Conciertos', '2026-08-12', '2026-08-29 05:06:08.536286', '9', '64', '29');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('334', '707.66', '2026-08-29 05:06:08.552795', NULL, 'Salario', '2026-06-08', '2026-08-29 05:06:08.552810', '1', '1', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('335', '810.51', '2026-08-29 05:06:08.566230', NULL, 'Sueldo', '2026-07-08', '2026-08-29 05:06:08.566249', '1', '1', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('336', '287.53', '2026-08-29 05:06:08.588791', NULL, 'Bonos', '2026-07-03', '2026-08-29 05:06:08.588808', '1', '3', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('337', '1918.58', '2026-08-29 05:06:08.623865', NULL, 'Salario', '2026-08-06', '2026-08-29 05:06:08.623880', '1', '1', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('338', '474.90', '2026-08-29 05:06:08.645090', NULL, 'Pago de servicio de gas', '2026-06-14', '2026-08-29 05:06:08.645107', '2', '17', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('339', '163.11', '2026-08-29 05:06:08.662254', NULL, 'Almuerzo rápido con la familia', '2026-06-20', '2026-08-29 05:06:08.662271', '3', '25', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('340', '617.76', '2026-08-29 05:06:08.681358', NULL, 'Pago de electricidad atrasada', '2026-07-13', '2026-08-29 05:06:08.681372', '2', '15', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('341', '208.60', '2026-08-29 05:06:08.694566', NULL, 'Compras de la semana', '2026-07-11', '2026-08-29 05:06:08.694578', '3', '23', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('342', '249.13', '2026-08-29 05:06:08.703138', NULL, 'Cafés con la familia', '2026-08-26', '2026-08-29 05:06:08.703152', '3', '26', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('343', '62.13', '2026-08-29 05:06:08.716863', NULL, 'Zapatillas', '2026-08-18', '2026-08-29 05:06:08.716878', '8', '56', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('344', '441.10', '2026-08-29 05:06:08.726570', NULL, 'Licores', '2026-08-16', '2026-08-29 05:06:08.726582', '3', '28', '30');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('345', '1122.72', '2026-08-29 05:06:08.736568', NULL, 'Ayuda de mis padres', '2026-06-06', '2026-08-29 05:06:08.736581', '1', '9', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('346', '1555.74', '2026-08-29 05:06:08.757265', NULL, 'Ventas personales', '2026-07-04', '2026-08-29 05:06:08.757281', '1', '12', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('347', '294.96', '2026-08-29 05:06:08.775903', NULL, 'Pensiones', '2026-07-10', '2026-08-29 05:06:08.775923', '1', '8', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('348', '1084.82', '2026-08-29 05:06:08.796417', NULL, 'Sueldo', '2026-08-04', '2026-08-29 05:06:08.796432', '1', '1', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('349', '1279.88', '2026-08-29 05:06:08.815739', NULL, 'Salario', '2026-08-05', '2026-08-29 05:06:08.815758', '1', '1', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('350', '369.78', '2026-08-29 05:06:08.870129', NULL, 'Impuestos varios', '2026-07-12', '2026-08-29 05:06:08.870150', '2', '21', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('351', '124.88', '2026-08-29 05:06:08.885678', NULL, 'Compra de la semana', '2026-07-17', '2026-08-29 05:06:08.885690', '3', '23', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('352', '335.00', '2026-08-29 05:06:08.895377', NULL, 'Servicio de internet adelantado', '2026-07-26', '2026-08-29 05:06:08.895390', '2', '18', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('353', '100.00', '2026-08-29 05:06:08.906492', NULL, 'Suscripción a streaming', '2026-08-10', '2026-08-29 05:06:08.906505', '2', '22', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('354', '223.13', '2026-08-29 05:06:08.915988', NULL, 'Gasto varios', '2026-08-15', '2026-08-29 05:06:08.915999', '13', '84', '31');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('355', '1484.51', '2026-08-29 05:06:08.923783', NULL, 'Sueldo', '2026-07-02', '2026-08-29 05:06:08.923801', '1', '1', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('356', '723.72', '2026-08-29 05:06:08.931686', NULL, 'Ventas propias', '2026-08-02', '2026-08-29 05:06:08.931698', '1', '12', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('357', '88.00', '2026-08-29 05:06:08.940117', NULL, 'Suscripciones', '2026-07-20', '2026-08-29 05:06:08.940146', '2', '22', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('358', '95.08', '2026-08-29 05:06:08.948106', NULL, 'Pagos en cafeterias', '2026-07-18', '2026-08-29 05:06:08.948149', '3', '26', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('359', '53.31', '2026-08-29 05:06:08.959182', NULL, 'Medicinas', '2026-07-11', '2026-08-29 05:06:08.959195', '6', '45', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('360', '259.09', '2026-08-29 05:06:08.968584', NULL, 'Gasto de combustible', '2026-07-25', '2026-08-29 05:06:08.968597', '4', '29', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('361', '485.95', '2026-08-29 05:06:08.995573', NULL, 'Pago de alquiler mensual', '2026-08-22', '2026-08-29 05:06:08.995591', '2', '13', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('362', '55.50', '2026-08-29 05:06:09.022995', NULL, 'Servicio de telefonía', '2026-08-23', '2026-08-29 05:06:09.023009', '2', '19', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('363', '157.71', '2026-08-29 05:06:09.041457', NULL, 'Compra comida por delivery', '2026-08-11', '2026-08-29 05:06:09.041473', '3', '27', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('364', '31.54', '2026-08-29 05:06:09.068659', NULL, 'Gasto varios', '2026-08-23', '2026-08-29 05:06:09.068672', '6', '45', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('365', '6.31', '2026-08-29 05:06:09.083264', NULL, 'Compra rápida', '2026-08-14', '2026-08-29 05:06:09.083280', '3', '23', '32');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('366', '1434.57', '2026-08-29 05:06:09.098320', NULL, 'Sueldo', '2026-07-04', '2026-08-29 05:06:09.098333', '1', '1', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('367', '922.77', '2026-08-29 05:06:09.108650', NULL, 'Ventas personales', '2026-07-08', '2026-08-29 05:06:09.108663', '1', '12', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('368', '1503.09', '2026-08-29 05:06:09.119340', NULL, 'Salario', '2026-08-09', '2026-08-29 05:06:09.119353', '1', '1', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('369', '210.04', '2026-08-29 05:06:09.129880', NULL, 'Servicio de electricidad atrasado', '2026-07-27', '2026-08-29 05:06:09.129894', '2', '15', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('370', '65.20', '2026-08-29 05:06:09.139714', NULL, 'Cena rápida', '2026-07-30', '2026-08-29 05:06:09.139726', '3', '25', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('371', '124.00', '2026-08-29 05:06:09.147187', NULL, 'Pago de recibo mensual', '2026-07-29', '2026-08-29 05:06:09.147200', '2', '16', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('372', '28.70', '2026-08-29 05:06:09.165288', NULL, 'Entradas', '2026-07-27', '2026-08-29 05:06:09.165302', '9', '61', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('373', '120.00', '2026-08-29 05:06:09.175680', NULL, 'Licores', '2026-08-13', '2026-08-29 05:06:09.175698', '3', '28', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('374', '114.09', '2026-08-29 05:06:09.195977', NULL, 'Combustible', '2026-08-25', '2026-08-29 05:06:09.195996', '4', '29', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('375', '66.00', '2026-08-29 05:06:09.211343', NULL, 'Tarjetas de transporte', '2026-08-20', '2026-08-29 05:06:09.211361', '4', '30', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('376', '271.68', '2026-08-29 05:06:09.249617', NULL, 'Tablet nueva', '2026-08-24', '2026-08-29 05:06:09.249631', '8', '60', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('377', '184.38', '2026-08-29 05:06:09.269658', NULL, 'Compras de la semana', '2026-08-14', '2026-08-29 05:06:09.269674', '3', '23', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('378', '209.24', '2026-08-29 05:06:09.284069', NULL, 'Tasas municipales', '2026-08-10', '2026-08-29 05:06:09.284090', '2', '21', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('379', '237.40', '2026-08-29 05:06:09.293445', NULL, 'Ahorros con objetivo', '2026-08-26', '2026-08-29 05:06:09.293457', '11', '75', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('380', '70.75', '2026-08-29 05:06:09.300997', NULL, 'Gastos en café con los amigos', '2026-08-26', '2026-08-29 05:06:09.301009', '3', '26', '33');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('381', '880.91', '2026-08-29 05:06:09.308353', NULL, 'Salario', '2026-07-06', '2026-08-29 05:06:09.308366', '1', '1', '34');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('382', '67.00', '2026-08-29 05:06:09.324056', NULL, 'Suscripciones', '2026-07-12', '2026-08-29 05:06:09.324068', '2', '22', '34');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('383', '100.86', '2026-08-29 05:06:09.332597', NULL, 'Compra delivery', '2026-08-25', '2026-08-29 05:06:09.332614', '3', '27', '34');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('384', '20.17', '2026-08-29 05:06:09.342160', NULL, 'Entradas', '2026-08-16', '2026-08-29 05:06:09.342173', '9', '61', '34');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('385', '5.00', '2026-08-29 05:06:09.350161', NULL, 'Case para móvil', '2026-08-14', '2026-08-29 05:06:09.350173', '8', '59', '34');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('386', '709.17', '2026-08-29 05:06:09.357638', NULL, 'Ayuda recibida', '2026-07-08', '2026-08-29 05:06:09.357651', '1', '9', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('387', '1351.48', '2026-08-29 05:06:09.367715', NULL, 'Alquiler piso', '2026-07-05', '2026-08-29 05:06:09.367736', '1', '7', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('388', '893.58', '2026-08-29 05:06:09.382474', NULL, 'Trabajo propio', '2026-08-06', '2026-08-29 05:06:09.382489', '1', '4', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('389', '147.39', '2026-08-29 05:06:09.407086', NULL, 'Recibo de gas', '2026-07-11', '2026-08-29 05:06:09.407112', '2', '17', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('390', '330.18', '2026-08-29 05:06:09.429030', NULL, 'Restaurantes con la familia', '2026-07-28', '2026-08-29 05:06:09.429068', '3', '24', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('391', '224.65', '2026-08-29 05:06:09.444550', NULL, 'Ropa', '2026-07-31', '2026-08-29 05:06:09.444568', '8', '57', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('392', '22.70', '2026-08-29 05:06:09.462755', NULL, 'Peajes', '2026-07-19', '2026-08-29 05:06:09.462784', '4', '33', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('393', '280.62', '2026-08-29 05:06:09.486623', NULL, 'Compras de la quincena', '2026-08-13', '2026-08-29 05:06:09.486683', '3', '23', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('394', '81.26', '2026-08-29 05:06:09.500836', NULL, 'Móvil nuevo', '2026-08-16', '2026-08-29 05:06:09.500851', '8', '59', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('395', '292.90', '2026-08-29 05:06:09.510666', NULL, 'Recibo de electricidad', '2026-08-18', '2026-08-29 05:06:09.510679', '2', '15', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('396', '81.00', '2026-08-29 05:06:09.520570', NULL, 'Suscripción a streaming', '2026-08-19', '2026-08-29 05:06:09.520587', '2', '22', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('397', '61.76', '2026-08-29 05:06:09.529573', NULL, 'Delivery de comida', '2026-08-25', '2026-08-29 05:06:09.529593', '3', '27', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('398', '20.66', '2026-08-29 05:06:09.538568', NULL, 'Imprevistos', '2026-08-18', '2026-08-29 05:06:09.538581', '13', '85', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('399', '12.55', '2026-08-29 05:06:09.546989', NULL, 'Cuota del mes', '2026-08-10', '2026-08-29 05:06:09.547003', '2', '17', '35');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('400', '496.49', '2026-08-29 05:06:09.555324', NULL, 'Alquiler del coche', '2026-07-08', '2026-08-29 05:06:09.555338', '1', '7', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('401', '1597.24', '2026-08-29 05:06:09.568162', NULL, 'Prestaciones recibidas', '2026-07-02', '2026-08-29 05:06:09.568174', '1', '9', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('402', '376.35', '2026-08-29 05:06:09.581129', NULL, 'Ventas propias', '2026-08-02', '2026-08-29 05:06:09.581144', '1', '12', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('403', '474.63', '2026-08-29 05:06:09.598343', NULL, 'Comisiones', '2026-08-08', '2026-08-29 05:06:09.598360', '1', '3', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('404', '70.64', '2026-08-29 05:06:09.624012', NULL, 'Recibo de electricidad', '2026-07-28', '2026-08-29 05:06:09.624044', '2', '15', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('405', '339.87', '2026-08-29 05:06:09.653507', NULL, 'Cena especial', '2026-07-26', '2026-08-29 05:06:09.653532', '3', '25', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('406', '111.29', '2026-08-29 05:06:09.686235', NULL, 'Compras de la semana', '2026-07-21', '2026-08-29 05:06:09.686251', '3', '23', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('407', '49.28', '2026-08-29 05:06:09.695439', NULL, 'Videojuego de regalo', '2026-07-30', '2026-08-29 05:06:09.695452', '9', '63', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('408', '233.12', '2026-08-29 05:06:09.704643', NULL, 'Plan de ahorro', '2026-07-30', '2026-08-29 05:06:09.704655', '11', '75', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('409', '143.64', '2026-08-29 05:06:09.712007', NULL, 'Donación familiar por salud', '2026-07-22', '2026-08-29 05:06:09.712019', '12', '81', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('410', '248.26', '2026-08-29 05:06:09.719098', NULL, 'Ordenador nuevo', '2026-08-10', '2026-08-29 05:06:09.719113', '8', '59', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('411', '223.98', '2026-08-29 05:06:09.736168', NULL, 'Préstamos', '2026-08-28', '2026-08-29 05:06:09.736182', '13', '86', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('412', '45.45', '2026-08-29 05:06:09.744688', NULL, 'Cuota del mes', '2026-08-23', '2026-08-29 05:06:09.744702', '2', '18', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('413', '58.21', '2026-08-29 05:06:09.754741', NULL, 'Pagos de comisiones', '2026-08-28', '2026-08-29 05:06:09.754753', '11', '79', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('414', '286.51', '2026-08-29 05:06:09.765213', NULL, 'Comida con los amigos', '2026-08-28', '2026-08-29 05:06:09.765229', '3', '24', '36');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('415', '1148.51', '2026-08-29 05:06:09.773100', NULL, 'Sueldo', '2026-07-03', '2026-08-29 05:06:09.773138', '1', '1', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('416', '1739.78', '2026-08-29 05:06:09.780465', NULL, 'Reporte de inversiones', '2026-08-07', '2026-08-29 05:06:09.780478', '1', '6', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('417', '262.87', '2026-08-29 05:06:09.789939', NULL, 'Gastos de telefonía adelantados', '2026-07-18', '2026-08-29 05:06:09.789954', '2', '19', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('418', '337.49', '2026-08-29 05:06:09.804361', NULL, 'Compras del mes', '2026-07-13', '2026-08-29 05:06:09.804381', '3', '23', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('419', '414.46', '2026-08-29 05:06:09.823132', NULL, 'Pago de mantenimiento adelantado', '2026-07-23', '2026-08-29 05:06:09.823173', '2', '14', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('420', '189.45', '2026-08-29 05:06:09.856123', NULL, 'Compra de acciones', '2026-07-10', '2026-08-29 05:06:09.856216', '11', '76', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('421', '291.94', '2026-08-29 05:06:09.880920', NULL, 'Pago para reparaciones', '2026-08-25', '2026-08-29 05:06:09.880936', '2', '14', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('422', '78.99', '2026-08-29 05:06:09.916077', NULL, 'Pasajes', '2026-08-19', '2026-08-29 05:06:09.916105', '9', '67', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('423', '234.49', '2026-08-29 05:06:09.927829', NULL, 'Recibo de agua', '2026-08-12', '2026-08-29 05:06:09.927845', '2', '16', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('424', '285.30', '2026-08-29 05:06:09.935785', NULL, 'Comisiones pendientes de pago', '2026-08-17', '2026-08-29 05:06:09.935802', '11', '79', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('425', '184.50', '2026-08-29 05:06:09.943154', NULL, 'Factura de agua', '2026-08-29', '2026-08-29 05:06:09.943167', '2', '16', '37');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('426', '972.37', '2026-08-29 05:06:09.952982', NULL, 'Sueldos', '2026-07-08', '2026-08-29 05:06:09.952995', '1', '1', '38');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('427', '414.09', '2026-08-29 05:06:09.961408', NULL, 'Alquiler de cochera', '2026-07-17', '2026-08-29 05:06:09.961422', '2', '13', '38');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('428', '308.48', '2026-08-29 05:06:09.968728', NULL, 'Compras de comida rápida', '2026-08-19', '2026-08-29 05:06:09.968740', '3', '25', '38');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('429', '122.05', '2026-08-29 05:06:09.977290', NULL, 'Concierto', '2026-08-17', '2026-08-29 05:06:09.977303', '9', '64', '38');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('430', '24.41', '2026-08-29 05:06:09.985343', NULL, 'Tragos con los amigos', '2026-08-22', '2026-08-29 05:06:09.985355', '3', '28', '38');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('431', '5.00', '2026-08-29 05:06:09.993398', NULL, 'Propina sobrino', '2026-08-25', '2026-08-29 05:06:09.993413', '12', '83', '38');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('432', '631.32', '2026-08-29 05:06:10.025603', NULL, 'Bono por horas extraordinarias', '2026-08-05', '2026-08-29 05:06:10.025622', '1', '3', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('433', '926.17', '2026-08-29 05:06:10.040978', NULL, 'Sueldo', '2026-08-07', '2026-08-29 05:06:10.040995', '1', '1', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('434', '586.94', '2026-08-29 05:06:10.056124', NULL, 'Salario', '2026-08-03', '2026-08-29 05:06:10.056137', '1', '1', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('435', '1776.21', '2026-08-29 05:06:10.071470', NULL, 'Sueldo', '2026-08-06', '2026-08-29 05:06:10.071484', '1', '1', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('436', '743.24', '2026-08-29 05:06:10.089453', NULL, 'Salario', '2026-08-03', '2026-08-29 05:06:10.089479', '1', '1', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('437', '661.03', '2026-08-29 05:06:10.116380', NULL, 'Pago de mantenimiento anual', '2026-08-13', '2026-08-29 05:06:10.116396', '2', '14', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('438', '26.60', '2026-08-29 05:06:10.128516', NULL, 'Café con los amigos', '2026-08-28', '2026-08-29 05:06:10.128532', '3', '26', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('439', '74.57', '2026-08-29 05:06:10.145076', NULL, 'Cuota del seguro', '2026-08-21', '2026-08-29 05:06:10.145091', '4', '35', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('440', '229.12', '2026-08-29 05:06:10.153389', NULL, 'Recibo de electricidad', '2026-08-24', '2026-08-29 05:06:10.153402', '2', '15', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('441', '234.11', '2026-08-29 05:06:10.161716', NULL, 'Salida con la familia', '2026-08-31', '2026-08-29 05:06:10.161730', '3', '24', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('442', '294.94', '2026-08-29 05:06:10.168959', NULL, 'Ayuda familiar', '2026-08-31', '2026-08-29 05:06:10.168971', '11', '80', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('443', '29.91', '2026-08-29 05:06:10.180021', NULL, 'Pagos de servicio de móvil', '2026-08-30', '2026-08-29 05:06:10.180035', '2', '19', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('444', '109.53', '2026-08-29 05:06:10.187562', NULL, 'Imprevistos', '2026-08-25', '2026-08-29 05:06:10.187575', '13', '85', '39');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('445', '1288.81', '2026-08-29 05:06:10.195849', NULL, 'Ventas personales', '2026-08-07', '2026-08-29 05:06:10.195866', '1', '12', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('446', '1162.52', '2026-08-29 05:06:10.214660', NULL, 'Propinas', '2026-08-06', '2026-08-29 05:06:10.214679', '1', '10', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('447', '1063.26', '2026-08-29 05:06:10.250253', NULL, 'Sueldo', '2026-08-08', '2026-08-29 05:06:10.250266', '1', '1', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('448', '491.87', '2026-08-29 05:06:10.262086', NULL, 'Trabajo independiente', '2026-08-06', '2026-08-29 05:06:10.262106', '1', '4', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('449', '1287.81', '2026-08-29 05:06:10.275617', NULL, 'Pago por horas extraordinarias', '2026-08-06', '2026-08-29 05:06:10.275633', '1', '2', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('450', '109.15', '2026-08-29 05:06:10.292726', NULL, 'Suscripciones', '2026-08-31', '2026-08-29 05:06:10.292762', '2', '22', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('451', '93.04', '2026-08-29 05:06:10.306886', NULL, 'Café los fines de semana', '2026-08-12', '2026-08-29 05:06:10.306904', '3', '26', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('452', '443.02', '2026-08-29 05:06:10.319231', NULL, 'Gastos de reparación', '2026-08-10', '2026-08-29 05:06:10.319265', '2', '14', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('453', '752.05', '2026-08-29 05:06:10.339805', NULL, 'Seguro de hogar', '2026-08-22', '2026-08-29 05:06:10.339821', '2', '20', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('454', '296.91', '2026-08-29 05:06:10.353212', NULL, 'Seguro del auto', '2026-08-18', '2026-08-29 05:06:10.353224', '4', '35', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('455', '747.81', '2026-08-29 05:06:10.368141', NULL, 'Impuestos del piso', '2026-08-27', '2026-08-29 05:06:10.368153', '2', '21', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('456', '192.16', '2026-08-29 05:06:10.378024', NULL, 'Salida con la familia', '2026-08-15', '2026-08-29 05:06:10.378039', '3', '24', '40');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('457', '1460.14', '2026-08-29 05:06:10.388530', NULL, 'Sueldo', '2026-08-03', '2026-08-29 05:06:10.388543', '1', '1', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('458', '1901.13', '2026-08-29 05:06:10.396535', NULL, 'Salario', '2026-08-01', '2026-08-29 05:06:10.396549', '1', '1', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('459', '1141.41', '2026-08-29 05:06:10.406850', NULL, 'Sueldo', '2026-08-04', '2026-08-29 05:06:10.406865', '1', '1', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('460', '611.91', '2026-08-29 05:06:10.423328', NULL, 'Salario', '2026-08-07', '2026-08-29 05:06:10.423341', '1', '1', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('461', '70.20', '2026-08-29 05:06:10.441207', NULL, 'Pago de recibo', '2026-08-30', '2026-08-29 05:06:10.441307', '2', '15', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('462', '94.25', '2026-08-29 05:06:10.457629', NULL, 'Snacks y bebidas varias', '2026-08-24', '2026-08-29 05:06:10.459912', '3', '26', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('463', '34.48', '2026-08-29 05:06:10.491526', NULL, 'Accesorios varios', '2026-08-11', '2026-08-29 05:06:10.491546', '8', '57', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('464', '203.80', '2026-08-29 05:06:10.511265', NULL, 'Ayudas para la familia', '2026-08-12', '2026-08-29 05:06:10.511280', '12', '83', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('465', '150.91', '2026-08-29 05:06:10.524750', NULL, 'Suscripciones', '2026-08-16', '2026-08-29 05:06:10.524768', '2', '22', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('466', '196.98', '2026-08-29 05:06:10.536764', NULL, 'Tasas legales', '2026-08-20', '2026-08-29 05:06:10.536779', '2', '21', '41');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('467', '789.90', '2026-08-29 05:06:10.545783', NULL, 'Regalo por matrimonio', '2026-08-10', '2026-08-29 05:06:10.545862', '1', '10', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('468', '1167.92', '2026-08-29 05:06:10.553573', NULL, 'Sueldo', '2026-08-01', '2026-08-29 05:06:10.553588', '1', '1', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('469', '1536.12', '2026-08-29 05:06:10.561554', NULL, 'Salario', '2026-08-03', '2026-08-29 05:06:10.561569', '1', '1', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('470', '1821.17', '2026-08-29 05:06:10.569737', NULL, 'Sueldo', '2026-08-07', '2026-08-29 05:06:10.569752', '1', '1', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('471', '60.24', '2026-08-29 05:06:10.577310', NULL, 'Pago del servicio', '2026-08-13', '2026-08-29 05:06:10.577324', '2', '18', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('472', '68.93', '2026-08-29 05:06:10.584427', NULL, 'Salida con la familia', '2026-08-15', '2026-08-29 05:06:10.584441', '3', '24', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('473', '602.04', '2026-08-29 05:06:10.597913', NULL, 'Alquiler de piso', '2026-08-25', '2026-08-29 05:06:10.597927', '2', '13', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('474', '229.04', '2026-08-29 05:06:10.607067', NULL, 'Seguro del auto', '2026-08-29', '2026-08-29 05:06:10.607081', '4', '35', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('475', '102.22', '2026-08-29 05:06:10.618557', NULL, 'Suscripciones', '2026-08-12', '2026-08-29 05:06:10.618574', '2', '22', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('476', '12.38', '2026-08-29 05:06:10.633057', NULL, 'Cafetería', '2026-08-30', '2026-08-29 05:06:10.633081', '3', '26', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('477', '18.08', '2026-08-29 05:06:10.649352', NULL, 'Reposición de inversión', '2026-08-10', '2026-08-29 05:06:10.649370', '11', '76', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('478', '43.29', '2026-08-29 05:06:10.674782', NULL, 'Seguro del vehículo', '2026-08-19', '2026-08-29 05:06:10.674815', '4', '35', '42');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('479', '346.83', '2026-08-29 05:06:10.696307', NULL, 'Reembolso pendiente', '2026-08-04', '2026-08-29 05:06:10.696321', '1', '11', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('480', '1525.76', '2026-08-29 05:06:10.715638', NULL, 'Sueldo', '2026-08-01', '2026-08-29 05:06:10.715677', '1', '1', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('481', '1180.08', '2026-08-29 05:06:10.736597', NULL, 'Herencia', '2026-08-10', '2026-08-29 05:06:10.736610', '1', '10', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('482', '1315.51', '2026-08-29 05:06:10.744121', NULL, 'Sueldo', '2026-08-08', '2026-08-29 05:06:10.744138', '1', '1', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('483', '1242.40', '2026-08-29 05:06:10.751872', NULL, 'Salario', '2026-08-06', '2026-08-29 05:06:10.751888', '1', '1', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('484', '79.51', '2026-08-29 05:06:10.760408', NULL, 'Plan de telefonía móvil', '2026-08-13', '2026-08-29 05:06:10.760422', '2', '19', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('485', '180.99', '2026-08-29 05:06:10.768606', NULL, 'Compras de la semana', '2026-08-31', '2026-08-29 05:06:10.768620', '3', '23', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('486', '128.59', '2026-08-29 05:06:10.776045', NULL, 'Recibo del mes', '2026-08-17', '2026-08-29 05:06:10.776059', '2', '17', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('487', '235.67', '2026-08-29 05:06:10.783382', NULL, 'Pago de impuestos anuales', '2026-08-19', '2026-08-29 05:06:10.783394', '2', '21', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('488', '197.31', '2026-08-29 05:06:10.790707', NULL, 'Imprevistos', '2026-08-18', '2026-08-29 05:06:10.790721', '13', '85', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('489', '255.24', '2026-08-29 05:06:10.800061', NULL, 'Licores', '2026-08-25', '2026-08-29 05:06:10.800075', '3', '28', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('490', '111.72', '2026-08-29 05:06:10.809213', NULL, 'Medicinas', '2026-08-25', '2026-08-29 05:06:10.809225', '6', '45', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('491', '73.95', '2026-08-29 05:06:10.821830', NULL, 'Suscripciones', '2026-08-22', '2026-08-29 05:06:10.821847', '2', '22', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('492', '106.50', '2026-08-29 05:06:10.848768', NULL, 'Servicio de electricidad', '2026-08-17', '2026-08-29 05:06:10.848792', '2', '15', '43');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('493', '1259.41', '2026-08-29 05:06:10.872235', NULL, 'Donación recibida', '2026-08-07', '2026-08-29 05:06:10.872255', '1', '10', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('494', '1827.82', '2026-08-29 05:06:10.902588', NULL, 'Sueldo', '2026-08-07', '2026-08-29 05:06:10.902605', '1', '1', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('495', '1908.66', '2026-08-29 05:06:10.930070', NULL, 'Salario', '2026-08-06', '2026-08-29 05:06:10.930091', '1', '1', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('496', '540.12', '2026-08-29 05:06:10.949279', NULL, 'Bono horas extras', '2026-08-02', '2026-08-29 05:06:10.949296', '1', '2', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('497', '840.79', '2026-08-29 05:06:10.959127', NULL, 'Sueldo', '2026-08-04', '2026-08-29 05:06:10.959142', '1', '1', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('498', '90.42', '2026-08-29 05:06:10.967855', NULL, 'Suscripciones', '2026-08-16', '2026-08-29 05:06:10.967869', '2', '22', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('499', '120.25', '2026-08-29 05:06:10.975060', NULL, 'Compras de la semana', '2026-08-20', '2026-08-29 05:06:10.975074', '3', '23', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('500', '49.79', '2026-08-29 05:06:10.983349', NULL, 'Regalos de fiesta', '2026-08-17', '2026-08-29 05:06:10.983366', '12', '82', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('501', '51.38', '2026-08-29 05:06:10.991693', NULL, 'Regalo para la abuela', '2026-08-13', '2026-08-29 05:06:10.991710', '12', '82', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('502', '170.22', '2026-08-29 05:06:11.004075', NULL, 'Salidas con la familia', '2026-08-25', '2026-08-29 05:06:11.004090', '3', '24', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('503', '112.87', '2026-08-29 05:06:11.011333', NULL, 'Ayuda por salud', '2026-08-24', '2026-08-29 05:06:11.011347', '12', '83', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('504', '41.34', '2026-08-29 05:06:11.019891', NULL, 'Gaseosas', '2026-08-28', '2026-08-29 05:06:11.019907', '3', '28', '44');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('505', '1200.00', '2026-09-03 18:04:17.314276', NULL, 'Sueldo Agosto', '2026-09-03', '2026-09-03 18:04:17.314299', '1', '1', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('506', '120.00', '2026-09-11 22:53:15.363218', NULL, 'migracion y upgrade de plan', '2026-09-05', '2026-09-11 22:53:15.363252', '2', '18', '2');
+INSERT INTO `transactions` (`id`, `amount`, `created_at`, `deleted_at`, `description`, `transaction_date`, `updated_at`, `category_id`, `subcategory_id`, `user_id`) VALUES ('507', '150.00', '2026-09-15 01:39:00.978575', NULL, 'Compras del mes', '2026-09-10', '2026-09-15 01:39:00.978597', '3', '23', '2');
 
 -- ============================================================
 -- RESUMEN
 -- ============================================================
 -- Usuarios creados: 43
--- Transacciones creadas: 2061
+-- Transacciones creadas: 507
+

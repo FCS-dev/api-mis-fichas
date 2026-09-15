@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -283,7 +284,7 @@ public class AdminSeeder {
 
     private void seedFakeDataIfDeveloper() {
         String[] activeProfiles = environment.getActiveProfiles();
-        boolean isDeveloper = Arrays.asList(activeProfiles).contains("developer");
+        boolean isDeveloper = activeProfiles != null && Arrays.asList(activeProfiles).contains("developer");
         if (!isDeveloper) return;
 
         long userCount = userRepository.countByDeletedAtIsNull();
@@ -470,10 +471,10 @@ public class AdminSeeder {
                     BigDecimal amount;
                     if (random.nextDouble() < 0.5) {
                         sub = subSalario;
-                        amount = BigDecimal.valueOf(500 + random.nextDouble() * 1500).setScale(2, BigDecimal.ROUND_HALF_UP);
+                        amount = BigDecimal.valueOf(500 + random.nextDouble() * 1500).setScale(2, RoundingMode.HALF_UP);
                     } else {
                         sub = incomeSubs.get(random.nextInt(incomeSubs.size()));
-                        amount = BigDecimal.valueOf(200 + random.nextDouble() * 1800).setScale(2, BigDecimal.ROUND_HALF_UP);
+                        amount = BigDecimal.valueOf(200 + random.nextDouble() * 1800).setScale(2, RoundingMode.HALF_UP);
                     }
                     int day = 1 + random.nextInt(10);
                     day = Math.min(day, daysInMonth(cy, cm));
@@ -520,18 +521,18 @@ public class AdminSeeder {
 
                     BigDecimal amount;
                     if (expCat.getId().equals(catGastosFijos.getId()) && expSub.getId().equals(subAlquilerHipo.getId())) {
-                        amount = BigDecimal.valueOf(400 + random.nextDouble() * 500).setScale(2, BigDecimal.ROUND_HALF_UP);
+                        amount = BigDecimal.valueOf(400 + random.nextDouble() * 500).setScale(2, RoundingMode.HALF_UP);
                     } else if (expCat.getId().equals(catGastosFijos.getId())) {
-                        amount = BigDecimal.valueOf(50 + random.nextDouble() * 750).setScale(2, BigDecimal.ROUND_HALF_UP);
+                        amount = BigDecimal.valueOf(50 + random.nextDouble() * 750).setScale(2, RoundingMode.HALF_UP);
                     } else if (expCat.getId().equals(catAlimentacion.getId()) && expSub.getId().equals(subSupermercado.getId())) {
-                        amount = BigDecimal.valueOf(100 + random.nextDouble() * 300).setScale(2, BigDecimal.ROUND_HALF_UP);
+                        amount = BigDecimal.valueOf(100 + random.nextDouble() * 300).setScale(2, RoundingMode.HALF_UP);
                     } else if (expCat.getId().equals(catAlimentacion.getId())) {
-                        amount = BigDecimal.valueOf(30 + random.nextDouble() * 470).setScale(2, BigDecimal.ROUND_HALF_UP);
+                        amount = BigDecimal.valueOf(30 + random.nextDouble() * 470).setScale(2, RoundingMode.HALF_UP);
                     } else {
-                        amount = BigDecimal.valueOf(5 + random.nextDouble() * 295).setScale(2, BigDecimal.ROUND_HALF_UP);
+                        amount = BigDecimal.valueOf(5 + random.nextDouble() * 295).setScale(2, RoundingMode.HALF_UP);
                     }
                     if (amount.compareTo(remaining) > 0) {
-                        amount = remaining.multiply(BigDecimal.valueOf(0.8)).setScale(2, BigDecimal.ROUND_HALF_UP);
+                        amount = remaining.multiply(BigDecimal.valueOf(0.8)).setScale(2, RoundingMode.HALF_UP);
                     }
                     if (amount.compareTo(BigDecimal.valueOf(5)) < 0) amount = BigDecimal.valueOf(5);
 

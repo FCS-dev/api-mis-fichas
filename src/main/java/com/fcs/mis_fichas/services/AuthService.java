@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,16 +69,16 @@ public class AuthService {
      */
     @Transactional
     public AuthResponse login(LoginRequest request) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.email(), request.password())
-        );
-
         User user = userRepository.findByEmailAndDeletedAtIsNull(request.email())
                 .orElseThrow(() -> new BadCredentialsException("Invalid credentials"));
 
-        if (!user.getStatus().equals(Status.ACTIVE)) {
+        if (!Status.ACTIVE.equals(user.getStatus())) {
             throw new IllegalArgumentException("User account is not active");
         }
+
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.email(), request.password())
+        );
 
         refreshTokenService.revokeAllUserTokens(user.getId());
         String accessToken = jwtService.generateAccessToken(user.getEmail(), user.getRole().name(), user.getName(), user.getId());
@@ -103,6 +102,13 @@ public class AuthService {
                 .orElseThrow(() -> new IllegalArgumentException("Failed to create new refresh token"));
 
         User user = tokenEntity.getUser();
+        if (user == null || user.getDeletedAt() != null || !Status.ACTIVE.equals(user.getStatus())) {
+            if (user != null) {
+                refreshTokenService.revokeAllUserTokens(user.getId());
+            }
+            throw new IllegalArgumentException("User account is not active");
+        }
+
         String accessToken = jwtService.generateAccessToken(user.getEmail(), user.getRole().name(), user.getName(), user.getId());
 
         return new AuthResponse(accessToken, newRefreshToken);

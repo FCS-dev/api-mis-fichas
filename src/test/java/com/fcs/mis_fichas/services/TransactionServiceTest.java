@@ -78,7 +78,7 @@ class TransactionServiceTest {
     void create_shouldCreateTransaction_whenUser() {
         User user = mockAuthenticatedUser("user@example.com", Role.USER);
         Category category = Category.builder().id(1L).name("Food").type(Type.EXPENSE).build();
-        Subcategory subcategory = Subcategory.builder().id(1L).name("Groceries").category(category).build();
+        Subcategory subcategory = Subcategory.builder().id(1L).name("Groceries").category(category).isSystem(true).build();
         TransactionRequest request = new TransactionRequest(null, 1L, 1L, new BigDecimal("100.00"), "Lunch", LocalDate.now());
 
         when(categoryRepository.findByIdAndDeletedAtIsNull(1L)).thenReturn(Optional.of(category));
@@ -138,7 +138,7 @@ class TransactionServiceTest {
         mockAuthenticatedUser("user@example.com", Role.USER);
         Category category = Category.builder().id(1L).name("Food").type(Type.EXPENSE).build();
         Category otherCategory = Category.builder().id(2L).name("Travel").type(Type.EXPENSE).build();
-        Subcategory subcategory = Subcategory.builder().id(1L).name("Groceries").category(otherCategory).build();
+        Subcategory subcategory = Subcategory.builder().id(1L).name("Groceries").category(otherCategory).isSystem(true).build();
         TransactionRequest request = new TransactionRequest(null, 1L, 1L, new BigDecimal("100.00"), "Lunch", LocalDate.now());
 
         when(categoryRepository.findByIdAndDeletedAtIsNull(1L)).thenReturn(Optional.of(category));
@@ -153,7 +153,7 @@ class TransactionServiceTest {
     void update_shouldAllowUserToModifyOwnTransaction() {
         User user = mockAuthenticatedUser("user@example.com", Role.USER);
         Category category = Category.builder().id(1L).name("Food").type(Type.EXPENSE).build();
-        Subcategory subcategory = Subcategory.builder().id(1L).name("Groceries").category(category).build();
+        Subcategory subcategory = Subcategory.builder().id(1L).name("Groceries").category(category).isSystem(true).build();
         Transaction transaction = Transaction.builder()
                 .id(1L)
                 .user(user)
@@ -181,7 +181,7 @@ class TransactionServiceTest {
         User admin = mockAuthenticatedUser("admin@example.com", Role.ADMIN);
         User user = User.builder().id(2L).email("user@example.com").role(Role.USER).status(Status.ACTIVE).build();
         Category category = Category.builder().id(1L).name("Food").type(Type.EXPENSE).build();
-        Subcategory subcategory = Subcategory.builder().id(1L).name("Groceries").category(category).build();
+        Subcategory subcategory = Subcategory.builder().id(1L).name("Groceries").category(category).isSystem(true).build();
         Transaction transaction = Transaction.builder()
                 .id(1L)
                 .user(user)

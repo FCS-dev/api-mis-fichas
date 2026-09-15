@@ -103,9 +103,7 @@ class AuthServiceTest {
     @Test
     void login_shouldThrowBadCredentialsException_whenUserNotFound() {
         LoginRequest request = new LoginRequest("missing@example.com", "password123");
-        Authentication auth = mock(Authentication.class);
 
-        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(auth);
         when(userRepository.findByEmailAndDeletedAtIsNull("missing@example.com")).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> authService.login(request))
@@ -124,9 +122,7 @@ class AuthServiceTest {
                 .role(Role.USER)
                 .status(Status.BLOCKED)
                 .build();
-        Authentication auth = mock(Authentication.class);
 
-        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(auth);
         when(userRepository.findByEmailAndDeletedAtIsNull("blocked@example.com")).thenReturn(Optional.of(user));
 
         assertThatThrownBy(() -> authService.login(request))
@@ -138,7 +134,7 @@ class AuthServiceTest {
     void refresh_shouldReturnNewAuthResponse() {
         com.fcs.mis_fichas.entities.RefreshToken tokenEntity = com.fcs.mis_fichas.entities.RefreshToken.builder()
                 .id(1L)
-                .user(User.builder().id(1L).email("user@example.com").role(Role.USER).build())
+                .user(User.builder().id(1L).email("user@example.com").name("User").role(Role.USER).status(Status.ACTIVE).build())
                 .build();
 
         when(refreshTokenService.rotateRefreshToken("old-refresh")).thenReturn("new-refresh");
