@@ -753,8 +753,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created — transacción creada exitosamente",
             "content": {
               "*/*": {
                 "schema": {
@@ -854,8 +854,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created — subcategoría creada exitosamente",
             "content": {
               "*/*": {
                 "schema": {
@@ -1113,8 +1113,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created — categoría creada exitosamente",
             "content": {
               "*/*": {
                 "schema": {
@@ -2610,8 +2610,32 @@
           "Dashboard"
         ],
         "summary": "Glosas comparativas del mes vs anterior",
-        "description": "Devuelve glosas con el porcentaje de cambio en ingresos y gastos del mes actual respecto al anterior.",
+        "description": "Devuelve glosas con el porcentaje de cambio en ingresos y gastos del mes dado respecto al anterior. Si no se envía month/year, compara el mes actual con el anterior.",
         "operationId": "getMonthlyComparison",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "query",
+            "description": "Mes base (1-12)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 8
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "Año base",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 2026
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -4236,6 +4260,30 @@
             "type": "number",
             "description": "Balance total (ingresos - gastos)",
             "example": 13000
+          },
+          "currentMonthIncome": {
+            "type": "number",
+            "description": "Ingresos del mes actual"
+          },
+          "previousMonthIncome": {
+            "type": "number",
+            "description": "Ingresos del mes anterior"
+          },
+          "currentMonthExpense": {
+            "type": "number",
+            "description": "Gastos del mes actual"
+          },
+          "previousMonthExpense": {
+            "type": "number",
+            "description": "Gastos del mes anterior"
+          },
+          "currentMonthBalance": {
+            "type": "number",
+            "description": "Balance del mes actual"
+          },
+          "previousMonthBalance": {
+            "type": "number",
+            "description": "Balance del mes anterior"
           }
         }
       },

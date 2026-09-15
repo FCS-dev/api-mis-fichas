@@ -302,4 +302,85 @@ class DashboardServiceTest {
         assertThat(result.get(result.size() - 1).average()).isEqualByComparingTo(new BigDecimal("75.00"));
         verify(transactionRepository).findTransactionsSince(eq(3L), any());
     }
+
+    @Test
+    void getMonthlyComparison_bothZero_shouldShowEqual() {
+        mockAuthenticatedUser("user@example.com", Role.USER);
+        when(transactionRepository.sumByUserAndTypeBetweenDates(eq(1L), eq(Type.INCOME), any(), any()))
+                .thenReturn(BigDecimal.ZERO);
+        when(transactionRepository.sumByUserAndTypeBetweenDates(eq(1L), eq(Type.EXPENSE), any(), any()))
+                .thenReturn(BigDecimal.ZERO);
+
+        MonthlyComparisonResponse response = dashboardService.getMonthlyComparison(null, null);
+
+        assertThat(response.incomeChangePercent()).isEqualTo(0.0);
+        assertThat(response.expenseChangePercent()).isEqualTo(0.0);
+        assertThat(response.incomeGlossary()).isEqualTo("Tus ingresos se mantuvieron igual que el mes pasado.");
+        assertThat(response.expenseGlossary()).isEqualTo("Tus gastos se mantuvieron igual que el mes pasado.");
+    }
+
+    @Test
+    void getMonthlyComparison_prevZeroCurNonZero_shouldShow100() {
+        mockAuthenticatedUser("user@example.com", Role.USER);
+        YearMonth previous = YearMonth.now().minusMonths(1);
+
+        when(transactionRepository.sumByUserAndTypeBetweenDates(eq(1L), eq(Type.INCOME), any(), any()))
+                .thenAnswer(invocation -> {
+                    LocalDate start = invocation.getArgument(2);
+                    return YearMonth.from(start).equals(previous) ? BigDecimal.ZERO : new BigDecimal("500.00");
+                });
+        when(transactionRepository.sumByUserAndTypeBetweenDates(eq(1L), eq(Type.EXPENSE), any(), any()))
+                .thenAnswer(invocation -> {
+                    LocalDate start = invocation.getArgument(2);
+                    return YearMonth.from(start).equals(previous) ? BigDecimal.ZERO : new BigDecimal("300.00");
+                });
+
+        MonthlyComparisonResponse response = dashboardService.getMonthlyComparison(null, null);
+
+        assertThat(response.incomeChangePercent()).isEqualTo(100.0);
+        assertThat(response.expenseChangePercent()).isEqualTo(100.0);
+        assertThat(response.incomeGlossary()).contains("aumentaron");
+        assertThat(response.expenseGlossary()).contains("más");
+    }
+
+    @Test
+    void getMonthlyComparison_withSpecificMonths_shouldCompareCorrectMonths() {
+        mockAuthenticatedUser("user@example.com", Role.USER);
+
+        when(transactionRepository.sumByUserAndTypeBetweenDates(eq(1L), eq(Type.INCOME), any(), any()))
+                .thenAnswer(invocation -> {
+                    LocalDate start = invocation.getArgument(2);
+                    YearMonth ym = YearMonth.from(start);
+                    return ym.equals(YearMonth.of(2026, 7)) ? BigDecimal.ZERO : new BigDecimal("200.00");
+                });
+        when(transactionRepository.sumByUserAndTypeBetweenDates(eq(1L), eq(Type.EXPENSE), any(), any()))
+                .thenAnswer(invocation -> {
+                    LocalDate start = invocation.getArgument(2);
+                    YearMonth ym = YearMonth.from(start);
+                    return ym.equals(YearMonth.of(2026, 7)) ? new BigDecimal("100.00") : new BigDecimal("150.00");
+                });
+
+        MonthlyComparisonResponse response = dashboardService.getMonthlyComparison(8, 2026);
+
+        assertThat(response.incomeChangePercent()).isEqualTo(100.0);
+        assertThat(response.expenseChangePercent()).isEqualTo(50.0);
+        assertThat(response.incomeGlossary()).contains("aumentaron");
+        assertThat(response.expenseGlossary()).contains("más");
+    }
+
+    @Test
+    void getMonthlyComparison_specificMonthsBothZero_shouldShowEqual() {
+        mockAuthenticatedUser("user@example.com", Role.USER);
+        when(transactionRepository.sumByUserAndTypeBetweenDates(eq(1L), eq(Type.INCOME), any(), any()))
+                .thenReturn(BigDecimal.ZERO);
+        when(transactionRepository.sumByUserAndTypeBetweenDates(eq(1L), eq(Type.EXPENSE), any(), any()))
+                .thenReturn(BigDecimal.ZERO);
+
+        MonthlyComparisonResponse response = dashboardService.getMonthlyComparison(8, 2026);
+
+        assertThat(response.incomeChangePercent()).isEqualTo(0.0);
+        assertThat(response.expenseChangePercent()).isEqualTo(0.0);
+        assertThat(response.incomeGlossary()).isEqualTo("Tus ingresos se mantuvieron igual que el mes pasado.");
+        assertThat(response.expenseGlossary()).isEqualTo("Tus gastos se mantuvieron igual que el mes pasado.");
+    }
 }

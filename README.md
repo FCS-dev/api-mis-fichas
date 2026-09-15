@@ -208,7 +208,7 @@ Todos los endpoints están prefijados con `/api/v1`.
 | `GET`  | `/api/v1/dashboard/me/expenses-by-subcategory` | `categoryId`, `month`, `year` | Gastos agrupados por subcategoría dentro de una categoría                        |
 | `GET`  | `/api/v1/dashboard/me/monthly-balance`         | `months`                      | Balance mensual (INCOME - EXPENSE) de los últimos N meses (3, 6 o 12; default 3) |
 | `GET`  | `/api/v1/dashboard/me/summary-card`            | `month`, `year`               | Resumen consolidado del mes: ingresos, gastos, balance y saving rate             |
-| `GET`  | `/api/v1/dashboard/me/monthly-comparison`      | _(ninguno)_                   | Glosas comparativas del mes actual vs el mes anterior                            |
+| `GET`  | `/api/v1/dashboard/me/monthly-comparison`      | `month`?, `year`?             | Glosas comparativas del mes dado vs el anterior (default: mes actual)             |
 | `GET`  | `/api/v1/dashboard/me/top-expenses`            | `month`, `year`               | Top 3 categorías y subcategorías con más gasto en el mes dado                    |
 
 ### Dashboard (rol `ADMIN`)
@@ -222,7 +222,7 @@ Todos los endpoints están prefijados con `/api/v1`.
 | `GET`  | `/api/v1/dashboard/admin/avg-expense`             | `userId`                                                             | Promedio mensual de gastos (últimos 12 meses)                                                |
 | `GET`  | `/api/v1/dashboard/admin/user-evolution`          | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`                         | Evolución de usuarios: comparación 1er vs último mes del rango, datos mensuales              |
 | `GET`  | `/api/v1/dashboard/admin/transaction-evolution`   | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`, `userId`               | Evolución de transacciones: comparativa, promedio/usuario, ingresos/gastos, datos mensuales  |
-| `GET`  | `/api/v1/dashboard/admin/money-movement`          | `userId`                                                             | Totales de ingresos, gastos y balance                                                        |
+| `GET`  | `/api/v1/dashboard/admin/money-movement`          | `userId`                                                             | Totales de ingresos, gastos y balance + comparativa mes actual vs anterior        |
 | `GET`  | `/api/v1/dashboard/admin/averages`                | `userId`                                                             | Promedios globales (excluye ADMIN) y filtrados por usuario (ingresos, gastos, transacciones) |
 | `GET`  | `/api/v1/dashboard/admin/top-users`               | `monthFrom`, `yearFrom`, `monthTo`, `yearTo`                         | Top 5 usuarios por transacciones, gastos e ingresos en un rango de meses                     |
 | `GET`  | `/api/v1/dashboard/admin/activity-distribution`   | `month`, `year`                                                      | Distribución de usuarios: Frecuente (>20 tx), Regular (5-20), Ocasional (1-4), Inactivo (0)  |

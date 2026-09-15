@@ -80,12 +80,14 @@ public class DashboardService {
         return new DashboardSummaryCardResponse(income, expense, balance, savingRate);
     }
 
-    public MonthlyComparisonResponse getMonthlyComparison() {
+    public MonthlyComparisonResponse getMonthlyComparison(Integer month, Integer year) {
         User user = getCurrentUser();
-        YearMonth current = YearMonth.now();
-        YearMonth previous = current.minusMonths(1);
-        LocalDate curStart = current.atDay(1);
-        LocalDate curEnd = current.atEndOfMonth();
+        YearMonth base = (month != null && year != null)
+                ? YearMonth.of(year, month)
+                : YearMonth.now();
+        YearMonth previous = base.minusMonths(1);
+        LocalDate curStart = base.atDay(1);
+        LocalDate curEnd = base.atEndOfMonth();
         LocalDate prevStart = previous.atDay(1);
         LocalDate prevEnd = previous.atEndOfMonth();
 
@@ -94,12 +96,21 @@ public class DashboardService {
         BigDecimal prevIncome = transactionRepository.sumByUserAndTypeBetweenDates(user.getId(), Type.INCOME, prevStart, prevEnd);
         BigDecimal prevExpense = transactionRepository.sumByUserAndTypeBetweenDates(user.getId(), Type.EXPENSE, prevStart, prevEnd);
 
-        double expChange = prevExpense.compareTo(BigDecimal.ZERO) == 0 ? 0.0 :
-                curExpense.subtract(prevExpense).multiply(BigDecimal.valueOf(100))
-                        .divide(prevExpense, 1, java.math.RoundingMode.HALF_UP).doubleValue();
-        double incChange = prevIncome.compareTo(BigDecimal.ZERO) == 0 ? 0.0 :
-                curIncome.subtract(prevIncome).multiply(BigDecimal.valueOf(100))
-                        .divide(prevIncome, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+        double expChange;
+        if (prevExpense.compareTo(BigDecimal.ZERO) == 0) {
+            expChange = curExpense.compareTo(BigDecimal.ZERO) == 0 ? 0.0 : 100.0;
+        } else {
+            expChange = curExpense.subtract(prevExpense).multiply(BigDecimal.valueOf(100))
+                    .divide(prevExpense, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+        }
+
+        double incChange;
+        if (prevIncome.compareTo(BigDecimal.ZERO) == 0) {
+            incChange = curIncome.compareTo(BigDecimal.ZERO) == 0 ? 0.0 : 100.0;
+        } else {
+            incChange = curIncome.subtract(prevIncome).multiply(BigDecimal.valueOf(100))
+                    .divide(prevIncome, 1, java.math.RoundingMode.HALF_UP).doubleValue();
+        }
 
         return new MonthlyComparisonResponse(
                 formatExpenseGlossary(expChange),

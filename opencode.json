@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "plan": {
+      "model": "opencode-go/kimi-k2.7-code"
+    },
+    "build": {
+      "model": "opencode-go/kimi-k2.7-code"
+    },
+    "explore": {
+      "model": "opencode-go/glm-5.3-flash"
+    },
+    "general": {
+      "model": "opencode-go/kimi-k2.7-code"
+    },
+    "docs": {
+      "mode": "subagent",
+      "description": "Crea y mantiene documentación técnica del proyecto.",
+      "model": "opencode-go/qwen3.7-plus",
+      "prompt": "Eres el agente especializado en documentación técnica. Puedes analizar todo el proyecto para comprender su funcionamiento y debes basar la documentación exclusivamente en el comportamiento real del código y la configuración existente. Puedes modificar archivos Markdown cuando sea necesario. Conserva el estilo y estructura de la documentación existente. Escribe en español de España o español neutro, evitando localismos regionales. No modifiques código fuente ni archivos de configuración salvo que el usuario lo solicite explícitamente. No inventes funcionalidades, comportamientos, APIs ni instrucciones que no estén respaldados por el proyecto.",
+      "permission": {
+        "edit": {
+          "*": "deny",
+          "*.md": "allow",
+          "*.mdx": "allow"
+        }
+      }
+    }
+  }
+}

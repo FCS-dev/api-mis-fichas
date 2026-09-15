@@ -10,7 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -101,9 +104,13 @@ public class DashboardController {
     @GetMapping("/me/monthly-comparison")
     @PreAuthorize("hasRole('USER')")
     @Operation(summary = "Glosas comparativas del mes vs anterior",
-            description = "Devuelve glosas con el porcentaje de cambio en ingresos y gastos del mes actual respecto al anterior.")
-    public ResponseEntity<ApiResponse<MonthlyComparisonResponse>> getMonthlyComparison(HttpServletRequest httpRequest) {
-        MonthlyComparisonResponse data = dashboardService.getMonthlyComparison();
+            description = "Devuelve glosas con el porcentaje de cambio en ingresos y gastos del mes dado respecto al anterior. " +
+                    "Si no se envía month/year, compara el mes actual con el anterior.")
+    public ResponseEntity<ApiResponse<MonthlyComparisonResponse>> getMonthlyComparison(
+            @Parameter(description = "Mes base (1-12)", example = "8") @RequestParam(required = false) Integer month,
+            @Parameter(description = "Año base", example = "2026") @RequestParam(required = false) Integer year,
+            HttpServletRequest httpRequest) {
+        MonthlyComparisonResponse data = dashboardService.getMonthlyComparison(month, year);
         return buildResponse(data, httpRequest);
     }
 
