@@ -44,6 +44,10 @@
     {
       "name": "Autenticación",
       "description": "Endpoints públicos para registro, login, refresco de tokens y logout"
+    },
+    {
+      "name": "Admin - Seguridad",
+      "description": "Gestión de seguridad: bloqueos por fuerza bruta y limpieza de tokens (solo ADMIN)"
     }
   ],
   "paths": {
@@ -2558,6 +2562,119 @@
         }
       }
     },
+    "/admin/security/brute-force/blocked": {
+      "get": {
+        "tags": [
+          "Admin - Seguridad"
+        ],
+        "summary": "Listar cuentas bloqueadas",
+        "description": "Devuelve las cuentas bloqueadas por intentos fallidos de login, con paginación y ordenamiento.",
+        "operationId": "getBlockedAccounts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Número de página (0-based)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Tamaño de página (max 100)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            },
+            "example": 20
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Criterio de ordenamiento (email,asc | email,desc | lockedUntil,asc | lockedUntil,desc)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "email,asc"
+            },
+            "example": "email,asc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePagedResponseBlockedAccountResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/security/brute-force/unblock": {
+      "post": {
+        "tags": [
+          "Admin - Seguridad"
+        ],
+        "summary": "Desbloquear cuenta",
+        "description": "Permite a un ADMIN revocar el bloqueo por fuerza bruta de una cuenta.",
+        "operationId": "unblock",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnblockRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/security/refresh-tokens/cleanup": {
+      "post": {
+        "tags": [
+          "Admin - Seguridad"
+        ],
+        "summary": "Limpiar refresh tokens vencidos",
+        "description": "Elimina físicamente los refresh tokens revocados cuya fecha de expiración ya pasó.",
+        "operationId": "cleanupRefreshTokens",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseCleanupResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/dashboard/me/summary-card": {
       "get": {
         "tags": [
@@ -4816,6 +4933,141 @@
           },
           "path": {
             "type": "string"
+          }
+        }
+      },
+      "BlockedAccountResponse": {
+        "type": "object",
+        "description": "Cuenta bloqueada por intentos fallidos de login",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email de la cuenta bloqueada",
+            "example": "usuario@example.com"
+          },
+          "lockedUntil": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora tentativa en la que se habilitará nuevamente el login",
+            "example": "2026-09-16T15:30:00"
+          }
+        }
+      },
+      "UnblockRequest": {
+        "type": "object",
+        "description": "Solicitud para desbloquear una cuenta por email",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email de la cuenta a desbloquear",
+            "example": "usuario@example.com",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "CleanupResponse": {
+        "type": "object",
+        "description": "Resultado de la limpieza de refresh tokens revocados y vencidos",
+        "properties": {
+          "deletedCount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Cantidad de tokens eliminados",
+            "example": 42
+          }
+        }
+      },
+      "PagedResponseBlockedAccountResponse": {
+        "type": "object",
+        "description": "Wrapper para respuestas de listados paginados",
+        "properties": {
+          "content": {
+            "type": "array",
+            "description": "Lista de elementos de la página actual",
+            "items": {
+              "$ref": "#/components/schemas/BlockedAccountResponse"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationInfo",
+            "description": "Metadatos de paginación"
+          }
+        }
+      },
+      "ApiResponsePagedResponseBlockedAccountResponse": {
+        "type": "object",
+        "description": "Wrapper estándar para todas las respuestas de la API",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "true si la operación fue exitosa, false si hubo un error",
+            "example": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código HTTP de la respuesta",
+            "example": 200
+          },
+          "message": {
+            "type": "string",
+            "description": "Mensaje descriptivo (null en éxitos, detalle del error en fallos)",
+            "example": "User registered successfully"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PagedResponseBlockedAccountResponse",
+            "description": "Payload de la respuesta (null en errores o cuando no aplica)"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora de la respuesta",
+            "example": "2024-01-15T10:30:00"
+          },
+          "path": {
+            "type": "string",
+            "description": "Ruta del endpoint que generó la respuesta",
+            "example": "/api/v1/auth/register"
+          }
+        }
+      },
+      "ApiResponseCleanupResponse": {
+        "type": "object",
+        "description": "Wrapper estándar para todas las respuestas de la API",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "true si la operación fue exitosa, false si hubo un error",
+            "example": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código HTTP de la respuesta",
+            "example": 200
+          },
+          "message": {
+            "type": "string",
+            "description": "Mensaje descriptivo (null en éxitos, detalle del error en fallos)",
+            "example": "User registered successfully"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CleanupResponse",
+            "description": "Payload de la respuesta (null en errores o cuando no aplica)"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora de la respuesta",
+            "example": "2024-01-15T10:30:00"
+          },
+          "path": {
+            "type": "string",
+            "description": "Ruta del endpoint que generó la respuesta",
+            "example": "/api/v1/auth/register"
           }
         }
       }

@@ -101,6 +101,9 @@
   - `POST /api/v1/admin/categories` — ADMIN, create category
   - `PUT /api/v1/admin/categories/{id}` — ADMIN, update category
   - `DELETE /api/v1/admin/categories/{id}` — ADMIN, soft delete category
+  - `GET /api/v1/admin/security/brute-force/blocked` — ADMIN, list accounts blocked by brute-force protection (paginated, default sort `email,asc`)
+  - `POST /api/v1/admin/security/brute-force/unblock` — ADMIN, manually unblock a brute-force locked account by email
+  - `POST /api/v1/admin/security/refresh-tokens/cleanup` — ADMIN, physically delete revoked refresh tokens whose expiration date has passed
   - All other endpoints require valid JWT.
   - **Nota sobre `requestMatchers`**: los patrones en `SecurityConfig.java` NO incluyen el
     context-path (`/api/v1`). Spring Security los compara contra el servlet-path (sin

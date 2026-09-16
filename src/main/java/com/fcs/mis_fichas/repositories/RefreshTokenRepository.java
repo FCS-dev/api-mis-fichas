@@ -4,6 +4,7 @@ import com.fcs.mis_fichas.entities.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,4 +30,13 @@ public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Long
      * @return lista de tokens activos del usuario
      */
     List<RefreshToken> findByUserIdAndRevokedAtIsNull(Long userId);
+
+    /**
+     * Elimina todos los tokens de refresco que hayan sido revocados y cuya
+     * fecha de expiración ya haya pasado.
+     *
+     * @param now fecha y hora actual
+     * @return cantidad de registros eliminados
+     */
+    long deleteByRevokedAtIsNotNullAndExpiresAtBefore(LocalDateTime now);
 }

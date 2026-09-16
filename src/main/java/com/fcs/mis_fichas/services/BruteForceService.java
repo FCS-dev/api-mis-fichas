@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -73,6 +76,67 @@ public class BruteForceService {
         log.info("Login attempts reset for email: {}", email);
     }
 
+    /**
+     * Devuelve la lista de cuentas actualmente bloqueadas por fuerza bruta.
+     * Cada entrada contiene el email y el momento hasta el cual permanece bloqueada.
+     *
+     * @return lista de cuentas bloqueadas
+     */
+    public List<BlockedAccount> getBlockedAccounts() {
+        if (!enabled) {
+            return List.of();
+        }
+        LocalDateTime now = LocalDateTime.now();
+        return cache.asMap().entrySet().stream()
+                .filter(entry -> {
+                    LocalDateTime lockedUntil = entry.getValue().lockedUntil();
+                    return lockedUntil != null && lockedUntil.isAfter(now);
+                })
+                .map(entry -> new BlockedAccount(entry.getKey(), entry.getValue().lockedUntil()))
+                .toList();
+    }
+
+    /**
+     * Revoca manualmente el bloqueo de una cuenta.
+     *
+     * @param email email de la cuenta a desbloquear
+     * @return true si la cuenta estaba bloqueada y se desbloqueó, false en caso contrario
+     */
+    public boolean unblock(String email) {
+        if (!enabled) {
+            return false;
+        }
+        boolean wasBlocked = isBlocked(email);
+        cache.invalidate(email);
+        if (wasBlocked) {
+            log.info("Bloqueo revocado manualmente para email: {}", email);
+        }
+        return wasBlocked;
+    }
+
+    /**
+     * Ordena una lista de cuentas bloqueadas según la propiedad y dirección indicadas.
+     * Propiedades soportadas: "email" y "lockedUntil".
+     *
+     * @param accounts  lista a ordenar
+     * @param property  propiedad por la que ordenar
+     * @param ascending true para ascendente, false para descendente
+     * @return lista ordenada
+     */
+    public List<BlockedAccount> sortBlockedAccounts(List<BlockedAccount> accounts, String property, boolean ascending) {
+        Comparator<BlockedAccount> comparator = switch (property) {
+            case "lockedUntil" -> Comparator.comparing(BlockedAccount::lockedUntil);
+            default -> Comparator.comparing(BlockedAccount::email, String.CASE_INSENSITIVE_ORDER);
+        };
+        if (!ascending) {
+            comparator = comparator.reversed();
+        }
+        return accounts.stream().sorted(comparator).toList();
+    }
+
     public record LoginAttempt(int failedAttempts, LocalDateTime lockedUntil) {
+    }
+
+    public record BlockedAccount(String email, LocalDateTime lockedUntil) {
     }
 }

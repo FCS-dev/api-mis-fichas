@@ -190,16 +190,19 @@ Todos los endpoints están prefijados con `/api/v1`.
 
 ### Administración (rol `ADMIN`)
 
-| Método   | Endpoint                        | Descripción                                                            |
-|----------|---------------------------------|------------------------------------------------------------------------|
-| `GET`    | `/api/v1/admin/users`           | Listar usuarios (paginado, filtros por `role` y `status`)              |
-| `GET`    | `/api/v1/admin/users/{id}`      | Ver un usuario por ID                                                  |
-| `PUT`    | `/api/v1/admin/users/{id}`      | Actualizar usuario (nombre, email, rol, estado — incluyendo `BLOCKED`) |
-| `DELETE` | `/api/v1/admin/users/{id}`      | Soft delete de usuario                                                 |
-| `GET`    | `/api/v1/admin/categories`      | Listar todas las categorías (paginado)                                 |
-| `POST`   | `/api/v1/admin/categories`      | Crear categoría                                                        |
-| `PUT`    | `/api/v1/admin/categories/{id}` | Actualizar categoría                                                   |
-| `DELETE` | `/api/v1/admin/categories/{id}` | Soft delete de categoría                                               |
+| Método   | Endpoint                                       | Descripción                                                                 |
+|----------|------------------------------------------------|-----------------------------------------------------------------------------|
+| `GET`    | `/api/v1/admin/users`                          | Listar usuarios (paginado, filtros por `role` y `status`)                   |
+| `GET`    | `/api/v1/admin/users/{id}`                     | Ver un usuario por ID                                                       |
+| `PUT`    | `/api/v1/admin/users/{id}`                     | Actualizar usuario (nombre, email, rol, estado — incluyendo `BLOCKED`)      |
+| `DELETE` | `/api/v1/admin/users/{id}`                     | Soft delete de usuario                                                      |
+| `GET`    | `/api/v1/admin/categories`                     | Listar todas las categorías (paginado)                                      |
+| `POST`   | `/api/v1/admin/categories`                     | Crear categoría                                                             |
+| `PUT`    | `/api/v1/admin/categories/{id}`                | Actualizar categoría                                                        |
+| `DELETE` | `/api/v1/admin/categories/{id}`                | Soft delete de categoría                                                    |
+| `GET`    | `/api/v1/admin/security/brute-force/blocked`   | Listar cuentas bloqueadas por fuerza bruta (paginado, default `email,asc`)  |
+| `POST`   | `/api/v1/admin/security/brute-force/unblock`   | Revocar bloqueo de una cuenta por email                                     |
+| `POST`   | `/api/v1/admin/security/refresh-tokens/cleanup`| Eliminar refresh tokens revocados y vencidos                                |
 
 ### Dashboard (rol `USER`)
 

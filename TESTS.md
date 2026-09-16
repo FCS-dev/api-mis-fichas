@@ -15,16 +15,16 @@
 
 ## Resumen General
 
-El proyecto cuenta con **148 tests unitarios** distribuidos en **19 archivos de test** organizados por capa funcional.
+El proyecto cuenta con **171 tests unitarios** distribuidos en **19 archivos de test** organizados por capa funcional.
 
 | Capa | Archivos | Casos de Test |
 |------|----------|---------------|
-| Servicios | 8 | 79 |
-| Controladores | 6 | 40 |
-| Configuración y Seguridad | 2 | 9 |
+| Servicios | 8 | 98 |
+| Controladores | 7 | 48 |
+| Configuración y Seguridad | 2 | 10 |
 | Validación de DTOs | 1 | 15 |
 | Test de Integración (existente) | 1 | 1 |
-| **Total** | **18** | **143** |
+| **Total** | **19** | **171** |
 
 **Nota**: El test `MisFichasApplicationTests` es un test de integración Spring Boot que requiere una base de datos MariaDB activa y no está incluido en el conteo de tests unitarios puros.
 
@@ -108,7 +108,32 @@ Valida la gestión de refresh tokens con rotación y detección de reutilizació
 
 ---
 
-#### 4. `UserDetailsServiceImplTest` (4 casos)
+#### 4. `BruteForceServiceTest` (15 casos)
+**Clase bajo test**: `com.fcs.mis_fichas.services.BruteForceService`
+
+Protección contra fuerza bruta en memoria (Caffeine) y utilidades administrativas.
+
+| Test | Descripción |
+|------|-------------|
+| `recordFailedAttempt_shouldCreateEntry_whenFirstFailure` | Primer intento fallido crea entrada |
+| `recordFailedAttempt_shouldIncrementAttempts` | Múltiples intentos incrementan el contador |
+| `isBlocked_shouldReturnFalse_whenAttemptsBelowThreshold` | Por debajo del umbral no bloquea |
+| `isBlocked_shouldReturnTrue_whenAttemptsReachThreshold` | Al alcanzar el umbral bloquea |
+| `isBlocked_shouldReturnFalse_whenNoEntry` | Sin registro no está bloqueado |
+| `resetAttempts_shouldClearEntry` | Limpia intentos previos |
+| `isBlocked_shouldReturnFalse_whenLockoutExpired` | Bloqueo expirado ya no aplica |
+| `isDisabled_shouldAlwaysReturnFalse` | Con protección deshabilitada nunca bloquea |
+| `getBlockedAccounts_shouldReturnBlockedEntries` | Lista solo cuentas bloqueadas |
+| `getBlockedAccounts_shouldReturnEmpty_whenDisabled` | Protección off devuelve lista vacía |
+| `getBlockedAccounts_shouldReturnEmpty_whenNoBlocked` | Sin bloqueos devuelve lista vacía |
+| `unblock_shouldReturnTrue_whenBlocked` | Desbloqueo exitoso limpia entrada |
+| `unblock_shouldReturnFalse_whenNotBlocked` | Desbloqueo de cuenta no bloqueada devuelve `false` |
+| `sortBlockedAccounts_shouldSortByEmailAscendingByDefault` | Ordenamiento por `email,asc` |
+| `sortBlockedAccounts_shouldSortByLockedUntilDescending` | Ordenamiento por `lockedUntil,desc` |
+
+---
+
+#### 5. `UserDetailsServiceImplTest` (4 casos)
 **Clase bajo test**: `com.fcs.mis_fichas.services.UserDetailsServiceImpl`
 
 Valida la integración con Spring Security.
@@ -122,7 +147,7 @@ Valida la integración con Spring Security.
 
 ---
 
-#### 5. `UserServiceTest` (11 casos)
+#### 6. `UserServiceTest` (11 casos)
 **Clase bajo test**: `com.fcs.mis_fichas.services.UserService`
 
 CRUD de usuarios con soft delete y filtros.
@@ -143,7 +168,7 @@ CRUD de usuarios con soft delete y filtros.
 
 ---
 
-#### 6. `CategoryServiceTest` (10 casos)
+#### 7. `CategoryServiceTest` (10 casos)
 **Clase bajo test**: `com.fcs.mis_fichas.services.CategoryService`
 
 CRUD de categorías con validación de duplicados y soft delete.
@@ -165,7 +190,7 @@ CRUD de categorías con validación de duplicados y soft delete.
 
 ---
 
-#### 7. `SubcategoryServiceTest` (17 casos)
+#### 8. `SubcategoryServiceTest` (17 casos)
 **Clase bajo test**: `com.fcs.mis_fichas.services.SubcategoryService`
 
 CRUD de subcategorías con permisos basados en roles (USER vs ADMIN).
@@ -192,7 +217,7 @@ CRUD de subcategorías con permisos basados en roles (USER vs ADMIN).
 
 ---
 
-#### 8. `TransactionServiceTest` (19 casos)
+#### 9. `TransactionServiceTest` (19 casos)
 **Clase bajo test**: `com.fcs.mis_fichas.services.TransactionService`
 
 CRUD de transacciones con validaciones de permisos y filtros complejos.
@@ -317,7 +342,25 @@ Endpoints bajo `/admin/users` (requieren ADMIN).
 
 ---
 
-#### 7. `GlobalExceptionHandlerTest` (4 casos)
+#### 7. `AdminSecurityControllerTest` (8 casos)
+**Clase bajo test**: `com.fcs.mis_fichas.controllers.AdminSecurityController`
+
+Endpoints ADMIN de seguridad bajo `/admin/security`.
+
+| Test | Descripción |
+|------|-------------|
+| `getBlockedAccounts_shouldReturn200_withPaginationAndDefaultSort` | GET `/brute-force/blocked` → paginación default (`email,asc`) |
+| `getBlockedAccounts_shouldReturnEmpty_whenNoBlockedAccounts` | GET sin bloqueos → lista vacía |
+| `getBlockedAccounts_shouldApplyCustomPageAndSize` | GET con `page`, `size` y `sort=lockedUntil,desc` |
+| `unblock_shouldReturn200_whenAccountWasBlocked` | POST `/brute-force/unblock` → desbloqueo exitoso |
+| `unblock_shouldReturn200_whenAccountWasNotBlocked` | POST a cuenta no bloqueada → mensaje informativo |
+| `unblock_shouldReturn400_whenEmailIsBlank` | POST con email vacío → 400 |
+| `cleanupRefreshTokens_shouldReturn200_withDeletedCount` | POST `/refresh-tokens/cleanup` → devuelve cantidad eliminada |
+| `cleanupRefreshTokens_shouldReturn200_withZeroDeletedCount` | POST sin tokens para limpiar → 0 eliminados |
+
+---
+
+#### 8. `GlobalExceptionHandlerTest` (4 casos)
 **Clase bajo test**: `com.fcs.mis_fichas.controllers.GlobalExceptionHandler`
 
 Valida que las excepciones se traducen correctamente a respuestas `ApiResponse`.
@@ -359,9 +402,9 @@ Valida la inicialización de datos del sistema.
 | Test | Descripción |
 |------|-------------|
 | `seedAdmin_shouldCreateAdmin_whenNotExists` | Crea admin con `ADMIN_EMAIL`/`ADMIN_PASSWORD` y BCrypt |
-| `seedAdmin_shouldNotCreateAdmin_whenAlreadyExists` | No duplica si ya existe |
+| `seedAdmin_shouldNotCreateAdmin_whenAlreadyExists` | No duplica admin si ya existe |
 | `seedAdmin_shouldCreateCategoriesAndSubcategories_whenNotExist` | Crea categorías y subcategorías de sistema |
-| `seedAdmin_shouldNotCreateDuplicateCategories` | No duplica categorías existentes |
+| `seedAdmin_shouldNotCreateAnything_whenAdminAlreadyExists` | Si el admin ya existe, no crea nada más |
 
 ---
 
@@ -419,8 +462,8 @@ export $(grep -v '^#' .env | xargs)
 
 ### ✅ Cubierto
 - **Servicios**: 8/8 servicios principales (100%)
-- **Controladores**: 6/7 controladores (todos excepto `CategoryPublicController` comparte lógica con `CategoryController` y está cubierto)
-- **Seguridad**: Filtro JWT, `UserDetailsService`, BCrypt, roles y authorities
+- **Controladores**: 7/8 controladores (`CategoryPublicController` comparte lógica con `CategoryController` y está cubierto indirectamente)
+- **Seguridad**: Filtro JWT, `UserDetailsService`, BCrypt, roles y authorities, protección por fuerza bruta
 - **Validación**: Todos los DTOs de entrada con `@Valid`
 - **Excepciones**: Handler global con casos 400, 401, 500
 - **Inicialización**: Seeder de admin y categorías del sistema
