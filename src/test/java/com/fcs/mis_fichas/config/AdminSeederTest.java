@@ -7,8 +7,8 @@ import com.fcs.mis_fichas.enums.Role;
 import com.fcs.mis_fichas.enums.Status;
 import com.fcs.mis_fichas.repositories.CategoryRepository;
 import com.fcs.mis_fichas.repositories.SubcategoryRepository;
-import com.fcs.mis_fichas.repositories.TransactionRepository;
 import com.fcs.mis_fichas.repositories.UserRepository;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,17 +34,17 @@ class AdminSeederTest {
     @Mock
     private SubcategoryRepository subcategoryRepository;
     @Mock
-    private TransactionRepository transactionRepository;
-    @Mock
     private PasswordEncoder passwordEncoder;
     @Mock
     private org.springframework.core.env.Environment environment;
+    @Mock
+    private JdbcTemplate jdbcTemplate;
 
     private AdminSeeder adminSeeder;
 
     @BeforeEach
     void setUp() {
-        adminSeeder = new AdminSeeder(userRepository, categoryRepository, subcategoryRepository, transactionRepository, passwordEncoder, environment);
+        adminSeeder = new AdminSeeder(userRepository, categoryRepository, subcategoryRepository, passwordEncoder, environment, jdbcTemplate);
         ReflectionTestUtils.setField(adminSeeder, "adminEmail", "admin@mis-fichas.fcs");
         ReflectionTestUtils.setField(adminSeeder, "adminPassword", "secret-password");
     }
@@ -116,7 +116,7 @@ class AdminSeederTest {
     }
 
     @Test
-    void seedAdmin_shouldNotCreateDuplicateCategories() throws Exception {
+    void seedAdmin_shouldNotCreateAnything_whenAdminAlreadyExists() throws Exception {
         User existingAdmin = User.builder()
                 .id(1L)
                 .email("admin@mis-fichas.fcs")
@@ -126,20 +126,14 @@ class AdminSeederTest {
                 .status(Status.ACTIVE)
                 .build();
 
-        Category existingCategory = Category.builder()
-                .id(1L)
-                .name("Ingresos generales")
-                .build();
-
         when(userRepository.findByEmailAndDeletedAtIsNull("admin@mis-fichas.fcs")).thenReturn(Optional.of(existingAdmin));
-        when(categoryRepository.findByNameAndDeletedAtIsNull("Ingresos generales")).thenReturn(Optional.of(existingCategory));
-        when(subcategoryRepository.findByNameAndCategoryIdAndDeletedAtIsNull(any(), any())).thenReturn(Optional.empty());
-        when(subcategoryRepository.save(any(Subcategory.class))).thenAnswer(inv -> inv.getArgument(0));
 
         var runner = adminSeeder.seedAdmin();
         runner.run();
 
-        verify(categoryRepository, never()).save(existingCategory);
-        verify(subcategoryRepository, atLeastOnce()).save(any(Subcategory.class));
+        verify(userRepository, never()).save(any(User.class));
+        verify(categoryRepository, never()).save(any(Category.class));
+        verify(subcategoryRepository, never()).save(any(Subcategory.class));
+        verify(jdbcTemplate, never()).execute(anyString());
     }
 }

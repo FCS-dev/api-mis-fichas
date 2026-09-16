@@ -97,7 +97,7 @@ Al iniciar la app con el perfil `developer`, el `AdminSeeder` carga automáticam
 - **~2000 transacciones** con montos realistas y descripciones en español
 - Password de cada usuario: su propio email (ej: `carlos.garcia@prueba.fcs`)
 
-**Condición**: solo se insertan datos fake si la BD no tiene usuarios además del admin.
+**Condición**: solo se insertan datos fake si la BD no tiene un usuario ADMIN con status ACTIVE y la app arranca con el perfil `developer` o `dev`.
 
 Para activar el perfil, asegurate de que `.env` contenga:
 
@@ -112,16 +112,19 @@ La config del perfil DEVELOPER (`application-developer.yaml`) incluye:
 
 ### Generar datos fake manualmente (SQL)
 
-Si preferís ejecutar el SQL directamente contra la BD en vez de usar el AdminSeeder:
+Si la aplicación no arranca con el perfil `developer`/`dev`, podés cargar los
+datos de prueba manualmente con el script incluido:
 
 ```bash
-cd src/main/resources
-pip install bcrypt
-python3 generate_fake_data.py
-mysql -u admin -p misfichasDB < data-fake.sql
+./run-fake-data.sh
 ```
 
-El script Python genera `data-fake.sql` con la misma data que el AdminSeeder.
+Esto ejecuta `mysql -u admin -p misfichasDB < src/main/resources/data-fake.sql`.
+
+**Requisito:** el esquema de la BD debe existir y el `AdminSeeder` debe haber
+creado previamente el usuario ADMIN, las categorías y las subcategorías de
+sistema. Si ejecutás el script sobre una BD vacía, fallará por violaciones de
+clave foránea.
 
 ## Autenticación y seguridad
 
